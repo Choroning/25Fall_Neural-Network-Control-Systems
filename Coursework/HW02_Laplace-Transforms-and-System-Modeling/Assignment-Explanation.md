@@ -76,13 +76,13 @@ Coursework/HW02_Laplace-Transforms-and-System-Modeling/
 The **Laplace transform** of a function $f(t)$ defined for $t \ge 0$ is the function of the complex variable $s = \sigma + j\omega$
 
 $$
-F(s) = \mathcal{L}\lbrace f(t)\rbrace = \int_0^\infty f(t)\,e^{-st}\,dt
+F(s) = \mathcal{L}\lbrace f(t)\rbrace= \int_0^\infty f(t)\,e^{-st}\,dt
 $$
 
 Time functions are written in lowercase and their transforms in uppercase. The integral converges when $f(t)$ does not grow exponentially too fast and $\operatorname{Re}(s)$ is large enough. For example, if $f(t) = e^{-at}$,
 
 $$
-\mathcal{L}\lbrace e^{-at}\rbrace = \int_0^\infty e^{-(s+a)t}\,dt = \left[\frac{-e^{-(s+a)t}}{s+a}\right]_0^\infty = \frac{1}{s+a}, \qquad \operatorname{Re}(s) > -a
+\mathcal{L}\lbrace e^{-at}\rbrace= \int_0^\infty e^{-(s+a)t}\,dt = \left[\frac{-e^{-(s+a)t}}{s+a}\right]_0^\infty = \frac{1}{s+a}, \qquad \operatorname{Re}(s) > -a
 $$
 
 The basic transform pairs obtained by computations like this one are in Table 2, and every computation in this assignment is built from Table 2 and the properties in Section 2.2. The transform uses only the values for $t \ge 0$, so a time function obtained by an inverse transform also gives the values for $t \ge 0$.
@@ -104,11 +104,11 @@ The basic transform pairs obtained by computations like this one are in Table 2,
 
 | Property | Formula |
 |:-----|:-----|
-| Linearity | $\mathcal{L}\lbrace \alpha f(t) + \beta g(t)\rbrace = \alpha F(s) + \beta G(s)$ |
-| Frequency shift | $\mathcal{L}\lbrace e^{-at}f(t)\rbrace = F(s+a)$ |
-| Multiplication by $t$ | $\mathcal{L}\lbrace tf(t)\rbrace = -\dfrac{dF(s)}{ds}$ |
-| First derivative | $\mathcal{L}\lbrace \dot{f}(t)\rbrace = sF(s) - f(0)$ |
-| Second derivative | $\mathcal{L}\lbrace \ddot{f}(t)\rbrace = s^2F(s) - sf(0) - \dot{f}(0)$ |
+| Linearity | $\mathcal{L}\lbrace\alpha f(t) + \beta g(t)\rbrace= \alpha F(s) + \beta G(s)$ |
+| Frequency shift | $\mathcal{L}\lbrace e^{-at}f(t)\rbrace= F(s+a)$ |
+| Multiplication by $t$ | $\mathcal{L}\lbrace tf(t)\rbrace= -\dfrac{dF(s)}{ds}$ |
+| First derivative | $\mathcal{L}\lbrace\dot{f}(t)\rbrace= sF(s) - f(0)$ |
+| Second derivative | $\mathcal{L}\lbrace\ddot{f}(t)\rbrace= s^2F(s) - sf(0) - \dot{f}(0)$ |
 | Final value theorem | $\lim_{t\to\infty} f(t) = \lim_{s\to 0} sF(s)$ (when all poles of $sF(s)$ lie in the left half-plane) |
 
 *Table 3. Main properties of the Laplace transform*
@@ -126,30 +126,30 @@ The frequency shift follows from the definition because $e^{-at}e^{-st} = e^{-(s
 **1.1) $2e^{-2t} + 3e^{-3t}$.** By linearity, each term is transformed with $e^{-at}$ in Table 2. Over a common denominator, the numerator is $2(s+3) + 3(s+2) = 5s + 12$.
 
 $$
-\mathcal{L}\lbrace 2e^{-2t} + 3e^{-3t}\rbrace = \frac{2}{s+2} + \frac{3}{s+3} = \frac{5s+12}{(s+2)(s+3)}
+\mathcal{L}\lbrace2e^{-2t} + 3e^{-3t}\rbrace= \frac{2}{s+2} + \frac{3}{s+3} = \frac{5s+12}{(s+2)(s+3)}
 $$
 
-**1.2) $te^{-5t}$.** Two methods give the same result. The frequency shift replaces $s$ with $s + 5$ in $\mathcal{L}\lbrace t\rbrace = 1/s^2$, and the multiplication-by-$t$ property differentiates $\mathcal{L}\lbrace e^{-5t}\rbrace = 1/(s+5)$ and flips the sign.
+**1.2) $te^{-5t}$.** Two methods give the same result. The frequency shift replaces $s$ with $s + 5$ in $\mathcal{L}\lbrace t\rbrace= 1/s^2$, and the multiplication-by-$t$ property differentiates $\mathcal{L}\lbrace e^{-5t}\rbrace= 1/(s+5)$ and flips the sign.
 
 $$
-\mathcal{L}\lbrace te^{-5t}\rbrace = \frac{1}{s^2}\bigg\vert_{s \to s+5} = \frac{1}{(s+5)^2}, \qquad -\frac{d}{ds}\left(\frac{1}{s+5}\right) = \frac{1}{(s+5)^2}
+\mathcal{L}\lbrace te^{-5t}\rbrace= \frac{1}{s^2}\bigg\vert_{s \to s+5} = \frac{1}{(s+5)^2}, \qquad -\frac{d}{ds}\left(\frac{1}{s+5}\right) = \frac{1}{(s+5)^2}
 $$
 
 **1.3) $\sin t + \cos 3t$.** The transforms of the sine with $\omega = 1$ and the cosine with $\omega = 3$ are added.
 
 $$
-\mathcal{L}\lbrace \sin t + \cos 3t\rbrace = \frac{1}{s^2+1} + \frac{s}{s^2+9} = \frac{s^3 + s^2 + s + 9}{(s^2+1)(s^2+9)}
+\mathcal{L}\lbrace\sin t + \cos 3t\rbrace= \frac{1}{s^2+1} + \frac{s}{s^2+9} = \frac{s^3 + s^2 + s + 9}{(s^2+1)(s^2+9)}
 $$
 
 The numerator over the common denominator is $(s^2 + 9) + s(s^2 + 1) = s^3 + s^2 + s + 9$. The form with the two terms kept apart is easier to invert.
 
-**1.4) $e^{-2t}\sin 2t$.** The frequency shift is applied to $\mathcal{L}\lbrace \sin 2t\rbrace = 2/(s^2+4)$, replacing $s$ with $s + 2$.
+**1.4) $e^{-2t}\sin 2t$.** The frequency shift is applied to $\mathcal{L}\lbrace\sin 2t\rbrace= 2/(s^2+4)$, replacing $s$ with $s + 2$.
 
 $$
-\mathcal{L}\lbrace e^{-2t}\sin 2t\rbrace = \frac{2}{(s+2)^2+4} = \frac{2}{s^2+4s+8}
+\mathcal{L}\lbrace e^{-2t}\sin 2t\rbrace= \frac{2}{(s+2)^2+4} = \frac{2}{s^2+4s+8}
 $$
 
-The roots of the denominator are $-2 \pm j2$; the real part $-2$ gives the decaying exponential $e^{-2t}$, and the imaginary part $2$ gives the angular frequency of the oscillation. This one-to-one correspondence between pole locations and the shape of the time response is the basis of the response analysis in Weeks 7 and 9.
+The roots of the denominator are $-2 \pm j2$; the real part $-2$ gives the decaying exponential $e^{-2t}$, and the imaginary part $2$ gives the angular frequency of the oscillation. That the pole locations determine the shape of the terms in the time response (how fast they decay and at what angular frequency they oscillate) is the basis of the response analysis in Weeks 7 and 9. The size of each term is set by the coefficients of the partial fraction expansion.
 
 ---
 
@@ -351,7 +351,7 @@ $$
 \frac{Y_1(s)}{F(s)} = \frac{Bs + K}{Ms^2(Bs + K) + BKs} = \frac{Bs + K}{MBs^3 + MKs^2 + BKs} = \frac{Bs + K}{s\,(MBs^2 + MKs + BK)}
 $$
 
-Two limits confirm the result. As $B \to \infty$, the damper becomes rigid like a rod, the mass is attached directly to the spring, and the transfer function becomes $1/(Ms^2 + K)$. As $K \to \infty$, the spring becomes rigid, the damper is attached directly to the wall, and the transfer function becomes $1/[s(Ms + B)]$. The pole at the origin, $s = 0$, means that under a constant force the damper keeps stretching without end, so the displacement of the mass grows without bound.
+Multiplying both sides by the denominator of the transfer function gives $(MBs^3 + MKs^2 + BKs)Y_1(s) = (Bs + K)F(s)$, and turning $s$ back into time differentiation gives a single third-order differential equation in which $y_2$ is eliminated from the two equations of motion, $MB\dddot{y}_1 + MK\ddot{y}_1 + BK\dot{y}_1 = B\dot{f} + Kf$. This equation is also an equation of motion of the mass. Two limits confirm the result. As $B \to \infty$, the damper becomes rigid like a rod, the mass is attached directly to the spring, and the transfer function becomes $1/(Ms^2 + K)$. As $K \to \infty$, the spring becomes rigid, the damper is attached directly to the wall, and the transfer function becomes $1/[s(Ms + B)]$. The pole at the origin, $s = 0$, means that under a constant force the damper keeps stretching without end, so the displacement of the mass grows without bound.
 
 ---
 
@@ -478,7 +478,7 @@ From the viewpoint of block diagram reduction, the $G_5$ path starts inside the 
    <details>
    <summary>Answer</summary>
 
-   Replacing $s$ with $s + 3$ in $\mathcal{L}\lbrace \cos 4t\rbrace = s/(s^2 + 16)$ gives $(s+3)/[(s+3)^2 + 16] = (s+3)/(s^2 + 6s + 25)$.
+   Replacing $s$ with $s + 3$ in $\mathcal{L}\lbrace\cos 4t\rbrace= s/(s^2 + 16)$ gives $(s+3)/[(s+3)^2 + 16] = (s+3)/(s^2 + 6s + 25)$.
 
    </details>
 

@@ -109,7 +109,7 @@ $\omega_n$ is called the **natural frequency** and $\zeta$ the **damping ratio**
 | Damping Ratio | Type | Poles | Step Response |
 |:-----|:-----|:-----|:-----|
 | $\zeta > 1$ | Overdamped | Two distinct negative real roots | Converges slowly without oscillation |
-| $\zeta = 1$ | Critically damped | Repeated real root $-\omega_n$ | Fastest among responses that converge without oscillation |
+| $\zeta = 1$ | Critically damped | Repeated real root $-\omega_n$ | Fastest among responses that converge without oscillation for the same $\omega_n$ |
 | $0 < \zeta < 1$ | Underdamped | Complex conjugate roots $-\zeta\omega_n \pm j\omega_n\sqrt{1 - \zeta^2}$ | Exceeds the target and converges while oscillating |
 | $\zeta = 0$ | Undamped | $\pm j\omega_n$ on the imaginary axis | Oscillation whose amplitude does not shrink |
 
@@ -173,7 +173,7 @@ $K_1$ sets the natural frequency and $K_2$ the damping. With the plant alone, th
 
 ## 5. Problem 3: Poles and Stability
 
-A system whose output is always bounded for every bounded input is called **BIBO stable** (bounded-input bounded-output stable). A linear time-invariant system with a rational transfer function is BIBO stable when the real parts of all its poles are negative (all poles lie in the left half-plane). If even one pole has a positive real part, the $e^{pt}$ term it produces grows, so the system is unstable, and if there are non-repeated poles on the imaginary axis and all other poles lie in the left half-plane, the oscillation does not shrink, so the system is **marginally stable** and not BIBO stable.
+A system whose output is always bounded for every bounded input is called **BIBO stable** (bounded-input bounded-output stable). A linear time-invariant system with a rational transfer function is BIBO stable when the real parts of all its poles are negative (all poles lie in the left half-plane). If even one pole has a positive real part, the $e^{pt}$ term it produces grows, so the system is unstable, and if there are non-repeated poles on the imaginary axis and all other poles lie in the left half-plane, the response keeps a constant (a pole at the origin) or an oscillation of constant amplitude (conjugate poles on the imaginary axis) that does not shrink to 0, so the system is **marginally stable** and not BIBO stable.
 
 **3.1) $s^3 + 2s^2 + 2s + 1 = 0$.** Substituting $s = -1$ gives $-1 + 2 - 2 + 1 = 0$, so $(s + 1)$ is a factor. Dividing gives $s^3 + 2s^2 + 2s + 1 = (s + 1)(s^2 + s + 1)$, and the roots of the quadratic factor come from the quadratic formula.
 
@@ -203,7 +203,7 @@ The roots of high-order characteristic equations are hard to find directly. The 
 
 1. Write $a_n, a_{n-2}, a_{n-4}, \ldots$ in the first row (the $s^n$ row) and $a_{n-1}, a_{n-3}, a_{n-5}, \ldots$ in the second row (the $s^{n-1}$ row). Missing coefficients are set to 0.
 2. From the third row on, compute from the two rows directly above. If those two rows are $(x_1, x_2, x_3, \ldots)$ and $(y_1, y_2, y_3, \ldots)$, the $k$th value of the new row is $(y_1x_{k+1} - x_1y_{k+1})/y_1$.
-3. After computing down to the $s^0$ row, count the sign changes in the first column. This count is the number of right-half-plane roots, and if the first column has a single sign, the system is stable.
+3. After computing down to the $s^0$ row, count the sign changes in the first column. This count is the number of right-half-plane roots, and if the first column has a single sign, the system is stable. The special cases in which a 0 appears in the first column or an entire row becomes 0 are treated in Week 9, and an example of an entire zero row is $K = 8$ in Section 7.
 
 There is also a necessary condition: for all roots to lie in the left half-plane, all coefficients must be nonzero and of the same sign. For polynomials of degree 2 or lower this condition is also sufficient, but for degree 3 and higher it is not, so the Routh array is needed.
 

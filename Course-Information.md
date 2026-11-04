@@ -121,7 +121,7 @@
 | Type | Contents |
 |:-----|:-----|
 | Main Textbook | Class handouts (lecture notes) |
-| Lecture Materials | Weekly lecture videos and slides provided by the instructor (DSC Platform University lecture materials) |
+| Lecture Materials | Weekly lecture videos and slides provided by the instructor (lecture materials of the DSC shared university) |
 | Reference Book | 임동진, *제어 시스템 공학*, 개정판. 파주: 생능출판사, 2019. (source of some figures and examples in the Week 7, 9, and 10 slides) |
 | Reference Documents | The MathWorks Deep Learning Toolbox documentation on designing neural network predictive controllers and model reference controllers (cited in the Week 14 slides) |
 

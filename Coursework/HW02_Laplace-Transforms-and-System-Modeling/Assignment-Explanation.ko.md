@@ -76,13 +76,13 @@ Coursework/HW02_Laplace-Transforms-and-System-Modeling/
 $t \ge 0$에서 정의된 함수 $f(t)$의 **라플라스 변환(Laplace transform)** 은 복소 변수 $s = \sigma + j\omega$의 함수
 
 $$
-F(s) = \mathcal{L}\lbrace f(t)\rbrace = \int_0^\infty f(t)\,e^{-st}\,dt
+F(s) = \mathcal{L}\lbrace f(t)\rbrace= \int_0^\infty f(t)\,e^{-st}\,dt
 $$
 
 이다. 시간 함수는 소문자, 그 변환은 대문자로 쓴다. 적분은 $f(t)$가 지수적으로 너무 빨리 커지지 않고 $\operatorname{Re}(s)$가 충분히 클 때 수렴한다. 예를 들어 $f(t) = e^{-at}$이면
 
 $$
-\mathcal{L}\lbrace e^{-at}\rbrace = \int_0^\infty e^{-(s+a)t}\,dt = \left[\frac{-e^{-(s+a)t}}{s+a}\right]_0^\infty = \frac{1}{s+a}, \qquad \operatorname{Re}(s) > -a
+\mathcal{L}\lbrace e^{-at}\rbrace= \int_0^\infty e^{-(s+a)t}\,dt = \left[\frac{-e^{-(s+a)t}}{s+a}\right]_0^\infty = \frac{1}{s+a}, \qquad \operatorname{Re}(s) > -a
 $$
 
 이다. 이와 같은 계산으로 얻은 기본 변환 쌍이 표 2이며, 이 과제의 모든 계산은 표 2와 2.2절의 성질로 이루어진다. 변환은 $t \ge 0$의 값만 쓰므로, 역변환으로 얻은 시간 함수도 $t \ge 0$에서의 값이다.
@@ -104,11 +104,11 @@ $$
 
 | 성질 | 식 |
 |:-----|:-----|
-| 선형성 | $\mathcal{L}\lbrace \alpha f(t) + \beta g(t)\rbrace = \alpha F(s) + \beta G(s)$ |
-| 주파수 이동 | $\mathcal{L}\lbrace e^{-at}f(t)\rbrace = F(s+a)$ |
-| $t$를 곱함 | $\mathcal{L}\lbrace tf(t)\rbrace = -\dfrac{dF(s)}{ds}$ |
-| 1계 미분 | $\mathcal{L}\lbrace \dot{f}(t)\rbrace = sF(s) - f(0)$ |
-| 2계 미분 | $\mathcal{L}\lbrace \ddot{f}(t)\rbrace = s^2F(s) - sf(0) - \dot{f}(0)$ |
+| 선형성 | $\mathcal{L}\lbrace\alpha f(t) + \beta g(t)\rbrace= \alpha F(s) + \beta G(s)$ |
+| 주파수 이동 | $\mathcal{L}\lbrace e^{-at}f(t)\rbrace= F(s+a)$ |
+| $t$를 곱함 | $\mathcal{L}\lbrace tf(t)\rbrace= -\dfrac{dF(s)}{ds}$ |
+| 1계 미분 | $\mathcal{L}\lbrace\dot{f}(t)\rbrace= sF(s) - f(0)$ |
+| 2계 미분 | $\mathcal{L}\lbrace\ddot{f}(t)\rbrace= s^2F(s) - sf(0) - \dot{f}(0)$ |
 | 최종값 정리 | $\lim_{t\to\infty} f(t) = \lim_{s\to 0} sF(s)$ ($sF(s)$의 극점이 모두 좌반평면에 있을 때) |
 
 *표 3. 라플라스 변환의 주요 성질*
@@ -126,30 +126,30 @@ $$
 **1.1) $2e^{-2t} + 3e^{-3t}$.** 선형성으로 각 항을 표 2의 $e^{-at}$로 변환한다. 통분하면 분자는 $2(s+3) + 3(s+2) = 5s + 12$이다.
 
 $$
-\mathcal{L}\lbrace 2e^{-2t} + 3e^{-3t}\rbrace = \frac{2}{s+2} + \frac{3}{s+3} = \frac{5s+12}{(s+2)(s+3)}
+\mathcal{L}\lbrace2e^{-2t} + 3e^{-3t}\rbrace= \frac{2}{s+2} + \frac{3}{s+3} = \frac{5s+12}{(s+2)(s+3)}
 $$
 
-**1.2) $te^{-5t}$.** 두 가지 방법으로 같은 결과를 얻는다. 주파수 이동을 쓰면 $\mathcal{L}\lbrace t\rbrace = 1/s^2$의 $s$를 $s + 5$로 바꾸고, $t$를 곱하는 성질을 쓰면 $\mathcal{L}\lbrace e^{-5t}\rbrace = 1/(s+5)$를 미분하여 부호를 바꾼다.
+**1.2) $te^{-5t}$.** 두 가지 방법으로 같은 결과를 얻는다. 주파수 이동을 쓰면 $\mathcal{L}\lbrace t\rbrace= 1/s^2$의 $s$를 $s + 5$로 바꾸고, $t$를 곱하는 성질을 쓰면 $\mathcal{L}\lbrace e^{-5t}\rbrace= 1/(s+5)$를 미분하여 부호를 바꾼다.
 
 $$
-\mathcal{L}\lbrace te^{-5t}\rbrace = \frac{1}{s^2}\bigg\vert_{s \to s+5} = \frac{1}{(s+5)^2}, \qquad -\frac{d}{ds}\left(\frac{1}{s+5}\right) = \frac{1}{(s+5)^2}
+\mathcal{L}\lbrace te^{-5t}\rbrace= \frac{1}{s^2}\bigg\vert_{s \to s+5} = \frac{1}{(s+5)^2}, \qquad -\frac{d}{ds}\left(\frac{1}{s+5}\right) = \frac{1}{(s+5)^2}
 $$
 
 **1.3) $\sin t + \cos 3t$.** $\omega = 1$인 사인과 $\omega = 3$인 코사인의 변환을 더한다.
 
 $$
-\mathcal{L}\lbrace \sin t + \cos 3t\rbrace = \frac{1}{s^2+1} + \frac{s}{s^2+9} = \frac{s^3 + s^2 + s + 9}{(s^2+1)(s^2+9)}
+\mathcal{L}\lbrace\sin t + \cos 3t\rbrace= \frac{1}{s^2+1} + \frac{s}{s^2+9} = \frac{s^3 + s^2 + s + 9}{(s^2+1)(s^2+9)}
 $$
 
 통분한 분자는 $(s^2 + 9) + s(s^2 + 1) = s^3 + s^2 + s + 9$이다. 두 항을 따로 둔 꼴이 역변환하기에는 더 편하다.
 
-**1.4) $e^{-2t}\sin 2t$.** $\mathcal{L}\lbrace \sin 2t\rbrace = 2/(s^2+4)$에 주파수 이동을 적용하여 $s$를 $s + 2$로 바꾼다.
+**1.4) $e^{-2t}\sin 2t$.** $\mathcal{L}\lbrace\sin 2t\rbrace= 2/(s^2+4)$에 주파수 이동을 적용하여 $s$를 $s + 2$로 바꾼다.
 
 $$
-\mathcal{L}\lbrace e^{-2t}\sin 2t\rbrace = \frac{2}{(s+2)^2+4} = \frac{2}{s^2+4s+8}
+\mathcal{L}\lbrace e^{-2t}\sin 2t\rbrace= \frac{2}{(s+2)^2+4} = \frac{2}{s^2+4s+8}
 $$
 
-분모의 근은 $-2 \pm j2$이며, 실수부 $-2$가 감쇠 지수 $e^{-2t}$를, 허수부 $2$가 진동의 각진동수를 나타낸다. 이처럼 극점의 위치와 시간 응답의 모양이 일대일로 대응한다는 점이 7주차와 9주차의 응답 해석의 바탕이다.
+분모의 근은 $-2 \pm j2$이며, 실수부 $-2$가 감쇠 지수 $e^{-2t}$를, 허수부 $2$가 진동의 각진동수를 나타낸다. 이처럼 극점의 위치가 시간 응답에 나타나는 항의 모양(감쇠의 빠르기와 진동의 각진동수)을 정한다는 점이 7주차와 9주차의 응답 해석의 바탕이다. 각 항의 크기는 부분분수 전개의 계수가 정한다.
 
 ---
 
@@ -351,7 +351,7 @@ $$
 \frac{Y_1(s)}{F(s)} = \frac{Bs + K}{Ms^2(Bs + K) + BKs} = \frac{Bs + K}{MBs^3 + MKs^2 + BKs} = \frac{Bs + K}{s\,(MBs^2 + MKs + BK)}
 $$
 
-두 극한으로 결과를 확인할 수 있다. $B \to \infty$이면 댐퍼가 막대처럼 굳어 질량이 스프링에 바로 이어지고, 전달함수는 $1/(Ms^2 + K)$가 된다. $K \to \infty$이면 스프링이 굳어 댐퍼가 벽에 바로 이어지고, 전달함수는 $1/[s(Ms + B)]$가 된다. 원점의 극점 $s = 0$은 일정한 힘을 계속 가하면 댐퍼가 끝없이 늘어나 질량의 변위가 한없이 커진다는 뜻이다.
+전달함수의 분모를 양변에 곱하면 $(MBs^3 + MKs^2 + BKs)Y_1(s) = (Bs + K)F(s)$이고, $s$를 시간 미분으로 되돌리면 두 운동방정식에서 $y_2$를 소거한 하나의 3계 미분방정식 $MB\dddot{y}_1 + MK\ddot{y}_1 + BK\dot{y}_1 = B\dot{f} + Kf$를 얻는다. 이 식도 질량의 운동방정식이다. 두 극한으로 결과를 확인할 수 있다. $B \to \infty$이면 댐퍼가 막대처럼 굳어 질량이 스프링에 바로 이어지고, 전달함수는 $1/(Ms^2 + K)$가 된다. $K \to \infty$이면 스프링이 굳어 댐퍼가 벽에 바로 이어지고, 전달함수는 $1/[s(Ms + B)]$가 된다. 원점의 극점 $s = 0$은 일정한 힘을 계속 가하면 댐퍼가 끝없이 늘어나 질량의 변위가 한없이 커진다는 뜻이다.
 
 ---
 
@@ -478,7 +478,7 @@ $$
    <details>
    <summary>정답</summary>
 
-   $\mathcal{L}\lbrace \cos 4t\rbrace = s/(s^2 + 16)$의 $s$를 $s + 3$으로 바꾸어 $(s+3)/[(s+3)^2 + 16] = (s+3)/(s^2 + 6s + 25)$이다.
+   $\mathcal{L}\lbrace\cos 4t\rbrace= s/(s^2 + 16)$의 $s$를 $s + 3$으로 바꾸어 $(s+3)/[(s+3)^2 + 16] = (s+3)/(s^2 + 6s + 25)$이다.
 
    </details>
 

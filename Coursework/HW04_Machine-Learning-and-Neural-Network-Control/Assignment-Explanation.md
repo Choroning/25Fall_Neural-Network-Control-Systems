@@ -154,7 +154,7 @@ $$
 \text{SSE} = \frac{1}{9} + \frac{4}{9} + \frac{1}{9} = \frac{2}{3}, \qquad \text{SST} = \frac{49}{9} + \frac{4}{9} + \frac{25}{9} = \frac{26}{3}, \qquad R^2 = 1 - \frac{2/3}{26/3} = 1 - \frac{1}{13} = \frac{12}{13} \approx 0.923
 $$
 
-The model explains about 92.3% of the output variation. In simple linear regression with an intercept, $R^2$ equals the square of the correlation coefficient $r$ between $x$ and $y$, and for this data $r = \sqrt{12/13} \approx 0.961$. The R value of Week 12 corresponds to this correlation coefficient, and the closer it is to 1, the better the predictions match the targets.
+The model explains about 92.3% of the output variation. In simple linear regression with an intercept, $R^2$ equals the square of the correlation coefficient $r$ between $x$ and $y$, and for this data $r = \sqrt{12/13} \approx 0.961$. The R value of Week 12 is the correlation coefficient between the predictions and the targets; in simple linear regression the prediction $\hat{y}$ is a linear function of $x$, and the slope is positive for this data, so that value also equals $r$, and the closer it is to 1, the better the predictions match the targets.
 
 ### 3.3 RMSE on New Samples
 
@@ -251,7 +251,7 @@ $$
 
 As a check, $x(k+1) = [3, 3]^T + [2, 1]^T(-\frac{7}{6}) = [\frac{2}{3}, \frac{11}{6}]^T$, and $x(k+2) = A[\frac{2}{3}, \frac{11}{6}]^T + [2, 1]^T(-\frac{7}{6}) = [\frac{13}{3} - \frac{7}{3}, \frac{19}{6} - \frac{7}{6}]^T = [2, 2]^T$. Since it predicts future states with a model and chooses the upcoming inputs so that the prediction equals the target, this problem is the predictive control of Section 6 solved with a linear model.
 
-> **[Linear Algebra]** If the coefficient matrix $[AB \;\; B]$ is invertible, any target state can be reached in two steps. In general, if the matrix $[B \;\; AB \;\; \cdots \;\; A^{n-1}B]$ of an $n$th-order system has rank $n$, any state can be moved to any other state within $n$ steps, and this property is called controllability.
+> **Note:** If the coefficient matrix $[AB \;\; B]$ is invertible, any target state can be reached in two steps. In general, if the matrix $[B \;\; AB \;\; \cdots \;\; A^{n-1}B]$ of an $n$th-order system has rank $n$, any state can be moved to any other state within $n$ steps, and this property is called controllability.
 
 ---
 
@@ -281,7 +281,7 @@ $$
 \hat{y}(2) = \big(y(1) + 2u(1)\big)^2 = \big(4 + 2u(1)\big)^2 = 9 \quad\Longrightarrow\quad 4 + 2u(1) = \pm 3 \quad\Longrightarrow\quad u(1) = -\frac{1}{2} \;\text{or}\; -\frac{7}{2}
 $$
 
-$\hat{y}(2)$ is set by $y(1) = 4$ alone regardless of $u(0)$, so any pairing of the two values of $u(0)$ with the two values of $u(1)$ gives $J = 0$. Therefore, with $\rho = 0$, all four combinations $(u(0), u(1)) = (\frac{1}{2}, -\frac{1}{2})$, $(\frac{1}{2}, -\frac{7}{2})$, $(-\frac{3}{2}, -\frac{1}{2})$, $(-\frac{3}{2}, -\frac{7}{2})$ are solutions. There are several solutions because the model is quadratic in the input, so two inputs give the same output at each step. With $\rho > 0$, the penalty on input changes narrows the solutions, and among the four combinations $(\frac{1}{2}, -\frac{1}{2})$ has the smallest input magnitudes and also the smallest change from $u(0)$ to $u(1)$ (the change of 1 equals that of $(-\frac{3}{2}, -\frac{1}{2})$), placing the least load on a real actuator.
+$\hat{y}(2)$ is set by $y(1) = 4$ alone regardless of $u(0)$, so any pairing of the two values of $u(0)$ with the two values of $u(1)$ gives $J = 0$. Therefore, with $\rho = 0$, all four combinations $(u(0), u(1)) = (\frac{1}{2}, -\frac{1}{2})$, $(\frac{1}{2}, -\frac{7}{2})$, $(-\frac{3}{2}, -\frac{1}{2})$, $(-\frac{3}{2}, -\frac{7}{2})$ are solutions. There are several solutions because the model is quadratic in the input, so two inputs give the same output at each step. With $\rho > 0$, the penalty on input changes makes the four combinations no longer have the same $J$, and the optimal inputs are set by a trade-off between tracking error and input change. Among the four combinations, $(\frac{1}{2}, -\frac{1}{2})$ has the smallest input magnitudes and also the smallest change from $u(0)$ to $u(1)$ (the change of 1 equals that of $(-\frac{3}{2}, -\frac{1}{2})$), placing the least load on a real actuator, so it is the suitable choice when one combination must be picked.
 
 ---
 

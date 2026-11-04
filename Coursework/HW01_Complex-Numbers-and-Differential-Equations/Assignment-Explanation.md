@@ -96,7 +96,7 @@ There are cases where $\theta$ must not be taken directly as $\tan^{-1}(b/a)$ fr
 
 *Table 2. Computing the argument from the position of the point*
 
-Adding an integer multiple of $360^\circ$ to the argument points to the same point, so $\sqrt{2}\angle(-135^\circ)$ and $\sqrt{2}\angle 225^\circ$ are the same complex number. Table 2 gives the argument in the range $-180^\circ < \theta \le 180^\circ$, and the value in this range is called the **principal value** of the argument.
+Adding an integer multiple of $360^\circ$ to the argument points to the same point, so $\sqrt{2}\angle(-135^\circ)$ and $\sqrt{2}\angle 225^\circ$ are the same complex number. Table 2 gives the argument in the range $-180^\circ < \theta \le 180^\circ$, and the value in this range is called the **principal value** of the argument. The origin $0$ has magnitude 0 and no direction, so its argument is undefined.
 
 ### 2.3 Euler's Formula and the Exponential Form
 
