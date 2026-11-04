@@ -41,7 +41,7 @@ This repository archives bilingual lecture notes and coursework for the Neural N
 
 ### Course Overview
 
-A major elective course on the modeling of engineering systems, including mechanical and electrical systems, and on control methods based on artificial neural networks, covering the analysis and performance of feedback control systems, PID control, the basics of artificial intelligence and neural networks, and neural network controllers. The instructor, schedule and class format (video lectures), assessment, course policies, and progress are in the [course information document](Course-Information.md).
+A major elective course on the modeling of engineering systems, including mechanical and electrical systems, and on control methods based on artificial neural networks, covering the analysis and performance of feedback control systems, PID control, the basics of artificial intelligence and neural networks, and neural network controllers. The instructor, schedule, assessment, course policies, and progress are in the [course information document](Course-Information.md).
 
 <br><a name="prerequisites"></a>
 ## ✅ Prerequisites
