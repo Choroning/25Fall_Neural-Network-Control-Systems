@@ -222,7 +222,7 @@ $$
 \frac{e^{-\zeta\omega_n t_s}}{\sqrt{1 - \zeta^2}} = 0.05 \quad\Longrightarrow\quad -\zeta\omega_n t_s = \ln\left(0.05\sqrt{1 - \zeta^2}\right) \quad\Longrightarrow\quad \omega_n t_s = -\frac{\ln\left(0.05\sqrt{1 - \zeta^2}\right)}{\zeta}
 $$
 
-Figure 7 plots this expression against $\zeta$. For $\zeta$ from 0.1 up to about 0.7 the curve can be approximated by $3.2/\zeta$ within about 5%, so the 5% settling time can be estimated as follows.
+Figure 7 plots this expression against $\zeta$. For $\zeta$ from 0.1 up to about 0.7 the curve can be approximated by $3.2/\zeta$ within about 7%, so the 5% settling time can be estimated as follows.
 
 $$
 t_s \approx \frac{3.2}{\zeta\omega_n} \quad (\pm 5\%)
@@ -440,7 +440,7 @@ $$
 For the system to be stable, every exponential term must converge to 0. If a pole is complex, $p_i = \sigma_i + j\omega_i$, then $\vert e^{p_it}\vert = e^{\sigma_it}$, so whether each term converges to 0 is decided by the real part alone.
 
 $$
-\mathrm{Re}\lbrace p_i \rbrace < 0, \qquad i = 1, 2, \ldots, n
+\mathrm{Re}\lbrace p_i \rbrace< 0, \qquad i = 1, 2, \ldots, n
 $$
 
 That is, every root of the characteristic equation $s^n + a_{n-1}s^{n-1} + \cdots + a_1s + a_0 = 0$ must have a real part less than 0. The zeros change only the sizes of the coefficients $K_i$ and do not affect convergence.
@@ -451,7 +451,7 @@ $$
 y(t) = K_1e^{p_1t} + K_2te^{p_1t} + \cdots + K_nt^{n-1}e^{p_1t} + y_p(t)
 $$
 
-If $\mathrm{Re}\lbrace p_1 \rbrace < 0$, the exponential function decays faster than the polynomial grows, so $t^ke^{p_1t} \to 0$ and every term of the general solution converges to 0. The stability condition is therefore the same even with multiple poles.
+If $\mathrm{Re}\lbrace p_1 \rbrace< 0$, the exponential function decays faster than the polynomial grows, so $t^ke^{p_1t} \to 0$ and every term of the general solution converges to 0. The stability condition is therefore the same even with multiple poles.
 
 > **[Calculus]** If $a > 0$, then $\lim_{t\to\infty} t^ke^{-at} = 0$ for every natural number $k$. Since $t^k/e^{at}$ is of the form $\infty/\infty$, applying L'Hôpital's rule $k$ times gives $k!/(a^ke^{at}) \to 0$. That is, an exponential function grows faster than any polynomial.
 
@@ -459,7 +459,7 @@ If $\mathrm{Re}\lbrace p_1 \rbrace < 0$, the exponential function decays faster 
 
 > **Definition:** A system is called **BIBO stable (bounded-input bounded-output stable)** if a bounded input signal always produces a bounded output. A signal is bounded if there is a constant $M_r$ with $\vert r(t)\vert \le M_r$ for all time.
 
-The BIBO stability of a linear time-invariant system with a rational transfer function is determined by whether all poles of the transfer function lie in the left half-plane. If all poles lie in the left half-plane, the system is BIBO stable; if even one lies in the right half-plane or on the imaginary axis, it is not BIBO stable.
+The BIBO stability of a linear time-invariant system with a rational transfer function is determined by whether all poles of the transfer function (after common factors of the numerator and denominator are canceled) lie in the left half-plane. If all poles lie in the left half-plane, the system is BIBO stable; if even one lies in the right half-plane or on the imaginary axis, it is not BIBO stable.
 
 Poles on the imaginary axis need separate attention. If there are non-repeated poles on the imaginary axis and all other poles lie in the left half-plane, the response with no input neither diverges nor dies out but stays at a constant amplitude. Such a system is called **marginally stable** [1]. A marginally stable system is not BIBO stable, because some bounded inputs make the output grow without bound.
 
@@ -468,7 +468,7 @@ Poles on the imaginary axis need separate attention. If there are non-repeated p
 
 If there are repeated poles on the imaginary axis, terms such as $t\cos\omega t$ appear even without an input and diverge, so the system is unstable.
 
-| Pole location | Verdict |
+| Pole location | Stability |
 |:-----|:-----|
 | All poles lie in the left half-plane | Stable, BIBO stable |
 | Non-repeated poles on the imaginary axis, the rest in the left half-plane | Marginally stable, not BIBO stable |
@@ -683,7 +683,7 @@ Raising the gain moves the poles farther up and down while keeping the real part
 
 **True/False Check:**
 
-| Statement | Verdict and reason |
+| Statement | Judgment and Reason |
 |:-----|:------------|
 | Doubling the natural frequency at the same damping ratio doubles the maximum overshoot. | **F.** The maximum overshoot $e^{-\zeta\pi/\sqrt{1 - \zeta^2}}$ depends only on $\zeta$. The peak time and settling time are halved. |
 | The settling time of a second-order system is inversely proportional to the magnitude of the real part of the poles, $\zeta\omega_n$. | **T.** Estimated from the envelope $e^{-\zeta\omega_n t}$, $t_s \approx 4/(\zeta\omega_n)$ ($\pm 2\%$). |

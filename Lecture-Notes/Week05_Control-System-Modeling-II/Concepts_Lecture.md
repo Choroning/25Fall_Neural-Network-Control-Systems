@@ -52,7 +52,7 @@
 
 ## 1. Transfer Functions
 
-Week 4 modeled translational motion, rotational motion, and electric circuits with differential equations. A differential equation describes the behavior of a system exactly, but it must be solved again every time the input changes, and the equations grow complicated quickly when several subsystems are connected. This section uses the Laplace transform of Week 3 to turn differential equations into algebraic expressions and introduces the transfer function, which summarizes the input-output relation of a system in a single function.
+Week 4 covers the modeling of translational motion, rotational motion, and electric circuits with differential equations. A differential equation describes the behavior of a system exactly, but it must be solved again every time the input changes, and the equations grow complicated quickly when several subsystems are connected. This section uses the Laplace transform of Week 3 to turn differential equations into algebraic expressions and introduces the transfer function, which summarizes the input-output relation of a system in a single function.
 
 ### 1.1 Definition of the Transfer Function
 
@@ -104,7 +104,7 @@ $$
 \ddot{y}(t) + 3\dot{y}(t) + 2y(t) = u(t)
 $$
 
-The differentiation property of Week 3 states $\mathcal{L}\lbrace \dot{y} \rbrace = sY(s) - y(0)$ and $\mathcal{L}\lbrace \ddot{y} \rbrace = s^2Y(s) - sy(0) - \dot{y}(0)$. With the initial conditions $y(0) = 0$ and $\dot{y}(0) = 0$, the initial-value terms vanish and each differentiation becomes one multiplication by $s$. Transforming both sides gives the following.
+The differentiation property of Week 3 states $\mathcal{L}\lbrace\dot{y} \rbrace= sY(s) - y(0)$ and $\mathcal{L}\lbrace\ddot{y} \rbrace= s^2Y(s) - sy(0) - \dot{y}(0)$. With the initial conditions $y(0) = 0$ and $\dot{y}(0) = 0$, the initial-value terms vanish and each differentiation becomes one multiplication by $s$. Transforming both sides gives the following.
 
 $$
 s^2Y(s) + 3sY(s) + 2Y(s) = U(s)
@@ -161,7 +161,7 @@ K_3 &= \left.\frac{1}{s(s+1)}\right|_{s=-2} = \frac{1}{(-2)(-1)} = \frac{1}{2}
 \end{aligned}
 $$
 
-Applying $\mathcal{L}^{-1}\lbrace 1/s \rbrace = 1$ and $\mathcal{L}^{-1}\lbrace 1/(s+a) \rbrace = e^{-at}$, the output for $t \ge 0$ is as follows.
+Applying $\mathcal{L}^{-1}\lbrace1/s \rbrace= 1$ and $\mathcal{L}^{-1}\lbrace1/(s+a) \rbrace= e^{-at}$, the output for $t \ge 0$ is as follows.
 
 $$
 y(t) = \frac{1}{2} - e^{-t} + \frac{1}{2}e^{-2t}
@@ -327,10 +327,10 @@ $$
 **Laplace transform of the impulse function.** Put $f(t) = e^{-st}$ and $a = 0$ into the sifting property. Taking the lower limit of the Laplace transform as $0^-$ so that the impulse at $t = 0$ lies inside the integration interval, and using $e^{-st} = e^0 = 1$ near $t = 0$, gives the following.
 
 $$
-\mathcal{L}\lbrace \delta(t) \rbrace = \int_{0^-}^{\infty}\delta(t)e^{-st}\,dt = \int_{0^-}^{0^+}\delta(t) \cdot 1\,dt = 1
+\mathcal{L}\lbrace\delta(t) \rbrace= \int_{0^-}^{\infty}\delta(t)e^{-st}\,dt = \int_{0^-}^{0^+}\delta(t) \cdot 1\,dt = 1
 $$
 
-> **Caution:** If the lower limit of the Laplace transform is taken as $0^+$, the impulse at $t = 0$ falls outside the integration interval and $\mathcal{L}\lbrace \delta(t) \rbrace = 0$ results. When impulse inputs are involved, take the lower limit as $0^-$ and interpret the initial condition $y(0)$ as the value $y(0^-)$ just before the input arrives [1].
+> **Caution:** If the lower limit of the Laplace transform is taken as $0^+$, the impulse at $t = 0$ falls outside the integration interval and $\mathcal{L}\lbrace\delta(t) \rbrace= 0$ results. When impulse inputs are involved, take the lower limit as $0^-$ and interpret the initial condition $y(0)$ as the value $y(0^-)$ just before the input arrives [1].
 
 ### 2.2 Impulse Response
 
@@ -345,7 +345,7 @@ $$
 Inverting both sides shows that the inverse Laplace transform of the transfer function is the impulse response.
 
 $$
-y(t) = \mathcal{L}^{-1}\lbrace G(s) \rbrace = g(t)
+y(t) = \mathcal{L}^{-1}\lbrace G(s) \rbrace= g(t)
 $$
 
 > **Key Point:** The impulse response $g(t)$ and the transfer function $G(s)$ form a Laplace transform pair. The inverse Laplace transform of the transfer function is the impulse response and the Laplace transform of the impulse response is the transfer function, so knowing one means knowing the other.
@@ -357,7 +357,7 @@ For example, $G(s) = 1/[(s+1)(s+2)]$ of Section 1.2 expands into partial fractio
 Returning $Y(s) = G(s)U(s)$ to the time domain, the product in the $s$ domain becomes a **convolution** in the time domain (the convolution theorem of the Laplace transform).
 
 $$
-y(t) = \mathcal{L}^{-1}\lbrace Y(s) \rbrace = \mathcal{L}^{-1}\lbrace G(s)U(s) \rbrace = \mathcal{L}^{-1}\lbrace G(s) \rbrace * \mathcal{L}^{-1}\lbrace U(s) \rbrace = g(t) * u(t) = \int_0^t g(t-\tau)\,u(\tau)\,d\tau
+y(t) = \mathcal{L}^{-1}\lbrace Y(s) \rbrace= \mathcal{L}^{-1}\lbrace G(s)U(s) \rbrace= \mathcal{L}^{-1}\lbrace G(s) \rbrace* \mathcal{L}^{-1}\lbrace U(s) \rbrace= g(t) * u(t) = \int_0^t g(t-\tau)\,u(\tau)\,d\tau
 $$
 
 Here $*$ denotes convolution, and the definition used is the one for an input and an impulse response that are zero for $t < 0$. The formula can be understood as follows.
@@ -367,13 +367,13 @@ Here $*$ denotes convolution, and the definition used is the one for an input an
 3. By linearity, the response to an impulse of area $u(\tau)\,d\tau$ is $g(t - \tau)\,u(\tau)\,d\tau$.
 4. By superposition, the sum (integral) of all these responses is the output at time $t$. The integration runs from $0$ to $t$ because there is no input for $\tau < 0$ and an input arriving at $\tau > t$ cannot yet affect the output at time $t$.
 
-> **Key Point:** An LTI system is completely determined by its impulse response $g(t)$ alone. The output for any input is the convolution of the input with $g(t)$ [1].
+> **Key Point:** An LTI system is completely determined by its impulse response $g(t)$ alone. The output for any input is the convolution of the input with $g(t)$ [2].
 
 > **[Calculus]** Substituting $\sigma = t - \tau$ in the convolution integral gives $d\sigma = -d\tau$ and swaps the ends of the interval, so $\int_0^t g(t-\tau)u(\tau)\,d\tau = \int_0^t g(\sigma)u(t-\sigma)\,d\sigma$. Hence $g * u = u * g$, and convolution is commutative. The computation in Section 2.6 uses this substitution.
 
 ### 2.4 Example 1: Impulse Response of an RC Circuit
 
-For the RC circuit of Section 1.4 (Figure 3), find the output this time allowing a nonzero initial condition $y(0)$. Transform the differential equation $RC\,\dot{y} + y = u$ with the differentiation property $\mathcal{L}\lbrace \dot{y} \rbrace = sY(s) - y(0)$.
+For the RC circuit of Section 1.4 (Figure 3), find the output this time allowing a nonzero initial condition $y(0)$. Transform the differential equation $RC\,\dot{y} + y = u$ with the differentiation property $\mathcal{L}\lbrace\dot{y} \rbrace= sY(s) - y(0)$.
 
 $$
 RC\left[sY(s) - y(0)\right] + Y(s) = U(s)
@@ -391,7 +391,7 @@ $$
 Y(s) = \frac{1 + y(0)RC}{RCs + 1} = \frac{\dfrac{1}{RC} + y(0)}{s + \dfrac{1}{RC}}
 $$
 
-Apply $\mathcal{L}^{-1}\lbrace 1/(s+a) \rbrace = e^{-at}$ with $a = 1/RC$ to take the inverse Laplace transform.
+Apply $\mathcal{L}^{-1}\lbrace1/(s+a) \rbrace= e^{-at}$ with $a = 1/RC$ to take the inverse Laplace transform.
 
 $$
 y(t) = \left[\frac{1}{RC} + y(0)\right]e^{-t/RC} = \underbrace{\frac{1}{RC}e^{-t/RC}}_{\text{impulse response } g(t)} + \underbrace{y(0)\,e^{-t/RC}}_{\text{response to the initial condition}}
@@ -499,7 +499,7 @@ $$
 G(s) = \frac{Y(s)}{U(s)} = \frac{b_ms^m + b_{m-1}s^{m-1} + \cdots + b_1s + b_0}{s^n + a_{n-1}s^{n-1} + \cdots + a_1s + a_0}
 $$
 
-The coefficients of the denominator polynomial are those of the left (output) side of the differential equation, and the coefficients of the numerator polynomial are those of the right (input) side. The degree $n$ of the denominator is called the **order** of the system. In real physical systems $m \le n$ in most cases; a transfer function with $m \le n$ is called a **proper transfer function**, and one with $m < n$ is called a **strictly proper transfer function** [1].
+The coefficients of the denominator polynomial are those of the left (output) side of the differential equation, and the coefficients of the numerator polynomial are those of the right (input) side. The degree $n$ of the denominator is called the **order** of the system. In real physical systems $m \le n$ in most cases; a transfer function with $m \le n$ is called a **proper transfer function**, and one with $m < n$ is called a **strictly proper transfer function**.
 
 ### 2.8 Characteristic Equation
 
@@ -525,7 +525,7 @@ The value of the transfer function becomes infinite in two cases.
 - If the degree of the numerator exceeds that of the denominator ($m > n$), then $G(s) \to \infty$, so there are poles at infinity, $m - n$ of them.
 - If the degree of the denominator exceeds that of the numerator ($n > m$), then $G(s) \to 0$, so there are zeros at infinity, $n - m$ of them.
 
-Counting those at infinity, the numbers of poles and zeros are equal to $\max(m, n)$ [1]. Poles and zeros are plotted in the complex plane, the $s$ plane (horizontal axis $\sigma$ for the real part, vertical axis $j\omega$ for the imaginary part), with poles marked × and zeros marked ○; this plot is called a **pole-zero map**.
+Counting those at infinity, the numbers of poles and zeros are equal to $\max(m, n)$. Poles and zeros are plotted in the complex plane, the $s$ plane (horizontal axis $\sigma$ for the real part, vertical axis $j\omega$ for the imaginary part), with poles marked × and zeros marked ○; this plot is called a **pole-zero map**.
 
 > **Key Point:** The locations of the poles of a transfer function carry important information about the system. Each distinct pole $p$ contributes a term $e^{pt}$ to the response, so the term decays if the real part of the pole is negative, grows if it is positive, and oscillates if the pole has an imaginary part. Week 9 covers the relation between pole location and response, and stability.
 
@@ -610,7 +610,7 @@ $$
 \frac{Y_2(s)}{U_1(s)} = G_1(s)G_2(s)
 $$
 
-> **Caution:** The product rule for series connections assumes that the second block does not affect the output of the first block (no loading effect). For example, if two RC circuits are simply joined, the second circuit draws current from the first and changes its behavior, so the overall transfer function is not the product of the two transfer functions. In such cases the equations of the whole connected circuit must be written anew [2].
+> **Caution:** The product rule for series connections assumes that the second block does not affect the output of the first block (no loading effect). For example, if two RC circuits are simply joined, the second circuit draws current from the first and changes its behavior, so the overall transfer function is not the product of the two transfer functions. In such cases the equations of the whole connected circuit must be written anew [3].
 
 ### 3.3 Parallel Connection
 
@@ -795,6 +795,8 @@ flowchart LR
 *Table 2. Rules for moving summing points and takeoff points*
 
 > **Caution:** For a move in the same direction, summing points and takeoff points need opposite blocks. When moving behind a block, insert $G_1$ in a summing-point branch and $1/G_1$ in a takeoff-point branch; when moving ahead of a block, do the opposite. Because the two cases are easily confused, it is safer to write the signal equations after the move and check that they match the original than to memorize the rules.
+
+> **Note:** Some materials draw the rule for moving a takeoff point ahead of a block with $1/G_1$ in the moved branch, but the signal taken off before the move is $G_1U_1$, so taking it off at $U_1$ ahead of the block requires multiplying by $G_1$ to obtain the same signal (Table 2). Inserting $1/G_1$ would take off $U_1/G_1$, which differs from the original signal.
 
 ### 3.6 Example 1: A Block Diagram with Nested Loops
 
@@ -1002,7 +1004,7 @@ Only the loop gain $G_1G_2G_3$ appears in the denominator of the result, and the
    <details>
    <summary>Answer</summary>
 
-   The impulse response is $g(t) = \mathcal{L}^{-1}\lbrace 3/(s+4) \rbrace = 3e^{-4t}$. The unit step response is obtained from $Y(s) = \dfrac{3}{s(s+4)} = \dfrac{3/4}{s} - \dfrac{3/4}{s+4}$, so $y(t) = \frac{3}{4}(1 - e^{-4t})$. This equals $\int_0^t 3e^{-4\sigma}\,d\sigma = \frac{3}{4}(1 - e^{-4t})$, the integral of the impulse response.
+   The impulse response is $g(t) = \mathcal{L}^{-1}\lbrace3/(s+4) \rbrace= 3e^{-4t}$. The unit step response is obtained from $Y(s) = \dfrac{3}{s(s+4)} = \dfrac{3/4}{s} - \dfrac{3/4}{s+4}$, so $y(t) = \frac{3}{4}(1 - e^{-4t})$. This equals $\int_0^t 3e^{-4\sigma}\,d\sigma = \frac{3}{4}(1 - e^{-4t})$, the integral of the impulse response.
 
    </details>
 
@@ -1084,5 +1086,6 @@ Only the loop gain $G_1G_2G_3$ appears in the denominator of the result, and the
 
 ## References
 
-1. K. Ogata, *Modern Control Engineering*, 5th ed. Upper Saddle River, NJ, USA: Prentice Hall, 2010.
-2. N. S. Nise, *Control Systems Engineering*, 7th ed. Hoboken, NJ, USA: Wiley, 2015.
+1. K. H. Lundberg, H. R. Miller, and D. L. Trumper, "Initial conditions, generalized functions, and the Laplace transform: Troubles at the origin," *IEEE Control Systems Magazine*, vol. 27, no. 1, pp. 22-35, Feb. 2007.
+2. K. Ogata, *Modern Control Engineering*, 5th ed. Upper Saddle River, NJ, USA: Prentice Hall, 2010.
+3. N. S. Nise, *Control Systems Engineering*, 7th ed. Hoboken, NJ, USA: Wiley, 2015.

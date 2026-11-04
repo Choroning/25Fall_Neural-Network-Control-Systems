@@ -314,7 +314,7 @@ $$
 i^2 = -1 \quad \Rightarrow \quad i = \sqrt{-1}
 $$
 
-In fields that deal with electronics and electricity, the imaginary unit is written $j$ to avoid confusion with the symbol $i$ for current. This course also uses $j$. A complex number is usually denoted by $s$.
+In fields that deal with electronics and electricity, the imaginary unit is written $j$ to avoid confusion with the symbol $i$ for current. This course also uses $j$ and mostly denotes a complex number by $s$.
 
 $$
 s = a + jb = a + b\sqrt{-1}
@@ -332,7 +332,7 @@ Here $a$ is called the **real part** and written $a = \mathrm{Re}\lbrace s\rbrac
 
 > **Note:** A number whose square is negative, that is, $bj$ ($b \neq 0$) with $(bj)^2 = -b^2 < 0$, is strictly called a **purely imaginary number**. In mathematics, the term imaginary number often refers to every complex number that is not real ($b \neq 0$). Also, $e^{\pi j}$ looks imaginary, but by Euler's formula in Section 2.6, $e^{j\pi} = -1$, a real number. An example of a purely imaginary number is $e^{j\pi/2} = j$.
 
-For example, $1 + j2 = 1 + 2\sqrt{-1}$ has real part $\mathrm{Re}\lbrace 1 + j2\rbrace = 1$ and imaginary part $\mathrm{Im}\lbrace 1 + j2\rbrace = 2$. Squaring the purely imaginary number $j2$ gives a negative number.
+For example, $1 + j2 = 1 + 2\sqrt{-1}$ has real part $\mathrm{Re}\lbrace1 + j2\rbrace= 1$ and imaginary part $\mathrm{Im}\lbrace1 + j2\rbrace= 2$. Squaring the purely imaginary number $j2$ gives a negative number.
 
 $$
 (j2)^2 = \left(2\sqrt{-1}\right)^2 = 4 \times (-1) = -4
@@ -367,7 +367,7 @@ For example, $j^{10}$ is $-1$ because $10 = 4 \times 3 - 2$, and $j^{23}$ is $-j
 
 *Figure 14. The Cartesian and polar coordinate systems*
 
-In panel (a) of Figure 14, the point $(2, 3)$ is the position reached by going 2 along the $x$-axis and 3 along the $y$-axis from the origin, and $(-3, 1)$, $(-1.5, -2.5)$, and $(0, 0)$ are read the same way. Panel (b) is a polar coordinate system made of concentric circles (distances) centered at the pole and radial lines (angles) at 15° or 30° intervals; the point $(r, \theta)$ is at distance $r$ from the pole and at angle $\theta$ counterclockwise from the reference line ($\theta = 0$).
+In panel (a) of Figure 14, the point $(2, 3)$ is the position reached by going 2 along the $x$-axis and 3 along the $y$-axis from the origin, and $(-3, 1)$, $(-1.5, -2.5)$, and $(0, 0)$ are read the same way. Panel (b) is a polar coordinate system made of concentric circles (distances) centered at the pole and radial lines (angles) at 30° intervals; the point $(r, \theta)$ is at distance $r$ from the pole and at angle $\theta$ counterclockwise from the reference line ($\theta = 0$).
 
 ### 2.4 Cartesian Form and Polar Form
 
@@ -504,7 +504,7 @@ $$
 e^{j\pi} = \cos\pi + j\sin\pi = -1 + j \cdot 0 = -1 \quad \Rightarrow \quad e^{j\pi} + 1 = 0
 $$
 
-This equation is called **Euler's identity**. It brings five of the most important numbers in mathematics, $0$, $1$, $\pi$, $e$, and $j$, together in one simple equation and is often called the most beautiful formula in mathematics. In 1988 the mathematics magazine The Mathematical Intelligencer published a survey that presented 24 well-known theorems and asked readers to choose the most beautiful, and in the results published in 1990 Euler's identity took first place [1].
+This equation is called **Euler's identity**. It brings the five fundamental constants of mathematics, $0$, $1$, $\pi$, $e$, and $j$, together in one simple equation and is often called the most beautiful formula in mathematics. In 1988 the mathematics magazine The Mathematical Intelligencer published a survey that presented 24 well-known theorems and asked readers to score the beauty of each from 0 to 10, and in the results published in 1990 Euler's identity took first place with an average of 7.7 [1].
 
 **Exponential form.** With Euler's formula, the polar form can be written in exponential form.
 
@@ -651,7 +651,7 @@ $$
 The real and imaginary parts are therefore as follows.
 
 $$
-\mathrm{Re}\lbrace G(j\omega)\rbrace = \frac{1}{1 + \omega^2}, \qquad \mathrm{Im}\lbrace G(j\omega)\rbrace = \frac{-\omega}{1 + \omega^2}
+\mathrm{Re}\lbrace G(j\omega)\rbrace= \frac{1}{1 + \omega^2}, \qquad \mathrm{Im}\lbrace G(j\omega)\rbrace= \frac{-\omega}{1 + \omega^2}
 $$
 
 Evaluating at a few values of $\omega$ gives $1$ at $\omega = 0$, $0.5 - j0.5$ at $\omega = 1$, and $0.2 - j0.4$ at $\omega = 2$, and the value approaches $0$ as $\omega \to \infty$. Writing $X$ for the real part and $Y$ for the imaginary part, $X^2 + Y^2 = \frac{1 + \omega^2}{(1 + \omega^2)^2} = \frac{1}{1 + \omega^2} = X$, so the points satisfy the following equation of a circle.
@@ -966,7 +966,7 @@ The following summarizes the physical systems of this unit by input, output, and
 
 | Concept | Key Summary |
 |:-----|:-----|
-| Systems and plants | A system is an object affected by its input that shows the effect in its output, and the system to be controlled is called the plant. |
+| Systems and plants | A system is an object that is affected by its input signal and whose response appears in its output signal, and the system to be controlled is called the plant. |
 | Open loop and closed loop | An open loop can have errors due to uncertainty, and a closed loop feeds back the output to reduce those errors. |
 | Structure of a closed loop | A sensor converts the output into an electrical signal, and a controller built as an analog or digital circuit compares it with the command and produces the control signal. |
 | Modeling | Representing the plant mathematically, using differential equations in the time domain and the Laplace transform in the frequency domain. |

@@ -166,7 +166,7 @@ $$
 
 *Figure 9. An artificial neuron and a multilayer neural network*
 
-The left side of Figure 9 draws a single artificial neuron over a biological neuron: the inputs and weights correspond to the dendrites, the weighted sum $\sum x_i w_i$ and the activation function $f$ to the cell body, and the output to the axon terminals. The right side is a **multilayer neural network** that stacks artificial neurons in several layers. It consists of an **input layer** that receives data, one or more **hidden layers** that perform intermediate computation, and an **output layer** that produces the result. Every neuron in one layer is connected to every neuron in the next layer.
+The left side of Figure 9 draws a single artificial neuron over a biological neuron: the inputs and weights correspond to the dendrites, the weighted sum $\sum x_i w_i$ and the activation function $f$ to the cell body, and the output to the axon terminals. The right side is a **multilayer neural network** that stacks artificial neurons in several layers. It consists of an **input layer** that receives data, one or more **hidden layers** that perform intermediate computation, and an **output layer** that produces the result. In the network of the figure, every neuron in one layer is connected to every neuron in the next layer.
 
 > **Key Point:** A neural network learns the relation between input and output from data and approximates complex systems that are hard to write down exactly as equations. Learning is the process of adjusting the weights so that the desired output is produced for the given input.
 
@@ -396,7 +396,7 @@ Here $x$ is the current state and $\dot{x} = dx/dt$ is the rate of change of the
 
 *Figure 17. A Kalman filter and a moving average filter*
 
-- **Moving average filter:** It uses the average of the most recent $N$ measurements as the current estimate. The estimate at time step $k$ is $\bar{x}_k = \frac{1}{N} \sum_{i=0}^{N-1} x_{k-i}$. The right side of Figure 17 applies 5-year (SMA_5) and 20-year (SMA_20) simple moving averages to the yearly average temperatures of New Zealand (Raw); the larger $N$ is, the smoother the curve, but the more slowly it follows changes.
+- **Moving average filter:** It uses the average of the most recent $N$ measurements as the current estimate. The estimate at time step $k$ is $\bar{x}_k = \frac{1}{N} \sum_{i=0}^{N-1} x_{k-i}$. The right side of Figure 17 applies 5-year (SMA_5) and 20-year (SMA_20) simple moving averages to the yearly average temperatures of New Zealand (Raw) (the horizontal axis is the year and the vertical axis the temperature in °C; the two axis labels of the graph are swapped); the larger $N$ is, the smoother the curve, but the more slowly it follows changes.
 - **Kalman filter:** It quickly estimates the true value (position, velocity, temperature, and so on) by repeating a computation that takes a weighted average of the value predicted by a model of the system and the noisy measurement, according to their respective uncertainties [3]. On the left side of Figure 17, the × marks are measured temperatures, and the estimate curve, starting from an initial estimate, converges quickly to the actual temperature through repeated computation.
 
 The overall structure of the closed loop, including planning, control, observation, noise, and filtering, is as follows.

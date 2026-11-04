@@ -51,7 +51,7 @@
 
 When a command is applied to a control system, the output cannot reach the commanded value at once; it changes for a while and then settles to some value or trajectory. The response during the interval right after the command, while the output is still changing, is called the **transient response**, and the state after enough time has passed and the transient response has died out is called the **steady state**. Weeks 7 and 9 evaluated the transient response with measures such as rise time, maximum overshoot, and settling time. This unit deals with how accurately the output follows the command in the steady state, that is, the **steady-state performance**.
 
-The steady-state performance of a control system is expressed by the steady-state error. While the transient measures describe "how quickly and smoothly the output gets there", the steady-state error describes "how accurately the output gets there in the end". The two kinds of performance are different properties, so both must be considered when a controller is designed.
+The steady-state performance of a control system is expressed by the steady-state error. While the transient measures describe how quickly and smoothly the output reaches the command value, the steady-state error describes how accurately the output reaches it in the end. The two kinds of performance are different properties, so both must be considered when a controller is designed.
 
 ### 1.2 Steady-State Error and the Final Value Theorem
 
@@ -538,7 +538,7 @@ The result is interpreted as follows. The integrator in the loop drives the summ
 
 **True/False Check:**
 
-| Statement | Judgment and reason |
+| Statement | Judgment and Reason |
 |:-----|:-----|
 | A type 1 system follows a unit step input with no steady-state error. | **T.** $K_p = \infty$, so $e_{ss} = \frac{1}{1 + K_p} = 0$ (when stable). |
 | Even a type 0 system has exactly zero steady-state error for a step input if the proportional gain is made large enough. | **F.** $e_{ss} = \frac{1}{1 + K_p}$ is not 0 for finite $K_p$, and too large a gain may even cause instability. |
@@ -642,4 +642,4 @@ The result is interpreted as follows. The integrator in the loop drives the summ
 ## References
 
 1. 임동진, *제어 시스템 공학*, 개정판. 파주: 생능출판사, 2019.
-2. G. F. Franklin, J. D. Powell, and A. Emami-Naeini, *Feedback Control of Dynamic Systems*, 8th ed. Hoboken, NJ, USA: Pearson, 2019.
+2. K. Ogata, *Modern Control Engineering*, 5th ed. Upper Saddle River, NJ, USA: Prentice Hall, 2010.

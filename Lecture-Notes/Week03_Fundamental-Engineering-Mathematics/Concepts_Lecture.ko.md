@@ -65,7 +65,7 @@
 
 ## 1. 라플라스 변환 I
 
-2주차에서는 1계와 2계 미분방정식을 시간 영역에서 직접 풀었다. 차수가 높아지거나 여러 요소가 연결되면 이 방법은 금방 복잡해진다. 이 절은 미분방정식을 대수방정식으로 바꾸어 주는 라플라스 변환의 정의와, 제어 공학에서 자주 쓰이는 기본 함수들의 변환을 정의식에서 직접 유도한다.
+2주차에서는 1계와 2계 미분방정식을 시간 영역에서 직접 풀었다. 계가 높아지거나 여러 요소가 연결되면 이 방법은 금방 복잡해진다. 이 절은 미분방정식을 대수방정식으로 바꾸어 주는 라플라스 변환의 정의와, 제어 공학에서 자주 쓰이는 기본 함수들의 변환을 정의식에서 직접 유도한다.
 
 ### 1.1 미분방정식과 제어시스템 해석
 
@@ -101,7 +101,7 @@ flowchart LR
 라플라스 변환의 정의식은 다음과 같다.
 
 $$
-F(s) = \mathcal{L}\lbrace f(t) \rbrace = \int_{-\infty}^{\infty} f(t)\,e^{-st}\,dt, \qquad s = \sigma + j\omega
+F(s) = \mathcal{L}\lbrace f(t) \rbrace= \int_{-\infty}^{\infty} f(t)\,e^{-st}\,dt, \qquad s = \sigma + j\omega
 $$
 
 $\sigma$는 $s$의 실수부, $\omega$는 허수부이고, $j$는 $j^2 = -1$인 허수 단위이다(2주차). 시간 함수는 소문자 $f(t)$, 그 변환은 대문자 $F(s)$로 쓰며, $\mathcal{L}\lbrace\cdot\rbrace$는 괄호 안의 함수에 라플라스 변환을 적용한다는 기호이다. 변수 $t$는 적분되어 사라지고 결과는 $s$만의 함수가 된다.
@@ -119,7 +119,7 @@ $$
 ### 1.3 단방향 라플라스 변환
 
 $$
-F(s) = \mathcal{L}\lbrace f(t) \rbrace = \int_{0}^{\infty} f(t)\,e^{-st}\,dt
+F(s) = \mathcal{L}\lbrace f(t) \rbrace= \int_{0}^{\infty} f(t)\,e^{-st}\,dt
 $$
 
 제어 공학에서는 입력을 가하기 시작하는 순간을 $t = 0$으로 잡고, 그 이전($t < 0$)에는 모든 신호의 값이 0이라고 가정할 수 있다. 그러면 1.2절의 정의식에서 $-\infty$부터 0까지의 적분은 0이 되므로, 적분 구간을 0부터 $\infty$까지로 줄인 위 식을 쓴다. 이를 **단방향 라플라스 변환(one-sided Laplace transform)** 이라 하며, 제어 공학에서는 주로 이 변환을 쓴다. 이 문서의 이후 내용은 모두 단방향 변환이다.
@@ -191,7 +191,7 @@ $$
 정의식에 넣으면 $t \ge 0$에서 $u_s(t) = 1$이므로 다음과 같다.
 
 $$
-\mathcal{L}\lbrace u_s(t) \rbrace = \int_0^\infty 1 \cdot e^{-st}\,dt = \left[ -\frac{1}{s}e^{-st} \right]_0^\infty = (0) - \left( -\frac{1}{s} \right) = \frac{1}{s}, \qquad \operatorname{Re}(s) > 0
+\mathcal{L}\lbrace u_s(t) \rbrace= \int_0^\infty 1 \cdot e^{-st}\,dt = \left[ -\frac{1}{s}e^{-st} \right]_0^\infty = (0) - \left( -\frac{1}{s} \right) = \frac{1}{s}, \qquad \operatorname{Re}(s) > 0
 $$
 
 $e^{-st}$의 부정적분은 $-\frac{1}{s}e^{-st}$이다. 위끝 $t \to \infty$에서는 $\operatorname{Re}(s) > 0$이면 $e^{-st} \to 0$이므로 0이고, 아래끝 $t = 0$에서는 $e^{0} = 1$이므로 $-\frac{1}{s}$이다. 위끝 값에서 아래끝 값을 빼면 $\frac{1}{s}$이다. 크기가 $A$인 계단 함수 $Au_s(t)$의 변환은 같은 계산으로 $\frac{A}{s}$이다.
@@ -213,25 +213,25 @@ $\delta(t)$는 보통의 함수로는 정의할 수 없으므로, 그림 4처럼
 $\delta(t)$는 $t = 0$이 아닌 곳에서 0이므로, 적분 안의 $e^{-st}$를 $t = 0$에서의 값 $e^{0} = 1$로 바꾸어도 적분값이 같다.
 
 $$
-\mathcal{L}\lbrace \delta(t) \rbrace = \int_{0^-}^{\infty} \delta(t)\,e^{-st}\,dt = e^{-s \cdot 0}\int_{0^-}^{0^+} \delta(t)\,dt = 1 \times 1 = 1
+\mathcal{L}\lbrace\delta(t) \rbrace= \int_{0^-}^{\infty} \delta(t)\,e^{-st}\,dt = e^{-s \cdot 0}\int_{0^-}^{0^+} \delta(t)\,dt = 1 \times 1 = 1
 $$
 
-> **참고:** 같은 논리로 연속 함수 $g(t)$에 대해 $\int_{-\infty}^{\infty} g(t)\,\delta(t-a)\,dt = g(a)$가 성립한다. 임펄스 함수가 곱해진 함수에서 한 점의 값만 골라낸다는 뜻에서 이를 **선별 성질(sifting property)** 이라 한다 [2]. 임펄스 함수의 변환이 1이라는 사실은 5주차의 임펄스 응답에서 다시 쓰인다.
+> **참고:** 같은 논리로 연속 함수 $g(t)$에 대해 $\int_{-\infty}^{\infty} g(t)\,\delta(t-a)\,dt = g(a)$가 성립한다. 임펄스 함수가 곱해진 함수에서 한 점의 값만 골라낸다는 뜻에서 이를 **선별 성질(sifting property)** 이라 한다 [1]. 임펄스 함수의 변환이 1이라는 사실은 5주차의 임펄스 응답에서 다시 쓰인다.
 
 ### 1.7 지수 함수
 
 지수 함수 $e^{at}$의 변환은 두 지수를 하나로 합친 뒤 적분한다.
 
 $$
-\mathcal{L}\lbrace e^{at} \rbrace = \int_0^\infty e^{at}e^{-st}\,dt = \int_0^\infty e^{-(s-a)t}\,dt = \left[ -\frac{1}{s-a}e^{-(s-a)t} \right]_0^\infty = \frac{1}{s-a}, \qquad \operatorname{Re}(s) > a
+\mathcal{L}\lbrace e^{at} \rbrace= \int_0^\infty e^{at}e^{-st}\,dt = \int_0^\infty e^{-(s-a)t}\,dt = \left[ -\frac{1}{s-a}e^{-(s-a)t} \right]_0^\infty = \frac{1}{s-a}, \qquad \operatorname{Re}(s) > a
 $$
 
 첫 번째 등호는 정의식이고, 두 번째 등호는 지수 법칙 $e^{at}e^{-st} = e^{-(s-a)t}$이다. 세 번째 등호는 1.5절과 같은 적분에서 $s$ 자리에 $s - a$가 들어간 것이다. 위끝에서 $e^{-(s-a)t} \to 0$이려면 $\operatorname{Re}(s - a) > 0$, 즉 $\operatorname{Re}(s) > a$여야 하고, 이때 결과는 $0 - \left( -\frac{1}{s-a} \right) = \frac{1}{s-a}$이다. $a = 0$이면 $e^{0t} = 1$이므로 1.5절의 $\frac{1}{s}$과 일치한다.
 
-**예제.** 공식 $\mathcal{L}\lbrace e^{at} \rbrace = \frac{1}{s-a}$에 $a$의 값을 넣는다.
+**예제.** 공식 $\mathcal{L}\lbrace e^{at} \rbrace= \frac{1}{s-a}$에 $a$의 값을 넣는다.
 
 $$
-\mathcal{L}\lbrace e^{-2t} \rbrace = \frac{1}{s-(-2)} = \frac{1}{s+2}, \qquad \mathcal{L}\lbrace e^{3t} \rbrace = \frac{1}{s-3}, \qquad \mathcal{L}\lbrace e^{\omega t} \rbrace = \frac{1}{s-\omega}
+\mathcal{L}\lbrace e^{-2t} \rbrace= \frac{1}{s-(-2)} = \frac{1}{s+2}, \qquad \mathcal{L}\lbrace e^{3t} \rbrace= \frac{1}{s-3}, \qquad \mathcal{L}\lbrace e^{\omega t} \rbrace= \frac{1}{s-\omega}
 $$
 
 > **핵심:** 시간 영역에서 줄어드는 지수 함수 $e^{-2t}$는 $s$ 영역에서 분모가 0이 되는 점 $s = -2$를 갖는 분수가 된다. 시간 응답의 모양과 $s$ 영역의 분모의 근 사이의 이 대응은 이후 모든 주차의 해석의 바탕이다.
@@ -241,37 +241,37 @@ $$
 $f(t) = t$의 변환은 부분 적분으로 구한다. 1.4절의 공식에서 $f'(t) = e^{-st}$, $g(t) = t$로 두면 $f(t) = -\frac{1}{s}e^{-st}$, $g'(t) = 1$이다.
 
 $$
-\mathcal{L}\lbrace t \rbrace = \int_0^\infty t\,e^{-st}\,dt = \left[ t \cdot \left( -\frac{1}{s}e^{-st} \right) \right]_0^\infty - \int_0^\infty 1 \cdot \left( -\frac{1}{s}e^{-st} \right) dt
+\mathcal{L}\lbrace t \rbrace= \int_0^\infty t\,e^{-st}\,dt = \left[ t \cdot \left( -\frac{1}{s}e^{-st} \right) \right]_0^\infty - \int_0^\infty 1 \cdot \left( -\frac{1}{s}e^{-st} \right) dt
 $$
 
 $$
 = (0 - 0) + \frac{1}{s}\int_0^\infty e^{-st}\,dt = \frac{1}{s} \cdot \frac{1}{s} = \frac{1}{s^2}
 $$
 
-경계항은 위끝에서 $te^{-st} \to 0$(1.4절의 [미적분학] 상자)이고 아래끝에서 $t = 0$이므로 0이다. 남은 적분은 1.5절의 $\mathcal{L}\lbrace 1 \rbrace = \frac{1}{s}$이다. 일정한 비율로 커지는 입력 $t$를 **경사 함수(ramp function)** 라 한다.
+경계항은 위끝에서 $te^{-st} \to 0$(1.4절의 [미적분학] 상자)이고 아래끝에서 $t = 0$이므로 0이다. 남은 적분은 1.5절의 $\mathcal{L}\lbrace1 \rbrace= \frac{1}{s}$이다. 일정한 비율로 커지는 입력 $t$를 **경사 함수(ramp function)** 라 한다.
 
 ### 1.9 이차 함수와 n차 함수
 
 $t^2$의 변환도 같은 방법으로 구한다. 이번에는 $g(t) = t^2$, $g'(t) = 2t$이다.
 
 $$
-\mathcal{L}\lbrace t^2 \rbrace = \left[ t^2 \cdot \left( -\frac{1}{s}e^{-st} \right) \right]_0^\infty + \frac{2}{s}\int_0^\infty t\,e^{-st}\,dt = 0 + \frac{2}{s} \cdot \frac{1}{s^2} = \frac{2}{s^3}
+\mathcal{L}\lbrace t^2 \rbrace= \left[ t^2 \cdot \left( -\frac{1}{s}e^{-st} \right) \right]_0^\infty + \frac{2}{s}\int_0^\infty t\,e^{-st}\,dt = 0 + \frac{2}{s} \cdot \frac{1}{s^2} = \frac{2}{s^3}
 $$
 
-마지막 적분은 1.8절의 $\mathcal{L}\lbrace t \rbrace = \frac{1}{s^2}$이다. 일반적으로 $t^n$에 부분 적분을 한 번 하면 $\mathcal{L}\lbrace t^n \rbrace = \frac{n}{s}\mathcal{L}\lbrace t^{n-1} \rbrace$가 되므로, 이를 $n$번 되풀이하면 다음을 얻는다.
+마지막 적분은 1.8절의 $\mathcal{L}\lbrace t \rbrace= \frac{1}{s^2}$이다. 일반적으로 $t^n$에 부분 적분을 한 번 하면 $\mathcal{L}\lbrace t^n \rbrace= \frac{n}{s}\mathcal{L}\lbrace t^{n-1} \rbrace$가 되므로, 이를 $n$번 되풀이하면 다음을 얻는다.
 
 $$
-\mathcal{L}\lbrace t^n \rbrace = \frac{n}{s}\mathcal{L}\lbrace t^{n-1} \rbrace = \frac{n}{s} \cdot \frac{n-1}{s}\mathcal{L}\lbrace t^{n-2} \rbrace = \cdots = \frac{n!}{s^n}\mathcal{L}\lbrace 1 \rbrace = \frac{n!}{s^{n+1}}
+\mathcal{L}\lbrace t^n \rbrace= \frac{n}{s}\mathcal{L}\lbrace t^{n-1} \rbrace= \frac{n}{s} \cdot \frac{n-1}{s}\mathcal{L}\lbrace t^{n-2} \rbrace= \cdots = \frac{n!}{s^n}\mathcal{L}\lbrace1 \rbrace= \frac{n!}{s^{n+1}}
 $$
 
-**예제.** $n = 3$이면 $\mathcal{L}\lbrace t^3 \rbrace = \frac{3!}{s^4} = \frac{6}{s^4}$이다. 점화식으로 확인하면 $\frac{3}{s} \cdot \mathcal{L}\lbrace t^2 \rbrace = \frac{3}{s} \cdot \frac{2}{s^3} = \frac{6}{s^4}$으로 같다.
+**예제.** $n = 3$이면 $\mathcal{L}\lbrace t^3 \rbrace= \frac{3!}{s^4} = \frac{6}{s^4}$이다. 점화식으로 확인하면 $\frac{3}{s} \cdot \mathcal{L}\lbrace t^2 \rbrace= \frac{3}{s} \cdot \frac{2}{s^3} = \frac{6}{s^4}$으로 같다.
 
 ### 1.10 코사인 함수
 
 삼각 함수의 변환은 2주차의 오일러 공식 $e^{j\theta} = \cos\theta + j\sin\theta$를 이용한다. $e^{j\omega t}$와 $e^{-j\omega t}$를 더하면 사인 항이 지워지므로 $\cos\omega t = \frac{e^{j\omega t} + e^{-j\omega t}}{2}$이다. 1.7절의 결과에 $a = j\omega$와 $a = -j\omega$를 넣으면 다음과 같다.
 
 $$
-\mathcal{L}\lbrace \cos\omega t \rbrace = \frac{1}{2}\left( \frac{1}{s-j\omega} + \frac{1}{s+j\omega} \right) = \frac{1}{2} \cdot \frac{(s+j\omega) + (s-j\omega)}{(s-j\omega)(s+j\omega)} = \frac{1}{2} \cdot \frac{2s}{s^2+\omega^2} = \frac{s}{s^2+\omega^2}
+\mathcal{L}\lbrace\cos\omega t \rbrace= \frac{1}{2}\left( \frac{1}{s-j\omega} + \frac{1}{s+j\omega} \right) = \frac{1}{2} \cdot \frac{(s+j\omega) + (s-j\omega)}{(s-j\omega)(s+j\omega)} = \frac{1}{2} \cdot \frac{2s}{s^2+\omega^2} = \frac{s}{s^2+\omega^2}
 $$
 
 첫 번째 등호는 선형성(2.1절)이다. 두 번째 등호는 통분이며, 분모는 $(s-j\omega)(s+j\omega) = s^2 - (j\omega)^2 = s^2 + \omega^2$이다.
@@ -281,7 +281,7 @@ $$
 **예제.** $\omega$에 값을 넣는다. $200\pi t$는 진동수 $f = 100$ Hz인 코사인이다($\omega = 2\pi f$).
 
 $$
-\mathcal{L}\lbrace \cos 10t \rbrace = \frac{s}{s^2+10^2} = \frac{s}{s^2+100}, \qquad \mathcal{L}\lbrace \cos 200\pi t \rbrace = \frac{s}{s^2+(200\pi)^2} = \frac{s}{s^2+40000\pi^2}
+\mathcal{L}\lbrace\cos 10t \rbrace= \frac{s}{s^2+10^2} = \frac{s}{s^2+100}, \qquad \mathcal{L}\lbrace\cos 200\pi t \rbrace= \frac{s}{s^2+(200\pi)^2} = \frac{s}{s^2+40000\pi^2}
 $$
 
 ### 1.11 사인 함수
@@ -289,7 +289,7 @@ $$
 $e^{j\omega t}$에서 $e^{-j\omega t}$를 빼면 코사인 항이 지워지므로 $\sin\omega t = \frac{e^{j\omega t} - e^{-j\omega t}}{2j}$이다.
 
 $$
-\mathcal{L}\lbrace \sin\omega t \rbrace = \frac{1}{2j}\left( \frac{1}{s-j\omega} - \frac{1}{s+j\omega} \right) = \frac{1}{2j} \cdot \frac{(s+j\omega) - (s-j\omega)}{s^2+\omega^2} = \frac{1}{2j} \cdot \frac{2j\omega}{s^2+\omega^2} = \frac{\omega}{s^2+\omega^2}
+\mathcal{L}\lbrace\sin\omega t \rbrace= \frac{1}{2j}\left( \frac{1}{s-j\omega} - \frac{1}{s+j\omega} \right) = \frac{1}{2j} \cdot \frac{(s+j\omega) - (s-j\omega)}{s^2+\omega^2} = \frac{1}{2j} \cdot \frac{2j\omega}{s^2+\omega^2} = \frac{\omega}{s^2+\omega^2}
 $$
 
 코사인과 달리 분자에 $s$가 아니라 $\omega$가 남는다는 점에 주의한다.
@@ -297,7 +297,7 @@ $$
 **예제.**
 
 $$
-\mathcal{L}\lbrace \sin 10t \rbrace = \frac{10}{s^2+100}, \qquad \mathcal{L}\lbrace \sin 200\pi t \rbrace = \frac{200\pi}{s^2+40000\pi^2}
+\mathcal{L}\lbrace\sin 10t \rbrace= \frac{10}{s^2+100}, \qquad \mathcal{L}\lbrace\sin 200\pi t \rbrace= \frac{200\pi}{s^2+40000\pi^2}
 $$
 
 ### 1.12 기본 변환 쌍
@@ -330,11 +330,11 @@ $$
 ### 2.1 선형성
 
 $$
-\mathcal{L}\lbrace kf(t) \rbrace = k\,\mathcal{L}\lbrace f(t) \rbrace = kF(s)
+\mathcal{L}\lbrace kf(t) \rbrace= k\,\mathcal{L}\lbrace f(t) \rbrace= kF(s)
 $$
 
 $$
-\mathcal{L}\lbrace f_1(t) + f_2(t) \rbrace = \mathcal{L}\lbrace f_1(t) \rbrace + \mathcal{L}\lbrace f_2(t) \rbrace = F_1(s) + F_2(s)
+\mathcal{L}\lbrace f_1(t) + f_2(t) \rbrace= \mathcal{L}\lbrace f_1(t) \rbrace+ \mathcal{L}\lbrace f_2(t) \rbrace= F_1(s) + F_2(s)
 $$
 
 적분은 상수를 밖으로 꺼낼 수 있고 합의 적분은 적분의 합이므로, 적분으로 정의된 라플라스 변환도 같은 성질을 갖는다. 이를 **선형성(linearity)** 이라 한다.
@@ -342,11 +342,11 @@ $$
 **예제.**
 
 $$
-\mathcal{L}\lbrace 2e^{-2t} \rbrace = 2 \cdot \frac{1}{s+2} = \frac{2}{s+2}
+\mathcal{L}\lbrace2e^{-2t} \rbrace= 2 \cdot \frac{1}{s+2} = \frac{2}{s+2}
 $$
 
 $$
-\mathcal{L}\lbrace 3t^2 - \cos 4t \rbrace = 3 \cdot \frac{2}{s^3} - \frac{s}{s^2+16} = \frac{6}{s^3} - \frac{s}{s^2+16} = \frac{-s^4 + 6s^2 + 96}{s^3(s^2+16)}
+\mathcal{L}\lbrace3t^2 - \cos 4t \rbrace= 3 \cdot \frac{2}{s^3} - \frac{s}{s^2+16} = \frac{6}{s^3} - \frac{s}{s^2+16} = \frac{-s^4 + 6s^2 + 96}{s^3(s^2+16)}
 $$
 
 두 번째 예제는 표 3의 $t^2$와 $\cos\omega t$($\omega = 4$)를 쓴 뒤 통분한 것이며, 분자는 $6(s^2+16) - s \cdot s^3 = -s^4 + 6s^2 + 96$이다.
@@ -354,7 +354,7 @@ $$
 ### 2.2 주파수 영역에서의 이동
 
 $$
-\mathcal{L}\lbrace e^{-at}f(t) \rbrace = \int_0^\infty e^{-st}e^{-at}f(t)\,dt = \int_0^\infty e^{-(s+a)t}f(t)\,dt = F(s+a)
+\mathcal{L}\lbrace e^{-at}f(t) \rbrace= \int_0^\infty e^{-st}e^{-at}f(t)\,dt = \int_0^\infty e^{-(s+a)t}f(t)\,dt = F(s+a)
 $$
 
 마지막 적분은 정의식에서 $s$ 자리에 $s + a$가 들어간 것과 같으므로 $F(s+a)$이다. 시간 영역에서 $e^{-at}$를 곱하면 $s$ 영역에서는 함수 전체가 $s$축 방향으로 $-a$만큼($a > 0$이면 왼쪽으로) 이동한다. 이를 **주파수 영역에서의 이동(shift in the frequency domain)** 이라 한다.
@@ -362,15 +362,15 @@ $$
 **예제.** 1.10절의 결과에 $e^{-2t}$를 곱한 함수의 변환은 $s$를 $s + 2$로 바꾸어 얻는다.
 
 $$
-\mathcal{L}\lbrace \cos 200\pi t \rbrace = \frac{s}{s^2+(200\pi)^2} \quad \Rightarrow \quad \mathcal{L}\lbrace e^{-2t}\cos 200\pi t \rbrace = \frac{s+2}{(s+2)^2+(200\pi)^2}
+\mathcal{L}\lbrace\cos 200\pi t \rbrace= \frac{s}{s^2+(200\pi)^2} \quad \Rightarrow \quad \mathcal{L}\lbrace e^{-2t}\cos 200\pi t \rbrace= \frac{s+2}{(s+2)^2+(200\pi)^2}
 $$
 
-같은 방법으로 $\mathcal{L}\lbrace e^{-at}\sin\omega t \rbrace = \frac{\omega}{(s+a)^2+\omega^2}$, $\mathcal{L}\lbrace e^{-at}\cos\omega t \rbrace = \frac{s+a}{(s+a)^2+\omega^2}$, $\mathcal{L}\lbrace t^n e^{-at} \rbrace = \frac{n!}{(s+a)^{n+1}}$을 얻는다. 이 세 쌍은 2.9절과 2.10절의 역변환에서 쓰인다.
+같은 방법으로 $\mathcal{L}\lbrace e^{-at}\sin\omega t \rbrace= \frac{\omega}{(s+a)^2+\omega^2}$, $\mathcal{L}\lbrace e^{-at}\cos\omega t \rbrace= \frac{s+a}{(s+a)^2+\omega^2}$, $\mathcal{L}\lbrace t^n e^{-at} \rbrace= \frac{n!}{(s+a)^{n+1}}$을 얻는다. 이 세 쌍은 2.9절과 2.10절의 역변환에서 쓰인다.
 
 ### 2.3 시간 영역에서의 이동
 
 $$
-\mathcal{L}\lbrace f(t-T) \rbrace = e^{-sT}F(s), \qquad T \ge 0
+\mathcal{L}\lbrace f(t-T) \rbrace= e^{-sT}F(s), \qquad T \ge 0
 $$
 
 $f(t-T)$는 $f(t)$를 오른쪽으로 $T$만큼 옮긴, 즉 $T$만큼 늦게 시작하는 함수이다. 이 식은 $t < 0$에서 $f(t) = 0$이라는 단방향 변환의 가정 아래 성립하며, 그래서 $t < T$에서 $f(t-T) = 0$이다. 이 점을 드러내어 $f(t-T)u_s(t-T)$로 쓰기도 한다.
@@ -378,7 +378,7 @@ $f(t-T)$는 $f(t)$를 오른쪽으로 $T$만큼 옮긴, 즉 $T$만큼 늦게 시
 유도는 다음과 같다. $t < T$에서 피적분 함수가 0이므로 적분 하한을 $T$로 올릴 수 있다.
 
 $$
-\mathcal{L}\lbrace f(t-T) \rbrace = \int_0^\infty f(t-T)\,e^{-st}\,dt = \int_T^\infty f(t-T)\,e^{-st}\,dt
+\mathcal{L}\lbrace f(t-T) \rbrace= \int_0^\infty f(t-T)\,e^{-st}\,dt = \int_T^\infty f(t-T)\,e^{-st}\,dt
 $$
 
 $x = t - T$로 치환하면 $dt = dx$이고, $t = T$일 때 $x = 0$, $t \to \infty$일 때 $x \to \infty$이다.
@@ -389,14 +389,14 @@ $$
 
 $e^{-s(T+x)} = e^{-sT}e^{-sx}$에서 $e^{-sT}$는 $x$와 무관하므로 적분 밖으로 나오고, 남은 적분은 변수 이름만 $x$로 바뀐 $F(s)$이다.
 
-**예제.** $\mathcal{L}\lbrace f(t-10) \rbrace = e^{-10s}F(s)$이다. 예를 들어 $t = 10$에 켜지는 단위 계단 함수 $u_s(t-10)$의 변환은 $\frac{e^{-10s}}{s}$이다. 시간 지연 $T$는 $s$ 영역에서 $e^{-sT}$의 곱으로 나타나며, 신호가 관을 따라 흘러가는 데 시간이 걸리는 공정의 **지연 시간(dead time)** 을 모델링할 때 쓰인다.
+**예제.** $\mathcal{L}\lbrace f(t-10) \rbrace= e^{-10s}F(s)$이다. 예를 들어 $t = 10$에 켜지는 단위 계단 함수 $u_s(t-10)$의 변환은 $\frac{e^{-10s}}{s}$이다. 시간 지연 $T$는 $s$ 영역에서 $e^{-sT}$의 곱으로 나타나며, 신호가 관을 따라 흘러가는 데 시간이 걸리는 공정의 **지연 시간(dead time)** 을 모델링할 때 쓰인다.
 
 ### 2.4 미분
 
 미분 성질은 미분방정식을 대수방정식으로 바꾸는 핵심이다. 부분 적분에서 $f'(t)$를 미분된 쪽으로, $e^{-st}$를 미분할 쪽으로 둔다.
 
 $$
-\mathcal{L}\left\lbrace \frac{df(t)}{dt} \right\rbrace = \int_0^\infty f'(t)\,e^{-st}\,dt = \Big[ f(t)\,e^{-st} \Big]_{t=0}^{t=\infty} - \int_0^\infty f(t)\left( -s\,e^{-st} \right) dt
+\mathcal{L}\left\lbrace\frac{df(t)}{dt} \right\rbrace= \int_0^\infty f'(t)\,e^{-st}\,dt = \Big[ f(t)\,e^{-st} \Big]_{t=0}^{t=\infty} - \int_0^\infty f(t)\left( -s\,e^{-st} \right) dt
 $$
 
 $$
@@ -406,23 +406,23 @@ $$
 경계항은 위끝에서 $f(t)e^{-st} \to 0$(변환이 존재하는 $s$에서 성립)이고 아래끝에서 $f(0)e^{0} = f(0)$이다. $e^{-st}$의 도함수가 $-se^{-st}$이므로 남은 적분에서 $s$가 밖으로 나와 $sF(s)$가 된다. 같은 과정을 되풀이하면 $n$계 도함수의 변환을 얻는다. $f^{(k)}(0)$은 $k$계 도함수의 $t = 0$에서의 값이다.
 
 $$
-\mathcal{L}\left\lbrace \frac{d^n f(t)}{dt^n} \right\rbrace = s^nF(s) - s^{n-1}f(0) - s^{n-2}f^{(1)}(0) - \cdots - f^{(n-1)}(0)
+\mathcal{L}\left\lbrace\frac{d^n f(t)}{dt^n} \right\rbrace= s^nF(s) - s^{n-1}f(0) - s^{n-2}f^{(1)}(0) - \cdots - f^{(n-1)}(0)
 $$
 
 **예제.** 2계 도함수는 $f'$에 1계 미분 성질을 적용한 뒤 다시 1계 미분 성질을 쓴다.
 
 $$
-\mathcal{L}\left\lbrace \frac{d^2f(t)}{dt^2} \right\rbrace = s\,\mathcal{L}\left\lbrace \frac{df(t)}{dt} \right\rbrace - f^{(1)}(0) = s\big( sF(s) - f(0) \big) - f^{(1)}(0) = s^2F(s) - sf(0) - f^{(1)}(0)
+\mathcal{L}\left\lbrace\frac{d^2f(t)}{dt^2} \right\rbrace= s\,\mathcal{L}\left\lbrace\frac{df(t)}{dt} \right\rbrace- f^{(1)}(0) = s\big( sF(s) - f(0) \big) - f^{(1)}(0) = s^2F(s) - sf(0) - f^{(1)}(0)
 $$
 
-초기 조건이 모두 0이면 $\frac{d}{dt}$는 $s$의 곱셈이 된다. 검산으로 $f(t) = \sin\omega t$이면 $f'(t) = \omega\cos\omega t$이고, 미분 성질은 $s \cdot \frac{\omega}{s^2+\omega^2} - \sin 0 = \frac{\omega s}{s^2+\omega^2}$를 주는데, 이는 표 3의 $\omega\,\mathcal{L}\lbrace \cos\omega t \rbrace$와 같다.
+초기 조건이 모두 0이면 $\frac{d}{dt}$는 $s$의 곱셈이 된다. 검산으로 $f(t) = \sin\omega t$이면 $f'(t) = \omega\cos\omega t$이고, 미분 성질은 $s \cdot \frac{\omega}{s^2+\omega^2} - \sin 0 = \frac{\omega s}{s^2+\omega^2}$를 주는데, 이는 표 3의 $\omega\,\mathcal{L}\lbrace\cos\omega t \rbrace$와 같다.
 
 > **핵심:** 미분 성질은 미분을 $s$의 곱셈으로 바꾸고 초기 조건을 자동으로 식에 넣어 준다. 2주차처럼 일반해를 구한 뒤 초기 조건으로 상수를 정하는 과정이 필요 없다.
 
 ### 2.5 적분
 
 $$
-\mathcal{L}\left\lbrace \int_0^t f(\tau)\,d\tau \right\rbrace = \frac{F(s)}{s}
+\mathcal{L}\left\lbrace\int_0^t f(\tau)\,d\tau \right\rbrace= \frac{F(s)}{s}
 $$
 
 부분 적분에서 $g(t) = \int_0^t f(\tau)\,d\tau$(미적분의 기본 정리에 의해 $g'(t) = f(t)$)를 미분할 쪽으로, $e^{-st}$를 적분할 쪽(원시 함수 $-\frac{1}{s}e^{-st}$)으로 둔다.
@@ -439,7 +439,7 @@ $$
 \lim_{t\to 0^+} f(t) = \lim_{s\to\infty} sF(s)
 $$
 
-시간 영역의 초기값은 $s$ 영역에서 $sF(s)$의 $s \to \infty$ 극한과 같다. 이를 **초기값 정리(initial value theorem)** 라 하며, $f(t)$와 $f'(t)$의 변환이 존재하고 우변의 극한이 존재할 때 성립한다 [2]. 미분 성질 $\int_0^\infty f'(t)e^{-st}dt = sF(s) - f(0)$에서 $s \to \infty$로 보내면 좌변의 $e^{-st}$가 $t > 0$에서 0으로 가므로 $sF(s) \to f(0^+)$이 된다는 것이 그 이유이다.
+시간 영역의 초기값은 $s$ 영역에서 $sF(s)$의 $s \to \infty$ 극한과 같다. 이를 **초기값 정리(initial value theorem)** 라 하며, $f(t)$와 $f'(t)$의 변환이 존재하고 $f(t)$가 $t = 0$에 임펄스를 포함하지 않을 때 성립한다 [1]. 미분 성질 $\int_0^\infty f'(t)e^{-st}dt = sF(s) - f(0)$에서 $s \to \infty$로 보내면 좌변의 $e^{-st}$가 $t > 0$에서 0으로 가므로 $sF(s) \to f(0^+)$이 된다는 것이 그 이유이다.
 
 **예제.** $f(t) = \frac{1}{2} - \frac{1}{2}e^{-2t}$의 초기값을 구한다. 먼저 선형성으로 변환한다.
 
@@ -469,7 +469,7 @@ $$
 
 시간 영역에서도 $t \to \infty$일 때 $e^{-2t} \to 0$이므로 $f(t) \to \frac{1}{2}$로 같다.
 
-> **주의:** 최종값 정리는 $f(t)$가 유한한 값으로 수렴할 때만 쓸 수 있다. 이 조건은 $sF(s)$의 분모를 0으로 만드는 $s$의 값, 즉 **극점(pole)** 이 모두 실수부가 음수인 좌반평면에 있는 것과 같다 [2]. 예를 들어 $f(t) = \sin t$이면 $sF(s) = \frac{s}{s^2+1} \to 0$이지만 $\sin t$는 수렴하지 않고 계속 진동한다. 극점 $\pm j$가 허수축 위에 있기 때문이다. $f(t) = e^{t}$이면 $sF(s) = \frac{s}{s-1} \to 0$이지만 실제로는 무한히 커지며, 극점 $s = 1$이 우반평면에 있다. 극점은 5주차에서 자세히 다룬다.
+> **주의:** 최종값 정리는 $f(t)$가 유한한 값으로 수렴할 때만 쓸 수 있다. $F(s)$가 유리함수이면 이 조건은 $sF(s)$의 분모를 0으로 만드는 $s$의 값, 즉 **극점(pole)** 이 모두 실수부가 음수인 좌반평면에 있는 것과 같다 [2]. 예를 들어 $f(t) = \sin t$이면 $sF(s) = \frac{s}{s^2+1} \to 0$이지만 $\sin t$는 수렴하지 않고 계속 진동한다. 극점 $\pm j$가 허수축 위에 있기 때문이다. $f(t) = e^{t}$이면 $sF(s) = \frac{s}{s-1} \to 0$이지만 실제로는 무한히 커지며, 극점 $s = 1$이 우반평면에 있다. 극점은 5주차에서 자세히 다룬다.
 
 | 성질 | 시간 영역 | $s$ 영역 |
 |:-----|:-----|:-----|
@@ -489,7 +489,7 @@ $$
 **역라플라스 변환(inverse Laplace transform)** 은 라플라스 변환으로 주어진 함수 $F(s)$에서 원래의 시간 함수 $f(t)$를 찾는 연산이며, 정의식은 다음과 같다.
 
 $$
-f(t) = \mathcal{L}^{-1}\lbrace F(s) \rbrace = \frac{1}{2\pi j}\int_{\sigma-j\infty}^{\sigma+j\infty} F(s)\,e^{st}\,ds
+f(t) = \mathcal{L}^{-1}\lbrace F(s) \rbrace= \frac{1}{2\pi j}\int_{\sigma-j\infty}^{\sigma+j\infty} F(s)\,e^{st}\,ds
 $$
 
 이 적분은 수렴 영역 안의 세로선 $\operatorname{Re}(s) = \sigma$를 따라가는 복소 적분이어서 직접 계산하는 일은 드물다. $t \ge 0$에서 연속인 함수와 그 변환은 일대일로 대응하므로 [3], 실제로는 $F(s)$를 표 3에 있는 간단한 분수들의 합으로 나눈 뒤 각 분수에 맞는 시간 함수를 표에서 거꾸로 읽는다. 대부분의 경우 이 나누는 작업이 2.9절과 2.10절의 부분분수 전개이다.
@@ -497,7 +497,7 @@ $$
 **예제.** 2.1절의 결과를 거꾸로 읽는다.
 
 $$
-\mathcal{L}^{-1}\left\lbrace \frac{2}{s+2} \right\rbrace = 2e^{-2t}, \qquad \mathcal{L}^{-1}\left\lbrace \frac{6}{s^3} - \frac{s}{s^2+16} \right\rbrace = 3t^2 - \cos 4t
+\mathcal{L}^{-1}\left\lbrace\frac{2}{s+2} \right\rbrace= 2e^{-2t}, \qquad \mathcal{L}^{-1}\left\lbrace\frac{6}{s^3} - \frac{s}{s^2+16} \right\rbrace= 3t^2 - \cos 4t
 $$
 
 두 번째 식에서 $\frac{6}{s^3} = 3 \cdot \frac{2}{s^3}$은 $3t^2$의 변환이고, $\frac{s}{s^2+4^2}$은 $\cos 4t$의 변환이다.
@@ -527,7 +527,7 @@ $$
 즉 $K_i$는 $G(s)$에서 인수 $(s+p_i)$를 지우고 남은 식에 $s = -p_i$를 넣은 값이다. 각 항은 표 3의 $e^{at}$ 쌍으로 역변환된다.
 
 $$
-\mathcal{L}^{-1}\lbrace G(s) \rbrace = \mathcal{L}^{-1}\left\lbrace \frac{K_1}{s+p_1} \right\rbrace + \cdots + \mathcal{L}^{-1}\left\lbrace \frac{K_n}{s+p_n} \right\rbrace = K_1e^{-p_1t} + K_2e^{-p_2t} + \cdots + K_ne^{-p_nt}
+\mathcal{L}^{-1}\lbrace G(s) \rbrace= \mathcal{L}^{-1}\left\lbrace\frac{K_1}{s+p_1} \right\rbrace+ \cdots + \mathcal{L}^{-1}\left\lbrace\frac{K_n}{s+p_n} \right\rbrace= K_1e^{-p_1t} + K_2e^{-p_2t} + \cdots + K_ne^{-p_nt}
 $$
 
 > **주의:** 이 방법은 분자의 차수가 분모의 차수보다 낮을 때만 쓸 수 있다. 분자의 차수가 같거나 높으면 먼저 다항식 나눗셈으로 몫(다항식)과 나머지 분수로 나눈 뒤 나머지 분수를 전개한다.
@@ -572,7 +572,7 @@ $$
 
 **예제 2의 다른 풀이.** 분모를 완전제곱식으로 바꾸면 $s^2+2s+5 = (s+1)^2+2^2$이다. $G_1(s) = \frac{2}{s^2+2^2}$로 두면 표 3에서 $g_1(t) = \sin 2t$이고, $G(s) = G_1(s+1)$이므로 주파수 영역에서의 이동(2.2절)에 의해 $g(t) = e^{-t}g_1(t) = e^{-t}\sin 2t$이다. 복소수 계산 없이 같은 답을 얻는다.
 
-> **핵심:** 켤레 복소근 $-\sigma \pm j\omega$는 시간 영역에서 $e^{-\sigma t}$로 줄어드는 진동수 $\omega$의 진동, 즉 감쇠 진동을 만든다. 근의 실수부는 줄어드는 속도를, 허수부는 진동의 빠르기를 정한다. 이 관계는 7주차와 9주차의 2차 시스템 응답 해석의 바탕이다.
+> **핵심:** 켤레 복소근 $-\sigma \pm j\omega$는 시간 영역에서 $e^{-\sigma t}$로 줄어드는 각진동수 $\omega$의 진동, 즉 감쇠 진동을 만든다. 근의 실수부는 줄어드는 속도를, 허수부는 진동의 빠르기를 정한다. 이 관계는 7주차와 9주차의 2차 시스템 응답 해석의 바탕이다.
 
 ### 2.10 부분분수 전개: 분모가 중근을 갖는 경우
 
@@ -606,13 +606,13 @@ $$
 G(s) = \frac{4}{(s+2)^3} - \frac{4}{(s+2)^2} + \frac{1}{s+2}
 $$
 
-역변환에는 $\mathcal{L}\lbrace t^n \rbrace = \frac{n!}{s^{n+1}}$과 주파수 영역에서의 이동을 함께 쓴다.
+역변환에는 $\mathcal{L}\lbrace t^n \rbrace= \frac{n!}{s^{n+1}}$과 주파수 영역에서의 이동을 함께 쓴다.
 
 | 시간 함수 | $\mathcal{L}\lbrace t^n \rbrace$에서 | $e^{-2t}$를 곱하면 |
 |:-----|:-----|:-----|
-| $2t^2$ | $\mathcal{L}\lbrace 2t^2 \rbrace = 2 \cdot \dfrac{2}{s^3} = \dfrac{4}{s^3}$ | $\mathcal{L}\lbrace 2t^2e^{-2t} \rbrace = \dfrac{4}{(s+2)^3}$ |
-| $4t$ | $\mathcal{L}\lbrace 4t \rbrace = \dfrac{4}{s^2}$ | $\mathcal{L}\lbrace 4te^{-2t} \rbrace = \dfrac{4}{(s+2)^2}$ |
-| $1$ | $\mathcal{L}\lbrace 1 \rbrace = \dfrac{1}{s}$ | $\mathcal{L}\lbrace e^{-2t} \rbrace = \dfrac{1}{s+2}$ |
+| $2t^2$ | $\mathcal{L}\lbrace2t^2 \rbrace= 2 \cdot \dfrac{2}{s^3} = \dfrac{4}{s^3}$ | $\mathcal{L}\lbrace2t^2e^{-2t} \rbrace= \dfrac{4}{(s+2)^3}$ |
+| $4t$ | $\mathcal{L}\lbrace4t \rbrace= \dfrac{4}{s^2}$ | $\mathcal{L}\lbrace4te^{-2t} \rbrace= \dfrac{4}{(s+2)^2}$ |
+| $1$ | $\mathcal{L}\lbrace1 \rbrace= \dfrac{1}{s}$ | $\mathcal{L}\lbrace e^{-2t} \rbrace= \dfrac{1}{s+2}$ |
 
 *표 5. 중근 예제의 각 항을 역변환하는 과정*
 
@@ -642,7 +642,7 @@ $$
 **1단계.** 각 항을 변환한다.
 
 $$
-\mathcal{L}\left\lbrace \frac{d^2y}{dt^2} \right\rbrace = s^2Y(s) - sy(0) - y^{(1)}(0) = s^2Y(s) - s, \qquad \mathcal{L}\left\lbrace \frac{dy}{dt} \right\rbrace = sY(s) - y(0) = sY(s) - 1, \qquad \mathcal{L}\lbrace u_s(t) \rbrace = \frac{1}{s}
+\mathcal{L}\left\lbrace\frac{d^2y}{dt^2} \right\rbrace= s^2Y(s) - sy(0) - y^{(1)}(0) = s^2Y(s) - s, \qquad \mathcal{L}\left\lbrace\frac{dy}{dt} \right\rbrace= sY(s) - y(0) = sY(s) - 1, \qquad \mathcal{L}\lbrace u_s(t) \rbrace= \frac{1}{s}
 $$
 
 $$
@@ -677,7 +677,7 @@ $$
 
 *그림 5. 예제 미분방정식의 해 y(t)와 그 최종값*
 
-> **핵심:** 해의 지수 $-2$와 $-3$은 2주차의 특성방정식 $s^2 + 5s + 6 = 0$의 근이다. 이 근들은 시간이 지나면 사라지는 과도 응답을 만들고, 상수항 $\frac{1}{6}$은 입력이 만드는 정상 상태 응답이다.
+> **핵심:** 해의 지수 $-2$와 $-3$은 이 미분방정식의 특성방정식 $\lambda^2 + 5\lambda + 6 = 0$(2주차 3.3절)의 근이며, $Y(s)$의 분모 인수 $s^2 + 5s + 6$의 근과 같다. 이 근들은 시간이 지나면 사라지는 과도 응답을 만들고, 상수항 $\frac{1}{6}$은 입력이 만드는 정상 상태 응답이다.
 
 ---
 
@@ -1027,7 +1027,7 @@ $$
 
    </details>
 
-2. **부분 적분의 경계항:** $\mathcal{L}\lbrace t \rbrace = \frac{1}{s^2}$을 유도할 때 경계항 $\left[ -\frac{t}{s}e^{-st} \right]_0^\infty$이 0이 되는 이유를 설명하라.
+2. **부분 적분의 경계항:** $\mathcal{L}\lbrace t \rbrace= \frac{1}{s^2}$을 유도할 때 경계항 $\left[ -\frac{t}{s}e^{-st} \right]_0^\infty$이 0이 되는 이유를 설명하라.
 
    <details>
    <summary>정답</summary>
@@ -1036,7 +1036,7 @@ $$
 
    </details>
 
-3. **오일러 공식:** 오일러 공식을 이용하여 $\mathcal{L}\lbrace \sin 3t \rbrace$를 구하라.
+3. **오일러 공식:** 오일러 공식을 이용하여 $\mathcal{L}\lbrace\sin 3t \rbrace$를 구하라.
 
    <details>
    <summary>정답</summary>
@@ -1050,7 +1050,7 @@ $$
    <details>
    <summary>정답</summary>
 
-   $\mathcal{L}\lbrace 2 + t \rbrace = \frac{2}{s} + \frac{1}{s^2}$이고, 주파수 영역에서의 이동으로 $s$를 $s+1$로 바꾸면 $\frac{2}{s+1} + \frac{1}{(s+1)^2} = \frac{2s+3}{(s+1)^2}$이다.
+   $\mathcal{L}\lbrace2 + t \rbrace= \frac{2}{s} + \frac{1}{s^2}$이고, 주파수 영역에서의 이동으로 $s$를 $s+1$로 바꾸면 $\frac{2}{s+1} + \frac{1}{(s+1)^2} = \frac{2s+3}{(s+1)^2}$이다.
 
    </details>
 
@@ -1059,7 +1059,7 @@ $$
    <details>
    <summary>정답</summary>
 
-   시간 영역에서의 이동으로 $\mathcal{L}\lbrace u_s(t-3) \rbrace = e^{-3s}\mathcal{L}\lbrace u_s(t) \rbrace = \frac{e^{-3s}}{s}$이다.
+   시간 영역에서의 이동으로 $\mathcal{L}\lbrace u_s(t-3) \rbrace= e^{-3s}\mathcal{L}\lbrace u_s(t) \rbrace= \frac{e^{-3s}}{s}$이다.
 
    </details>
 
@@ -1072,7 +1072,7 @@ $$
 
    </details>
 
-7. **단근의 부분분수 전개:** $\mathcal{L}^{-1}\left\lbrace \frac{4}{s^2+4s+3} \right\rbrace$를 구하라.
+7. **단근의 부분분수 전개:** $\mathcal{L}^{-1}\left\lbrace\frac{4}{s^2+4s+3} \right\rbrace$를 구하라.
 
    <details>
    <summary>정답</summary>
@@ -1081,7 +1081,7 @@ $$
 
    </details>
 
-8. **중근의 부분분수 전개:** $\mathcal{L}^{-1}\left\lbrace \frac{s+3}{(s+1)^2} \right\rbrace$를 구하라.
+8. **중근의 부분분수 전개:** $\mathcal{L}^{-1}\left\lbrace\frac{s+3}{(s+1)^2} \right\rbrace$를 구하라.
 
    <details>
    <summary>정답</summary>
@@ -1132,7 +1132,7 @@ $$
 
 ## 참고 문헌
 
-1. K. Ogata, *Modern Control Engineering*, 5th ed. Upper Saddle River, NJ, USA: Prentice Hall, 2010.
+1. A. V. Oppenheim, A. S. Willsky, and S. H. Nawab, *Signals and Systems*, 2nd ed. Upper Saddle River, NJ, USA: Prentice Hall, 1997.
 2. N. S. Nise, *Control Systems Engineering*, 7th ed. Hoboken, NJ, USA: Wiley, 2015.
 3. E. Kreyszig, *Advanced Engineering Mathematics*, 10th ed. Hoboken, NJ, USA: Wiley, 2011.
 4. G. Strang, *Introduction to Linear Algebra*, 5th ed. Wellesley, MA, USA: Wellesley-Cambridge Press, 2016.

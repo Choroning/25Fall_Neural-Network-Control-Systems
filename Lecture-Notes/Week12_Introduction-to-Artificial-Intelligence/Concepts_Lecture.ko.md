@@ -313,7 +313,7 @@ $$
 대표적인 비지도 학습 작업은 **군집화(clustering)** 또는 **분할(segmentation)** 이다. 군집화는 각 데이터를 $K$개의 **군집(cluster)** 중 하나에 대응시키는 함수 $f$를 찾는 문제이다.
 
 $$
-f : \mathbb{R}^d \to \lbrace C_1, C_2, \ldots, C_K\rbrace \quad (\text{군집의 집합})
+f : \mathbb{R}^d \to \lbrace C_1, C_2, \ldots, C_K\rbrace\quad (\text{군집의 집합})
 $$
 
 > **용어 정의:** **군집(cluster)** 은 서로 비슷한 데이터의 무리이다. 비슷한 정도는 보통 특성 공간에서의 거리로 재며, 같은 군집 안의 데이터는 서로 가깝고 다른 군집의 데이터와는 멀다. **특성 공간(feature space)** 은 각 특성을 하나의 축으로 하는 공간으로, 샘플 하나가 그 공간의 점 하나가 된다.
@@ -334,7 +334,7 @@ K-평균 군집화는 다음 네 단계로 진행한다.
 2. **군집 할당:** 각 데이터를 가장 가까운 중심의 군집에 할당한다.
 
    $$
-   c(i) = \arg\min_{k \in \lbrace 1, \ldots, K\rbrace} \lVert x_i - \mu_k \rVert
+   c(i) = \arg\min_{k \in \lbrace1, \ldots, K\rbrace} \lVert x_i - \mu_k \rVert
    $$
 
    여기서 $c(i)$는 데이터 $x_i$가 할당된 군집의 번호이고, $\lVert x_i - \mu_k \rVert$는 $x_i$와 중심 $\mu_k$ 사이의 유클리드 거리이다.
@@ -404,7 +404,7 @@ $$
 
 *그림 9. 초기 중심에 따라 지역 최솟값으로 수렴한 K-평균 군집화*
 
-그림 9의 데이터에는 네 개의 무리가 있고, 별 모양은 네 개의 중심이다. 초기 중심이 다르면 결과도 달라진다. 여러 그림에서 두 중심이 왼쪽 위의 한 무리를 나누어 갖고, 남은 한 중심이 서로 떨어진 두 무리를 함께 맡아 두 무리 사이의 빈 자리에 놓인다. 이 상태에서는 할당과 갱신을 반복해도 더 이상 바뀌는 것이 없으므로 알고리즘이 그대로 멈춘다. 그래서 실제로는 서로 다른 초기 중심으로 여러 번 실행한 뒤 $J$가 가장 작은 결과를 고른다 [9].
+그림 9의 데이터에는 네 개의 무리가 있고, 별 모양은 네 개의 중심, 점의 색은 각 점이 할당된 군집이다. 여섯 그림은 한 번의 실행을 왼쪽 위에서 오른쪽 아래 순서로 보인 것이다. 처음에 두 중심(보라, 갈색)이 왼쪽 위의 한 무리 안에 함께 놓이고, 초록 중심과 빨간 중심은 왼쪽 가운데 무리 근처에서 출발한다. 반복할수록 초록 중심은 오른쪽 위의 무리로 옮겨 가고, 빨간 중심은 왼쪽 가운데와 아래 가운데의 두 무리를 함께 맡아 두 무리 사이의 빈 자리로 간다. 마지막 그림에서는 두 중심이 왼쪽 위의 한 무리를 나누어 갖고 한 중심이 떨어진 두 무리를 함께 맡은 채로, 할당과 갱신을 반복해도 더 이상 바뀌는 것이 없으므로 알고리즘이 그대로 멈춘다. 초기 중심이 다르면 이처럼 결과도 달라진다. 그래서 실제로는 서로 다른 초기 중심으로 여러 번 실행한 뒤 $J$가 가장 작은 결과를 고른다 [9].
 
 | 구분 | 내용 |
 |:-----|:-----|
@@ -425,10 +425,10 @@ $$
 
 지도 학습의 학습 데이터는 입력 $x$와 레이블 $y$의 쌍 $(x_1, y_1), \ldots, (x_n, y_n)$, $x_i \in \mathbb{R}^d$이다. 레이블의 종류에 따라 지도 학습은 분류와 회귀로 나뉜다.
 
-**분류(classification)** 에서 레이블 $y$는 이산적인 값, 즉 몇 개의 범주 중 하나이다. 두 범주만 있으면 보통 $y \in \lbrace -1, +1\rbrace$로 쓰며, 이때 입력을 두 범주 중 하나로 보내는 함수
+**분류(classification)** 에서 레이블 $y$는 이산적인 값, 즉 몇 개의 범주 중 하나이다. 두 범주만 있으면 보통 $y \in \lbrace-1, +1\rbrace$로 쓰며, 이때 입력을 두 범주 중 하나로 보내는 함수
 
 $$
-f : \mathbb{R}^d \to \lbrace -1, +1\rbrace
+f : \mathbb{R}^d \to \lbrace-1, +1\rbrace
 $$
 
 를 **이진 분류기(binary classifier)** 라고 한다. 예/아니요, 바나나/오렌지, 스팸/햄(정상 메일)을 가리는 문제가 이진 분류이다.
@@ -443,7 +443,7 @@ $$
 
 *그림 12. 이진 분류와 세 범주 분류의 결정 경계*
 
-그림 12의 왼쪽은 두 범주($+$, $-$)를 곡선 하나로 나누는 이진 분류이고, 오른쪽은 세 범주($+$, $-$, $\times$)를 세 곡선이 만나는 경계로 나누는 **다중 분류(multiclass classification)** 이다. 범주가 $C$개이면 레이블은 $y \in \lbrace 1, 2, \ldots, C\rbrace$처럼 쓴다.
+그림 12의 왼쪽은 두 범주($+$, $-$)를 곡선 하나로 나누는 이진 분류이고, 오른쪽은 세 범주($+$, $-$, $\times$)를 세 곡선이 만나는 경계로 나누는 **다중 분류(multiclass classification)** 이다. 범주가 $C$개이면 레이블은 $y \in \lbrace1, 2, \ldots, C\rbrace$처럼 쓴다.
 
 ### 2.7 k-최근접 이웃 분류
 
@@ -1007,15 +1007,15 @@ flowchart LR
 
 *그림 30. AlphaGo Zero의 학습 일수에 따른 Elo 등급*
 
-바둑에서 상태는 바둑판의 상태(board state), 행동은 둘 수 있는 자리(valid moves), 보상은 승리 또는 패배(win or lose)이다. 그림 30의 세로축은 대국 결과로부터 상대적인 실력을 수치로 나타내는 **Elo 등급(Elo rating)** 이고, 가로축은 학습 일수이다. AlphaGo Zero는 학습 36시간 만에 2016년 세계 챔피언 이세돌을 이긴 AlphaGo Lee의 수준에 이르렀고, 72시간 뒤에는 AlphaGo Lee를 100:0으로 이겼으며, 40일 뒤에는 이전의 모든 버전을 넘어서 세계 최고의 바둑 기사가 되었다.
+바둑에서 상태는 바둑판의 상태(board state), 행동은 둘 수 있는 자리(valid moves), 보상은 승리 또는 패배(win or lose)이다. 그림 30의 세로축은 대국 결과로부터 상대적인 실력을 수치로 나타내는 **Elo 등급(Elo rating)** 이고, 가로축은 학습 일수이다. AlphaGo Zero는 학습 36시간 만에 2016년 세계 챔피언 이세돌을 이긴 AlphaGo Lee의 수준에 이르렀고, 72시간 뒤에는 AlphaGo Lee를 100:0으로 이겼으며, 40일 뒤에는 AlphaGo Master를 포함한 이전의 모든 버전을 넘어섰다 [14].
 
-> **[인공지능]** 바둑은 한 수마다 고를 수 있는 자리가 평균 약 250개로 체스(약 35개)보다 훨씬 많아, 가능한 수를 모두 내다보는 게임 트리 탐색으로는 풀 수 없다 [3]. AlphaGo Zero는 신경망으로 국면의 가치와 유망한 수를 평가하여 탐색할 가지를 크게 줄였다 [14].
+> **[인공지능]** 바둑은 한 수마다 고를 수 있는 자리가 평균 약 250개로 체스(약 35개)보다 훨씬 많아, 가능한 수를 모두 내다보는 게임 트리 탐색으로는 풀 수 없다 [16]. AlphaGo Zero는 신경망으로 국면의 가치와 유망한 수를 평가하여 탐색할 가지를 크게 줄였다 [14].
 
 ### 3.11 격자 세계 예제
 
 강화 학습을 간단한 예제로 정리한다. 에이전트는 $3 \times 3$ 격자로 된 지도 위를 움직이며, 목적은 9번 칸의 보물 상자에 도달하는 것이다.
 
-- **상태:** 지도에서의 위치 $\lbrace 1, 2, \ldots, 9\rbrace$
+- **상태:** 지도에서의 위치 $\lbrace1, 2, \ldots, 9\rbrace$
 - **행동:** 지도 안에서의 이동(위, 오른쪽 등)과 제자리에 머무르기
 - **보상:** 보물 상자에 도달하면 100, 그 외에는 0
 
@@ -1031,7 +1031,7 @@ flowchart LR
 
 *그림 31. 격자 세계와 각 상태에서 고른 행동 (★: 보물 상자)*
 
-그림 31의 화살표는 각 상태에서 에이전트가 고르는 행동이다. 상태 $s$에서의 행동을 $A_s$로 쓰면 $A_1 = \lbrace \text{up}\rbrace$, $A_2 = \lbrace \text{right}\rbrace$, $A_3 = \lbrace \text{up}\rbrace$, $\ldots$, $A_9 = \lbrace \text{stay}\rbrace$이며, 이 아홉 개의 행동을 모은 것이 3.9절의 정책이다.
+그림 31의 화살표는 각 상태에서 에이전트가 고르는 행동이다. 상태 $s$에서의 행동을 $A_s$로 쓰면 $A_1 = \lbrace\text{up}\rbrace$, $A_2 = \lbrace\text{right}\rbrace$, $A_3 = \lbrace\text{up}\rbrace$, $\ldots$, $A_9 = \lbrace\text{stay}\rbrace$이며, 이 아홉 개의 행동을 모은 것이 3.9절의 정책이다.
 
 | 상태 | 행동 | 다음 상태 | 9번 칸까지의 이동 횟수 |
 |:-----|:-----|:-----|:-----|
@@ -1099,7 +1099,7 @@ flowchart LR
 | 기계 학습 | 명시적인 프로그래밍 없이 데이터에서 패턴을 학습하여 성능 기준을 최적화한다. 통계학은 표본으로부터의 추론을, 컴퓨터 과학은 효율적인 최적화 알고리즘을 맡는다. |
 | 학습의 세 타입 | 비지도 학습은 레이블 없는 데이터에서 패턴을, 지도 학습은 레이블이 있는 데이터에서 입력과 정답의 관계를, 강화 학습은 보상으로부터 행동 방법을 배운다. |
 | K-평균 군집화 | 초기 중심 설정, 가장 가까운 중심에 할당, 평균으로 중심 갱신을 반복한다. 군집 내 제곱합이 줄며 수렴하지만 지역 최솟값일 수 있고 이상치와 $K$의 선택에 민감하다. |
-| 분류 | 레이블이 이산적인 지도 학습이다. 이진 분류기는 $f: \mathbb{R}^d \to \lbrace -1, +1\rbrace$이고, 결정 경계에서 예측이 바뀐다. |
+| 분류 | 레이블이 이산적인 지도 학습이다. 이진 분류기는 $f: \mathbb{R}^d \to \lbrace-1, +1\rbrace$이고, 결정 경계에서 예측이 바뀐다. |
 | k-NN | 학습 데이터를 저장해 두고, 새 점에 유클리드 거리로 가장 가까운 $k$개 이웃의 다수결로 분류한다. 예측이 느리고 특성 스케일과 차원의 저주에 민감하다. |
 | SVM | $f(x) = \operatorname{sgn}(w \cdot x + b)$의 초평면 중 마진 $2/\lVert w \rVert$를 최대화하는 것을 고른다. 경계는 서포트 벡터만으로 정해진다. |
 | 선형 회귀 | 오차 제곱합 SSE를 최소화하는 계수를 정규 방정식으로 구한다. 단순 선형 회귀는 $a = \sum (x_i - \bar{x})(y_i - \bar{y}) / \sum (x_i - \bar{x})^2$, $b = \bar{y} - a\bar{x}$이다. |
@@ -1140,7 +1140,7 @@ flowchart LR
    <details>
    <summary>정답</summary>
 
-   1회차 할당에서 1은 중심 1에, 2, 6, 7, 8은 중심 2에 가장 가깝다. 갱신하면 $\mu_1 = 1$, $\mu_2 = (2 + 6 + 7 + 8)/4 = 5.75$이다. 2회차 할당에서 2는 $\lvert 2 - 1 \rvert = 1 < \lvert 2 - 5.75 \rvert = 3.75$이므로 군집 1로 옮기고, 6, 7, 8은 군집 2에 남는다. 갱신하면 $\mu_1 = (1 + 2)/2 = 1.5$, $\mu_2 = (6 + 7 + 8)/3 = 7$이다. 3회차 할당은 2회차와 같으므로 수렴하며, 최종 군집은 $\lbrace 1, 2\rbrace$와 $\lbrace 6, 7, 8\rbrace$이다.
+   1회차 할당에서 1은 중심 1에, 2, 6, 7, 8은 중심 2에 가장 가깝다. 갱신하면 $\mu_1 = 1$, $\mu_2 = (2 + 6 + 7 + 8)/4 = 5.75$이다. 2회차 할당에서 2는 $\lvert 2 - 1 \rvert = 1 < \lvert 2 - 5.75 \rvert = 3.75$이므로 군집 1로 옮기고, 6, 7, 8은 군집 2에 남는다. 갱신하면 $\mu_1 = (1 + 2)/2 = 1.5$, $\mu_2 = (6 + 7 + 8)/3 = 7$이다. 3회차 할당은 2회차와 같으므로 수렴하며, 최종 군집은 $\lbrace1, 2\rbrace$와 $\lbrace6, 7, 8\rbrace$이다.
 
    </details>
 
@@ -1240,9 +1240,10 @@ flowchart LR
 7. D. E. Rumelhart, G. E. Hinton, and R. J. Williams, "Learning representations by back-propagating errors," *Nature*, vol. 323, no. 6088, pp. 533-536, 1986.
 8. C. Cortes and V. Vapnik, "Support-vector networks," *Machine Learning*, vol. 20, no. 3, pp. 273-297, 1995.
 9. G. James, D. Witten, T. Hastie, and R. Tibshirani, *An Introduction to Statistical Learning: with Applications in R*, 2nd ed. New York, NY, USA: Springer, 2021.
-10. MathWorks, "plotregression: Plot linear regression," *Deep Learning Toolbox Documentation*. https://www.mathworks.com/help/deeplearning/ref/plotregression.html
+10. MathWorks, "Analyze shallow neural network performance after training," *Deep Learning Toolbox Documentation*, R2024a. https://www.mathworks.com/help/releases/R2024a/deeplearning/ug/analyze-neural-network-performance-after-training.html
 11. S. Surjanovic and D. Bingham, "Branin function," *Virtual Library of Simulation Experiments: Test Functions and Datasets*, Simon Fraser University. https://www.sfu.ca/~ssurjano/branin.html
 12. R. S. Sutton and A. G. Barto, *Reinforcement Learning: An Introduction*, 2nd ed. Cambridge, MA, USA: MIT Press, 2018.
 13. V. Mnih et al., "Human-level control through deep reinforcement learning," *Nature*, vol. 518, no. 7540, pp. 529-533, 2015.
 14. D. Silver et al., "Mastering the game of Go without human knowledge," *Nature*, vol. 550, no. 7676, pp. 354-359, 2017.
 15. D. Silver et al., "Mastering chess and shogi by self-play with a general reinforcement learning algorithm," arXiv:1712.01815, 2017.
+16. D. Silver et al., "Mastering the game of Go with deep neural networks and tree search," *Nature*, vol. 529, no. 7587, pp. 484-489, 2016.

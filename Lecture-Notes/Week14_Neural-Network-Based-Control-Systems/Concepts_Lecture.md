@@ -52,7 +52,7 @@
 
 ### 1.1 Why Neural Networks Are Used in Control
 
-The **plant** is the system to be controlled, and its **dynamics** are the rules by which the state and output of the plant change over time in response to the input. In Weeks 4-6, physical laws such as Newton's laws and Kirchhoff's laws were used to derive the differential equations, transfer functions, and state variable equations of plants, and controllers were designed from those models. For plants whose dynamics are complex or whose parameters are unknown, such as chemical reactors, an accurate mathematical model is hard to derive.
+The **plant** is the system to be controlled, and its **dynamics** are the rules by which the state and output of the plant change over time in response to the input. In Weeks 4-6, physical laws such as Newton's laws and Kirchhoff's laws were used to derive the differential equations, transfer functions, and state variable equations of plants, and in Weeks 7-11 those models were used to analyze system performance and to design PID controllers. For plants whose dynamics are complex or whose parameters are unknown, such as chemical reactors, an accurate mathematical model is hard to derive.
 
 In such situations, neural networks offer an alternative way to design controllers. Representative early studies on using neural networks in control systems are Werbos (1989) [1] and Narendra and Parthasarathy (1990) [2], and their key ideas are as follows.
 
@@ -79,7 +79,7 @@ flowchart LR
     ID -. "Plant model" .-> C
 ```
 
-*Figure 1. Structure of the indirect method: a neural network system identifier learns the plant, and its model is used to adjust the controller*
+*Figure 1. Structure of the indirect method*
 
 Solid lines are signal flows, and dotted lines are learning (parameter adjustment) flows. The neural network system identifier receives the same control input $u(t)$ as the plant, estimates the output, and learns so that the **identification error**, the difference between the actual output $y(t)$ and the estimated output $\hat{y}(t)$, decreases. Once trained, the identifier acts as a model of the plant, and the neural network controller is adjusted using this model.
 
@@ -163,9 +163,9 @@ y = net(x);
 - `biases = net.b;` and the next two lines: Take the hidden-layer bias (3×1) and the output-layer bias (1×1) out of the cell array that holds the bias vector of each layer.
 - `y = net(x);`: Feeds a new input to the trained network to predict the temperature. `x` is a two-row matrix that holds one sample to predict per column.
 
-![Figure 3. Structure of the 2-3-1 network displayed by MATLAB: 2 inputs, 3 hidden neurons with an S-shaped activation function, and 1 output neuron with a linear activation function](../../images/Week14_14-1_p08.png)
+![Figure 3. Structure of the 2-3-1 network displayed by MATLAB](../../images/Week14_14-1_p08.png)
 
-*Figure 3. Structure of the 2-3-1 network displayed by MATLAB: 2 inputs, 3 hidden neurons with an S-shaped activation function, and 1 output neuron with a linear activation function*
+*Figure 3. Structure of the 2-3-1 network displayed by MATLAB*
 
 The activation function of the hidden layer is the S-shaped hyperbolic tangent sigmoid (`tansig`, mathematically the same as $\tanh$), and the output layer is linear (`purelin`). In addition, `feedforwardnet` by default applies **min-max scaling (`mapminmax`)**, which maps the inputs and the targets to the interval $[-1, 1]$ using the minimum and maximum of the training data, and converts the network output back to the original units [5]. The computation that gives the predicted temperature $\hat{y}$ from the input $\mathbf{x} = [x_1, x_2]^T$ is therefore as follows.
 
@@ -234,7 +234,7 @@ flowchart LR
     S -. "Tracking error" .-> C
 ```
 
-*Figure 4. Structure of the direct method: the neural network controller is trained with the tracking error*
+*Figure 4. Structure of the direct method*
 
 The **tracking error** is the difference between the desired output and the actual output, $e(t) = y_d(t) - y(t)$. The controller output $u$ becomes $y$ only after passing through the plant, so changing the controller weights to reduce the tracking error requires knowing how $u$ affects $y$. Section 1.6 explains why this information must come from data or a mathematical model. The direct method includes control by emulation, open-loop inverse control, inverse mapping, and inverse dynamics.
 
@@ -251,7 +251,7 @@ flowchart LR
     S --> E["Error e"]
 ```
 
-*Figure 5. Control by emulation: the neural network is trained to imitate the output of an existing controller*
+*Figure 5. Training structure of control by emulation*
 
 Here $y$ is not the plant output but the control command produced by the existing controller, $\hat{y}$ is the network output, and the error is $e = y - \hat{y}$. This is the same as supervised learning (Week 12) with the inputs of the existing controller as features and its outputs as targets. The method is useful when the controller is a human and the task is to be automated. For example, if the measurements and the manipulated values are recorded while a skilled operator runs a process, a neural network can imitate those actions and replace the operator. However, the network learns the operator's behavior only in the recorded situations, so its behavior in unrecorded situations is not guaranteed, and performance better than that of the original controller is hard to expect.
 
@@ -278,7 +278,7 @@ flowchart LR
     M -. "Backpropagation through the model" .-> C
 ```
 
-*Figure 6. Training of open-loop inverse control that backpropagates the output error to the controller through the plant model*
+*Figure 6. Training of the open-loop inverse controller through the plant model*
 
 > **[Calculus]** The chain rule states that the derivative of a composite function is the product of the derivatives of its stages. $E$ depends on $w$ through $y$, and $y$ through $u$, so $\partial E/\partial w$ is the product of three derivatives. The plant model replaces the middle factor $\partial y/\partial u$ of this product with a differentiable neural network.
 
@@ -333,9 +333,9 @@ The function $f$ in Figure 8 is not one-to-one: the horizontal line at height $y
 
 **Example: finding control actions that give 25 °C.** For the indoor temperature problem of Section 1.3, find the valve and window openings that make the indoor temperature 25 °C.
 
-![Figure 9. Valve and window openings sampled at random from 0-100% and a histogram of the temperatures predicted by the neural network](../../images/Week14_14-1_p14.png)
+![Figure 9. Random input samples and a histogram of the predicted temperatures](../../images/Week14_14-1_p14.png)
 
-*Figure 9. Valve and window openings sampled at random from 0-100% and a histogram of the temperatures predicted by the neural network*
+*Figure 9. Random input samples and a histogram of the predicted temperatures*
 
 The upper part of Figure 9 shows input samples drawn uniformly from the design space $[0, 100] \times [0, 100]$, and the lower part shows the histogram of the temperatures predicted by feeding those samples to the network. The predicted temperatures spread over about 17-30 °C and are concentrated around 24-29 °C. The MATLAB code that implements this procedure is as follows.
 
@@ -513,7 +513,7 @@ Using neural networks for control involves two stages.
 - **System identification:** Build a neural network model of the plant to be controlled. This stage is the same for all three controllers [6].
 - **Control design:** Design or train the controller using the neural network plant model. This stage differs for each controller.
 
-The three controllers and the three applications in these notes (a continuous stirred tank reactor, a magnetic levitation system, and a robot arm) are treated together in the tutorial paper by Hagan, Demuth, and De Jesús [7]. The rest of Section 2 covers neural network predictive control, and Section 3 covers NARMA-L2 control and model reference control.
+The three controllers and the three applications of Sections 2.6, 3.3, and 3.5 (a continuous stirred tank reactor, a magnetic levitation system, and a robot arm) are treated together in the tutorial paper by Hagan, Demuth, and De Jesús [7]. The rest of Section 2 covers neural network predictive control, and Section 3 covers NARMA-L2 control and model reference control.
 
 ### 2.4 System Identification in Neural Network Predictive Control
 
@@ -706,7 +706,7 @@ The four regression plots on the left of Figure 17 have the target on the horizo
 
 *Figure 18. Reference and output, and control action, of neural network predictive control*
 
-On the left of Figure 18, the orange reference changes every 20 seconds to a value between about 20.3 and 22.1, and the blue output follows the reference quickly each time. The steady-state error is small, and the transient performance is adequate in all tested regions. The control action on the right lies mostly in the range 0.5-1.5 $\mathrm{cm^3/s}$ and briefly rises to about 4 at 80 and 100 seconds, when the reference steps up. Because $\rho$ penalizes the input increments, the control signal is relatively smooth.
+On the left of Figure 18, the orange reference changes every 20 seconds to a value between about 20.3 and 22.1, and the blue output follows the reference quickly each time. The steady-state error is small, and the transient performance is adequate in all tested regions. The control action on the right lies mostly in the range of about 0.8-1.3 $\mathrm{cm^3/s}$. During the first few seconds, when the output is above the reference, and right after the reference steps down at 20, 40, and 60 seconds, the input briefly drops to 0 while the concentration falls, and at 80 and 100 seconds, when the reference steps up, the input briefly rises to about 4. In the interval from 60 to 80 seconds, where the output is lowest, the input oscillates slightly. Because $\rho$ penalizes the input increments, the control signal is smoother than the results of Sections 3.3 and 3.5.
 
 ---
 
@@ -754,9 +754,9 @@ $$
 
 > **Definition:** A **tapped delay line (TDL)** is a block that stores previous values of its input signal and outputs the current and past values together as a vector. It lets a neural network receive past inputs and past outputs.
 
-![Figure 19. The NARMA-L2 plant model: the upper network approximates g, and the lower network approximates f](../../images/Week14_14-3_p06.png)
+![Figure 19. Structure of the NARMA-L2 plant model](../../images/Week14_14-3_p06.png)
 
-*Figure 19. The NARMA-L2 plant model: the upper network approximates g, and the lower network approximates f*
+*Figure 19. Structure of the NARMA-L2 plant model*
 
 In Figure 19, $t$ means the same as the discrete time $k$; $\mathbf{IW}$ denotes input weights, $\mathbf{LW}$ layer weights, $\mathbf{b}$ biases, and $\mathbf{a}$ layer outputs. The input $u(t)$ and the output $y(t)$ each pass through TDLs into the two subnetworks; consistent with the equation, the TDLs on the $u$ side output past inputs, and those on the $y$ side output the current and past outputs. The upper subnetwork (layers 1 and 2) passes through an S-shaped hidden layer $\mathbf{a}^1(t)$ and a linear output layer to give $\mathbf{a}^2(t) \approx g$, and the lower subnetwork (layers 3 and 4) gives $\mathbf{a}^4(t) \approx f$ with the same structure. Finally, the multiplication block multiplies $\mathbf{a}^2(t)$ by $u(t)$, and the addition block adds $\mathbf{a}^4(t)$ to give $\hat{y}(t+1) = \mathbf{a}^4(t) + \mathbf{a}^2(t)\,u(t)$.
 
@@ -899,9 +899,9 @@ The model error (the difference between the output of the neural network plant m
 
 *Table 7. Inputs of the neural network controller and the neural network plant model*
 
-![Figure 27. Detailed structure of model reference control: the neural network controller on the left and the neural network plant model at the lower right](../../images/Week14_14-3_p17.png)
+![Figure 27. Detailed structure of model reference control](../../images/Week14_14-3_p17.png)
 
-*Figure 27. Detailed structure of model reference control: the neural network controller on the left and the neural network plant model at the lower right*
+*Figure 27. Detailed structure of model reference control*
 
 In Figure 27, layers 1 and 2 are the neural network controller. Layer 1 adds the delayed values of the reference $\mathbf{r}(t)$ ($\mathbf{IW}^{1,1}$), the delayed values of the controller output ($\mathbf{LW}^{1,2}$), the delayed values of the plant output $\mathbf{c}(t)$ ($\mathbf{LW}^{1,4}$), and the bias to form the net input $\mathbf{n}^1(t)$, which passes through the transfer function $\mathbf{f}^1$. The output $\mathbf{a}^2(t)$ of layer 2 is the control input applied to the plant. Layers 3 and 4 are the neural network plant model, which receives the delayed values of the control input ($\mathbf{LW}^{3,2}$) and of the plant output ($\mathbf{LW}^{3,4}$) and produces the model output $\mathbf{y}(t) = \mathbf{a}^4(t)$. The two summing points on the right form the control error $\mathbf{e}_c(t)$ and the plant model error $\mathbf{e}_p(t)$.
 
@@ -1018,9 +1018,9 @@ The controller network uses two delayed reference inputs, two delayed plant outp
 
 The data were divided at random (`dividerand`), the training algorithm is `trainlm`, and the performance function is `mse`.
 
-![Figure 33. Output of the reference model (blue) and output of the closed loop with the neural network controller (green) for the same reference input](../../images/Week14_14-3_p24.png)
+![Figure 33. Output of the reference model and output of the closed loop with the neural network controller](../../images/Week14_14-3_p24.png)
 
-*Figure 33. Output of the reference model (blue) and output of the closed loop with the neural network controller (green) for the same reference input*
+*Figure 33. Output of the reference model and output of the closed loop with the neural network controller*
 
 In Figure 33, the output of the closed loop with the neural network controller (green) almost overlaps the output of the reference model (blue).
 
@@ -1047,7 +1047,7 @@ On the left of Figure 34, the arm angle (blue) follows the reference (orange), w
 
 *Table 10. Comparison of the three neural network controllers*
 
-The comparison of computation and range of application follows the MATLAB documentation [6], and the last row reflects the applications observed in Sections 2.6, 3.3, and 3.5. Predictive control suits cases with ample computing resources where the change of the input should be regulated, NARMA-L2 control suits cases with scarce computing resources and a plant close to companion form, and model reference control suits cases with scarce computing resources and a plant that cannot be approximated in companion form.
+The comparison of computation and range of application is based on the MATLAB documentation [6], and the last row summarizes the results of the applications in Sections 2.6, 3.3, and 3.5. Predictive control suits cases with ample computing resources where the change of the input should be regulated, NARMA-L2 control suits cases with scarce computing resources and a plant close to companion form, and model reference control suits cases with scarce computing resources and a plant that cannot be approximated in companion form.
 
 ---
 

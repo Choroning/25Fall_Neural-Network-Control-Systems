@@ -101,7 +101,7 @@ A simple control system can be analyzed and designed with differential equations
 The defining equation of the Laplace transform is as follows.
 
 $$
-F(s) = \mathcal{L}\lbrace f(t) \rbrace = \int_{-\infty}^{\infty} f(t)\,e^{-st}\,dt, \qquad s = \sigma + j\omega
+F(s) = \mathcal{L}\lbrace f(t) \rbrace= \int_{-\infty}^{\infty} f(t)\,e^{-st}\,dt, \qquad s = \sigma + j\omega
 $$
 
 $\sigma$ is the real part of $s$, $\omega$ is its imaginary part, and $j$ is the imaginary unit with $j^2 = -1$ (Week 2). A time function is written in lowercase as $f(t)$ and its transform in uppercase as $F(s)$, and $\mathcal{L}\lbrace\cdot\rbrace$ denotes applying the Laplace transform to the function in the braces. The variable $t$ is integrated out, and the result is a function of $s$ alone.
@@ -119,7 +119,7 @@ The greatest advantage of the frequency domain is that differentiation and integ
 ### 1.3 The One-Sided Laplace Transform
 
 $$
-F(s) = \mathcal{L}\lbrace f(t) \rbrace = \int_{0}^{\infty} f(t)\,e^{-st}\,dt
+F(s) = \mathcal{L}\lbrace f(t) \rbrace= \int_{0}^{\infty} f(t)\,e^{-st}\,dt
 $$
 
 In control engineering, the instant at which the input starts is taken as $t = 0$, and every signal can be assumed to be 0 before that ($t < 0$). The integral from $-\infty$ to 0 in the definition of Section 1.2 then vanishes, and the equation above, whose interval runs from 0 to $\infty$, is used instead. This is the **one-sided Laplace transform**, and it is the transform mainly used in control engineering. Everything after this point in this document uses the one-sided transform.
@@ -191,7 +191,7 @@ $$
 Since $u_s(t) = 1$ for $t \ge 0$, substituting into the definition gives the following.
 
 $$
-\mathcal{L}\lbrace u_s(t) \rbrace = \int_0^\infty 1 \cdot e^{-st}\,dt = \left[ -\frac{1}{s}e^{-st} \right]_0^\infty = (0) - \left( -\frac{1}{s} \right) = \frac{1}{s}, \qquad \operatorname{Re}(s) > 0
+\mathcal{L}\lbrace u_s(t) \rbrace= \int_0^\infty 1 \cdot e^{-st}\,dt = \left[ -\frac{1}{s}e^{-st} \right]_0^\infty = (0) - \left( -\frac{1}{s} \right) = \frac{1}{s}, \qquad \operatorname{Re}(s) > 0
 $$
 
 An antiderivative of $e^{-st}$ is $-\frac{1}{s}e^{-st}$. At the upper limit $t \to \infty$ it is 0 because $e^{-st} \to 0$ when $\operatorname{Re}(s) > 0$, and at the lower limit $t = 0$ it is $-\frac{1}{s}$ because $e^{0} = 1$. Subtracting the lower value from the upper value gives $\frac{1}{s}$. The same computation shows that the step $Au_s(t)$ of height $A$ has the transform $\frac{A}{s}$.
@@ -213,25 +213,25 @@ $\delta(t)$ cannot be defined as an ordinary function, so it is understood as th
 Since $\delta(t)$ is 0 everywhere except at $t = 0$, replacing $e^{-st}$ inside the integral by its value at $t = 0$, which is $e^{0} = 1$, does not change the integral.
 
 $$
-\mathcal{L}\lbrace \delta(t) \rbrace = \int_{0^-}^{\infty} \delta(t)\,e^{-st}\,dt = e^{-s \cdot 0}\int_{0^-}^{0^+} \delta(t)\,dt = 1 \times 1 = 1
+\mathcal{L}\lbrace\delta(t) \rbrace= \int_{0^-}^{\infty} \delta(t)\,e^{-st}\,dt = e^{-s \cdot 0}\int_{0^-}^{0^+} \delta(t)\,dt = 1 \times 1 = 1
 $$
 
-> **Note:** By the same reasoning, $\int_{-\infty}^{\infty} g(t)\,\delta(t-a)\,dt = g(a)$ holds for a continuous function $g(t)$. Because the impulse picks out the value of the function it multiplies at a single point, this is called the **sifting property** [2]. The fact that the impulse function transforms to 1 is used again for the impulse response in Week 5.
+> **Note:** By the same reasoning, $\int_{-\infty}^{\infty} g(t)\,\delta(t-a)\,dt = g(a)$ holds for a continuous function $g(t)$. Because the impulse picks out the value of the function it multiplies at a single point, this is called the **sifting property** [1]. The fact that the impulse function transforms to 1 is used again for the impulse response in Week 5.
 
 ### 1.7 The Exponential Function
 
 The transform of the exponential function $e^{at}$ is computed by combining the two exponentials into one and integrating.
 
 $$
-\mathcal{L}\lbrace e^{at} \rbrace = \int_0^\infty e^{at}e^{-st}\,dt = \int_0^\infty e^{-(s-a)t}\,dt = \left[ -\frac{1}{s-a}e^{-(s-a)t} \right]_0^\infty = \frac{1}{s-a}, \qquad \operatorname{Re}(s) > a
+\mathcal{L}\lbrace e^{at} \rbrace= \int_0^\infty e^{at}e^{-st}\,dt = \int_0^\infty e^{-(s-a)t}\,dt = \left[ -\frac{1}{s-a}e^{-(s-a)t} \right]_0^\infty = \frac{1}{s-a}, \qquad \operatorname{Re}(s) > a
 $$
 
 The first equality is the definition, and the second is the exponent rule $e^{at}e^{-st} = e^{-(s-a)t}$. The third is the integral of Section 1.5 with $s - a$ in place of $s$. For $e^{-(s-a)t} \to 0$ at the upper limit we need $\operatorname{Re}(s - a) > 0$, that is, $\operatorname{Re}(s) > a$, and then the result is $0 - \left( -\frac{1}{s-a} \right) = \frac{1}{s-a}$. With $a = 0$ we have $e^{0t} = 1$, which agrees with $\frac{1}{s}$ from Section 1.5.
 
-**Example.** Substitute values of $a$ into the formula $\mathcal{L}\lbrace e^{at} \rbrace = \frac{1}{s-a}$.
+**Example.** Substitute values of $a$ into the formula $\mathcal{L}\lbrace e^{at} \rbrace= \frac{1}{s-a}$.
 
 $$
-\mathcal{L}\lbrace e^{-2t} \rbrace = \frac{1}{s-(-2)} = \frac{1}{s+2}, \qquad \mathcal{L}\lbrace e^{3t} \rbrace = \frac{1}{s-3}, \qquad \mathcal{L}\lbrace e^{\omega t} \rbrace = \frac{1}{s-\omega}
+\mathcal{L}\lbrace e^{-2t} \rbrace= \frac{1}{s-(-2)} = \frac{1}{s+2}, \qquad \mathcal{L}\lbrace e^{3t} \rbrace= \frac{1}{s-3}, \qquad \mathcal{L}\lbrace e^{\omega t} \rbrace= \frac{1}{s-\omega}
 $$
 
 > **Key Point:** The decaying exponential $e^{-2t}$ in the time domain becomes, in the $s$-domain, a fraction whose denominator vanishes at $s = -2$. This correspondence between the shape of a time response and the roots of the denominator in the $s$-domain underlies the analysis in every later week.
@@ -241,37 +241,37 @@ $$
 The transform of $f(t) = t$ is found by integration by parts. In the formula of Section 1.4, set $f'(t) = e^{-st}$ and $g(t) = t$, so that $f(t) = -\frac{1}{s}e^{-st}$ and $g'(t) = 1$.
 
 $$
-\mathcal{L}\lbrace t \rbrace = \int_0^\infty t\,e^{-st}\,dt = \left[ t \cdot \left( -\frac{1}{s}e^{-st} \right) \right]_0^\infty - \int_0^\infty 1 \cdot \left( -\frac{1}{s}e^{-st} \right) dt
+\mathcal{L}\lbrace t \rbrace= \int_0^\infty t\,e^{-st}\,dt = \left[ t \cdot \left( -\frac{1}{s}e^{-st} \right) \right]_0^\infty - \int_0^\infty 1 \cdot \left( -\frac{1}{s}e^{-st} \right) dt
 $$
 
 $$
 = (0 - 0) + \frac{1}{s}\int_0^\infty e^{-st}\,dt = \frac{1}{s} \cdot \frac{1}{s} = \frac{1}{s^2}
 $$
 
-The boundary term is 0 because $te^{-st} \to 0$ at the upper limit (the [Calculus] box of Section 1.4) and $t = 0$ at the lower limit. The remaining integral is $\mathcal{L}\lbrace 1 \rbrace = \frac{1}{s}$ from Section 1.5. The input $t$, which grows at a constant rate, is called the **ramp function**.
+The boundary term is 0 because $te^{-st} \to 0$ at the upper limit (the [Calculus] box of Section 1.4) and $t = 0$ at the lower limit. The remaining integral is $\mathcal{L}\lbrace1 \rbrace= \frac{1}{s}$ from Section 1.5. The input $t$, which grows at a constant rate, is called the **ramp function**.
 
 ### 1.9 The Quadratic Function and the nth Power
 
 The transform of $t^2$ is found the same way, this time with $g(t) = t^2$ and $g'(t) = 2t$.
 
 $$
-\mathcal{L}\lbrace t^2 \rbrace = \left[ t^2 \cdot \left( -\frac{1}{s}e^{-st} \right) \right]_0^\infty + \frac{2}{s}\int_0^\infty t\,e^{-st}\,dt = 0 + \frac{2}{s} \cdot \frac{1}{s^2} = \frac{2}{s^3}
+\mathcal{L}\lbrace t^2 \rbrace= \left[ t^2 \cdot \left( -\frac{1}{s}e^{-st} \right) \right]_0^\infty + \frac{2}{s}\int_0^\infty t\,e^{-st}\,dt = 0 + \frac{2}{s} \cdot \frac{1}{s^2} = \frac{2}{s^3}
 $$
 
-The last integral is $\mathcal{L}\lbrace t \rbrace = \frac{1}{s^2}$ from Section 1.8. In general, one integration by parts on $t^n$ gives $\mathcal{L}\lbrace t^n \rbrace = \frac{n}{s}\mathcal{L}\lbrace t^{n-1} \rbrace$, and repeating it $n$ times gives the following.
+The last integral is $\mathcal{L}\lbrace t \rbrace= \frac{1}{s^2}$ from Section 1.8. In general, one integration by parts on $t^n$ gives $\mathcal{L}\lbrace t^n \rbrace= \frac{n}{s}\mathcal{L}\lbrace t^{n-1} \rbrace$, and repeating it $n$ times gives the following.
 
 $$
-\mathcal{L}\lbrace t^n \rbrace = \frac{n}{s}\mathcal{L}\lbrace t^{n-1} \rbrace = \frac{n}{s} \cdot \frac{n-1}{s}\mathcal{L}\lbrace t^{n-2} \rbrace = \cdots = \frac{n!}{s^n}\mathcal{L}\lbrace 1 \rbrace = \frac{n!}{s^{n+1}}
+\mathcal{L}\lbrace t^n \rbrace= \frac{n}{s}\mathcal{L}\lbrace t^{n-1} \rbrace= \frac{n}{s} \cdot \frac{n-1}{s}\mathcal{L}\lbrace t^{n-2} \rbrace= \cdots = \frac{n!}{s^n}\mathcal{L}\lbrace1 \rbrace= \frac{n!}{s^{n+1}}
 $$
 
-**Example.** For $n = 3$, $\mathcal{L}\lbrace t^3 \rbrace = \frac{3!}{s^4} = \frac{6}{s^4}$. Checking with the recurrence, $\frac{3}{s} \cdot \mathcal{L}\lbrace t^2 \rbrace = \frac{3}{s} \cdot \frac{2}{s^3} = \frac{6}{s^4}$ agrees.
+**Example.** For $n = 3$, $\mathcal{L}\lbrace t^3 \rbrace= \frac{3!}{s^4} = \frac{6}{s^4}$. Checking with the recurrence, $\frac{3}{s} \cdot \mathcal{L}\lbrace t^2 \rbrace= \frac{3}{s} \cdot \frac{2}{s^3} = \frac{6}{s^4}$ agrees.
 
 ### 1.10 The Cosine Function
 
 The transforms of trigonometric functions use Euler's formula $e^{j\theta} = \cos\theta + j\sin\theta$ from Week 2. Adding $e^{j\omega t}$ and $e^{-j\omega t}$ cancels the sine terms, so $\cos\omega t = \frac{e^{j\omega t} + e^{-j\omega t}}{2}$. Substituting $a = j\omega$ and $a = -j\omega$ into the result of Section 1.7 gives the following.
 
 $$
-\mathcal{L}\lbrace \cos\omega t \rbrace = \frac{1}{2}\left( \frac{1}{s-j\omega} + \frac{1}{s+j\omega} \right) = \frac{1}{2} \cdot \frac{(s+j\omega) + (s-j\omega)}{(s-j\omega)(s+j\omega)} = \frac{1}{2} \cdot \frac{2s}{s^2+\omega^2} = \frac{s}{s^2+\omega^2}
+\mathcal{L}\lbrace\cos\omega t \rbrace= \frac{1}{2}\left( \frac{1}{s-j\omega} + \frac{1}{s+j\omega} \right) = \frac{1}{2} \cdot \frac{(s+j\omega) + (s-j\omega)}{(s-j\omega)(s+j\omega)} = \frac{1}{2} \cdot \frac{2s}{s^2+\omega^2} = \frac{s}{s^2+\omega^2}
 $$
 
 The first equality is linearity (Section 2.1). The second puts the fractions over a common denominator, which is $(s-j\omega)(s+j\omega) = s^2 - (j\omega)^2 = s^2 + \omega^2$.
@@ -281,7 +281,7 @@ The first equality is linearity (Section 2.1). The second puts the fractions ove
 **Example.** Substitute values of $\omega$. $200\pi t$ is a cosine of frequency $f = 100$ Hz ($\omega = 2\pi f$).
 
 $$
-\mathcal{L}\lbrace \cos 10t \rbrace = \frac{s}{s^2+10^2} = \frac{s}{s^2+100}, \qquad \mathcal{L}\lbrace \cos 200\pi t \rbrace = \frac{s}{s^2+(200\pi)^2} = \frac{s}{s^2+40000\pi^2}
+\mathcal{L}\lbrace\cos 10t \rbrace= \frac{s}{s^2+10^2} = \frac{s}{s^2+100}, \qquad \mathcal{L}\lbrace\cos 200\pi t \rbrace= \frac{s}{s^2+(200\pi)^2} = \frac{s}{s^2+40000\pi^2}
 $$
 
 ### 1.11 The Sine Function
@@ -289,7 +289,7 @@ $$
 Subtracting $e^{-j\omega t}$ from $e^{j\omega t}$ cancels the cosine terms, so $\sin\omega t = \frac{e^{j\omega t} - e^{-j\omega t}}{2j}$.
 
 $$
-\mathcal{L}\lbrace \sin\omega t \rbrace = \frac{1}{2j}\left( \frac{1}{s-j\omega} - \frac{1}{s+j\omega} \right) = \frac{1}{2j} \cdot \frac{(s+j\omega) - (s-j\omega)}{s^2+\omega^2} = \frac{1}{2j} \cdot \frac{2j\omega}{s^2+\omega^2} = \frac{\omega}{s^2+\omega^2}
+\mathcal{L}\lbrace\sin\omega t \rbrace= \frac{1}{2j}\left( \frac{1}{s-j\omega} - \frac{1}{s+j\omega} \right) = \frac{1}{2j} \cdot \frac{(s+j\omega) - (s-j\omega)}{s^2+\omega^2} = \frac{1}{2j} \cdot \frac{2j\omega}{s^2+\omega^2} = \frac{\omega}{s^2+\omega^2}
 $$
 
 Note that, unlike the cosine, the numerator keeps $\omega$ rather than $s$.
@@ -297,7 +297,7 @@ Note that, unlike the cosine, the numerator keeps $\omega$ rather than $s$.
 **Example.**
 
 $$
-\mathcal{L}\lbrace \sin 10t \rbrace = \frac{10}{s^2+100}, \qquad \mathcal{L}\lbrace \sin 200\pi t \rbrace = \frac{200\pi}{s^2+40000\pi^2}
+\mathcal{L}\lbrace\sin 10t \rbrace= \frac{10}{s^2+100}, \qquad \mathcal{L}\lbrace\sin 200\pi t \rbrace= \frac{200\pi}{s^2+40000\pi^2}
 $$
 
 ### 1.12 Basic Transform Pairs
@@ -330,11 +330,11 @@ Combining the transform pairs of Section 1 and applying them to differential equ
 ### 2.1 Linearity
 
 $$
-\mathcal{L}\lbrace kf(t) \rbrace = k\,\mathcal{L}\lbrace f(t) \rbrace = kF(s)
+\mathcal{L}\lbrace kf(t) \rbrace= k\,\mathcal{L}\lbrace f(t) \rbrace= kF(s)
 $$
 
 $$
-\mathcal{L}\lbrace f_1(t) + f_2(t) \rbrace = \mathcal{L}\lbrace f_1(t) \rbrace + \mathcal{L}\lbrace f_2(t) \rbrace = F_1(s) + F_2(s)
+\mathcal{L}\lbrace f_1(t) + f_2(t) \rbrace= \mathcal{L}\lbrace f_1(t) \rbrace+ \mathcal{L}\lbrace f_2(t) \rbrace= F_1(s) + F_2(s)
 $$
 
 An integral lets a constant factor out, and the integral of a sum is the sum of the integrals, so the Laplace transform, being defined by an integral, has the same properties. This is called **linearity**.
@@ -342,11 +342,11 @@ An integral lets a constant factor out, and the integral of a sum is the sum of 
 **Example.**
 
 $$
-\mathcal{L}\lbrace 2e^{-2t} \rbrace = 2 \cdot \frac{1}{s+2} = \frac{2}{s+2}
+\mathcal{L}\lbrace2e^{-2t} \rbrace= 2 \cdot \frac{1}{s+2} = \frac{2}{s+2}
 $$
 
 $$
-\mathcal{L}\lbrace 3t^2 - \cos 4t \rbrace = 3 \cdot \frac{2}{s^3} - \frac{s}{s^2+16} = \frac{6}{s^3} - \frac{s}{s^2+16} = \frac{-s^4 + 6s^2 + 96}{s^3(s^2+16)}
+\mathcal{L}\lbrace3t^2 - \cos 4t \rbrace= 3 \cdot \frac{2}{s^3} - \frac{s}{s^2+16} = \frac{6}{s^3} - \frac{s}{s^2+16} = \frac{-s^4 + 6s^2 + 96}{s^3(s^2+16)}
 $$
 
 The second example uses $t^2$ and $\cos\omega t$ ($\omega = 4$) from Table 3 and then combines the fractions; the numerator is $6(s^2+16) - s \cdot s^3 = -s^4 + 6s^2 + 96$.
@@ -354,7 +354,7 @@ The second example uses $t^2$ and $\cos\omega t$ ($\omega = 4$) from Table 3 and
 ### 2.2 Shift in the Frequency Domain
 
 $$
-\mathcal{L}\lbrace e^{-at}f(t) \rbrace = \int_0^\infty e^{-st}e^{-at}f(t)\,dt = \int_0^\infty e^{-(s+a)t}f(t)\,dt = F(s+a)
+\mathcal{L}\lbrace e^{-at}f(t) \rbrace= \int_0^\infty e^{-st}e^{-at}f(t)\,dt = \int_0^\infty e^{-(s+a)t}f(t)\,dt = F(s+a)
 $$
 
 The last integral is the definition with $s + a$ in place of $s$, so it equals $F(s+a)$. Multiplying by $e^{-at}$ in the time domain shifts the whole function by $-a$ along the $s$ axis in the $s$-domain (to the left for $a > 0$). This is called the **shift in the frequency domain**.
@@ -362,15 +362,15 @@ The last integral is the definition with $s + a$ in place of $s$, so it equals $
 **Example.** The transform of the function of Section 1.10 multiplied by $e^{-2t}$ is obtained by replacing $s$ with $s + 2$.
 
 $$
-\mathcal{L}\lbrace \cos 200\pi t \rbrace = \frac{s}{s^2+(200\pi)^2} \quad \Rightarrow \quad \mathcal{L}\lbrace e^{-2t}\cos 200\pi t \rbrace = \frac{s+2}{(s+2)^2+(200\pi)^2}
+\mathcal{L}\lbrace\cos 200\pi t \rbrace= \frac{s}{s^2+(200\pi)^2} \quad \Rightarrow \quad \mathcal{L}\lbrace e^{-2t}\cos 200\pi t \rbrace= \frac{s+2}{(s+2)^2+(200\pi)^2}
 $$
 
-In the same way we obtain $\mathcal{L}\lbrace e^{-at}\sin\omega t \rbrace = \frac{\omega}{(s+a)^2+\omega^2}$, $\mathcal{L}\lbrace e^{-at}\cos\omega t \rbrace = \frac{s+a}{(s+a)^2+\omega^2}$, and $\mathcal{L}\lbrace t^n e^{-at} \rbrace = \frac{n!}{(s+a)^{n+1}}$. These three pairs are used for the inverse transforms in Sections 2.9 and 2.10.
+In the same way we obtain $\mathcal{L}\lbrace e^{-at}\sin\omega t \rbrace= \frac{\omega}{(s+a)^2+\omega^2}$, $\mathcal{L}\lbrace e^{-at}\cos\omega t \rbrace= \frac{s+a}{(s+a)^2+\omega^2}$, and $\mathcal{L}\lbrace t^n e^{-at} \rbrace= \frac{n!}{(s+a)^{n+1}}$. These three pairs are used for the inverse transforms in Sections 2.9 and 2.10.
 
 ### 2.3 Shift in the Time Domain
 
 $$
-\mathcal{L}\lbrace f(t-T) \rbrace = e^{-sT}F(s), \qquad T \ge 0
+\mathcal{L}\lbrace f(t-T) \rbrace= e^{-sT}F(s), \qquad T \ge 0
 $$
 
 $f(t-T)$ is $f(t)$ moved to the right by $T$, that is, the function that starts $T$ later. The formula holds under the one-sided assumption that $f(t) = 0$ for $t < 0$, which makes $f(t-T) = 0$ for $t < T$. To make this explicit, the function is sometimes written $f(t-T)u_s(t-T)$.
@@ -378,7 +378,7 @@ $f(t-T)$ is $f(t)$ moved to the right by $T$, that is, the function that starts 
 The derivation is as follows. Since the integrand is 0 for $t < T$, the lower limit can be raised to $T$.
 
 $$
-\mathcal{L}\lbrace f(t-T) \rbrace = \int_0^\infty f(t-T)\,e^{-st}\,dt = \int_T^\infty f(t-T)\,e^{-st}\,dt
+\mathcal{L}\lbrace f(t-T) \rbrace= \int_0^\infty f(t-T)\,e^{-st}\,dt = \int_T^\infty f(t-T)\,e^{-st}\,dt
 $$
 
 Substituting $x = t - T$ gives $dt = dx$, with $x = 0$ when $t = T$ and $x \to \infty$ when $t \to \infty$.
@@ -389,14 +389,14 @@ $$
 
 In $e^{-s(T+x)} = e^{-sT}e^{-sx}$, the factor $e^{-sT}$ does not depend on $x$ and comes out of the integral, and the remaining integral is $F(s)$ with the variable merely renamed to $x$.
 
-**Example.** $\mathcal{L}\lbrace f(t-10) \rbrace = e^{-10s}F(s)$. For instance, the unit step $u_s(t-10)$ that switches on at $t = 10$ has the transform $\frac{e^{-10s}}{s}$. A time delay $T$ appears in the $s$-domain as multiplication by $e^{-sT}$, which is used to model the **dead time** of a process in which a signal takes time to travel, for example along a pipe.
+**Example.** $\mathcal{L}\lbrace f(t-10) \rbrace= e^{-10s}F(s)$. For instance, the unit step $u_s(t-10)$ that switches on at $t = 10$ has the transform $\frac{e^{-10s}}{s}$. A time delay $T$ appears in the $s$-domain as multiplication by $e^{-sT}$, which is used to model the **dead time** of a process in which a signal takes time to travel, for example along a pipe.
 
 ### 2.4 Differentiation
 
 The differentiation property is the key to turning differential equations into algebraic equations. In integration by parts, $f'(t)$ is taken as the differentiated factor and $e^{-st}$ as the factor to differentiate.
 
 $$
-\mathcal{L}\left\lbrace \frac{df(t)}{dt} \right\rbrace = \int_0^\infty f'(t)\,e^{-st}\,dt = \Big[ f(t)\,e^{-st} \Big]_{t=0}^{t=\infty} - \int_0^\infty f(t)\left( -s\,e^{-st} \right) dt
+\mathcal{L}\left\lbrace\frac{df(t)}{dt} \right\rbrace= \int_0^\infty f'(t)\,e^{-st}\,dt = \Big[ f(t)\,e^{-st} \Big]_{t=0}^{t=\infty} - \int_0^\infty f(t)\left( -s\,e^{-st} \right) dt
 $$
 
 $$
@@ -406,23 +406,23 @@ $$
 In the boundary term, $f(t)e^{-st} \to 0$ at the upper limit (true for the values of $s$ at which the transform exists), and the lower limit gives $f(0)e^{0} = f(0)$. The derivative of $e^{-st}$ is $-se^{-st}$, so $s$ comes out of the remaining integral and leaves $sF(s)$. Repeating the same process gives the transform of the $n$th derivative, where $f^{(k)}(0)$ is the value of the $k$th derivative at $t = 0$.
 
 $$
-\mathcal{L}\left\lbrace \frac{d^n f(t)}{dt^n} \right\rbrace = s^nF(s) - s^{n-1}f(0) - s^{n-2}f^{(1)}(0) - \cdots - f^{(n-1)}(0)
+\mathcal{L}\left\lbrace\frac{d^n f(t)}{dt^n} \right\rbrace= s^nF(s) - s^{n-1}f(0) - s^{n-2}f^{(1)}(0) - \cdots - f^{(n-1)}(0)
 $$
 
 **Example.** For the second derivative, apply the first-derivative property to $f'$ and then apply it once more.
 
 $$
-\mathcal{L}\left\lbrace \frac{d^2f(t)}{dt^2} \right\rbrace = s\,\mathcal{L}\left\lbrace \frac{df(t)}{dt} \right\rbrace - f^{(1)}(0) = s\big( sF(s) - f(0) \big) - f^{(1)}(0) = s^2F(s) - sf(0) - f^{(1)}(0)
+\mathcal{L}\left\lbrace\frac{d^2f(t)}{dt^2} \right\rbrace= s\,\mathcal{L}\left\lbrace\frac{df(t)}{dt} \right\rbrace- f^{(1)}(0) = s\big( sF(s) - f(0) \big) - f^{(1)}(0) = s^2F(s) - sf(0) - f^{(1)}(0)
 $$
 
-When all initial conditions are 0, $\frac{d}{dt}$ becomes multiplication by $s$. As a check, if $f(t) = \sin\omega t$ then $f'(t) = \omega\cos\omega t$, and the differentiation property gives $s \cdot \frac{\omega}{s^2+\omega^2} - \sin 0 = \frac{\omega s}{s^2+\omega^2}$, which equals $\omega\,\mathcal{L}\lbrace \cos\omega t \rbrace$ from Table 3.
+When all initial conditions are 0, $\frac{d}{dt}$ becomes multiplication by $s$. As a check, if $f(t) = \sin\omega t$ then $f'(t) = \omega\cos\omega t$, and the differentiation property gives $s \cdot \frac{\omega}{s^2+\omega^2} - \sin 0 = \frac{\omega s}{s^2+\omega^2}$, which equals $\omega\,\mathcal{L}\lbrace\cos\omega t \rbrace$ from Table 3.
 
 > **Key Point:** The differentiation property turns differentiation into multiplication by $s$ and inserts the initial conditions into the equation automatically. There is no need, as in Week 2, to find the general solution first and then fix the constants with the initial conditions.
 
 ### 2.5 Integration
 
 $$
-\mathcal{L}\left\lbrace \int_0^t f(\tau)\,d\tau \right\rbrace = \frac{F(s)}{s}
+\mathcal{L}\left\lbrace\int_0^t f(\tau)\,d\tau \right\rbrace= \frac{F(s)}{s}
 $$
 
 In integration by parts, take $g(t) = \int_0^t f(\tau)\,d\tau$ (with $g'(t) = f(t)$ by the fundamental theorem of calculus) as the factor to differentiate and $e^{-st}$ as the factor to integrate (antiderivative $-\frac{1}{s}e^{-st}$).
@@ -439,7 +439,7 @@ $$
 \lim_{t\to 0^+} f(t) = \lim_{s\to\infty} sF(s)
 $$
 
-The initial value in the time domain equals the limit of $sF(s)$ as $s \to \infty$ in the $s$-domain. This is the **initial value theorem**, and it holds when the transforms of $f(t)$ and $f'(t)$ exist and the limit on the right exists [2]. The reason is the differentiation property $\int_0^\infty f'(t)e^{-st}dt = sF(s) - f(0)$: letting $s \to \infty$, the factor $e^{-st}$ on the left goes to 0 for $t > 0$, so $sF(s) \to f(0^+)$.
+The initial value in the time domain equals the limit of $sF(s)$ as $s \to \infty$ in the $s$-domain. This is the **initial value theorem**, and it holds when the transforms of $f(t)$ and $f'(t)$ exist and $f(t)$ contains no impulse at $t = 0$ [1]. The reason is the differentiation property $\int_0^\infty f'(t)e^{-st}dt = sF(s) - f(0)$: letting $s \to \infty$, the factor $e^{-st}$ on the left goes to 0 for $t > 0$, so $sF(s) \to f(0^+)$.
 
 **Example.** Find the initial value of $f(t) = \frac{1}{2} - \frac{1}{2}e^{-2t}$. First transform it with linearity.
 
@@ -469,7 +469,7 @@ $$
 
 In the time domain, $e^{-2t} \to 0$ as $t \to \infty$, so $f(t) \to \frac{1}{2}$ as well.
 
-> **Caution:** The final value theorem can be used only when $f(t)$ converges to a finite value. This condition is equivalent to every value of $s$ that makes the denominator of $sF(s)$ zero, that is, every **pole**, lying in the left half-plane where the real part is negative [2]. For example, if $f(t) = \sin t$ then $sF(s) = \frac{s}{s^2+1} \to 0$, but $\sin t$ does not converge and keeps oscillating, because the poles $\pm j$ lie on the imaginary axis. If $f(t) = e^{t}$ then $sF(s) = \frac{s}{s-1} \to 0$, but $f$ actually grows without bound, and the pole $s = 1$ lies in the right half-plane. Poles are covered in detail in Week 5.
+> **Caution:** The final value theorem can be used only when $f(t)$ converges to a finite value. When $F(s)$ is a rational function, this condition is equivalent to every value of $s$ that makes the denominator of $sF(s)$ zero, that is, every **pole**, lying in the left half-plane where the real part is negative [2]. For example, if $f(t) = \sin t$ then $sF(s) = \frac{s}{s^2+1} \to 0$, but $\sin t$ does not converge and keeps oscillating, because the poles $\pm j$ lie on the imaginary axis. If $f(t) = e^{t}$ then $sF(s) = \frac{s}{s-1} \to 0$, but $f$ actually grows without bound, and the pole $s = 1$ lies in the right half-plane. Poles are covered in detail in Week 5.
 
 | Property | Time domain | $s$-domain |
 |:-----|:-----|:-----|
@@ -489,7 +489,7 @@ In the time domain, $e^{-2t} \to 0$ as $t \to \infty$, so $f(t) \to \frac{1}{2}$
 The **inverse Laplace transform** is the operation that finds the original time function $f(t)$ from a function $F(s)$ given as a Laplace transform, and its defining equation is as follows.
 
 $$
-f(t) = \mathcal{L}^{-1}\lbrace F(s) \rbrace = \frac{1}{2\pi j}\int_{\sigma-j\infty}^{\sigma+j\infty} F(s)\,e^{st}\,ds
+f(t) = \mathcal{L}^{-1}\lbrace F(s) \rbrace= \frac{1}{2\pi j}\int_{\sigma-j\infty}^{\sigma+j\infty} F(s)\,e^{st}\,ds
 $$
 
 This is a complex integral along the vertical line $\operatorname{Re}(s) = \sigma$ inside the region of convergence, and it is rarely computed directly. Functions continuous for $t \ge 0$ and their transforms correspond one to one [3], so in practice $F(s)$ is split into a sum of simple fractions found in Table 3, and the time function matching each fraction is read from the table in reverse. In most cases this splitting is the partial fraction expansion of Sections 2.9 and 2.10.
@@ -497,7 +497,7 @@ This is a complex integral along the vertical line $\operatorname{Re}(s) = \sigm
 **Example.** Read the results of Section 2.1 in reverse.
 
 $$
-\mathcal{L}^{-1}\left\lbrace \frac{2}{s+2} \right\rbrace = 2e^{-2t}, \qquad \mathcal{L}^{-1}\left\lbrace \frac{6}{s^3} - \frac{s}{s^2+16} \right\rbrace = 3t^2 - \cos 4t
+\mathcal{L}^{-1}\left\lbrace\frac{2}{s+2} \right\rbrace= 2e^{-2t}, \qquad \mathcal{L}^{-1}\left\lbrace\frac{6}{s^3} - \frac{s}{s^2+16} \right\rbrace= 3t^2 - \cos 4t
 $$
 
 In the second equation, $\frac{6}{s^3} = 3 \cdot \frac{2}{s^3}$ is the transform of $3t^2$, and $\frac{s}{s^2+4^2}$ is the transform of $\cos 4t$.
@@ -527,7 +527,7 @@ $$
 In other words, $K_i$ is the value at $s = -p_i$ of what remains of $G(s)$ after the factor $(s+p_i)$ is removed. Each term is inverted with the $e^{at}$ pair of Table 3.
 
 $$
-\mathcal{L}^{-1}\lbrace G(s) \rbrace = \mathcal{L}^{-1}\left\lbrace \frac{K_1}{s+p_1} \right\rbrace + \cdots + \mathcal{L}^{-1}\left\lbrace \frac{K_n}{s+p_n} \right\rbrace = K_1e^{-p_1t} + K_2e^{-p_2t} + \cdots + K_ne^{-p_nt}
+\mathcal{L}^{-1}\lbrace G(s) \rbrace= \mathcal{L}^{-1}\left\lbrace\frac{K_1}{s+p_1} \right\rbrace+ \cdots + \mathcal{L}^{-1}\left\lbrace\frac{K_n}{s+p_n} \right\rbrace= K_1e^{-p_1t} + K_2e^{-p_2t} + \cdots + K_ne^{-p_nt}
 $$
 
 > **Caution:** This method applies only when the numerator has lower degree than the denominator. If the degree of the numerator is equal or higher, first split the function by polynomial division into a quotient (a polynomial) and a remainder fraction, and then expand the remainder fraction.
@@ -572,7 +572,7 @@ $$
 
 **Another solution of Example 2.** Completing the square in the denominator gives $s^2+2s+5 = (s+1)^2+2^2$. With $G_1(s) = \frac{2}{s^2+2^2}$, Table 3 gives $g_1(t) = \sin 2t$, and since $G(s) = G_1(s+1)$, the shift in the frequency domain (Section 2.2) gives $g(t) = e^{-t}g_1(t) = e^{-t}\sin 2t$. The same answer follows without complex arithmetic.
 
-> **Key Point:** A pair of conjugate complex roots $-\sigma \pm j\omega$ produces in the time domain an oscillation of frequency $\omega$ that decays as $e^{-\sigma t}$, that is, a damped oscillation. The real part of the roots sets the rate of decay, and the imaginary part sets how fast the oscillation is. This relation underlies the analysis of second-order system responses in Weeks 7 and 9.
+> **Key Point:** A pair of conjugate complex roots $-\sigma \pm j\omega$ produces in the time domain an oscillation of angular frequency $\omega$ that decays as $e^{-\sigma t}$, that is, a damped oscillation. The real part of the roots sets the rate of decay, and the imaginary part sets how fast the oscillation is. This relation underlies the analysis of second-order system responses in Weeks 7 and 9.
 
 ### 2.10 Partial Fraction Expansion: Multiple Roots
 
@@ -606,13 +606,13 @@ $$
 G(s) = \frac{4}{(s+2)^3} - \frac{4}{(s+2)^2} + \frac{1}{s+2}
 $$
 
-The inverse transform combines $\mathcal{L}\lbrace t^n \rbrace = \frac{n!}{s^{n+1}}$ with the shift in the frequency domain.
+The inverse transform combines $\mathcal{L}\lbrace t^n \rbrace= \frac{n!}{s^{n+1}}$ with the shift in the frequency domain.
 
 | Time function | From $\mathcal{L}\lbrace t^n \rbrace$ | After multiplying by $e^{-2t}$ |
 |:-----|:-----|:-----|
-| $2t^2$ | $\mathcal{L}\lbrace 2t^2 \rbrace = 2 \cdot \dfrac{2}{s^3} = \dfrac{4}{s^3}$ | $\mathcal{L}\lbrace 2t^2e^{-2t} \rbrace = \dfrac{4}{(s+2)^3}$ |
-| $4t$ | $\mathcal{L}\lbrace 4t \rbrace = \dfrac{4}{s^2}$ | $\mathcal{L}\lbrace 4te^{-2t} \rbrace = \dfrac{4}{(s+2)^2}$ |
-| $1$ | $\mathcal{L}\lbrace 1 \rbrace = \dfrac{1}{s}$ | $\mathcal{L}\lbrace e^{-2t} \rbrace = \dfrac{1}{s+2}$ |
+| $2t^2$ | $\mathcal{L}\lbrace2t^2 \rbrace= 2 \cdot \dfrac{2}{s^3} = \dfrac{4}{s^3}$ | $\mathcal{L}\lbrace2t^2e^{-2t} \rbrace= \dfrac{4}{(s+2)^3}$ |
+| $4t$ | $\mathcal{L}\lbrace4t \rbrace= \dfrac{4}{s^2}$ | $\mathcal{L}\lbrace4te^{-2t} \rbrace= \dfrac{4}{(s+2)^2}$ |
+| $1$ | $\mathcal{L}\lbrace1 \rbrace= \dfrac{1}{s}$ | $\mathcal{L}\lbrace e^{-2t} \rbrace= \dfrac{1}{s+2}$ |
 
 *Table 5. Inverting each term of the multiple-root example*
 
@@ -642,7 +642,7 @@ $$
 **Step 1.** Transform each term.
 
 $$
-\mathcal{L}\left\lbrace \frac{d^2y}{dt^2} \right\rbrace = s^2Y(s) - sy(0) - y^{(1)}(0) = s^2Y(s) - s, \qquad \mathcal{L}\left\lbrace \frac{dy}{dt} \right\rbrace = sY(s) - y(0) = sY(s) - 1, \qquad \mathcal{L}\lbrace u_s(t) \rbrace = \frac{1}{s}
+\mathcal{L}\left\lbrace\frac{d^2y}{dt^2} \right\rbrace= s^2Y(s) - sy(0) - y^{(1)}(0) = s^2Y(s) - s, \qquad \mathcal{L}\left\lbrace\frac{dy}{dt} \right\rbrace= sY(s) - y(0) = sY(s) - 1, \qquad \mathcal{L}\lbrace u_s(t) \rbrace= \frac{1}{s}
 $$
 
 $$
@@ -677,7 +677,7 @@ As a check, $y(0) = \frac{1}{6} + \frac{15}{6} - \frac{10}{6} = 1$, and $y'(t) =
 
 *Figure 5. The solution y(t) of the example differential equation and its final value*
 
-> **Key Point:** The exponents $-2$ and $-3$ in the solution are the roots of the characteristic equation $s^2 + 5s + 6 = 0$ from Week 2. These roots produce the transient response that dies out over time, and the constant term $\frac{1}{6}$ is the steady-state response produced by the input.
+> **Key Point:** The exponents $-2$ and $-3$ in the solution are the roots of the characteristic equation $\lambda^2 + 5\lambda + 6 = 0$ of this differential equation (Section 3.3 of Week 2), which are the same as the roots of the denominator factor $s^2 + 5s + 6$ of $Y(s)$. These roots produce the transient response that dies out over time, and the constant term $\frac{1}{6}$ is the steady-state response produced by the input.
 
 ---
 
@@ -1027,7 +1027,7 @@ For each problem below, the tool to use and the result are listed.
 
    </details>
 
-2. **Boundary term of integration by parts:** In deriving $\mathcal{L}\lbrace t \rbrace = \frac{1}{s^2}$, explain why the boundary term $\left[ -\frac{t}{s}e^{-st} \right]_0^\infty$ is 0.
+2. **Boundary term of integration by parts:** In deriving $\mathcal{L}\lbrace t \rbrace= \frac{1}{s^2}$, explain why the boundary term $\left[ -\frac{t}{s}e^{-st} \right]_0^\infty$ is 0.
 
    <details>
    <summary>Answer</summary>
@@ -1036,7 +1036,7 @@ For each problem below, the tool to use and the result are listed.
 
    </details>
 
-3. **Euler's formula:** Use Euler's formula to find $\mathcal{L}\lbrace \sin 3t \rbrace$.
+3. **Euler's formula:** Use Euler's formula to find $\mathcal{L}\lbrace\sin 3t \rbrace$.
 
    <details>
    <summary>Answer</summary>
@@ -1050,7 +1050,7 @@ For each problem below, the tool to use and the result are listed.
    <details>
    <summary>Answer</summary>
 
-   $\mathcal{L}\lbrace 2 + t \rbrace = \frac{2}{s} + \frac{1}{s^2}$, and the shift in the frequency domain replaces $s$ with $s+1$, giving $\frac{2}{s+1} + \frac{1}{(s+1)^2} = \frac{2s+3}{(s+1)^2}$.
+   $\mathcal{L}\lbrace2 + t \rbrace= \frac{2}{s} + \frac{1}{s^2}$, and the shift in the frequency domain replaces $s$ with $s+1$, giving $\frac{2}{s+1} + \frac{1}{(s+1)^2} = \frac{2s+3}{(s+1)^2}$.
 
    </details>
 
@@ -1059,7 +1059,7 @@ For each problem below, the tool to use and the result are listed.
    <details>
    <summary>Answer</summary>
 
-   By the shift in the time domain, $\mathcal{L}\lbrace u_s(t-3) \rbrace = e^{-3s}\mathcal{L}\lbrace u_s(t) \rbrace = \frac{e^{-3s}}{s}$.
+   By the shift in the time domain, $\mathcal{L}\lbrace u_s(t-3) \rbrace= e^{-3s}\mathcal{L}\lbrace u_s(t) \rbrace= \frac{e^{-3s}}{s}$.
 
    </details>
 
@@ -1072,7 +1072,7 @@ For each problem below, the tool to use and the result are listed.
 
    </details>
 
-7. **Partial fractions with simple roots:** Find $\mathcal{L}^{-1}\left\lbrace \frac{4}{s^2+4s+3} \right\rbrace$.
+7. **Partial fractions with simple roots:** Find $\mathcal{L}^{-1}\left\lbrace\frac{4}{s^2+4s+3} \right\rbrace$.
 
    <details>
    <summary>Answer</summary>
@@ -1081,7 +1081,7 @@ For each problem below, the tool to use and the result are listed.
 
    </details>
 
-8. **Partial fractions with a multiple root:** Find $\mathcal{L}^{-1}\left\lbrace \frac{s+3}{(s+1)^2} \right\rbrace$.
+8. **Partial fractions with a multiple root:** Find $\mathcal{L}^{-1}\left\lbrace\frac{s+3}{(s+1)^2} \right\rbrace$.
 
    <details>
    <summary>Answer</summary>
@@ -1132,7 +1132,7 @@ For each problem below, the tool to use and the result are listed.
 
 ## References
 
-1. K. Ogata, *Modern Control Engineering*, 5th ed. Upper Saddle River, NJ, USA: Prentice Hall, 2010.
+1. A. V. Oppenheim, A. S. Willsky, and S. H. Nawab, *Signals and Systems*, 2nd ed. Upper Saddle River, NJ, USA: Prentice Hall, 1997.
 2. N. S. Nise, *Control Systems Engineering*, 7th ed. Hoboken, NJ, USA: Wiley, 2015.
 3. E. Kreyszig, *Advanced Engineering Mathematics*, 10th ed. Hoboken, NJ, USA: Wiley, 2011.
 4. G. Strang, *Introduction to Linear Algebra*, 5th ed. Wellesley, MA, USA: Wellesley-Cambridge Press, 2016.

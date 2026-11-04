@@ -421,7 +421,7 @@ Every input is connected to every output, so this layer is fully connected, and 
 
 ### 2.2 Single-Hidden-Layer Neural Networks
 
-Joining two multi-output perceptrons gives the **single layer neural network** of Figure 14, which this note calls a single-hidden-layer neural network. The roles of its three layers are as follows.
+Joining two multi-output perceptrons gives the **single-hidden-layer neural network** of Figure 14, also called a single layer neural network. The roles of its three layers are as follows.
 
 ![Figure 14. A single-hidden-layer neural network](../../images/Week13_13-2_p05.png)
 
@@ -451,7 +451,7 @@ $$
 
 This process of computing step by step from the input toward the output is called **forward propagation**. In matrix form, letting $\boldsymbol{\Theta}^{(1)}$ be the $m \times d_1$ matrix whose $(j, i)$ entry is $\theta_{j,i}^{(1)}$ and $\boldsymbol{\theta}_0^{(1)}$ the $d_1$-dimensional vector of biases, the whole hidden layer is computed at once as $\mathbf{z} = \boldsymbol{\theta}_0^{(1)} + (\boldsymbol{\Theta}^{(1)})^{T}\mathbf{x}$. This is the perceptron formula $\theta_0 + \mathbf{X}^{T}\boldsymbol{\theta}$ of Section 1.8 written for $d_1$ neurons at once. The number of parameters is $(m + 1)d_1$ for the hidden layer and $(d_1 + 1) \times 2$ for the output layer.
 
-> **Note:** Conventions for counting the layers of a neural network differ across the literature. Here a network with one hidden layer is called a single layer neural network, but some texts use the term single-layer perceptron for a perceptron without hidden layers, whose inputs connect directly to the outputs. To avoid confusion, this note uses the term "single-hidden-layer neural network."
+> **Note:** Conventions for counting the layers of a neural network differ across the literature. Some texts call a network with one hidden layer a single layer neural network, while others use the term single-layer perceptron for a perceptron without hidden layers, whose inputs connect directly to the outputs. To keep the two usages apart, it is clearer to call a network with one hidden layer a "single-hidden-layer neural network."
 
 ### 2.3 Deep Neural Networks
 
@@ -997,7 +997,7 @@ $$
 \mathbf{r}_{k+1} = \rho\,\mathbf{r}_k + (1 - \rho)\,\mathbf{g}_k^{2}, \qquad \boldsymbol{\theta}_{k+1} = \boldsymbol{\theta}_k - \frac{\alpha}{\sqrt{\mathbf{r}_{k+1}} + \epsilon}\,\mathbf{g}_k
 $$
 
-**Adam (adaptive moment estimation)** combines momentum and RMSProp and is currently the most widely used method [17]. It uses both a moving average $\mathbf{m}$ of the gradients and a moving average $\mathbf{v}$ of the squared gradients, and divides by $1 - \beta^{k}$ to correct the bias toward small values early on, which arises because both averages start at 0. The proposed default values are $\alpha = 0.001$, $\beta_1 = 0.9$, $\beta_2 = 0.999$, and $\epsilon = 10^{-8}$.
+**Adam (adaptive moment estimation)** combines momentum and RMSProp and is widely used [17]. It uses both a moving average $\mathbf{m}$ of the gradients and a moving average $\mathbf{v}$ of the squared gradients, and divides by $1 - \beta^{k}$ to correct the bias toward small values early on, which arises because both averages start at 0. The proposed default values are $\alpha = 0.001$, $\beta_1 = 0.9$, $\beta_2 = 0.999$, and $\epsilon = 10^{-8}$.
 
 $$
 \mathbf{m}_{k} = \beta_1\mathbf{m}_{k-1} + (1 - \beta_1)\mathbf{g}_k, \qquad \mathbf{v}_{k} = \beta_2\mathbf{v}_{k-1} + (1 - \beta_2)\mathbf{g}_k^{2}
@@ -1115,7 +1115,7 @@ In practice the validation loss can fluctuate briefly, so training is stopped wh
 
 ### 3.11 Example: Regression on Battery Module Data
 
-As an example of solving an engineering problem with an artificial neural network, consider a regression problem that predicts the results of structural analysis from the design variables of a battery module. Figure 28 (a) shows the structure of the battery module. Nine cells sit side by side with cooling fins and compression pads between them; a top plate and a bottom plate cover the top and bottom, side plates cover both sides, and a heat sink lies at the very bottom. The length of the module is $L_{\text{module}}$ and its height $H_{\text{module}}$. Figure (b) is the deformation result when pressure acts from inside the module outward: both side plates bow outward and the top plate sags, and the colors show the magnitude of deformation (increasing from blue to red).
+As an example of solving an engineering problem with an artificial neural network, consider a regression problem that predicts the results of structural analysis from the design variables of a battery module. Figure 28 (a) shows the structure of the battery module. Nine cells sit side by side with cooling fins and compression pads between them; a top plate and a bottom plate cover the top and bottom, side plates cover both sides, and a heat sink lies at the very bottom. The length of the module is $L_{\text{module}}$ and its height $H_{\text{module}}$. Figure (b) is the deformation result when pressure acts from inside the module outward: both side plates bow outward and the top plate sags. Under this left-right symmetric load, the left side plate is blue and the right side plate is red, the two ends of the color range, while the strongly sagging top plate is the middle color green; the colors therefore show not the magnitude of displacement but the signed horizontal displacement (blue where the plate moved farthest to the left, red where it moved farthest to the right).
 
 ![Figure 28. Structure of the battery module and its deformation under pressure](../../images/Week13_13-3_p13.png)
 
@@ -1227,7 +1227,7 @@ During training, `train` monitors performance on the validation data and perform
 
 **True/False Check:**
 
-| Statement | Verdict and reason |
+| Statement | Judgment and Reason |
 |:-----|:-----|
 | If all activation functions are linear, stacking more layers makes it possible to create more complex decision boundaries. | **F.** A composition of linear maps is again a linear map, so regardless of the number of layers the network is equivalent to a single linear model. |
 | The derivative of the sigmoid function is $\sigma(z)(1 - \sigma(z))$, with maximum 0.25 at $z = 0$. | **T.** |
@@ -1371,7 +1371,7 @@ During training, `train` monitors performance on the validation data and perform
 
     </details>
 
-12. **Diagnosing overfitting:** A network has a training loss of 0.01 and a validation loss of 0.50. Determine its state, and give at least two remedies covered in this note.
+12. **Diagnosing overfitting:** A network has a training loss of 0.01 and a validation loss of 0.50. Determine its state, and give at least two remedies covered in Sections 3.8-3.10.
 
     <details>
     <summary>Answer</summary>

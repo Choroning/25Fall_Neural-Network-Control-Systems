@@ -79,7 +79,7 @@ $$
 
 Here $\tau$ is the integration variable running from 0 to the current time $t$. In other words, the controller measures the output of the object to be controlled, compares it with the desired **reference value** to compute the error, and then computes and adds control values proportional to the error, to the integral of the error, and to the derivative of the error. Choosing the three gains $K_p$, $K_i$, and $K_d$ is called **gain tuning**, and Section 3 solves it as an optimization problem.
 
-> **Caution:** In this document $K_p$ is the proportional gain of the PID controller. Week 10 uses the same symbol $K_p$ for the position error constant, but the two are different quantities. This document refers to the position error constant in words, without a symbol.
+> **Caution:** In this unit $K_p$ is the proportional gain of the PID controller. Week 10 uses the same symbol $K_p$ for the position error constant, but the two are different quantities. This unit refers to the position error constant in words, without a symbol.
 
 ### 1.2 Applications of PID Control
 
@@ -124,34 +124,34 @@ PID control has a simple structure and can be tuned without an accurate model of
 To find the transfer function of a PID controller, recall the Laplace transform of Week 3. The **Laplace transform** of a function $f(t)$ ($t \ge 0$) is defined as follows.
 
 $$
-F(s) = \mathcal{L}\lbrace f(t) \rbrace = \int_0^\infty f(t)\,e^{-st}\,dt
+F(s) = \mathcal{L}\lbrace f(t) \rbrace= \int_0^\infty f(t)\,e^{-st}\,dt
 $$
 
 The **unit-step function** $u_s(t)$ equals 1 for $t \ge 0$, so substituting into the definition gives the following ($e^{-st} \to 0$ when the real part of $s$ is positive).
 
 $$
-\mathcal{L}\lbrace u_s(t) \rbrace = \int_0^\infty e^{-st}\,dt = \left[-\frac{1}{s}e^{-st}\right]_0^\infty = 0 - \left(-\frac{1}{s}\right) = \frac{1}{s}
+\mathcal{L}\lbrace u_s(t) \rbrace= \int_0^\infty e^{-st}\,dt = \left[-\frac{1}{s}e^{-st}\right]_0^\infty = 0 - \left(-\frac{1}{s}\right) = \frac{1}{s}
 $$
 
 The **exponential function** $e^{-at}$ is integrated in the same way after combining the exponents (when the real part of $s$ is greater than $-a$).
 
 $$
-\mathcal{L}\lbrace e^{-at} \rbrace = \int_0^\infty e^{-at}e^{-st}\,dt = \int_0^\infty e^{-(s + a)t}\,dt = \left[-\frac{1}{s + a}e^{-(s + a)t}\right]_0^\infty = \frac{1}{s + a}
+\mathcal{L}\lbrace e^{-at} \rbrace= \int_0^\infty e^{-at}e^{-st}\,dt = \int_0^\infty e^{-(s + a)t}\,dt = \left[-\frac{1}{s + a}e^{-(s + a)t}\right]_0^\infty = \frac{1}{s + a}
 $$
 
 Now transform the three terms of the PID controller. Let $E(s)$ be the Laplace transform of the error.
 
-**Proportional (P) term.** The Laplace transform is linear, so a constant factor stays: $\mathcal{L}\lbrace K_p e(t) \rbrace = K_p E(s)$.
+**Proportional (P) term.** The Laplace transform is linear, so a constant factor stays: $\mathcal{L}\lbrace K_p e(t) \rbrace= K_p E(s)$.
 
 **Derivative (D) term.** Apply integration by parts $\int u\,dv = uv - \int v\,du$ to the definition ($u = e^{-st}$, $dv = e'(t)\,dt$).
 
 $$
-\mathcal{L}\left\lbrace \frac{de(t)}{dt}\right \rbrace = \int_0^\infty e'(t)\,e^{-st}\,dt = \Big[e(t)\,e^{-st}\Big]_0^\infty + s\int_0^\infty e(t)\,e^{-st}\,dt = sE(s) - e(0)
+\mathcal{L}\left\lbrace\frac{de(t)}{dt}\right \rbrace= \int_0^\infty e'(t)\,e^{-st}\,dt = \Big[e(t)\,e^{-st}\Big]_0^\infty + s\int_0^\infty e(t)\,e^{-st}\,dt = sE(s) - e(0)
 $$
 
-Assuming the initial condition $e(0) = 0$, $\mathcal{L}\lbrace K_d \frac{de}{dt} \rbrace = K_d\,sE(s)$. That is, differentiation in the time domain is multiplication by $s$ in the $s$ domain.
+Assuming the initial condition $e(0) = 0$, $\mathcal{L}\lbrace K_d \frac{de}{dt} \rbrace= K_d\,sE(s)$. That is, differentiation in the time domain is multiplication by $s$ in the $s$ domain.
 
-**Integral (I) term.** Let $g(t) = \int_0^t e(\tau)\,d\tau$; then $g'(t) = e(t)$ and $g(0) = 0$. Applying the derivative formula above to $g$ gives $E(s) = sG(s) - g(0) = sG(s)$, so $G(s) = \frac{E(s)}{s}$. That is, integration in the time domain is division by $s$ in the $s$ domain, and $\mathcal{L}\lbrace K_i\int_0^t e\,d\tau \rbrace = K_i\frac{E(s)}{s}$.
+**Integral (I) term.** Let $g(t) = \int_0^t e(\tau)\,d\tau$; then $g'(t) = e(t)$ and $g(0) = 0$. Applying the derivative formula above to $g$ gives $E(s) = sG(s) - g(0) = sG(s)$, so $G(s) = \frac{E(s)}{s}$. That is, integration in the time domain is division by $s$ in the $s$ domain, and $\mathcal{L}\lbrace K_i\int_0^t e\,d\tau \rbrace= K_i\frac{E(s)}{s}$.
 
 Adding the three terms gives $U(s) = \left(K_p + \frac{K_i}{s} + K_d s\right)E(s)$, so the **transfer function of the PID controller**, from the error to the control input, is as follows.
 
@@ -780,7 +780,7 @@ Gains obtained by optimization are optimal only for the problem as defined. The 
 
 *Figure 15. Step responses of the optimized PID designs and the PID design of Section 2.6*
 
-**Limit of the sampling interval.** The response is computed at 0.01 s intervals, so rise times shorter than 0.01 s are not measured accurately. The response of $(500, 372.2, 500)$ already reaches 0.976 at the first sample, $t = 0.01$ s, so the interpolated rise time of 0.0082 s is in fact a linear interpolation within the first sample interval. The actual rise time computed on a much finer time grid is about 0.0047 s. In the region of large gains the objective function flattens out near 0.008 s because of the sampling interval, so different combinations of large gains all come out as "optimal" depending on the initial design. The reason why the results in Table 8 differ for each initial design lies not only in local minima but also in this flat objective function.
+**Limit of the sampling interval.** The response is computed at 0.01 s intervals, so rise times shorter than 0.01 s are not measured accurately. The response of $(500, 372.2, 500)$ already reaches 0.976 at the first sample, $t = 0.01$ s, so the interpolated rise time of 0.0082 s is in fact a linear interpolation within the first sample interval. The actual rise time computed on a much finer time grid is about 0.0047 s. In the region of large gains the objective function flattens out near 0.008 s because of the sampling interval, so different combinations of large gains all come out as optimal solutions depending on the initial design. The reason why the results in Table 8 differ for each initial design lies not only in local minima but also in this flat objective function.
 
 **Size of the control input.** The control input $u(t)$ appears in neither the objective function nor the constraints. At the instant a step command arrives, the error jumps from 0 to 1, so the ideal derivative term produces an impulse of size $K_d$ and the proportional term alone produces a force of $K_p \times 1$. The design $(500, 372.2, 500)$ produces 500 N from the proportional term alone at the start, whereas the force needed to hold a displacement of 1 m in the steady state is $kx = 20$ N. Real actuators have output limits (saturation) and a large $K_d$ amplifies measurement noise, so practical designs include limits on the size of the control input or on the sensitivity to noise in the constraints or the objective function [1].
 
@@ -804,7 +804,7 @@ Gains obtained by optimization are optimal only for the problem as defined. The 
 
 **True/False Check:**
 
-| Statement | Judgment and reason |
+| Statement | Judgment and Reason |
 |:-----|:-----|
 | The transfer function of a PID controller has one pole at the origin. | **T.** $C(s) = \frac{K_d s^2 + K_p s + K_i}{s}$, and this pole is the integral action. |
 | In proportional control of the mass-spring-damper system, increasing $K_p$ makes the steady-state error 0. | **F.** $e_{ss} = \frac{20}{20 + K_p}$ is not 0 for finite $K_p$. |

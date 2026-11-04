@@ -50,7 +50,7 @@
 
 ## 1. Signal Flow Graphs
 
-Week 5 reduced block diagrams by moving their summing points and takeoff points. As block diagrams grow complex, deciding what to move and where becomes difficult in itself. This section covers the signal flow graph, which redraws a block diagram with nodes and branches, and Mason's gain formula, which yields the overall transfer function in one step without reducing the picture.
+Week 5 covers reducing block diagrams by moving their summing points and takeoff points. As block diagrams grow complex, deciding what to move and where becomes difficult in itself. This section covers the signal flow graph, which redraws a block diagram with nodes and branches, and Mason's gain formula, which yields the overall transfer function in one step without reducing the picture.
 
 ### 1.1 Concept and Elements of a Signal Flow Graph
 
@@ -187,7 +187,7 @@ flowchart LR
 
 ### 1.5 Mason's Gain Formula
 
-**Mason's gain formula**, also called Mason's rule, computes the overall transfer function $M$ from the input node to the output node of a signal flow graph using the paths and loops read directly off the picture. S. J. Mason proposed it together with the properties of signal flow graphs in papers of 1953 and 1956 [1], [2].
+**Mason's gain formula**, also called Mason's rule, computes the overall transfer function $M$ from the input node to the output node of a signal flow graph using the paths and loops read directly off the picture. S. J. Mason set out the properties of signal flow graphs in a 1953 paper [1] and published this formula in a 1956 paper [2].
 
 $$
 M = \frac{\displaystyle\sum_{k=1}^{n} M_k\Delta_k}{\Delta}
@@ -429,7 +429,7 @@ This section confirms these limitations with an example and introduces state var
 
 ### 2.2 A First-Order and a Second-Order System with the Same Transfer Function
 
-Different systems cannot be told apart by their transfer function if the transfer functions are the same. The two systems of Figures 11 and 12 are a first-order and a second-order system and are different, yet their transfer functions are the same. The $1/s$ blocks in both figures are **integrators**. Since $\mathcal{L}\left\lbrace \int_0^t x(\tau)\,d\tau \right\rbrace = X(s)/s$, with zero initial conditions, when $\dot{x}$ enters a $1/s$ block, $x$ comes out.
+Different systems cannot be told apart by their transfer function if the transfer functions are the same. The two systems of Figures 11 and 12 are a first-order and a second-order system and are different, yet their transfer functions are the same. The $1/s$ blocks in both figures are **integrators**. Since $\mathcal{L}\left\lbrace\int_0^t x(\tau)\,d\tau \right\rbrace= X(s)/s$, with zero initial conditions, when $\dot{x}$ enters a $1/s$ block, $x$ comes out.
 
 ```mermaid
 flowchart LR

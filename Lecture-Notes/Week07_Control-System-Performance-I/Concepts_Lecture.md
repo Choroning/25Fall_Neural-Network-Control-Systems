@@ -266,7 +266,7 @@ $$
 
 The maximum overshoot is an important measure for evaluating the stability and performance of a control system. A large maximum overshoot means that the damping is small and oscillation occurs easily, so the margin of stability is small. In position control the system may also pass the target position and collide with something, so minimizing the maximum overshoot is important.
 
-**Peak time $t_p$.** The time at which the output first reaches its maximum. In general, a shorter peak time indicates a faster system reaction, so the peak time is used to evaluate the speed of response.
+**Peak time $t_p$.** The time at which the output first reaches its maximum. In general, a shorter peak time indicates a faster system reaction, so the peak time is used to evaluate the speed of response, and reducing the peak time is important in systems that must react quickly.
 
 **Settling time $t_s$.** The time at which the output enters a specified tolerance band around the final value and stays inside that band from then on. The band is set as a percentage of the final value, usually $\pm 5\%$ or $\pm 2\%$ [1]. For example, the 5% settling time is the time from which the output stays within $\pm 5\%$ of the final value. The settling time shows how quickly the system comes to hold a steady output.
 
@@ -418,7 +418,7 @@ The closed-loop system is also first order, and its time constant $\tau_c$ is sm
 
 | Gain $K$ | Closed-loop time constant $\tau_c$ | 5% settling time $3\tau_c$ | Final value $K/(K_b + K)$ |
 |:-----|:-----|:-----|:-----|
-| $0$ (no control, the motor alone) | $1$ s | $3$ s | Not applicable |
+| No feedback (the motor alone) | $\tau_m = 1$ s | $3$ s | Not applicable |
 | $4$ | $0.2$ s | $0.6$ s | $0.8$ |
 | $9$ | $0.1$ s | $0.3$ s | $0.9$ |
 
@@ -567,7 +567,7 @@ $$
 A = \left.\frac{\omega_n^2}{(s + \omega_n)^2}\right|_{s=0} = 1, \qquad C = \left.\frac{\omega_n^2}{s}\right|_{s=-\omega_n} = -\omega_n, \qquad B = \left.\frac{d}{ds}\left(\frac{\omega_n^2}{s}\right)\right|_{s=-\omega_n} = \left.-\frac{\omega_n^2}{s^2}\right|_{s=-\omega_n} = -1
 $$
 
-Since $\mathcal{L}^{-1}\lbrace 1/(s+a)^2 \rbrace = te^{-at}$ (Week 3), the response is the following.
+Since $\mathcal{L}^{-1}\lbrace1/(s+a)^2 \rbrace= te^{-at}$ (Week 3), the response is the following.
 
 $$
 y(t) = 1 - e^{-\omega_n t} - \omega_n t\,e^{-\omega_n t} = 1 - e^{-\omega_n t}(1 + \omega_n t), \qquad t \ge 0
@@ -675,7 +675,7 @@ For the system of Section 3.1, $\zeta = 1/(2\sqrt{K})$, so raising $K$ makes the
 
 **True/False Check:**
 
-| Statement | Verdict and reason |
+| Statement | Judgment and Reason |
 |:-----|:------------|
 | A feedback system with a sensor transfer function $H(s)$ cannot be converted into a unity feedback system. | **F.** Placing $1/H(s)$ on the input side and moving $H(s)$ into the forward path gives a unity feedback system with the same closed-loop transfer function. |
 | In the system of Section 1.3, the steady-state error does not become 0 for any finite $K$, however large. | **T.** The steady-state error is $1/(K+1)$, which is greater than 0 for finite $K$. |
@@ -726,7 +726,7 @@ For the system of Section 3.1, $\zeta = 1/(2\sqrt{K})$, so raising $K$ makes the
    <details>
    <summary>Answer</summary>
 
-   Since $\mathcal{L}\lbrace t^n \rbrace = n!/s^{n+1}$, $\mathcal{L}\lbrace t^2 \rbrace = 2/s^3$. Multiplying by $1/2$ makes the transform $1/s^3$, which continues the pattern $1/s^k$ neatly together with the unit step $1/s$ and the unit ramp $1/s^2$. Also, $t^2/2$ is the integral of the unit ramp $t$, so the three inputs form a chain of integrals.
+   Since $\mathcal{L}\lbrace t^n \rbrace= n!/s^{n+1}$, $\mathcal{L}\lbrace t^2 \rbrace= 2/s^3$. Multiplying by $1/2$ makes the transform $1/s^3$, which continues the pattern $1/s^k$ neatly together with the unit step $1/s$ and the unit ramp $1/s^2$. Also, $t^2/2$ is the integral of the unit ramp $t$, so the three inputs form a chain of integrals.
 
    </details>
 
@@ -793,7 +793,7 @@ For the system of Section 3.1, $\zeta = 1/(2\sqrt{K})$, so raising $K$ makes the
 
    </details>
 
-10. **Steady-state component:** Explain in two ways why the final value of the unit step response of the standard second-order system is 1 regardless of the value of $\zeta$.
+10. **Steady-state component:** Explain in two ways why the final value of the unit step response of the standard second-order system with $\zeta > 0$ is 1 regardless of the value of $\zeta$.
 
     <details>
     <summary>Answer</summary>

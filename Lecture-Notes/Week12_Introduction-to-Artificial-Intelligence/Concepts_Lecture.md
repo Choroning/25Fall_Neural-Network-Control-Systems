@@ -313,7 +313,7 @@ $$
 A typical unsupervised learning task is **clustering**, also called **segmentation**. Clustering is the problem of finding a function $f$ that maps each data point to one of $K$ **clusters**.
 
 $$
-f : \mathbb{R}^d \to \lbrace C_1, C_2, \ldots, C_K\rbrace \quad (\text{set of clusters})
+f : \mathbb{R}^d \to \lbrace C_1, C_2, \ldots, C_K\rbrace\quad (\text{set of clusters})
 $$
 
 > **Definition:** A **cluster** is a group of mutually similar data points. Similarity is usually measured by distance in the feature space: data in the same cluster are close to each other and far from data in other clusters. The **feature space** is the space with one axis per feature, in which each sample becomes a single point.
@@ -334,7 +334,7 @@ K-means clustering proceeds in the following four steps.
 2. **Cluster assignment:** Assign each data point to the cluster of its nearest centroid.
 
    $$
-   c(i) = \arg\min_{k \in \lbrace 1, \ldots, K\rbrace} \lVert x_i - \mu_k \rVert
+   c(i) = \arg\min_{k \in \lbrace1, \ldots, K\rbrace} \lVert x_i - \mu_k \rVert
    $$
 
    Here $c(i)$ is the index of the cluster to which the data point $x_i$ is assigned, and $\lVert x_i - \mu_k \rVert$ is the Euclidean distance between $x_i$ and the centroid $\mu_k$.
@@ -404,7 +404,7 @@ This point of convergence, however, may be a **local minimum** of $J$ rather tha
 
 *Figure 9. K-means clustering converging to local minima depending on the initial centroids*
 
-The data in Figure 9 contain four groups, and the stars are four centroids. Different initial centroids give different results. In several pictures, two centroids share the single group at the upper left, and the remaining centroid takes two separate groups together and sits in the empty space between them. In this state, repeating assignment and update changes nothing, so the algorithm simply stops. In practice, therefore, the algorithm is run several times from different initial centroids and the result with the smallest $J$ is chosen [9].
+The data in Figure 9 contain four groups, the stars are four centroids, and the color of each point is the cluster it is assigned to. The six pictures show one run in order from the upper left to the lower right. At first, two centroids (purple and brown) lie together inside the single group at the upper left, and the green and red centroids start near the group at the middle left. As the iterations proceed, the green centroid moves to the group at the upper right, and the red centroid takes the two groups at the middle left and the bottom center together and moves into the empty space between them. In the last picture, two centroids share the single group at the upper left and one centroid takes two separate groups together; repeating assignment and update changes nothing in this state, so the algorithm simply stops. Different initial centroids thus give different results. In practice, therefore, the algorithm is run several times from different initial centroids and the result with the smallest $J$ is chosen [9].
 
 | Aspect | Description |
 |:-----|:-----|
@@ -425,10 +425,10 @@ The top of Figure 10 shows ideal clusters: the two groups each form a cluster, a
 
 The training data of supervised learning are pairs of inputs $x$ and labels $y$, $(x_1, y_1), \ldots, (x_n, y_n)$, $x_i \in \mathbb{R}^d$. Depending on the kind of label, supervised learning is divided into classification and regression.
 
-In **classification**, the label $y$ is discrete, that is, one of a few categories. With only two categories, one usually writes $y \in \lbrace -1, +1\rbrace$, and the function that sends an input to one of the two categories,
+In **classification**, the label $y$ is discrete, that is, one of a few categories. With only two categories, one usually writes $y \in \lbrace-1, +1\rbrace$, and the function that sends an input to one of the two categories,
 
 $$
-f : \mathbb{R}^d \to \lbrace -1, +1\rbrace
+f : \mathbb{R}^d \to \lbrace-1, +1\rbrace
 $$
 
 is called a **binary classifier**. Problems such as yes/no, banana/orange, and spam/ham (legitimate mail) are binary classification.
@@ -443,7 +443,7 @@ is called a **binary classifier**. Problems such as yes/no, banana/orange, and s
 
 *Figure 12. Decision boundaries of binary and three-class classification*
 
-The left of Figure 12 is binary classification, which separates two categories ($+$ and $-$) with a single curve, and the right is **multiclass classification**, which separates three categories ($+$, $-$, $\times$) with boundaries where three curves meet. With $C$ categories, the label is written as $y \in \lbrace 1, 2, \ldots, C\rbrace$.
+The left of Figure 12 is binary classification, which separates two categories ($+$ and $-$) with a single curve, and the right is **multiclass classification**, which separates three categories ($+$, $-$, $\times$) with boundaries where three curves meet. With $C$ categories, the label is written as $y \in \lbrace1, 2, \ldots, C\rbrace$.
 
 ### 2.7 k-Nearest Neighbors Classification
 
@@ -1007,15 +1007,15 @@ The bars in Figure 29 are the scores for each game normalized so that the score 
 
 *Figure 30. Elo rating of AlphaGo Zero versus days of training*
 
-In Go, the state is the board state, the actions are the valid moves, and the reward is a win or a loss. The vertical axis of Figure 30 is the **Elo rating**, which expresses relative playing strength as a number derived from game results, and the horizontal axis is the number of training days. AlphaGo Zero reached the level of AlphaGo Lee, which beat world champion Lee Sedol in 2016, after 36 hours of training, beat AlphaGo Lee 100:0 after 72 hours, and after 40 days surpassed all previous versions to become the best Go player in the world.
+In Go, the state is the board state, the actions are the valid moves, and the reward is a win or a loss. The vertical axis of Figure 30 is the **Elo rating**, which expresses relative playing strength as a number derived from game results, and the horizontal axis is the number of training days. AlphaGo Zero reached the level of AlphaGo Lee, which beat world champion Lee Sedol in 2016, after 36 hours of training, beat AlphaGo Lee 100:0 after 72 hours, and after 40 days surpassed all previous versions, including AlphaGo Master [14].
 
-> **[Artificial Intelligence]** In Go, there are on average about 250 possible moves per turn, far more than in chess (about 35), so it cannot be solved by game tree search that looks ahead at every possible move [3]. AlphaGo Zero used a neural network to evaluate the value of positions and promising moves, greatly reducing the branches to search [14].
+> **[Artificial Intelligence]** In Go, there are on average about 250 possible moves per turn, far more than in chess (about 35), so it cannot be solved by game tree search that looks ahead at every possible move [16]. AlphaGo Zero used a neural network to evaluate the value of positions and promising moves, greatly reducing the branches to search [14].
 
 ### 3.11 Grid World Example
 
 A simple example summarizes reinforcement learning. The agent moves on a map made of a $3 \times 3$ grid, and its goal is to reach the treasure chest in cell 9.
 
-- **State:** the position on the map, $\lbrace 1, 2, \ldots, 9\rbrace$
+- **State:** the position on the map, $\lbrace1, 2, \ldots, 9\rbrace$
 - **Action:** moves within the map (up, right, and so on) and staying in place
 - **Reward:** 100 on reaching the treasure chest, 0 otherwise
 
@@ -1031,7 +1031,7 @@ A simple example summarizes reinforcement learning. The agent moves on a map mad
 
 *Figure 31. Grid world and the action chosen in each state (★: treasure chest)*
 
-The arrows in Figure 31 are the actions the agent chooses in each state. With the action in state $s$ written as $A_s$, the actions are $A_1 = \lbrace \text{up}\rbrace$, $A_2 = \lbrace \text{right}\rbrace$, $A_3 = \lbrace \text{up}\rbrace$, $\ldots$, $A_9 = \lbrace \text{stay}\rbrace$, and the collection of these nine actions is the policy of Section 3.9.
+The arrows in Figure 31 are the actions the agent chooses in each state. With the action in state $s$ written as $A_s$, the actions are $A_1 = \lbrace\text{up}\rbrace$, $A_2 = \lbrace\text{right}\rbrace$, $A_3 = \lbrace\text{up}\rbrace$, $\ldots$, $A_9 = \lbrace\text{stay}\rbrace$, and the collection of these nine actions is the policy of Section 3.9.
 
 | State | Action | Next state | Moves to cell 9 |
 |:-----|:-----|:-----|:-----|
@@ -1072,7 +1072,7 @@ The policy in Figure 31 reaches the treasure from every state in the fewest move
 
 **True/False Check:**
 
-| Statement | Verdict and reason |
+| Statement | Judgment and Reason |
 |:-----|:------------|
 | Every artificial intelligence technique is machine learning. | **F.** Machine learning is a subfield of artificial intelligence. An expert system whose rules were written by people is artificial intelligence but does not learn. |
 | A single-layer perceptron can solve the XOR problem. | **F.** The two classes of XOR cannot be separated by a single line. A multilayer neural network with a hidden layer is needed. |
@@ -1099,7 +1099,7 @@ The policy in Figure 31 reaches the treasure from every state in the fewest move
 | Machine learning | Learns patterns from data without explicit programming to optimize a performance criterion. Statistics provides inference from samples, and computer science provides efficient optimization algorithms. |
 | Three types of learning | Unsupervised learning finds patterns in unlabeled data, supervised learning learns the relationship between inputs and answers from labeled data, and reinforcement learning learns how to act from rewards. |
 | K-means clustering | Repeats setting initial centroids, assigning to the nearest centroid, and updating centroids to the means. It converges as the within-cluster sum of squares decreases, but possibly to a local minimum, and it is sensitive to outliers and the choice of $K$. |
-| Classification | Supervised learning with discrete labels. A binary classifier is $f: \mathbb{R}^d \to \lbrace -1, +1\rbrace$, and the prediction changes at the decision boundary. |
+| Classification | Supervised learning with discrete labels. A binary classifier is $f: \mathbb{R}^d \to \lbrace-1, +1\rbrace$, and the prediction changes at the decision boundary. |
 | k-NN | Stores the training data and classifies a new point by majority vote of its $k$ nearest neighbors in Euclidean distance. Prediction is slow, and it is sensitive to feature scales and the curse of dimensionality. |
 | SVM | Among the hyperplanes of $f(x) = \operatorname{sgn}(w \cdot x + b)$, chooses the one that maximizes the margin $2/\lVert w \rVert$. The boundary is determined by the support vectors alone. |
 | Linear regression | Finds the coefficients that minimize the sum of squared errors SSE through the normal equations. For simple linear regression, $a = \sum (x_i - \bar{x})(y_i - \bar{y}) / \sum (x_i - \bar{x})^2$ and $b = \bar{y} - a\bar{x}$. |
@@ -1140,7 +1140,7 @@ The policy in Figure 31 reaches the treasure from every state in the fewest move
    <details>
    <summary>Answer</summary>
 
-   In the first assignment, 1 is closest to centroid 1, and 2, 6, 7, 8 are closest to centroid 2. Updating gives $\mu_1 = 1$ and $\mu_2 = (2 + 6 + 7 + 8)/4 = 5.75$. In the second assignment, $\lvert 2 - 1 \rvert = 1 < \lvert 2 - 5.75 \rvert = 3.75$, so 2 moves to cluster 1, while 6, 7, 8 remain in cluster 2. Updating gives $\mu_1 = (1 + 2)/2 = 1.5$ and $\mu_2 = (6 + 7 + 8)/3 = 7$. The third assignment is the same as the second, so the algorithm converges, and the final clusters are $\lbrace 1, 2\rbrace$ and $\lbrace 6, 7, 8\rbrace$.
+   In the first assignment, 1 is closest to centroid 1, and 2, 6, 7, 8 are closest to centroid 2. Updating gives $\mu_1 = 1$ and $\mu_2 = (2 + 6 + 7 + 8)/4 = 5.75$. In the second assignment, $\lvert 2 - 1 \rvert = 1 < \lvert 2 - 5.75 \rvert = 3.75$, so 2 moves to cluster 1, while 6, 7, 8 remain in cluster 2. Updating gives $\mu_1 = (1 + 2)/2 = 1.5$ and $\mu_2 = (6 + 7 + 8)/3 = 7$. The third assignment is the same as the second, so the algorithm converges, and the final clusters are $\lbrace1, 2\rbrace$ and $\lbrace6, 7, 8\rbrace$.
 
    </details>
 
@@ -1240,9 +1240,10 @@ The policy in Figure 31 reaches the treasure from every state in the fewest move
 7. D. E. Rumelhart, G. E. Hinton, and R. J. Williams, "Learning representations by back-propagating errors," *Nature*, vol. 323, no. 6088, pp. 533-536, 1986.
 8. C. Cortes and V. Vapnik, "Support-vector networks," *Machine Learning*, vol. 20, no. 3, pp. 273-297, 1995.
 9. G. James, D. Witten, T. Hastie, and R. Tibshirani, *An Introduction to Statistical Learning: with Applications in R*, 2nd ed. New York, NY, USA: Springer, 2021.
-10. MathWorks, "plotregression: Plot linear regression," *Deep Learning Toolbox Documentation*. https://www.mathworks.com/help/deeplearning/ref/plotregression.html
+10. MathWorks, "Analyze shallow neural network performance after training," *Deep Learning Toolbox Documentation*, R2024a. https://www.mathworks.com/help/releases/R2024a/deeplearning/ug/analyze-neural-network-performance-after-training.html
 11. S. Surjanovic and D. Bingham, "Branin function," *Virtual Library of Simulation Experiments: Test Functions and Datasets*, Simon Fraser University. https://www.sfu.ca/~ssurjano/branin.html
 12. R. S. Sutton and A. G. Barto, *Reinforcement Learning: An Introduction*, 2nd ed. Cambridge, MA, USA: MIT Press, 2018.
 13. V. Mnih et al., "Human-level control through deep reinforcement learning," *Nature*, vol. 518, no. 7540, pp. 529-533, 2015.
 14. D. Silver et al., "Mastering the game of Go without human knowledge," *Nature*, vol. 550, no. 7676, pp. 354-359, 2017.
 15. D. Silver et al., "Mastering chess and shogi by self-play with a general reinforcement learning algorithm," arXiv:1712.01815, 2017.
+16. D. Silver et al., "Mastering the game of Go with deep neural networks and tree search," *Nature*, vol. 529, no. 7587, pp. 484-489, 2016.

@@ -52,7 +52,7 @@
 
 ## 1. 전달함수
 
-4주차에서는 직선 운동, 회전 운동, 전기 회로를 미분방정식으로 모델링했다. 미분방정식은 시스템의 동작을 정확히 기술하지만, 입력이 바뀔 때마다 미분방정식을 다시 풀어야 하고, 여러 부분 시스템을 연결하면 식이 빠르게 복잡해진다. 이 절에서는 3주차의 라플라스 변환으로 미분방정식을 대수식으로 바꾸고, 시스템의 입출력 관계를 하나의 함수로 요약하는 전달함수를 다룬다.
+4주차는 직선 운동, 회전 운동, 전기 회로를 미분방정식으로 모델링하는 방법을 다루었다. 미분방정식은 시스템의 동작을 정확히 기술하지만, 입력이 바뀔 때마다 미분방정식을 다시 풀어야 하고, 여러 부분 시스템을 연결하면 식이 빠르게 복잡해진다. 이 절에서는 3주차의 라플라스 변환으로 미분방정식을 대수식으로 바꾸고, 시스템의 입출력 관계를 하나의 함수로 요약하는 전달함수를 다룬다.
 
 ### 1.1 전달함수의 정의
 
@@ -104,7 +104,7 @@ $$
 \ddot{y}(t) + 3\dot{y}(t) + 2y(t) = u(t)
 $$
 
-3주차의 미분 성질은 $\mathcal{L}\lbrace \dot{y} \rbrace = sY(s) - y(0)$, $\mathcal{L}\lbrace \ddot{y} \rbrace = s^2Y(s) - sy(0) - \dot{y}(0)$이다. 초기 조건 $y(0) = 0$, $\dot{y}(0) = 0$을 두면 초기값 항이 사라져, 미분 한 번이 $s$를 한 번 곱하는 것으로 바뀐다. 양변을 변환하면 다음과 같다.
+3주차의 미분 성질은 $\mathcal{L}\lbrace\dot{y} \rbrace= sY(s) - y(0)$, $\mathcal{L}\lbrace\ddot{y} \rbrace= s^2Y(s) - sy(0) - \dot{y}(0)$이다. 초기 조건 $y(0) = 0$, $\dot{y}(0) = 0$을 두면 초기값 항이 사라져, 미분 한 번이 $s$를 한 번 곱하는 것으로 바뀐다. 양변을 변환하면 다음과 같다.
 
 $$
 s^2Y(s) + 3sY(s) + 2Y(s) = U(s)
@@ -161,7 +161,7 @@ K_3 &= \left.\frac{1}{s(s+1)}\right|_{s=-2} = \frac{1}{(-2)(-1)} = \frac{1}{2}
 \end{aligned}
 $$
 
-$\mathcal{L}^{-1}\lbrace 1/s \rbrace = 1$, $\mathcal{L}^{-1}\lbrace 1/(s+a) \rbrace = e^{-at}$을 적용하면 $t \ge 0$에서 출력은 다음과 같다.
+$\mathcal{L}^{-1}\lbrace1/s \rbrace= 1$, $\mathcal{L}^{-1}\lbrace1/(s+a) \rbrace= e^{-at}$을 적용하면 $t \ge 0$에서 출력은 다음과 같다.
 
 $$
 y(t) = \frac{1}{2} - e^{-t} + \frac{1}{2}e^{-2t}
@@ -327,10 +327,10 @@ $$
 **임펄스 함수의 라플라스 변환.** 선별 성질에 $f(t) = e^{-st}$, $a = 0$을 넣는다. 라플라스 변환의 적분 하한을 $0^-$로 잡아 $t = 0$의 임펄스를 적분 구간에 포함시키면, $t = 0$ 근처에서 $e^{-st} = e^0 = 1$이므로 다음을 얻는다.
 
 $$
-\mathcal{L}\lbrace \delta(t) \rbrace = \int_{0^-}^{\infty}\delta(t)e^{-st}\,dt = \int_{0^-}^{0^+}\delta(t) \cdot 1\,dt = 1
+\mathcal{L}\lbrace\delta(t) \rbrace= \int_{0^-}^{\infty}\delta(t)e^{-st}\,dt = \int_{0^-}^{0^+}\delta(t) \cdot 1\,dt = 1
 $$
 
-> **주의:** 라플라스 변환의 하한을 $0^+$로 잡으면 $t = 0$의 임펄스가 적분 구간 밖에 놓여 $\mathcal{L}\lbrace \delta(t) \rbrace = 0$이 되어 버린다. 임펄스 입력을 다룰 때는 하한을 $0^-$로 잡고, 초기 조건 $y(0)$도 입력이 들어오기 직전의 값 $y(0^-)$로 해석한다 [1].
+> **주의:** 라플라스 변환의 하한을 $0^+$로 잡으면 $t = 0$의 임펄스가 적분 구간 밖에 놓여 $\mathcal{L}\lbrace\delta(t) \rbrace= 0$이 된다. 임펄스 입력을 다룰 때는 하한을 $0^-$로 잡고, 초기 조건 $y(0)$도 입력이 들어오기 직전의 값 $y(0^-)$로 해석한다 [1].
 
 ### 2.2 임펄스 응답
 
@@ -345,7 +345,7 @@ $$
 양변을 역변환하면 전달함수의 역라플라스 변환이 임펄스 응답이다.
 
 $$
-y(t) = \mathcal{L}^{-1}\lbrace G(s) \rbrace = g(t)
+y(t) = \mathcal{L}^{-1}\lbrace G(s) \rbrace= g(t)
 $$
 
 > **핵심:** 임펄스 응답 $g(t)$와 전달함수 $G(s)$는 라플라스 변환 쌍이다. 전달함수의 역라플라스 변환이 임펄스 응답이고, 임펄스 응답의 라플라스 변환이 전달함수이므로, 둘 중 하나를 알면 다른 하나도 안다.
@@ -357,7 +357,7 @@ $$
 $Y(s) = G(s)U(s)$를 시간 영역으로 되돌리면, $s$ 영역의 곱은 시간 영역의 **합성곱(convolution)** 이 된다(라플라스 변환의 합성곱 정리).
 
 $$
-y(t) = \mathcal{L}^{-1}\lbrace Y(s) \rbrace = \mathcal{L}^{-1}\lbrace G(s)U(s) \rbrace = \mathcal{L}^{-1}\lbrace G(s) \rbrace * \mathcal{L}^{-1}\lbrace U(s) \rbrace = g(t) * u(t) = \int_0^t g(t-\tau)\,u(\tau)\,d\tau
+y(t) = \mathcal{L}^{-1}\lbrace Y(s) \rbrace= \mathcal{L}^{-1}\lbrace G(s)U(s) \rbrace= \mathcal{L}^{-1}\lbrace G(s) \rbrace* \mathcal{L}^{-1}\lbrace U(s) \rbrace= g(t) * u(t) = \int_0^t g(t-\tau)\,u(\tau)\,d\tau
 $$
 
 여기서 $*$는 합성곱 연산이며, 입력과 임펄스 응답이 $t < 0$에서 0인 경우의 정의를 썼다. 이 식은 다음과 같이 이해할 수 있다.
@@ -367,13 +367,13 @@ $$
 3. 선형성에 의해, 면적이 $u(\tau)\,d\tau$인 임펄스의 응답은 $g(t - \tau)\,u(\tau)\,d\tau$이다.
 4. 중첩의 원리에 의해, 이 응답들을 모두 더한(적분한) 것이 시각 $t$의 출력이다. 적분 구간이 $0$부터 $t$까지인 것은 $\tau < 0$에는 입력이 없고, $\tau > t$에 들어올 입력은 아직 시각 $t$의 출력에 영향을 주지 못하기 때문이다.
 
-> **핵심:** LTI 시스템은 임펄스 응답 $g(t)$ 하나로 완전히 결정된다. 어떤 입력에 대한 출력도 입력과 $g(t)$의 합성곱으로 구할 수 있다 [1].
+> **핵심:** LTI 시스템은 임펄스 응답 $g(t)$ 하나로 완전히 결정된다. 어떤 입력에 대한 출력도 입력과 $g(t)$의 합성곱으로 구할 수 있다 [2].
 
 > **[미적분학]** 합성곱 적분에서 $\sigma = t - \tau$로 치환하면 $d\sigma = -d\tau$이고 적분 구간의 끝이 서로 바뀌므로 $\int_0^t g(t-\tau)u(\tau)\,d\tau = \int_0^t g(\sigma)u(t-\sigma)\,d\sigma$이다. 따라서 $g * u = u * g$로 합성곱은 교환 법칙을 만족한다. 2.6절의 계산에 이 치환을 쓴다.
 
 ### 2.4 예제 1: RC 회로의 임펄스 응답
 
-1.4절의 RC 회로(그림 3)에서 이번에는 초기 조건 $y(0)$이 0이 아닐 수도 있다고 하고 출력을 구한다. 미분방정식 $RC\,\dot{y} + y = u$를 미분 성질 $\mathcal{L}\lbrace \dot{y} \rbrace = sY(s) - y(0)$로 변환한다.
+1.4절의 RC 회로(그림 3)에서 이번에는 초기 조건 $y(0)$이 0이 아닐 수도 있다고 하고 출력을 구한다. 미분방정식 $RC\,\dot{y} + y = u$를 미분 성질 $\mathcal{L}\lbrace\dot{y} \rbrace= sY(s) - y(0)$로 변환한다.
 
 $$
 RC\left[sY(s) - y(0)\right] + Y(s) = U(s)
@@ -391,7 +391,7 @@ $$
 Y(s) = \frac{1 + y(0)RC}{RCs + 1} = \frac{\dfrac{1}{RC} + y(0)}{s + \dfrac{1}{RC}}
 $$
 
-$\mathcal{L}^{-1}\lbrace 1/(s+a) \rbrace = e^{-at}$에 $a = 1/RC$를 적용하여 역라플라스 변환한다.
+$\mathcal{L}^{-1}\lbrace1/(s+a) \rbrace= e^{-at}$에 $a = 1/RC$를 적용하여 역라플라스 변환한다.
 
 $$
 y(t) = \left[\frac{1}{RC} + y(0)\right]e^{-t/RC} = \underbrace{\frac{1}{RC}e^{-t/RC}}_{\text{임펄스 응답 } g(t)} + \underbrace{y(0)\,e^{-t/RC}}_{\text{초기 조건에 의한 응답}}
@@ -499,7 +499,7 @@ $$
 G(s) = \frac{Y(s)}{U(s)} = \frac{b_ms^m + b_{m-1}s^{m-1} + \cdots + b_1s + b_0}{s^n + a_{n-1}s^{n-1} + \cdots + a_1s + a_0}
 $$
 
-분모 다항식의 계수는 미분방정식 좌변(출력 쪽)의 계수이고, 분자 다항식의 계수는 우변(입력 쪽)의 계수이다. 분모의 차수 $n$을 시스템의 **차수(order)** 라고 한다. 실제 물리 시스템에서는 대부분 $m \le n$이며, $m \le n$인 전달함수를 **프로퍼 전달함수(proper transfer function)**, $m < n$인 전달함수를 **순프로퍼 전달함수(strictly proper transfer function)** 라고 한다 [1].
+분모 다항식의 계수는 미분방정식 좌변(출력 쪽)의 계수이고, 분자 다항식의 계수는 우변(입력 쪽)의 계수이다. 분모의 차수 $n$을 시스템의 **차수(order)** 라고 한다. 실제 물리 시스템에서는 대부분 $m \le n$이며, $m \le n$인 전달함수를 **프로퍼 전달함수(proper transfer function)**, $m < n$인 전달함수를 **순프로퍼 전달함수(strictly proper transfer function)** 라고 한다.
 
 ### 2.8 특성방정식
 
@@ -525,7 +525,7 @@ $$
 - 분자의 차수가 분모의 차수보다 크면($m > n$) $G(s) \to \infty$이므로 무한대에 극점이 존재하며, 그 개수는 $m - n$이다.
 - 분모의 차수가 분자의 차수보다 크면($n > m$) $G(s) \to 0$이므로 무한대에 영점이 존재하며, 그 개수는 $n - m$이다.
 
-무한대의 것까지 세면 극점의 개수와 영점의 개수는 $\max(m, n)$으로 같다 [1]. 극점과 영점은 복소평면, 곧 $s$ 평면(가로축 $\sigma$는 실수부, 세로축 $j\omega$는 허수부) 위에 극점은 ×, 영점은 ○로 표시하며, 이 그림을 **극점-영점 배치도(pole-zero map)** 라 한다.
+무한대의 것까지 세면 극점의 개수와 영점의 개수는 $\max(m, n)$으로 같다. 극점과 영점은 복소평면, 곧 $s$ 평면(가로축 $\sigma$는 실수부, 세로축 $j\omega$는 허수부) 위에 극점은 ×, 영점은 ○로 표시하며, 이 그림을 **극점-영점 배치도(pole-zero map)** 라 한다.
 
 > **핵심:** 전달함수의 극점의 위치는 시스템의 특성에 관한 중요한 정보를 가지고 있다. 서로 다른 극점 $p$는 각각 응답에 $e^{pt}$ 항을 만들므로, 극점의 실수부가 음수이면 그 항이 줄어들고, 양수이면 커지며, 허수부가 있으면 진동한다. 극점의 위치와 응답의 관계, 그리고 안정도는 9주차에서 다룬다.
 
@@ -610,7 +610,7 @@ $$
 \frac{Y_2(s)}{U_1(s)} = G_1(s)G_2(s)
 $$
 
-> **주의:** 직렬 연결의 곱셈 규칙은 뒤 블록이 앞 블록의 출력에 영향을 주지 않는다고(부하 효과가 없다고) 가정한다. 예를 들어 RC 회로 두 개를 그대로 이어 붙이면 뒤 회로가 앞 회로에서 전류를 끌어가 앞 회로의 동작이 바뀌므로, 전체 전달함수는 두 전달함수의 곱이 되지 않는다. 이런 경우에는 연결된 전체 회로의 방정식을 새로 세워야 한다 [2].
+> **주의:** 직렬 연결의 곱셈 규칙은 뒤 블록이 앞 블록의 출력에 영향을 주지 않는다고(부하 효과가 없다고) 가정한다. 예를 들어 RC 회로 두 개를 그대로 이어 붙이면 뒤 회로가 앞 회로에서 전류를 끌어가 앞 회로의 동작이 바뀌므로, 전체 전달함수는 두 전달함수의 곱이 되지 않는다. 이런 경우에는 연결된 전체 회로의 방정식을 새로 세워야 한다 [3].
 
 ### 3.3 병렬 연결
 
@@ -795,6 +795,8 @@ flowchart LR
 *표 2. 가합점과 인출점의 이동 규칙*
 
 > **주의:** 가합점과 인출점은 같은 방향으로 옮겨도 넣는 블록이 반대이다. 블록 뒤로 옮길 때 가합점의 갈래에는 $G_1$, 인출점의 갈래에는 $1/G_1$을 넣고, 블록 앞으로 옮길 때는 그 반대이다. 두 경우를 혼동하기 쉬우므로, 규칙을 외우기보다 옮긴 뒤의 신호 식을 써서 이동 전과 같은지 확인하는 것이 안전하다.
+
+> **참고:** 인출점을 블록 앞으로 옮기는 규칙의 그림에서 옮긴 갈래에 $1/G_1$을 넣은 자료가 있으나, 이동 전에 인출되는 신호는 $G_1U_1$이므로 블록 앞의 $U_1$에서 인출하면 $G_1$을 곱해야 같은 신호가 된다(표 2). $1/G_1$을 넣으면 $U_1/G_1$이 인출되어 원래의 신호와 달라진다.
 
 ### 3.6 예제 1: 루프가 겹친 블록선도
 
@@ -1002,7 +1004,7 @@ flowchart LR
    <details>
    <summary>정답</summary>
 
-   임펄스 응답은 $g(t) = \mathcal{L}^{-1}\lbrace 3/(s+4) \rbrace = 3e^{-4t}$이다. 단위 계단 응답은 $Y(s) = \dfrac{3}{s(s+4)} = \dfrac{3/4}{s} - \dfrac{3/4}{s+4}$이므로 $y(t) = \frac{3}{4}(1 - e^{-4t})$이다. 이 결과는 $\int_0^t 3e^{-4\sigma}\,d\sigma = \frac{3}{4}(1 - e^{-4t})$로, 임펄스 응답을 적분한 것과 같다.
+   임펄스 응답은 $g(t) = \mathcal{L}^{-1}\lbrace3/(s+4) \rbrace= 3e^{-4t}$이다. 단위 계단 응답은 $Y(s) = \dfrac{3}{s(s+4)} = \dfrac{3/4}{s} - \dfrac{3/4}{s+4}$이므로 $y(t) = \frac{3}{4}(1 - e^{-4t})$이다. 이 결과는 $\int_0^t 3e^{-4\sigma}\,d\sigma = \frac{3}{4}(1 - e^{-4t})$로, 임펄스 응답을 적분한 것과 같다.
 
    </details>
 
@@ -1084,5 +1086,6 @@ flowchart LR
 
 ## 참고 문헌
 
-1. K. Ogata, *Modern Control Engineering*, 5th ed. Upper Saddle River, NJ, USA: Prentice Hall, 2010.
-2. N. S. Nise, *Control Systems Engineering*, 7th ed. Hoboken, NJ, USA: Wiley, 2015.
+1. K. H. Lundberg, H. R. Miller, and D. L. Trumper, "Initial conditions, generalized functions, and the Laplace transform: Troubles at the origin," *IEEE Control Systems Magazine*, vol. 27, no. 1, pp. 22-35, Feb. 2007.
+2. K. Ogata, *Modern Control Engineering*, 5th ed. Upper Saddle River, NJ, USA: Prentice Hall, 2010.
+3. N. S. Nise, *Control Systems Engineering*, 7th ed. Hoboken, NJ, USA: Wiley, 2015.

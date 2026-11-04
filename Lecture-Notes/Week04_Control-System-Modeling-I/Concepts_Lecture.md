@@ -55,7 +55,7 @@
 
 ## 1. Translational Motion
 
-Week 3 showed how to solve differential equations with the Laplace transform. This unit covers how those differential equations are obtained from real systems, that is, modeling. This section covers the concept of modeling and the modeling of mechanical systems that move in a straight line.
+Solving differential equations with the Laplace transform is the subject of Week 3. This unit covers how those differential equations are obtained from real systems, that is, modeling. This section covers the concept of modeling and the modeling of mechanical systems that move in a straight line.
 
 ### 1.1 Control System Modeling
 
@@ -199,7 +199,7 @@ $\dot{y}$ is shorthand for $\frac{dy}{dt}$.
 
 The left graph of Figure 6 is a straight line through the origin with slope $B$, and the right graph is a step shape that is $F_c$ for positive velocity and $-F_c$ for negative velocity. In systems with mechanical motion, nonlinear friction such as Coulomb friction is often larger than linear friction. However, systems that contain nonlinear friction cannot be analyzed with the control theory of linear systems, and they are hard to analyze theoretically. All later models therefore consider linear friction only.
 
-> **Note:** A linear system is one in which doubling the input doubles the output, and the output for the sum of two inputs is the sum of the individual outputs (the superposition principle). The Laplace transform and transfer functions rely on this property, so they apply only to linear systems. Coulomb friction breaks this property because it produces a force independent of the magnitude of the velocity.
+> **Note:** A linear system is one in which doubling the input doubles the output, and the output for the sum of two inputs is the sum of the individual outputs (the superposition principle). Solving differential equations with the Laplace transform and using transfer functions rely on this property, so they apply only to linear systems, and a transfer function is defined for linear time-invariant systems, whose coefficients do not change with time. Coulomb friction breaks this property because it produces a force independent of the magnitude of the velocity.
 
 ### 1.9 Translational Equation of Motion: The Mass-Spring-Damper System
 
@@ -227,7 +227,7 @@ $$
 
 The equation of motion of this system is a second-order differential equation. To express the system simply as a relation between input and output, we use the transfer function.
 
-> **Definition:** A **transfer function** is the ratio of the Laplace transform of the output to the Laplace transform of the input when all initial conditions are set to 0. Week 5 covers it in detail; in this document it is used to express models compactly in the $s$-domain.
+> **Definition:** A **transfer function** is the ratio of the Laplace transform of the output to the Laplace transform of the input when all initial conditions are set to 0. Week 5 covers it in detail; in this unit it is used to express models compactly in the $s$-domain.
 
 Setting the initial conditions to 0 and taking the Laplace transform of both sides turns $\frac{d}{dt}$ into multiplication by $s$, by the differentiation property of Week 3.
 
@@ -295,7 +295,7 @@ This section covers the modeling of mechanical systems that turn about an axis. 
 
 ### 2.1 Laws of Motion for Rotational Systems
 
-Newton's laws of motion apply to rotation just as they do to translation. The difference is that **torque** replaces force, the **moment of inertia** replaces mass, and **angular acceleration** replaces acceleration. Torque is the turning effect of a force, the product of the force and its distance from the axis of rotation. Torque is proportional to angular acceleration.
+Newton's laws of motion apply to rotation just as they do to translation. The difference is that **torque** replaces force, the **moment of inertia** replaces mass, and **angular acceleration** replaces acceleration. Torque is the turning effect of a force; its magnitude is the magnitude of the force times the perpendicular distance from the axis of rotation to the line of action of the force. Torque is proportional to angular acceleration.
 
 $$
 \tau = J\alpha = J\frac{d^2\theta}{dt^2}
@@ -432,7 +432,7 @@ $$
 \dot{\theta}_2 = \frac{N_1}{N_2}\dot{\theta}_1
 $$
 
-$N_1/N_2$ is called the **gear ratio**. If $N_1/N_2$ is less than 1, that is, if a small gear drives a large gear, the output shaft turns more slowly than the input shaft, and the gear is called a **reduction gear**.
+$N_1/N_2$ is called the **gear ratio**. Some texts call the reciprocal $N_2/N_1$ the gear ratio instead, so it is necessary to check which one is meant. If $N_1/N_2$ is less than 1, that is, if a small gear drives a large gear, the output shaft turns more slowly than the input shaft, and the gear is called a **reduction gear**.
 
 **Torque relation.** Because the gear is ideal, the mechanical energy of one wheel is transferred to the other without any loss. The energy, or work, of rotation is torque times rotation angle, so the condition that input and output energy are equal gives the torque relation.
 
@@ -582,7 +582,7 @@ $$
 
 Modeling a motor, which converts electrical energy into mechanical energy, requires two electromagnetic phenomena.
 
-**Electromagnetic force.** A conductor carrying a current in a magnetic field experiences a force, called the **electromagnetic force**. Its magnitude is proportional to the strength of the magnetic field and to the current in the conductor.
+**Electromagnetic force.** A conductor carrying a current in a magnetic field experiences a force, called the **electromagnetic force**. Its magnitude is proportional to the strength of the magnetic field and to the current in the conductor, and for a wire perpendicular to the field it is the following.
 
 $$
 F = BIl\ [\text{N}]
@@ -596,7 +596,7 @@ $$
 \varepsilon = -\frac{d\Phi}{dt}, \qquad \Phi = BS
 $$
 
-$S$ is the area of the circuit through which the field passes, and the minus sign means that the induced current flows in the direction that opposes the change of flux (Lenz's law). When a wire of length $l$ moves perpendicular to the field at speed $v$, the area of the circuit changes by $lv$ per second, so the emf has magnitude $Blv$, proportional to the speed [2].
+$S$ is the area of the circuit through which the field passes, and $\Phi = BS$ holds when the field is uniform and perpendicular to the surface. The minus sign means that the induced current flows in the direction that opposes the change of flux (Lenz's law). When a wire of length $l$ moves perpendicular to the field at speed $v$, the area of the circuit changes by $lv$ per second, so the emf has magnitude $Blv$, proportional to the speed [2].
 
 > **Note:** A motor uses both phenomena together. A current in the coil produces a torque through the electromagnetic force and makes the motor turn (the torque constant of Section 3.6), and the turning coil moves in the magnetic field and produces an emf opposing the current (the back emf of Section 3.6).
 
@@ -615,7 +615,7 @@ Figure 20 shows a cutaway of a DC servo motor; the labeled parts (in Korean) are
 | Stator magnet | The stationary outer magnet that creates the magnetic field. Electromagnets or permanent magnets can be used, but control servo motors mostly use permanent magnets. |
 | Armature and armature coil | The rotating part, wound with coils that carry current. The coil current $i_a$ interacts with the magnetic field to produce torque. |
 | Brush and commutator | Supply current to the rotating armature. The commutator reverses the current direction in the coils as the armature turns, so that the torque stays in one direction. |
-| Shaft and bearings | The shaft transmits the rotation outward, and the bearings support the shaft and are a main source of rotational friction. |
+| Shaft and bearings | The shaft transmits the rotation outward, and the bearings support the shaft and are one source of rotational friction. |
 
 *Table 5. Main parts of a DC servo motor and their roles*
 
@@ -623,7 +623,7 @@ The most important parts of a DC servo motor are the magnets that create the mag
 
 ### 3.6 Model of a DC Servo Motor
 
-**Torque constant.** The torque produced by the motor is proportional to the current in the armature (the electromagnetic force), and the constant of proportionality $K_t$ is the **torque constant**.
+**Torque constant.** In a cross-section of the motor, the armature wound with coils sits between the N and S poles of the stator, and the electromagnetic force on the coil current in the field turns the armature at the angular velocity $\omega$. The torque produced by the motor is proportional to the current in the armature (the electromagnetic force), and the constant of proportionality $K_t$ is the **torque constant**.
 
 $$
 \tau = K_t i_a
@@ -693,7 +693,7 @@ flowchart LR
 
 In Figure 22, the back emf forms a feedback path that subtracts a voltage proportional to the angular velocity from the input voltage. Even without an external controller, the motor has this internal feedback, so under a constant voltage it reaches a constant speed at which the back emf plus the resistive drop $R_ai_a$ equals the input voltage. The current $i_a$ at that speed supplies the viscous friction torque $B\omega$, and the back emf equals the input voltage only when there is no friction ($B = 0$).
 
-**Approximation neglecting the armature inductance.** The armature inductance $L_a$ is usually very small, so the electrical circuit responds much faster than the mechanical part. Setting $L_a \approx 0$ makes the angular velocity transfer function first-order [3].
+**Approximation neglecting the armature inductance.** The armature inductance $L_a$ is usually very small, so the electrical circuit responds much faster than the mechanical part. Setting $L_a \approx 0$ makes the angular velocity transfer function first-order [1].
 
 $$
 \frac{\Omega(s)}{E_a(s)} \approx \frac{K_t}{R_a(J_as + B) + K_tK_b} = \frac{K_m}{T_ms + 1}, \qquad K_m = \frac{K_t}{R_aB + K_tK_b}, \quad T_m = \frac{R_aJ_a}{R_aB + K_tK_b}
@@ -783,7 +783,7 @@ $$
 
 ## Concept Applications
 
-The elements of translational motion, rotational motion, and electric circuits correspond one to one. This relation, which pairs force with voltage, is called the **force-voltage analogy** [1]. Writing the RLC equation in terms of the capacitor charge $q = Cy$ gives $L\ddot{q} + R\dot{q} + \frac{1}{C}q = u$, which makes the correspondence clear.
+The elements of translational motion, rotational motion, and electric circuits correspond one to one. This relation, which pairs force with voltage, is called the **force-voltage analogy** or series analog [1]. Writing the RLC equation in terms of the capacitor charge $q = Cy$ gives $L\ddot{q} + R\dot{q} + \frac{1}{C}q = u$, which makes the correspondence clear.
 
 | Translational motion | Rotational motion | Electric circuit |
 |:-----|:-----|:-----|
@@ -954,4 +954,4 @@ The elements of translational motion, rotational motion, and electric circuits c
 
 1. N. S. Nise, *Control Systems Engineering*, 7th ed. Hoboken, NJ, USA: Wiley, 2015.
 2. D. Halliday, R. Resnick, and J. Walker, *Fundamentals of Physics*, 10th ed. Hoboken, NJ, USA: Wiley, 2014.
-3. K. Ogata, *Modern Control Engineering*, 5th ed. Upper Saddle River, NJ, USA: Prentice Hall, 2010.
+3. University of Michigan, Carnegie Mellon University, and University of Detroit Mercy, "DC Motor Speed: System Modeling," *Control Tutorials for MATLAB and Simulink*. https://ctms.engin.umich.edu/CTMS/index.php?example=MotorSpeed&section=SystemModeling
