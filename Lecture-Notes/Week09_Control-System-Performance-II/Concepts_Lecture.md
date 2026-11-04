@@ -58,13 +58,13 @@
 
 Week 7 derived the unit step response of the standard second-order system $G_T(s) = \omega_n^2/(s^2 + 2\zeta\omega_n s + \omega_n^2)$. In the underdamped case with damping ratio $0 < \zeta < 1$, the response is the following.
 
-$$
+```math
 y(t) = 2\vert K_1\vert e^{-\zeta\omega_n t}\cos\left(\omega_n\sqrt{1 - \zeta^2}\,t + \angle K_1\right) + 1 = 1 - \frac{1}{\sqrt{1 - \zeta^2}}\,e^{-\zeta\omega_n t}\cos\left(\omega_n\sqrt{1 - \zeta^2}\,t - \phi\right), \qquad t \ge 0
-$$
+```
 
-$$
+```math
 \phi = \tan^{-1}\frac{\zeta}{\sqrt{1 - \zeta^2}}, \qquad \sigma = -\zeta\omega_n, \qquad \omega_d = \sqrt{(1 - \zeta^2)\,\omega_n^2} = \omega_n\sqrt{1 - \zeta^2}
-$$
+```
 
 The poles are $s = \sigma \pm j\omega_d$, the distance from the origin to a pole is $\omega_n$, and the angle $\theta$ between the imaginary axis and the segment joining the origin and the pole satisfies $\sin\theta = \zeta$. This section changes $\omega_n$ and $\zeta$ one at a time to see how the poles and the response change, and derives the formulas for the measures of the speed and shape of the response.
 
@@ -72,9 +72,9 @@ The poles are $s = \sigma \pm j\omega_d$, the distance from the origin to a pole
 
 Fix the damping ratio at $\zeta = 0.2$ and change the natural frequency from $\omega_n = 1$ to $\omega_n = 2$. The poles move as follows.
 
-$$
+```math
 \omega_n = 1:\; s = -0.2 \pm j0.980, \qquad \omega_n = 2:\; s = -0.4 \pm j1.960
-$$
+```
 
 ![Figure 1. Unit step responses and poles for natural frequencies 1 and 2 at damping ratio 0.2](../../images/Week09_Natural-Frequency-Variation.png)
 
@@ -92,14 +92,14 @@ Now fix the natural frequency at $\omega_n = 1$ and vary the damping ratio from 
 
 As $\zeta$ grows, three things change together. First, the decay rate of the envelope, $\zeta\omega_n$, grows, so the oscillation dies out sooner. Second, the angular frequency of oscillation $\omega_d = \omega_n\sqrt{1 - \zeta^2}$ shrinks, so the time to the first peak grows slightly. Third, as Section 1.6 shows, the amount by which the output exceeds the target drops sharply.
 
-| $\zeta$ | Poles | Maximum overshoot | Peak time ($\omega_n = 1$) |
+| $\zeta$ | Poles | Maximum overshoot | Peak time ($`\omega_n = 1`$) |
 |:-----|:-----|:-----|:-----|
-| $0.1$ | $-0.1 \pm j0.995$ | $72.9\%$ | $3.16$ s |
-| $0.2$ | $-0.2 \pm j0.980$ | $52.7\%$ | $3.21$ s |
-| $0.4$ | $-0.4 \pm j0.917$ | $25.4\%$ | $3.43$ s |
-| $0.5$ | $-0.5 \pm j0.866$ | $16.3\%$ | $3.63$ s |
-| $0.6$ | $-0.6 \pm j0.800$ | $9.5\%$ | $3.93$ s |
-| $0.8$ | $-0.8 \pm j0.600$ | $1.5\%$ | $5.24$ s |
+| $0.1$ | $-0.1 \pm j0.995$ | $`72.9\%`$ | $3.16$ s |
+| $0.2$ | $-0.2 \pm j0.980$ | $`52.7\%`$ | $3.21$ s |
+| $0.4$ | $-0.4 \pm j0.917$ | $`25.4\%`$ | $3.43$ s |
+| $0.5$ | $-0.5 \pm j0.866$ | $`16.3\%`$ | $3.63$ s |
+| $0.6$ | $-0.6 \pm j0.800$ | $`9.5\%`$ | $3.93$ s |
+| $0.8$ | $-0.8 \pm j0.600$ | $`1.5\%`$ | $5.24$ s |
 
 *Table 1. Poles and response measures for several damping ratios at natural frequency 1*
 
@@ -113,9 +113,9 @@ Removing the spring from the mass-spring-damper system of Week 4 gives the mass-
 
 *Figure 3. Mass-damper system with the spring removed*
 
-$$
+```math
 M\ddot{y} + B\dot{y} = f \quad\Longrightarrow\quad \frac{Y(s)}{F(s)} = \frac{1}{s(Ms + B)}
-$$
+```
 
 Build a feedback system around this plant with a proportional controller $K$ as in Figure 4. This applies a force $f = K(r - y)$ proportional to the position error.
 
@@ -132,17 +132,17 @@ flowchart LR
 
 Multiply the numerator and denominator of the closed-loop transfer function by $s(Ms + B)$, divide by $M$, and compare with the standard form.
 
-$$
+```math
 \frac{Y(s)}{R(s)} = \frac{\dfrac{K}{s(Ms + B)}}{1 + \dfrac{K}{s(Ms + B)}} = \frac{K}{Ms^2 + Bs + K} = \frac{K/M}{s^2 + (B/M)s + K/M}, \qquad \omega_n = \sqrt{\frac{K}{M}}, \quad \zeta = \frac{B}{2\sqrt{KM}}
-$$
+```
 
 This closed-loop transfer function has the same form as that of a mass-spring-damper system with spring constant $K$. A force proportional to the position error plays the role of a spring's restoring force, so the controller gain $K$ acts as a virtual spring.
 
 With $M = 2$, $B = 6$, and $K = 18$:
 
-$$
+```math
 \frac{Y(s)}{R(s)} = \frac{18}{2s^2 + 6s + 18} = \frac{9}{s^2 + 3s + 9}, \qquad \omega_n^2 = 9 \Rightarrow \omega_n = 3 \text{ rad/s}, \qquad 2\zeta\omega_n = 3 \Rightarrow \zeta = 0.5
-$$
+```
 
 Since $0 < \zeta < 1$, the system is underdamped, and its poles are $-\zeta\omega_n \pm j\omega_n\sqrt{1 - \zeta^2} = -1.5 \pm j2.598$. The transient performance measures of this system are computed in Section 1.9 after the formulas of Sections 1.5 to 1.8 are derived.
 
@@ -150,39 +150,39 @@ Since $0 < \zeta < 1$, the system is underdamped, and its poles are $-\zeta\omeg
 
 **Deriving the peak time.** At the instant the output is largest, its slope is 0, so differentiate the unit step response and set it to 0. By the product rule, $\dfrac{d}{dt}\left[e^{-\zeta\omega_n t}\cos(\omega_d t - \phi)\right] = -\zeta\omega_n e^{-\zeta\omega_n t}\cos(\omega_d t - \phi) - \omega_d e^{-\zeta\omega_n t}\sin(\omega_d t - \phi)$; multiply this by $-1/\sqrt{1 - \zeta^2}$ and substitute $\omega_d = \omega_n\sqrt{1 - \zeta^2}$.
 
-$$
+```math
 \begin{aligned}
 \dot{y}(t) &= \frac{\omega_n}{\sqrt{1 - \zeta^2}}\,e^{-\zeta\omega_n t}\left[\zeta\cos\left(\omega_n\sqrt{1 - \zeta^2}\,t - \phi\right) + \sqrt{1 - \zeta^2}\,\sin\left(\omega_n\sqrt{1 - \zeta^2}\,t - \phi\right)\right] \\
 &= \frac{\omega_n}{\sqrt{1 - \zeta^2}}\,e^{-\zeta\omega_n t}\left[\sin\phi\cos\left(\omega_n\sqrt{1 - \zeta^2}\,t - \phi\right) + \cos\phi\sin\left(\omega_n\sqrt{1 - \zeta^2}\,t - \phi\right)\right] \\
 &= \frac{\omega_n}{\sqrt{1 - \zeta^2}}\,e^{-\zeta\omega_n t}\sin\left(\omega_n\sqrt{1 - \zeta^2}\,t\right)
 \end{aligned}
-$$
+```
 
 The second line substitutes $\sin\phi = \zeta$ and $\cos\phi = \sqrt{1 - \zeta^2}$, which follow from $\tan\phi = \zeta/\sqrt{1 - \zeta^2}$, and the third line applies the angle addition formula $\sin(\alpha + \beta) = \sin\alpha\cos\beta + \cos\alpha\sin\beta$ with $\alpha = \phi$ and $\beta = \omega_d t - \phi$.
 
 The exponential function is never 0, so $\dot{y}(t) = 0$ holds when $\sin(\omega_d t) = 0$, that is, when $\omega_d t = n\pi$.
 
-$$
+```math
 \dot{y}(t) = 0 \quad\Longrightarrow\quad t = \frac{n\pi}{\omega_n\sqrt{1 - \zeta^2}}, \qquad n = 0, 1, 2, \ldots
-$$
+```
 
 There are several solutions: $n = 0$ is the starting point $t = 0$ (the step response of a second-order system starts with zero slope), odd $n$ give local maxima, and even $n$ give local minima. Among them, $n = 1$ is the time of the first maximum, that is, the peak time.
 
-$$
+```math
 t_p = \frac{\pi}{\omega_n\sqrt{1 - \zeta^2}} = \frac{\pi}{\omega_d}
-$$
+```
 
 **Deriving the maximum overshoot.** At $t = t_p$, $\omega_d t_p = \pi$ and $\zeta\omega_n t_p = \zeta\pi/\sqrt{1 - \zeta^2}$. Also $\cos(\pi - \phi) = -\cos\phi = -\sqrt{1 - \zeta^2}$, which gives the following.
 
-$$
+```math
 y(t_p) = 1 - \frac{1}{\sqrt{1 - \zeta^2}}\,e^{-\zeta\pi/\sqrt{1 - \zeta^2}}\left(-\sqrt{1 - \zeta^2}\right) = 1 + e^{-\zeta\pi/\sqrt{1 - \zeta^2}}
-$$
+```
 
 Since the steady-state value is $y_{ss} = 1$, the maximum overshoot is the following.
 
-$$
+```math
 M_p = \frac{y(t_p) - 1}{1} = e^{-\zeta\pi/\sqrt{1 - \zeta^2}}
-$$
+```
 
 > **Key Point:** The peak time $t_p = \pi/\omega_d$ is inversely proportional to the imaginary part $\omega_d$ of the poles, and the maximum overshoot $M_p = e^{-\zeta\pi/\sqrt{1 - \zeta^2}}$ depends only on the damping ratio $\zeta$ and not on $\omega_n$. This is why the peak height stayed the same when $\omega_n$ changed in Section 1.2.
 
@@ -202,9 +202,9 @@ Figure 5 plots $M_p = e^{-\zeta\pi/\sqrt{1 - \zeta^2}}$ against $\zeta$. As $\ze
 
 Conversely, the damping ratio required for an allowed maximum overshoot can be found. Squaring both sides of $\ln M_p = -\zeta\pi/\sqrt{1 - \zeta^2}$ gives $(\ln M_p)^2(1 - \zeta^2) = \zeta^2\pi^2$, so:
 
-$$
+```math
 \zeta = \frac{-\ln M_p}{\sqrt{\pi^2 + (\ln M_p)^2}}
-$$
+```
 
 For example, to keep the maximum overshoot at or below 5%, since $\ln 0.05 = -2.996$, the damping ratio must satisfy $\zeta \ge 2.996/\sqrt{9.870 + 8.974} \approx 0.69$.
 
@@ -212,21 +212,21 @@ For example, to keep the maximum overshoot at or below 5%, since $\ln 0.05 = -2.
 
 To determine the settling time, the error band must be fixed first. Here the error band is set to 5% to find the **5% settling time**.
 
-Since $\vert\cos(\cdot)\vert \le 1$, the underdamped response always lies between the two curves $1 \pm e^{-\zeta\omega_n t}/\sqrt{1 - \zeta^2}$. These two curves are called the **envelope** of the response. Finding the settling time from the exponential function multiplying the sinusoid alone, that is, finding when the envelope enters the $\pm 5\%$ band, gives an approximate settling time easily (Figure 6).
+Since $\vert\cos(\cdot)\vert \le 1$, the underdamped response always lies between the two curves $1 \pm e^{-\zeta\omega_n t}/\sqrt{1 - \zeta^2}$. These two curves are called the **envelope** of the response. Finding the settling time from the exponential function multiplying the sinusoid alone, that is, finding when the envelope enters the $`\pm 5\%`$ band, gives an approximate settling time easily (Figure 6).
 
 ![Figure 6. Envelope of an underdamped response and the 5% settling time](../../images/Week09_Settling-Time-Envelope.png)
 
 *Figure 6. Envelope of an underdamped response and the 5% settling time*
 
-$$
+```math
 \frac{e^{-\zeta\omega_n t_s}}{\sqrt{1 - \zeta^2}} = 0.05 \quad\Longrightarrow\quad -\zeta\omega_n t_s = \ln\left(0.05\sqrt{1 - \zeta^2}\right) \quad\Longrightarrow\quad \omega_n t_s = -\frac{\ln\left(0.05\sqrt{1 - \zeta^2}\right)}{\zeta}
-$$
+```
 
 Figure 7 plots this expression against $\zeta$. For $\zeta$ from 0.1 up to about 0.7 the curve can be approximated by $3.2/\zeta$ within about 7%, so the 5% settling time can be estimated as follows.
 
-$$
+```math
 t_s \approx \frac{3.2}{\zeta\omega_n} \quad (\pm 5\%)
-$$
+```
 
 ![Figure 7. The 5% settling time as a function of the damping ratio and its approximation](../../images/Week09_Settling-Time-vs-Damping-Ratio.png)
 
@@ -234,9 +234,9 @@ $$
 
 Ignoring the effect of $\sqrt{1 - \zeta^2}$, $-\ln 0.05 \approx 3.0$ and $-\ln 0.02 \approx 3.9$, so many textbooks use the following approximations [1].
 
-$$
+```math
 t_s \approx \frac{3}{\zeta\omega_n} \quad (\pm 5\%), \qquad t_s \approx \frac{4}{\zeta\omega_n} \quad (\pm 2\%)
-$$
+```
 
 In every form, the settling time is inversely proportional to the magnitude of the real part of the poles, $\zeta\omega_n = \vert\sigma\vert$. The farther to the left of the imaginary axis the poles lie, the sooner the response settles.
 
@@ -248,9 +248,9 @@ The rise time of a second-order system has no simple closed form, so two approac
 
 **Rise time from 0% to 100%.** For oscillating responses, the time at which the output first reaches the final value 1 is sometimes used as the rise time [1]. $y(t) = 1$ requires $\cos(\omega_d t - \phi) = 0$, and this first holds when $\omega_d t - \phi = \pi/2$. Since $\pi/2 + \phi = \pi - \cos^{-1}\zeta$:
 
-$$
+```math
 t_r = \frac{\pi/2 + \phi}{\omega_d} = \frac{\pi - \cos^{-1}\zeta}{\omega_n\sqrt{1 - \zeta^2}}
-$$
+```
 
 **Rise time from 10% to 90%.** The rise time under this definition is found by solving the response equation numerically. Its values for $\omega_n = 1$ are given in Table 3, and for moderate damping ($\zeta$ near 0.5 to 0.6) it is commonly approximated as $t_r \approx 1.8/\omega_n$ [2]. According to Table 3 this approximation fits well at $\zeta = 0.6$ and is about 10% larger than the actual value $1.64/\omega_n$ at $\zeta = 0.5$.
 
@@ -266,14 +266,14 @@ The rise time is also inversely proportional to $\omega_n$ and grows slightly as
 |:-----|:-----|:-----|
 | Peak time | $t_p = \pi/\omega_d$ | Imaginary part $\omega_d$ |
 | Maximum overshoot | $M_p = e^{-\zeta\pi/\sqrt{1 - \zeta^2}}$ | Damping ratio $\zeta$ (angle with the imaginary axis) |
-| Settling time | $t_s \approx 3.2/(\zeta\omega_n)$ ($\pm 5\%$), $4/(\zeta\omega_n)$ ($\pm 2\%$) | Magnitude of the real part $\zeta\omega_n$ |
+| Settling time | $t_s \approx 3.2/(\zeta\omega_n)$ ($`\pm 5\%`$), $4/(\zeta\omega_n)$ ($`\pm 2\%`$) | Magnitude of the real part $\zeta\omega_n$ |
 | Rise time | $t_r = (\pi - \cos^{-1}\zeta)/\omega_d$ (0% to 100%), $\approx 1.8/\omega_n$ (10% to 90%) | Distance from the origin $\omega_n$ |
 
 *Table 4. Formulas for the transient performance measures of an underdamped second-order system*
 
 ### 1.9 Transient Performance Measures of the Example
 
-Apply the formulas above to the example of Section 1.4 ($\omega_n = 3$ rad/s, $\zeta = 0.5$). First, $\sqrt{1 - \zeta^2} = \sqrt{0.75} = 0.866$, $\omega_d = 3 \times 0.866 = 2.598$ rad/s, and $\zeta\omega_n = 1.5$.
+Apply the formulas above to the example of Section 1.4 ($\omega_n = 3$ rad/s, $`\zeta = 0.5`$). First, $\sqrt{1 - \zeta^2} = \sqrt{0.75} = 0.866$, $\omega_d = 3 \times 0.866 = 2.598$ rad/s, and $\zeta\omega_n = 1.5$.
 
 1. **Peak time:** $t_p = \pi/2.598 \approx 1.209$ s.
 2. **Maximum overshoot:** $\zeta\pi/\sqrt{1 - \zeta^2} = 0.5\pi/0.866 = 1.814$, so $M_p = e^{-1.814} \approx 0.163$, that is, 16.3%, and the maximum output is about 1.163.
@@ -298,19 +298,19 @@ Week 7 derived the responses for $\zeta > 1$, $\zeta = 1$, and $0 < \zeta < 1$. 
 
 If $\zeta = 1$, the expression under the square root becomes 0 and the two roots coincide at $s = -\omega_n$. This case is called **critically damped**, and its unit step response, derived in Week 7, is the following.
 
-$$
+```math
 y(t) = 1 - e^{-\omega_n t}(1 + \omega_n t), \qquad t \ge 0
-$$
+```
 
-Critical damping is the boundary between oscillating responses (underdamped) and non-oscillating ones (overdamped). For the same $\omega_n$, it is the fastest among the responses that do not exceed the target. For example, with $\omega_n = 1$ the 5% settling time is 4.74 s for critical damping ($\zeta = 1$), but it grows to 11.5 s for the overdamped $\zeta = 2$ because of the pole $-0.27$ near the origin. If a little overshoot is allowed, however, the response can settle sooner: with $\zeta = 0.7$ the 5% settling time drops to 2.90 s at the cost of a 4.6% maximum overshoot.
+Critical damping is the boundary between oscillating responses (underdamped) and non-oscillating ones (overdamped). For the same $\omega_n$, it is the fastest among the responses that do not exceed the target. For example, with $\omega_n = 1$ the 5% settling time is 4.74 s for critical damping ($`\zeta = 1`$), but it grows to 11.5 s for the overdamped $\zeta = 2$ because of the pole $-0.27$ near the origin. If a little overshoot is allowed, however, the response can settle sooner: with $\zeta = 0.7$ the 5% settling time drops to 2.90 s at the cost of a 4.6% maximum overshoot.
 
 ### 2.2 Roots on the Imaginary Axis: Undamped
 
-If $\zeta = 0$, the characteristic equation becomes $s^2 + \omega_n^2 = 0$, and its roots $s = \pm j\omega_n$ lie on the imaginary axis. This case is called **undamped**. Substituting $\zeta = 0$ ($\phi = 0$) into the underdamped response, or inverting the partial fraction expansion $Y(s) = \omega_n^2/[s(s^2 + \omega_n^2)] = 1/s - s/(s^2 + \omega_n^2)$, gives the following.
+If $\zeta = 0$, the characteristic equation becomes $s^2 + \omega_n^2 = 0$, and its roots $s = \pm j\omega_n$ lie on the imaginary axis. This case is called **undamped**. Substituting $\zeta = 0$ ($`\phi = 0`$) into the underdamped response, or inverting the partial fraction expansion $Y(s) = \omega_n^2/[s(s^2 + \omega_n^2)] = 1/s - s/(s^2 + \omega_n^2)$, gives the following.
 
-$$
+```math
 y(t) = 1 - \cos\omega_n t, \qquad t \ge 0
-$$
+```
 
 A damping ratio of 0 means continuous oscillation without any damping. The output swings between 0 and 2 forever and never settles at its final value. The angular frequency of this oscillation is $\omega_d = \omega_n\sqrt{1 - 0} = \omega_n$. For this reason $\omega_n$ is also called the **undamped natural frequency**, the angular frequency of oscillation when there is no damping at all.
 
@@ -322,9 +322,9 @@ Removing the damper from the mass-spring-damper system gives the mass-spring sys
 
 *Figure 9. Mass-spring system with the damper removed*
 
-$$
+```math
 M\ddot{y} + Ky = f \quad\Longrightarrow\quad \frac{Y(s)}{F(s)} = \frac{1}{Ms^2 + K} = \frac{1}{K}\cdot\frac{K/M}{s^2 + K/M}, \qquad \omega_n = \sqrt{\frac{K}{M}}, \quad \zeta = 0
-$$
+```
 
 This system has the same characteristic equation as the position control system of Section 1.4 with $B = 0$. With $K = 1$ and a unit step force, $y(t) = 1 - \cos\omega_n t$. For $M = 0.25$, $\omega_n = \sqrt{1/0.25} = 2$ rad/s and the period is $2\pi/2 \approx 3.14$ s; for $M = 1$, $\omega_n = 1$ rad/s and the period is $2\pi \approx 6.28$ s. The smaller the mass, the faster the oscillation, but in neither case does the oscillation die out (Figure 10).
 
@@ -345,9 +345,9 @@ Physically, positive damping dissipates kinetic energy as heat, while negative d
 
 In the position control system of Section 1.4, keep $M = 2$ and $K = 18$ and change the friction coefficient to $B = -0.6$. The closed-loop transfer function and parameters are the following.
 
-$$
+```math
 \frac{Y(s)}{R(s)} = \frac{18}{2s^2 - 0.6s + 18} = \frac{9}{s^2 - 0.3s + 9}, \qquad \omega_n = 3, \qquad 2\zeta\omega_n = -0.3 \Rightarrow \zeta = -0.05
-$$
+```
 
 The poles are $-\zeta\omega_n \pm j\omega_n\sqrt{1 - \zeta^2} = 0.15 \pm j2.996$, in the right half-plane. The envelope of the response is $1 \pm e^{0.15t}/\sqrt{1 - \zeta^2}$, so at $t = 20$ s, for example, $e^{0.15 \times 20} = e^3 \approx 20.1$, and the amplitude of the oscillation grows to about 20 (Figure 11).
 
@@ -405,13 +405,13 @@ Compare the unit step responses of two systems that have the same numerator and 
 
 **An unstable system.** $\dfrac{Y(s)}{R(s)} = G(s) = \dfrac{2}{s^2 + s - 2} = \dfrac{2}{(s-1)(s+2)}$ has poles $1$ and $-2$. Expand the unit step response in partial fractions.
 
-$$
+```math
 Y(s) = \frac{2}{s(s-1)(s+2)} = \frac{A}{s} + \frac{B}{s-1} + \frac{C}{s+2}, \qquad A = \frac{2}{(-1)(2)} = -1, \quad B = \frac{2}{(1)(3)} = \frac{2}{3}, \quad C = \frac{2}{(-2)(-3)} = \frac{1}{3}
-$$
+```
 
-$$
+```math
 y(t) = -1 + \frac{2}{3}e^{t} + \frac{1}{3}e^{-2t}, \qquad t \ge 0
-$$
+```
 
 The term $\frac{2}{3}e^{t}$ produced by the right-half-plane pole $s = 1$ grows without bound, so the output diverges to infinity.
 
@@ -427,29 +427,29 @@ The two examples show the following. For a system not to be unstable, its output
 
 Write a general transfer function as a ratio of polynomials, or in terms of its zeros $z_i$ and poles $p_i$.
 
-$$
+```math
 G_T(s) = \frac{Y(s)}{R(s)} = \frac{b_ms^m + b_{m-1}s^{m-1} + \cdots + b_1s + b_0}{s^n + a_{n-1}s^{n-1} + \cdots + a_1s + a_0} = K\,\frac{(s - z_1)(s - z_2)\cdots(s - z_m)}{(s - p_1)(s - p_2)\cdots(s - p_n)}
-$$
+```
 
 If all poles are distinct, expanding the response to an input in partial fractions gives one exponential term for each system pole and a particular solution $y_p(t)$ from the poles of the input.
 
-$$
+```math
 y(t) = K_1e^{p_1t} + K_2e^{p_2t} + \cdots + K_ne^{p_nt} + y_p(t)
-$$
+```
 
 For the system to be stable, every exponential term must converge to 0. If a pole is complex, $p_i = \sigma_i + j\omega_i$, then $\vert e^{p_it}\vert = e^{\sigma_it}$, so whether each term converges to 0 is decided by the real part alone.
 
-$$
+```math
 \mathrm{Re}\lbrace p_i \rbrace< 0, \qquad i = 1, 2, \ldots, n
-$$
+```
 
 That is, every root of the characteristic equation $s^n + a_{n-1}s^{n-1} + \cdots + a_1s + a_0 = 0$ must have a real part less than 0. The zeros change only the sizes of the coefficients $K_i$ and do not affect convergence.
 
 **Multiple poles.** If the transfer function has the same pole $n$ times, as in $G_T(s) = K(s - z_1)\cdots(s - z_m)/(s - p_1)^n$, the partial fraction expansion contains terms of the form $1/(s - p_1)^k$, whose inverse transforms are proportional to $t^{k-1}e^{p_1t}$.
 
-$$
+```math
 y(t) = K_1e^{p_1t} + K_2te^{p_1t} + \cdots + K_nt^{n-1}e^{p_1t} + y_p(t)
-$$
+```
 
 If $\mathrm{Re}\lbrace p_1 \rbrace< 0$, the exponential function decays faster than the polynomial grows, so $t^ke^{p_1t} \to 0$ and every term of the general solution converges to 0. The stability condition is therefore the same even with multiple poles.
 
@@ -464,7 +464,7 @@ The BIBO stability of a linear time-invariant system with a rational transfer fu
 Poles on the imaginary axis need separate attention. If there are non-repeated poles on the imaginary axis and all other poles lie in the left half-plane, the response with no input neither diverges nor dies out but stays at a constant amplitude. Such a system is called **marginally stable** [1]. A marginally stable system is not BIBO stable, because some bounded inputs make the output grow without bound.
 
 - Feeding a bounded unit step input into the integrator $G(s) = 1/s$ (a pole at the origin) gives the output $Y = 1/s^2$, that is, $y(t) = t$, which grows without bound.
-- Feeding the bounded input $r(t) = \sin t$ of the same frequency into the undamped system $G(s) = 1/(s^2 + 1)$ (poles $\pm j$) gives $Y = 1/(s^2 + 1)^2$ and $y(t) = \frac{1}{2}(\sin t - t\cos t)$, whose amplitude grows in proportion to time. This is called **resonance**.
+- Feeding the bounded input $r(t) = \sin t$ of the same frequency into the undamped system $G(s) = 1/(s^2 + 1)$ (poles $`\pm j`$) gives $Y = 1/(s^2 + 1)^2$ and $y(t) = \frac{1}{2}(\sin t - t\cos t)$, whose amplitude grows in proportion to time. This is called **resonance**.
 
 If there are repeated poles on the imaginary axis, terms such as $t\cos\omega t$ appear even without an input and diverge, so the system is unstable.
 
@@ -480,15 +480,15 @@ If there are repeated poles on the imaginary axis, terms such as $t\cos\omega t$
 
 The roots of high-order characteristic equations are hard to find directly. The **Routh-Hurwitz criterion** is a method that decides how many roots an equation of the following form has in the right half-plane without finding the roots.
 
-$$
+```math
 s^n + a_{n-1}s^{n-1} + \cdots + a_1s + a_0 = 0
-$$
+```
 
-Before applying the Routh-Hurwitz criterion, the signs of the coefficients of the equation should be examined first. If even one coefficient of the equation is equal to 0 or less than 0, it cannot be said that all roots lie in the left half-plane. Check the reason with a cubic equation. Suppose the equation has one real root $-a$ less than 0 and two complex conjugate roots $-b \pm jc$ with real part less than 0 ($a > 0$, $b > 0$).
+Before applying the Routh-Hurwitz criterion, the signs of the coefficients of the equation should be examined first. If even one coefficient of the equation is equal to 0 or less than 0, it cannot be said that all roots lie in the left half-plane. Check the reason with a cubic equation. Suppose the equation has one real root $-a$ less than 0 and two complex conjugate roots $-b \pm jc$ with real part less than 0 ($a > 0$, $`b > 0`$).
 
-$$
+```math
 (s + a)\left[(s + b)^2 + c^2\right] = s^3 + (a + 2b)\,s^2 + (2ab + b^2 + c^2)\,s + a(b^2 + c^2)
-$$
+```
 
 Expanding the expression above, all coefficients are greater than 0 because $a$ and $b$ are positive. In general, a real root $-a$ in the left half-plane gives a factor $s + a$ with positive coefficients, a complex conjugate pair $-b \pm jc$ in the left half-plane gives a factor $s^2 + 2bs + b^2 + c^2$ with positive coefficients, and a product of polynomials with all positive coefficients has all positive coefficients. That is, all coefficients being greater than 0 is a **necessary condition** for all roots to lie in the left half-plane.
 
@@ -507,7 +507,7 @@ As Figure 15 shows, the polynomials with all roots in the left half-plane are on
 
 ### 3.5 The Routh Array and the Routh-Hurwitz Criterion
 
-For the characteristic equation $a_ns^n + a_{n-1}s^{n-1} + \cdots + a_1s + a_0 = 0$ ($a_n > 0$), build the following **Routh array**. Write every other coefficient starting from $a_n$ in the first row and every other coefficient starting from $a_{n-1}$ in the second row, setting missing coefficients to 0.
+For the characteristic equation $a_ns^n + a_{n-1}s^{n-1} + \cdots + a_1s + a_0 = 0$ ($`a_n > 0`$), build the following **Routh array**. Write every other coefficient starting from $a_n$ in the first row and every other coefficient starting from $a_{n-1}$ in the second row, setting missing coefficients to 0.
 
 | Row | Column 1 | Column 2 | Column 3 | $\cdots$ |
 |:-----|:-----|:-----|:-----|:-----|
@@ -523,13 +523,13 @@ For the characteristic equation $a_ns^n + a_{n-1}s^{n-1} + \cdots + a_1s + a_0 =
 
 From the third row on, compute from the two rows directly above. Each new entry is $-1$ times the 2×2 determinant formed by the first column of the two rows above and the column to the right of the entry being computed, divided by the first entry of the row directly above.
 
-$$
+```math
 b_1 = \frac{-\begin{vmatrix} a_n & a_{n-2} \\ a_{n-1} & a_{n-3} \end{vmatrix}}{a_{n-1}} = \frac{a_{n-1}a_{n-2} - a_na_{n-3}}{a_{n-1}}, \qquad b_2 = \frac{-\begin{vmatrix} a_n & a_{n-4} \\ a_{n-1} & a_{n-5} \end{vmatrix}}{a_{n-1}} = \frac{a_{n-1}a_{n-4} - a_na_{n-5}}{a_{n-1}}
-$$
+```
 
-$$
+```math
 c_1 = \frac{b_1a_{n-3} - a_{n-1}b_2}{b_1}, \qquad c_2 = \frac{b_1a_{n-5} - a_{n-1}b_3}{b_1}, \qquad d_1 = \frac{c_1b_2 - b_1c_2}{c_1}
-$$
+```
 
 If the leading coefficient of the characteristic equation is 1, as in $s^n + a_{n-1}s^{n-1} + \cdots$, substituting $a_n = 1$ gives $b_1 = (a_{n-1}a_{n-2} - a_{n-3})/a_{n-1}$. Repeat this computation down to the $s^0$ row; the rows get shorter toward the bottom.
 
@@ -620,7 +620,7 @@ If $\varepsilon$ is a small positive number, $-8/\varepsilon$ is a negative numb
 
 ### 3.8 Special Case 2: An Entire Row of Zeros
 
-Sometimes every entry of a row becomes 0. This happens when the characteristic equation has roots symmetric about the origin, for example pairs of real roots of equal magnitude and opposite sign ($\pm a$), pairs of roots on the imaginary axis ($\pm j\omega$), or quadruplets of complex roots $\pm\sigma \pm j\omega$. In this case, continue the array as follows [1].
+Sometimes every entry of a row becomes 0. This happens when the characteristic equation has roots symmetric about the origin, for example pairs of real roots of equal magnitude and opposite sign ($`\pm a`$), pairs of roots on the imaginary axis ($`\pm j\omega`$), or quadruplets of complex roots $\pm\sigma \pm j\omega$. In this case, continue the array as follows [1].
 
 1. Form the **auxiliary polynomial** $A(s)$ from the row directly above the zero row. If that row is the $s^k$ row, use its entries in order as the coefficients of $s^k, s^{k-2}, s^{k-4}, \ldots$.
 2. Replace the zero row with the coefficients of $dA/ds$, and compute the remaining rows as usual.
@@ -647,9 +647,9 @@ The first column $1, 2, 4, 2$ has no sign change, so there is no root in the rig
 
 The Routh array also works for characteristic equations containing a parameter such as a gain, and so it is used to find the range of the parameter for which the system is stable. For a unity feedback system with plant $G(s) = 1/[s(s+1)(s+2)]$ and a controller of gain $K$, the characteristic equation is obtained by multiplying $1 + KG(s) = 0$ by the denominator.
 
-$$
+```math
 s(s+1)(s+2) + K = s^3 + 3s^2 + 2s + K = 0
-$$
+```
 
 | Row | Column 1 | Column 2 |
 |:-----|:-----|:-----|
@@ -668,14 +668,14 @@ The $s^1$ row is $(3 \cdot 2 - 1 \cdot K)/3 = (6 - K)/3$. For the first column t
 
 ## Concept Applications
 
-If only the controller gain $K$ of the mass-damper position control system of Section 1.4 ($M = 2$, $B = 6$) is changed, the closed-loop transfer function is $\dfrac{K/2}{s^2 + 3s + K/2}$, so $\omega_n = \sqrt{K/2}$, $\zeta = 3/(2\omega_n)$, and $\zeta\omega_n = 1.5$ does not depend on $K$.
+If only the controller gain $K$ of the mass-damper position control system of Section 1.4 ($M = 2$, $`B = 6`$) is changed, the closed-loop transfer function is $\dfrac{K/2}{s^2 + 3s + K/2}$, so $\omega_n = \sqrt{K/2}$, $\zeta = 3/(2\omega_n)$, and $\zeta\omega_n = 1.5$ does not depend on $K$.
 
-| $K$ | $\omega_n$ (rad/s) | $\zeta$ | Maximum overshoot | Peak time | 2% settling time (approximation $4/(\zeta\omega_n)$) | 2% settling time (actual) |
+| $K$ | $\omega_n$ (rad/s) | $\zeta$ | Maximum overshoot | Peak time | 2% settling time (approximation $`4/(\zeta\omega_n)`$) | 2% settling time (actual) |
 |:-----|:-----|:-----|:-----|:-----|:-----|:-----|
-| $4.5$ | $1.5$ | $1$ | $0\%$ | None | Not applicable (critically damped) | $3.89$ s |
-| $9$ | $2.12$ | $0.707$ | $4.3\%$ | $2.09$ s | $2.67$ s | $2.81$ s |
-| $18$ | $3$ | $0.5$ | $16.3\%$ | $1.21$ s | $2.67$ s | $2.69$ s |
-| $72$ | $6$ | $0.25$ | $44.4\%$ | $0.54$ s | $2.67$ s | $2.35$ s |
+| $4.5$ | $1.5$ | $1$ | $`0\%`$ | None | Not applicable (critically damped) | $3.89$ s |
+| $9$ | $2.12$ | $0.707$ | $`4.3\%`$ | $2.09$ s | $2.67$ s | $2.81$ s |
+| $18$ | $3$ | $0.5$ | $`16.3\%`$ | $1.21$ s | $2.67$ s | $2.69$ s |
+| $72$ | $6$ | $0.25$ | $`44.4\%`$ | $0.54$ s | $2.67$ s | $2.35$ s |
 
 *Table 14. Transient performance measures of the mass-damper position control system for several gains*
 
@@ -686,7 +686,7 @@ Raising the gain moves the poles farther up and down while keeping the real part
 | Statement | Judgment and Reason |
 |:-----|:------------|
 | Doubling the natural frequency at the same damping ratio doubles the maximum overshoot. | **F.** The maximum overshoot $e^{-\zeta\pi/\sqrt{1 - \zeta^2}}$ depends only on $\zeta$. The peak time and settling time are halved. |
-| The settling time of a second-order system is inversely proportional to the magnitude of the real part of the poles, $\zeta\omega_n$. | **T.** Estimated from the envelope $e^{-\zeta\omega_n t}$, $t_s \approx 4/(\zeta\omega_n)$ ($\pm 2\%$). |
+| The settling time of a second-order system is inversely proportional to the magnitude of the real part of the poles, $\zeta\omega_n$. | **T.** Estimated from the envelope $e^{-\zeta\omega_n t}$, $t_s \approx 4/(\zeta\omega_n)$ ($`\pm 2\%`$). |
 | The unit step response of an undamped system converges slowly to 1. | **F.** It is $1 - \cos\omega_n t$, which keeps oscillating between 0 and 2. |
 | If all coefficients of the characteristic equation are positive, the system is stable. | **F.** This is only a necessary condition; for degree 3 and higher the system can be unstable, as in the examples of Section 3.6. |
 | The integrator $1/s$ is BIBO stable because its output does not diverge without an input. | **F.** For a bounded step input its output $t$ grows without bound, so it is not BIBO stable. |
@@ -705,10 +705,10 @@ Raising the gain moves the poles farther up and down while keeping the real part
 | Effect of the damping ratio | At the same $\omega_n$, the poles lie on the circle of radius $\omega_n$, and a larger $\zeta$ moves them away from the imaginary axis and reduces the maximum overshoot and oscillation. |
 | Peak time | $\dot{y} = 0$ gives $\sin\omega_d t = 0$, so $t_p = \pi/\omega_d = \pi/(\omega_n\sqrt{1 - \zeta^2})$. |
 | Maximum overshoot | $M_p = e^{-\zeta\pi/\sqrt{1 - \zeta^2}}$ depends only on $\zeta$, and conversely $\zeta = -\ln M_p/\sqrt{\pi^2 + \ln^2M_p}$. |
-| Settling time | Estimated from the envelope as $t_s \approx 3.2/(\zeta\omega_n)$ ($\pm 5\%$) or $4/(\zeta\omega_n)$ ($\pm 2\%$), inversely proportional to the magnitude of the real part of the poles. |
+| Settling time | Estimated from the envelope as $t_s \approx 3.2/(\zeta\omega_n)$ ($`\pm 5\%`$) or $4/(\zeta\omega_n)$ ($`\pm 2\%`$), inversely proportional to the magnitude of the real part of the poles. |
 | Rise time | From 0% to 100% it is $(\pi - \cos^{-1}\zeta)/\omega_d$, and from 10% to 90% it is about $1.8/\omega_n$ for $\zeta$ near 0.5 to 0.6. |
 | Critical damping and the undamped case | $\zeta = 1$ gives a double root $-\omega_n$ and the fastest response without overshoot; $\zeta = 0$ gives $\pm j\omega_n$ and the sustained oscillation $1 - \cos\omega_n t$. |
-| Negative damping | If $\zeta < 0$, the poles lie in the right half-plane and the response diverges, oscillating ($-1 < \zeta < 0$) or without oscillation ($\zeta \le -1$). |
+| Negative damping | If $\zeta < 0$, the poles lie in the right half-plane and the response diverges, oscillating ($`-1 < \zeta < 0`$) or without oscillation ($`\zeta \le -1`$). |
 | Pole trajectory | As $\zeta$ decreases, the poles gather at $-\omega_n$ on the negative real axis and then follow the circle of radius $\omega_n$ through the imaginary axis into the right half-plane. |
 | Stability | If the real parts of all poles of the transfer function are less than 0, every term of the general solution converges to 0 and the system is stable. |
 | BIBO stability and marginal stability | A linear time-invariant system is BIBO stable when all poles lie in the left half-plane; a marginally stable system with non-repeated poles on the imaginary axis is not BIBO stable. |
@@ -763,7 +763,7 @@ Raising the gain moves the poles farther up and down while keeping the real part
    <details>
    <summary>Answer</summary>
 
-   (a) is a double root, so the system is critically damped and converges without oscillation. (b) has roots on the imaginary axis, so it is undamped and oscillates at 3 rad/s without decay. (c) has complex conjugate roots in the right half-plane, so it has negative damping and diverges as an oscillation whose amplitude grows like $e^{t}$. (d) has complex conjugate roots in the left half-plane, so it is underdamped, exceeds the target, and converges while oscillating ($\omega_n = \sqrt{5}$, $\zeta = 1/\sqrt{5} \approx 0.447$).
+   (a) is a double root, so the system is critically damped and converges without oscillation. (b) has roots on the imaginary axis, so it is undamped and oscillates at 3 rad/s without decay. (c) has complex conjugate roots in the right half-plane, so it has negative damping and diverges as an oscillation whose amplitude grows like $e^{t}$. (d) has complex conjugate roots in the left half-plane, so it is underdamped, exceeds the target, and converges while oscillating ($\omega_n = \sqrt{5}$, $`\zeta = 1/\sqrt{5} \approx 0.447`$).
 
    </details>
 

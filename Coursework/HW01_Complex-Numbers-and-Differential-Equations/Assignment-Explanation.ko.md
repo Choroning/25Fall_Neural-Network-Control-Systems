@@ -68,7 +68,7 @@ Coursework/HW01_Complex-Numbers-and-Differential-Equations/
 
 ### 2.1 복소수와 복소평면
 
-**복소수(complex number)** 는 두 실수 $a$, $b$와 **허수 단위(imaginary unit)** $j$($j^2 = -1$)로 $S = a + jb$처럼 쓰는 수이다. $a$를 **실수부(real part)** $\operatorname{Re}(S)$, $b$를 **허수부(imaginary part)** $\operatorname{Im}(S)$라 한다. 수학에서는 허수 단위를 $i$로 쓰지만 전기공학과 제어공학에서는 $i$가 전류를 뜻하므로 $j$를 쓰며, 이 문서도 과제 안내문을 따라 $j$를 쓴다.
+**복소수(complex number)** 는 두 실수 $a$, $b$와 **허수 단위(imaginary unit)** $j$($`j^2 = -1`$)로 $S = a + jb$처럼 쓰는 수이다. $a$를 **실수부(real part)** $\operatorname{Re}(S)$, $b$를 **허수부(imaginary part)** $\operatorname{Im}(S)$라 한다. 수학에서는 허수 단위를 $i$로 쓰지만 전기공학과 제어공학에서는 $i$가 전류를 뜻하므로 $j$를 쓰며, 이 문서도 과제 안내문을 따라 $j$를 쓴다.
 
 실수부를 가로축, 허수부를 세로축으로 하는 평면을 **복소평면(complex plane)** 이라 한다. 복소수 $a + jb$는 이 평면의 점 $(a, b)$로, 또는 원점에서 그 점으로 가는 벡터로 나타낸다. 벡터로 보면 복소수의 덧셈과 뺄셈은 벡터의 덧셈과 뺄셈과 같다(5절).
 
@@ -80,9 +80,9 @@ $S = a + jb$처럼 실수부와 허수부로 쓰는 표현을 **직각 좌표 �
 
 직각삼각형의 관계에서 두 형식은 다음과 같이 서로 바뀐다.
 
-$$
+```math
 a = r\cos\theta, \qquad b = r\sin\theta, \qquad r = \sqrt{a^2 + b^2}, \qquad \tan\theta = \frac{b}{a}
-$$
+```
 
 $\tan\theta = b/a$에서 $\theta = \tan^{-1}(b/a)$로 바로 구하면 안 되는 경우가 있다. 역탄젠트 함수는 $-90^\circ$와 $90^\circ$ 사이의 값만 돌려주므로 실수부가 양수인 1사분면과 4사분면의 점에서만 맞고, $a + jb$와 $-a - jb$처럼 원점에 대해 대칭인 두 점은 $b/a$가 같아 구별하지 못한다. 따라서 편각은 표 2처럼 점이 놓인 사분면을 보고 정한다. 이 규칙을 하나의 함수로 묶은 것이 프로그래밍 언어의 `atan2(b, a)`이다.
 
@@ -102,15 +102,15 @@ $\tan\theta = b/a$에서 $\theta = \tan^{-1}(b/a)$로 바로 구하면 안 되�
 
 **오일러 공식(Euler's formula)** 은 지수 함수와 삼각 함수를 다음과 같이 잇는다.
 
-$$
+```math
 e^{j\theta} = \cos\theta + j\sin\theta
-$$
+```
 
 이 공식을 쓰면 $r\angle\theta = r\cos\theta + jr\sin\theta = re^{j\theta}$이므로 극좌표 형식은 지수 형식 $re^{j\theta}$와 같다. 지수 법칙 $e^{j\theta_1}e^{j\theta_2} = e^{j(\theta_1 + \theta_2)}$에서 곱셈과 나눗셈의 규칙이 바로 나온다.
 
-$$
+```math
 (r_1\angle\theta_1)(r_2\angle\theta_2) = r_1r_2\angle(\theta_1 + \theta_2), \qquad \frac{r_1\angle\theta_1}{r_2\angle\theta_2} = \frac{r_1}{r_2}\angle(\theta_1 - \theta_2)
-$$
+```
 
 즉 곱셈은 크기를 곱하고 편각을 더하며, 나눗셈은 크기를 나누고 편각을 뺀다. 반면 덧셈과 뺄셈은 직각 좌표 형식에서 실수부와 허수부를 따로 계산하는 편이 간단하다. 두 형식을 연산에 따라 골라 쓰는 것이 이 과제의 요점이다.
 
@@ -122,19 +122,19 @@ $$
 
 ## 3. 문제 1: 극좌표 형식에서 직각 좌표 형식으로
 
-$a = r\cos\theta$, $b = r\sin\theta$를 계산하면 된다. 코사인은 짝함수($\cos(-\theta) = \cos\theta$), 사인은 홀함수($\sin(-\theta) = -\sin\theta$)이므로 음의 각은 다음과 같이 처리한다.
+$a = r\cos\theta$, $b = r\sin\theta$를 계산하면 된다. 코사인은 짝함수($`\cos(-\theta) = \cos\theta`$), 사인은 홀함수($`\sin(-\theta) = -\sin\theta`$)이므로 음의 각은 다음과 같이 처리한다.
 
-$$
+```math
 2\angle(-45^\circ) = 2\cos(-45^\circ) + j2\sin(-45^\circ) = 2\cdot\frac{\sqrt{2}}{2} - j2\cdot\frac{\sqrt{2}}{2} = \sqrt{2} - j\sqrt{2}
-$$
+```
 
-$$
+```math
 1\angle 90^\circ = \cos 90^\circ + j\sin 90^\circ = 0 + j1 = j
-$$
+```
 
-$$
+```math
 1\angle 180^\circ = \cos 180^\circ + j\sin 180^\circ = -1 + j0 = -1
-$$
+```
 
 첫째 수는 4사분면에서 실수축과 $45^\circ$를 이루므로 실수부와 허수부의 크기가 같고, 허수부가 음수이다. 둘째와 셋째 결과는 허수 단위의 의미를 보여 준다. $j = 1\angle 90^\circ$이므로 어떤 복소수에 $j$를 곱하면 크기는 그대로이고 편각만 $90^\circ$ 늘어나며, 두 번 곱하면 $j^2 = 1\angle 180^\circ = -1$로 방향이 반대가 된다. 이는 $j^2 = -1$이라는 정의와 맞는다.
 
@@ -148,23 +148,23 @@ $$
 
 **(1) $\sqrt{3} - j$.** $a = \sqrt{3} > 0$, $b = -1$이므로 4사분면의 점이다. 실수부가 양수이므로 역탄젠트 값을 그대로 쓴다.
 
-$$
+```math
 r = \sqrt{(\sqrt{3})^2 + (-1)^2} = \sqrt{4} = 2, \qquad \theta = \tan^{-1}\frac{-1}{\sqrt{3}} = -30^\circ \quad\Longrightarrow\quad \sqrt{3} - j = 2\angle(-30^\circ)
-$$
+```
 
 **(2) $-1 - j$.** $a = -1$, $b = -1$이므로 3사분면의 점이다. $\tan^{-1}\big((-1)/(-1)\big) = \tan^{-1}1 = 45^\circ$는 1사분면의 점 $1 + j$의 편각이므로, 표 2에 따라 $180^\circ$를 뺀다.
 
-$$
+```math
 r = \sqrt{(-1)^2 + (-1)^2} = \sqrt{2}, \qquad \theta = 45^\circ - 180^\circ = -135^\circ \quad\Longrightarrow\quad -1 - j = \sqrt{2}\angle(-135^\circ)
-$$
+```
 
 같은 수를 $\sqrt{2}\angle 225^\circ$로 써도 된다. $45^\circ$를 그대로 쓰면 $\sqrt{2}\angle 45^\circ = 1 + j$가 되어 부호가 반대인 수가 나온다.
 
 **(3) $-j$.** $a = 0$, $b = -1$이므로 음의 허수축 위의 점이다. $b/a$의 분모가 0이어서 역탄젠트로는 구할 수 없고, 표 2에 따라 편각은 $-90^\circ$이다.
 
-$$
+```math
 r = \sqrt{0^2 + (-1)^2} = 1, \qquad \theta = -90^\circ \quad\Longrightarrow\quad -j = 1\angle(-90^\circ)
-$$
+```
 
 $1\angle 270^\circ$로 써도 같은 수이다. 결과를 3절의 방법으로 되돌리면 검산할 수 있다. 예를 들어 $2\angle(-30^\circ) = 2\cos 30^\circ - j2\sin 30^\circ = \sqrt{3} - j$이다.
 
@@ -176,17 +176,17 @@ $1\angle 270^\circ$로 써도 같은 수이다. 결과를 3절의 방법으로 �
 
 직각 좌표 형식의 뺄셈은 실수부끼리, 허수부끼리 뺀다.
 
-$$
+```math
 (a_1 + jb_1) - (a_2 + jb_2) = (a_1 - a_2) + j(b_1 - b_2)
-$$
+```
 
-$$
+```math
 \text{(1)}\quad S_1 - S_2 = (2 + j) - (1 - j) = (2 - 1) + j\big(1 - (-1)\big) = 1 + j2
-$$
+```
 
-$$
+```math
 \text{(2)}\quad S_1 - S_2 = (2 + j) - (-1 + j) = \big(2 - (-1)\big) + j(1 - 1) = 3
-$$
+```
 
 복소평면에서는 뺄셈을 $S_1 - S_2 = S_1 + (-S_2)$로 보고 벡터의 덧셈으로 그린다. $-S_2$는 $S_2$를 원점에 대해 대칭으로 옮긴 벡터, 즉 $S_2$를 $180^\circ$ 돌린 벡터이다. $S_1$의 끝점에 $-S_2$의 시작점을 이어 붙이면 그 끝점이 $S_1 - S_2$이다. 그림 2의 (1)에서 $-S_2 = -1 + j$이므로 $S_1$의 끝점 $(2, 1)$에서 왼쪽으로 1, 위로 1 움직여 $(1, 2)$에 이르고, (2)에서 $-S_2 = 1 - j$이므로 $(2, 1)$에서 오른쪽으로 1, 아래로 1 움직여 실수축 위의 $(3, 0)$에 이른다. 두 끝점은 계산 결과 $1 + j2$, $3$과 일치한다.
 
@@ -206,29 +206,29 @@ $S_1 - S_2$는 $S_2$의 끝점에서 $S_1$의 끝점으로 가는 벡터를 원�
 
 먼저 두 수를 직각 좌표 형식으로 바꾼다. $\cos 120^\circ = -1/2$, $\sin 120^\circ = \sqrt{3}/2$, $\cos 30^\circ = \sqrt{3}/2$, $\sin 30^\circ = 1/2$이다.
 
-$$
+```math
 S_1 = 1\angle 120^\circ = -\frac{1}{2} + j\frac{\sqrt{3}}{2}, \qquad S_2 = 2\angle 30^\circ = 2\cdot\frac{\sqrt{3}}{2} + j2\cdot\frac{1}{2} = \sqrt{3} + j
-$$
+```
 
 곱셈은 분배 법칙으로 네 항을 전개하고 $j^2 = -1$을 쓴다. 일반식은 $(a_1 + jb_1)(a_2 + jb_2) = (a_1a_2 - b_1b_2) + j(a_1b_2 + a_2b_1)$이다.
 
-$$
+```math
 S_1S_2 = \left(-\frac{1}{2} + j\frac{\sqrt{3}}{2}\right)(\sqrt{3} + j) = -\frac{\sqrt{3}}{2} - j\frac{1}{2} + j\frac{3}{2} + j^2\frac{\sqrt{3}}{2} = \left(-\frac{\sqrt{3}}{2} - \frac{\sqrt{3}}{2}\right) + j\left(-\frac{1}{2} + \frac{3}{2}\right) = -\sqrt{3} + j
-$$
+```
 
-나눗셈은 분모를 실수로 만들기 위해 분자와 분모에 분모의 켤레 복소수 $\bar{S}_2 = \sqrt{3} - j$를 곱한다. 분모는 2.1절의 성질에 따라 $(\sqrt{3})^2 + 1^2 = 4$가 된다.
+나눗셈은 분모를 실수로 만들기 위해 분자와 분모에 분모의 켤레 복소수 $`\bar{S}_2 = \sqrt{3} - j`$를 곱한다. 분모는 2.1절의 성질에 따라 $(\sqrt{3})^2 + 1^2 = 4$가 된다.
 
-$$
+```math
 \frac{S_1}{S_2} = \frac{\left(-\frac{1}{2} + j\frac{\sqrt{3}}{2}\right)(\sqrt{3} - j)}{(\sqrt{3} + j)(\sqrt{3} - j)} = \frac{-\frac{\sqrt{3}}{2} + j\frac{1}{2} + j\frac{3}{2} - j^2\frac{\sqrt{3}}{2}}{4} = \frac{\left(-\frac{\sqrt{3}}{2} + \frac{\sqrt{3}}{2}\right) + j\left(\frac{1}{2} + \frac{3}{2}\right)}{4} = \frac{j2}{4} = j0.5
-$$
+```
 
 ### 6.2 극좌표 형식을 이용한 계산
 
 2.3절의 규칙에 따라 크기는 곱하거나 나누고 편각은 더하거나 뺀다.
 
-$$
+```math
 S_1S_2 = (1 \cdot 2)\angle(120^\circ + 30^\circ) = 2\angle 150^\circ, \qquad \frac{S_1}{S_2} = \frac{1}{2}\angle(120^\circ - 30^\circ) = 0.5\angle 90^\circ
-$$
+```
 
 두 결과를 직각 좌표 형식으로 바꾸면 $2\angle 150^\circ = 2\cos 150^\circ + j2\sin 150^\circ = -\sqrt{3} + j$, $0.5\angle 90^\circ = j0.5$로 6.1절의 결과와 일치한다. 같은 답을 얻지만 극좌표 형식의 계산은 한 줄로 끝나므로, 곱셈과 나눗셈이 많은 계산(예를 들어 여러 전달함수를 곱한 값의 크기와 위상)에는 극좌표 형식이 편리하다.
 
@@ -242,17 +242,17 @@ $$
 
 미지 함수 $y(t)$와 그 도함수에 대해 1차식이고 계수가 상수인 미분방정식
 
-$$
+```math
 a_n y^{(n)} + a_{n-1} y^{(n-1)} + \cdots + a_1\dot{y} + a_0 y = f(t)
-$$
+```
 
 을 **상수 계수 선형 미분방정식(linear differential equation with constant coefficients)** 이라 한다. 입력 $f(t)$를 0으로 둔 방정식의 해를 **동차해(homogeneous solution)** $y_h$, 원래 방정식을 만족하는 해 하나를 **특수해(particular solution)** $y_p$라 하면, 선형성 때문에 일반해는 $y = y_h + y_p$이다.
 
-동차해는 $y = e^{\lambda t}$로 놓고 구한다. $e^{\lambda t}$를 미분할 때마다 $\lambda$가 곱해지므로($\frac{d^k}{dt^k}e^{\lambda t} = \lambda^k e^{\lambda t}$) 동차 방정식은 $(a_n\lambda^n + \cdots + a_1\lambda + a_0)e^{\lambda t} = 0$이 되고, $e^{\lambda t} \ne 0$이므로 다음 **특성방정식(characteristic equation)** 을 얻는다.
+동차해는 $y = e^{\lambda t}$로 놓고 구한다. $e^{\lambda t}$를 미분할 때마다 $\lambda$가 곱해지므로($`\frac{d^k}{dt^k}e^{\lambda t} = \lambda^k e^{\lambda t}`$) 동차 방정식은 $(a_n\lambda^n + \cdots + a_1\lambda + a_0)e^{\lambda t} = 0$이 되고, $e^{\lambda t} \ne 0$이므로 다음 **특성방정식(characteristic equation)** 을 얻는다.
 
-$$
+```math
 a_n\lambda^n + a_{n-1}\lambda^{n-1} + \cdots + a_1\lambda + a_0 = 0
-$$
+```
 
 | 특성방정식의 근 | 동차해의 항 |
 |:-----|:-----|
@@ -268,13 +268,13 @@ $$
 
 **(1) $\dot{y} + 2y = 3$, $y(0) = 1$.** 특성방정식은 $\lambda + 2 = 0$이므로 $\lambda = -2$이고, 동차해는 $y_h = Ce^{-2t}$이다. 입력이 상수 3이므로 특수해는 $2K = 3$에서 $y_p = 3/2$이다. 일반해에 초기 조건을 넣어 $C$를 정한다.
 
-$$
+```math
 y(t) = Ce^{-2t} + \frac{3}{2}, \qquad y(0) = C + \frac{3}{2} = 1 \quad\Longrightarrow\quad C = -\frac{1}{2}
-$$
+```
 
-$$
+```math
 y(t) = \frac{3}{2} - \frac{1}{2}e^{-2t}, \quad t \ge 0
-$$
+```
 
 검산하면 $\dot{y} = e^{-2t}$이므로 $\dot{y} + 2y = e^{-2t} + 3 - e^{-2t} = 3$이고, $y(0) = 3/2 - 1/2 = 1$이다. 응답은 초기값 1에서 최종값 $3/2$로 지수적으로 다가가며(그림 3의 왼쪽), 지수의 계수 2의 역수 $0.5$가 이 접근의 빠르기를 나타내는 **시정수(time constant)** 이다(7주차).
 
@@ -282,33 +282,33 @@ $$
 
 **(2) $\ddot{y} + 2\dot{y} + 2y = 1$, $y(0) = 1$, $\dot{y}(0) = 0$.** 특성방정식 $\lambda^2 + 2\lambda + 2 = 0$을 근의 공식으로 풀면 판별식이 $2^2 - 4 \cdot 2 = -4 < 0$이므로 켤레 복소근이 나온다.
 
-$$
+```math
 \lambda = \frac{-2 \pm \sqrt{-4}}{2} = -1 \pm j
-$$
+```
 
 동차해를 복소 지수로 쓰면 $y_h = K_1e^{(-1+j)t} + K_2e^{(-1-j)t}$이다. 오일러 공식으로 $e^{(-1\pm j)t} = e^{-t}(\cos t \pm j\sin t)$를 넣어 정리하면
 
-$$
+```math
 y_h = e^{-t}\big[(K_1 + K_2)\cos t + j(K_1 - K_2)\sin t\big] = e^{-t}(A\cos t + B\sin t), \qquad A = K_1 + K_2, \quad B = j(K_1 - K_2)
-$$
+```
 
 가 되어 표 3의 셋째 행을 얻는다. $y(t)$가 실수이려면 $K_1$과 $K_2$가 서로 켤레 복소수여야 하고, 그러면 $A$와 $B$는 실수이다. 특수해는 $2K = 1$에서 $y_p = 1/2$이므로 일반해와 그 도함수는 다음과 같다.
 
-$$
+```math
 y(t) = e^{-t}(A\cos t + B\sin t) + \frac{1}{2}, \qquad \dot{y}(t) = e^{-t}\big[(B - A)\cos t - (A + B)\sin t\big]
-$$
+```
 
 도함수는 곱의 미분법으로 $-e^{-t}(A\cos t + B\sin t) + e^{-t}(-A\sin t + B\cos t)$를 정리한 것이다. 두 초기 조건을 넣는다.
 
-$$
+```math
 y(0) = A + \frac{1}{2} = 1 \;\Longrightarrow\; A = \frac{1}{2}, \qquad \dot{y}(0) = B - A = 0 \;\Longrightarrow\; B = \frac{1}{2}
-$$
+```
 
-$$
+```math
 y(t) = \frac{1}{2} + \frac{1}{2}e^{-t}(\cos t + \sin t) = \frac{1}{2} + \frac{\sqrt{2}}{2}e^{-t}\sin(t + 45^\circ), \quad t \ge 0
-$$
+```
 
-마지막 꼴은 $\cos t + \sin t = \sqrt{2}\sin(t + 45^\circ)$를 쓴 것이다. 복소 지수 표현의 계수는 $K_1 = (A - jB)/2 = 0.25 - j0.25$, $K_2 = \bar{K}_1 = 0.25 + j0.25$이며, 이를 처음 식에 넣어도 같은 해가 나온다. 응답은 각진동수 1 rad/s로 진동하면서 포락선 $e^{-t}$를 따라 줄어들어 최종값 $1/2$에 다가간다(그림 3의 오른쪽). 진동 때문에 응답은 $\dot{y} = -e^{-t}\sin t$가 0이 되는 $t = \pi$에서 최종값보다 조금 낮은 $1/2 - e^{-\pi}/2 \approx 0.478$까지 내려갔다가 돌아온다. 특성근의 실수부 $-1$이 감쇠의 빠르기를, 허수부 $1$이 진동의 각진동수를 정하며, 이 관계는 7주차의 2차 시스템 응답에서 감쇠비와 고유 진동수로 다시 정리된다.
+마지막 꼴은 $\cos t + \sin t = \sqrt{2}\sin(t + 45^\circ)$를 쓴 것이다. 복소 지수 표현의 계수는 $K_1 = (A - jB)/2 = 0.25 - j0.25$, $`K_2 = \bar{K}_1 = 0.25 + j0.25`$이며, 이를 처음 식에 넣어도 같은 해가 나온다. 응답은 각진동수 1 rad/s로 진동하면서 포락선 $e^{-t}$를 따라 줄어들어 최종값 $1/2$에 다가간다(그림 3의 오른쪽). 진동 때문에 응답은 $\dot{y} = -e^{-t}\sin t$가 0이 되는 $t = \pi$에서 최종값보다 조금 낮은 $1/2 - e^{-\pi}/2 \approx 0.478$까지 내려갔다가 돌아온다. 특성근의 실수부 $-1$이 감쇠의 빠르기를, 허수부 $1$이 진동의 각진동수를 정하며, 이 관계는 7주차의 2차 시스템 응답에서 감쇠비와 고유 진동수로 다시 정리된다.
 
 ![그림 3. 문제 5의 두 해](../../images/HW01_Differential-Equation-Responses.png)
 
@@ -342,7 +342,7 @@ $$
    <details>
    <summary>정답</summary>
 
-   크기는 $\sqrt{3 + 1} = 2$이다. $\tan^{-1}\big(1/(-\sqrt{3})\big) = -30^\circ$이지만 점이 2사분면($a < 0$, $b > 0$)에 있으므로 $180^\circ$를 더해 $150^\circ$이다. 따라서 $-\sqrt{3} + j = 2\angle 150^\circ$이며, 이는 문제 4의 곱 $S_1S_2$와 같은 수이다.
+   크기는 $\sqrt{3 + 1} = 2$이다. $\tan^{-1}\big(1/(-\sqrt{3})\big) = -30^\circ$이지만 점이 2사분면($a < 0$, $`b > 0`$)에 있으므로 $180^\circ$를 더해 $150^\circ$이다. 따라서 $-\sqrt{3} + j = 2\angle 150^\circ$이며, 이는 문제 4의 곱 $S_1S_2$와 같은 수이다.
 
    </details>
 

@@ -59,9 +59,9 @@ The steady-state performance of a control system is expressed by the steady-stat
 
 The steady-state error is the measure that expresses steady-state performance quantitatively. One may find $e(t)$ directly in the time domain and take the limit, but the **final value theorem** of Week 3 gives it directly from the Laplace transform $E(s)$.
 
-$$
+```math
 e_{ss} = \lim_{t\to\infty} e(t) = \lim_{s\to 0} sE(s)
-$$
+```
 
 > **Caution:** The final value theorem holds only when all poles of $sE(s)$ lie in the left half of the complex plane. If the closed-loop system is unstable, the error diverges or oscillates forever, so no steady-state error exists, yet substituting into the formula can still produce a plausible finite value. Therefore, before computing a steady-state error, first check that the closed-loop system is stable with the methods of Week 9 (roots of the characteristic equation, the Routh-Hurwitz criterion). Also, when the result comes out as $\infty$, a pole at the origin remains in $sE(s)$, so strictly speaking the conditions of the theorem are not met; the result is interpreted as the error growing without bound over time, which can be confirmed directly in the time domain (Section 2.2).
 
@@ -84,7 +84,7 @@ flowchart LR
 
 *Figure 1. Motor control system with the units of the command and the sensor output matched*
 
-The output of the summing point in Figure 1 is $K_{sensor}R(s) - K_{sensor}Y(s) = K_{sensor}\,[R(s) - Y(s)]$. That is, the summing point is equivalent to first forming the difference $R - Y$ between the command and the output and then multiplying by $K_{sensor}$. Therefore, moving the $K_{sensor}$ block behind the summing point gives the unity feedback system of Figure 2, and the two block diagrams have the same input-output relation.
+The output of the summing point in Figure 1 is $`K_{sensor}R(s) - K_{sensor}Y(s) = K_{sensor}\,[R(s) - Y(s)]`$. That is, the summing point is equivalent to first forming the difference $R - Y$ between the command and the output and then multiplying by $K_{sensor}$. Therefore, moving the $K_{sensor}$ block behind the summing point gives the unity feedback system of Figure 2, and the two block diagrams have the same input-output relation.
 
 ```mermaid
 flowchart LR
@@ -117,17 +117,17 @@ flowchart LR
 
 Let us express the error $E(s)$ in terms of $R(s)$. At the summing point $E = R - Y$, and the output is the result of the error passing through the controller and then the plant, so $Y = D G E$. Eliminate $Y$ from the two equations.
 
-$$
+```math
 E = R - DGE \quad\Longrightarrow\quad E\,(1 + DG) = R \quad\Longrightarrow\quad E(s) = \frac{R(s)}{1 + D(s)G(s)}
-$$
+```
 
 Applying the final value theorem gives the steady-state error of a unity feedback system.
 
-$$
+```math
 e_{ss} = \lim_{s\to 0} sE(s) = \lim_{s\to 0} \frac{sR(s)}{1 + D(s)G(s)}
-$$
+```
 
-$D(s)G(s)$ is the transfer function of the path once around the loop and is called the **open-loop transfer function**. The equation shows that the steady-state error is determined by the form $R(s)$ of the command input and by the behavior of the open-loop transfer function near $s \to 0$. Note that with the **closed-loop transfer function** $T(s) = \frac{DG}{1 + DG}$ we have $1 - T = \frac{1}{1 + DG}$, so the error can also be written as $E(s) = [1 - T(s)]\,R(s)$. This form is used in Section 3 for non-unity feedback systems.
+$D(s)G(s)$ is the transfer function of the path once around the loop and is called the **open-loop transfer function**. The equation shows that the steady-state error is determined by the form $R(s)$ of the command input and by the behavior of the open-loop transfer function near $s \to 0$. Note that with the **closed-loop transfer function** $T(s) = \frac{DG}{1 + DG}$ we have $1 - T = \frac{1}{1 + DG}$, so the error can also be written as $`E(s) = [1 - T(s)]\,R(s)`$. This form is used in Section 3 for non-unity feedback systems.
 
 ### 1.5 Three Standard Inputs
 
@@ -136,8 +136,8 @@ Since the steady-state error depends on the form of the command input, reference
 | Input | Time function $r(t)$ | Laplace transform $R(s)$ | Order | Meaning when the output is a position |
 |:-----|:-----|:-----|:-----|:-----|
 | Unit step input | $u_s(t)$ | $\dfrac{1}{s}$ | 0th | Command to move to a fixed position |
-| Unit ramp input | $t\,u_s(t)$ | $\dfrac{1}{s^2}$ | 1st | Command to follow a target moving at constant velocity |
-| Unit parabolic input | $\dfrac{t^2}{2}\,u_s(t)$ | $\dfrac{1}{s^3}$ | 2nd | Command to follow a target moving at constant acceleration |
+| Unit ramp input | $`t\,u_s(t)`$ | $\dfrac{1}{s^2}$ | 1st | Command to follow a target moving at constant velocity |
+| Unit parabolic input | $`\dfrac{t^2}{2}\,u_s(t)`$ | $\dfrac{1}{s^3}$ | 2nd | Command to follow a target moving at constant acceleration |
 
 *Table 1. Three standard inputs for computing the steady-state error*
 
@@ -147,15 +147,15 @@ In real systems, functions of forms completely different from these three are mo
 
 Substitute $R(s) = 1/s$ into the equation of Section 1.4. The $s$ in the numerator cancels the $1/s$ of $R(s)$.
 
-$$
+```math
 e_{ss} = \lim_{s\to 0} \frac{s\cdot\frac{1}{s}}{1 + D(s)G(s)} = \lim_{s\to 0}\frac{1}{1 + D(s)G(s)} = \frac{1}{1 + \lim_{s\to 0} D(s)G(s)}
-$$
+```
 
 The limit remaining in the denominator is defined as the **position error constant** $K_p$.
 
-$$
+```math
 K_p = \lim_{s\to 0} D(s)G(s), \qquad e_{ss} = \frac{1}{1 + K_p}
-$$
+```
 
 $K_p$ is the DC gain of the open-loop transfer function, that is, its value at $s = 0$. The larger $K_p$, the smaller the error for a step input, and if the open-loop transfer function has a pole at the origin, $K_p = \infty$ and the error becomes 0.
 
@@ -163,29 +163,29 @@ $K_p$ is the DC gain of the open-loop transfer function, that is, its value at $
 
 Substituting $R(s) = 1/s^2$ cancels one $s$ and leaves one $s$ in the denominator. Rearranging the numerator and denominator gives the following.
 
-$$
+```math
 e_{ss} = \lim_{s\to 0} \frac{s\cdot\frac{1}{s^2}}{1 + D(s)G(s)} = \lim_{s\to 0}\frac{1}{s + sD(s)G(s)} = \frac{1}{\lim_{s\to 0} sD(s)G(s)}
-$$
+```
 
 The last step uses the fact that the first term $s$ of the denominator vanishes as $s \to 0$. The limit in the denominator is defined as the **velocity error constant** $K_v$.
 
-$$
+```math
 K_v = \lim_{s\to 0} sD(s)G(s), \qquad e_{ss} = \frac{1}{K_v}
-$$
+```
 
 ### 1.8 Unit Parabolic Input and the Acceleration Error Constant
 
 Substituting $R(s) = 1/s^3$ leaves $s^2$ in the denominator in the same way.
 
-$$
+```math
 e_{ss} = \lim_{s\to 0} \frac{s\cdot\frac{1}{s^3}}{1 + D(s)G(s)} = \lim_{s\to 0}\frac{1}{s^2 + s^2D(s)G(s)} = \frac{1}{\lim_{s\to 0} s^2D(s)G(s)}
-$$
+```
 
 The limit in the denominator is defined as the **acceleration error constant** $K_a$.
 
-$$
+```math
 K_a = \lim_{s\to 0} s^2D(s)G(s), \qquad e_{ss} = \frac{1}{K_a}
-$$
+```
 
 The names of the three error constants come from the fact that, in a system whose output is a position, the inputs correspond to commands of position, velocity, and acceleration (Table 1). The three results are summarized in Table 2. All three formulas come from $E(s) = R/(1 + DG)$ of Section 1.4, so they apply only to unity feedback systems, and they are meaningful only when the closed-loop system is stable.
 
@@ -236,41 +236,41 @@ flowchart LR
 
 The open-loop transfer function is $D(s)G(s) = \frac{K_1A}{\tau s + 1}$. With the values $K_1 = 2$, $A = 2$, $\tau = 1$, $D(s)G(s) = \frac{4}{s + 1}$, and the closed-loop transfer function is as follows.
 
-$$
+```math
 T(s) = \frac{DG}{1 + DG} = \frac{\frac{4}{s+1}}{1 + \frac{4}{s+1}} = \frac{4}{(s + 1) + 4} = \frac{4}{s + 5}
-$$
+```
 
 The closed-loop pole $s = -5$ lies in the left half-plane, so the system is stable and the final value theorem can be used.
 
 **Steady-state error for a unit step input.** The position error constant and the steady-state error are as follows.
 
-$$
+```math
 K_p = \lim_{s\to 0}\frac{4}{s + 1} = 4, \qquad e_{ss} = \frac{1}{1 + K_p} = \frac{1}{5} = 0.2
-$$
+```
 
 Check this in the time domain. The output is $Y(s) = T(s)\cdot\frac{1}{s} = \frac{4}{s(s + 5)}$, and the coefficients of the partial fraction expansion (Week 3) are found as the value of the remaining factors at each pole. The coefficient for $s = 0$ is $\frac{4}{0 + 5} = 0.8$, and the coefficient for $s = -5$ is $\frac{4}{-5} = -0.8$.
 
-$$
+```math
 Y(s) = \frac{0.8}{s} - \frac{0.8}{s + 5} \quad\Longrightarrow\quad y(t) = 0.8\,(1 - e^{-5t}), \qquad e(t) = 1 - y(t) = 0.2 + 0.8e^{-5t}
-$$
+```
 
 Once the exponential term dies out, the output stays at 0.8 and an error of 0.2 remains ((a) of Figure 5). In general $e_{ss} = \frac{1}{1 + K_1A}$, so increasing the gain $K_1$ reduces the error, but no finite gain makes it 0.
 
 **Steady-state error for a unit ramp input.** The velocity error constant is 0, so the error is infinite.
 
-$$
+```math
 K_v = \lim_{s\to 0} s\cdot\frac{4}{s + 1} = 0, \qquad e_{ss} = \frac{1}{K_v} = \infty
-$$
+```
 
 Check this in the time domain. $Y(s) = \frac{4}{s+5}\cdot\frac{1}{s^2} = \frac{4}{(s + 5)s^2}$, which is expanded as $\frac{C_1}{s + 5} + \frac{C_2}{s} + \frac{C_3}{s^2}$. $C_3$ is the value after multiplying by $s^2$ and setting $s = 0$, $\frac{4}{5} = 0.8$, and $C_1$ is the value after multiplying by $s + 5$ and setting $s = -5$, $\frac{4}{25} = 0.16$. The remaining coefficient $C_2$ of the double root $s = 0$ is the derivative of $\frac{4}{s+5}$ with respect to $s$, $-\frac{4}{(s+5)^2}$, evaluated at $s = 0$, which is $-0.16$.
 
-$$
+```math
 Y(s) = \frac{4}{(s + 5)s^2} = \frac{0.16}{s + 5} - \frac{0.16}{s} + \frac{0.8}{s^2}
-$$
+```
 
-$$
+```math
 y(t) = 0.8t - 0.16 + 0.16e^{-5t}, \qquad e(t) = t - y(t) = 0.2t + 0.16 - 0.16e^{-5t}
-$$
+```
 
 The slope of the output is 0.8, smaller than the slope 1 of the command, so the error $e(t)$ grows without bound in proportion to time ((b) of Figure 5). This agrees with the result $e_{ss} = \infty$. The system is therefore a **type 0 system**, with a nonzero finite error of 0.2 for a unit step input.
 
@@ -295,39 +295,39 @@ flowchart LR
 
 The open-loop transfer function is $D(s)G(s) = \left(K_1 + \frac{K_2}{s}\right)\frac{A}{\tau s + 1} = \frac{A(K_1 s + K_2)}{s(\tau s + 1)}$. The integral term creates one pole at the origin $s = 0$ in the open-loop transfer function. With the values $K_1 = 2$, $K_2 = 3$, $A = 2$, $\tau = 1$:
 
-$$
+```math
 D(s)G(s) = \frac{2(2s + 3)}{s(s + 1)} = \frac{4s + 6}{s(s + 1)}, \qquad T(s) = \frac{4s + 6}{s(s + 1) + 4s + 6} = \frac{4s + 6}{s^2 + 5s + 6} = \frac{2(2s + 3)}{(s + 2)(s + 3)}
-$$
+```
 
 The closed-loop poles are $-2$ and $-3$, so the system is stable. The transfer function of the error is $1 - T(s) = \frac{s^2 + 5s + 6 - 4s - 6}{s^2 + 5s + 6} = \frac{s(s + 1)}{(s + 2)(s + 3)}$.
 
 **Unit step input.** The denominator of the open-loop transfer function contains $s$, so $K_p$ is infinite and the error is 0.
 
-$$
+```math
 K_p = \lim_{s\to 0}\frac{4s + 6}{s(s + 1)} = \infty, \qquad e_{ss} = \frac{1}{1 + K_p} = 0
-$$
+```
 
 In the time domain the output is $Y(s) = \frac{4s + 6}{s(s + 2)(s + 3)} = \frac{1}{s} + \frac{1}{s + 2} - \frac{2}{s + 3}$. The coefficients are $\frac{6}{2\cdot 3} = 1$ at $s = 0$, $\frac{-8 + 6}{(-2)(1)} = 1$ at $s = -2$, and $\frac{-12 + 6}{(-3)(-1)} = -2$ at $s = -3$. Hence $y(t) = 1 + e^{-2t} - 2e^{-3t}$ and $y(t) \to 1$. Setting $\dot{y}(t) = -2e^{-2t} + 6e^{-3t} = 0$ gives $e^{-t} = \frac{1}{3}$, that is, at $t = \ln 3 \approx 1.10$ s the output reaches its maximum $1 + \frac{1}{9} - \frac{2}{27} = \frac{28}{27} \approx 1.037$ ((a) of Figure 7). The output exceeds the target by about 3.7% even though both closed-loop poles are real because of the closed-loop zero at $s = -1.5$.
 
 **Unit ramp input.** The velocity error constant is finite.
 
-$$
+```math
 K_v = \lim_{s\to 0} s\cdot\frac{4s + 6}{s(s + 1)} = \lim_{s\to 0}\frac{4s + 6}{s + 1} = 6, \qquad e_{ss} = \frac{1}{K_v} = \frac{1}{6} \approx 0.167
-$$
+```
 
 Check this in the time domain. $E(s) = [1 - T(s)]\frac{1}{s^2} = \frac{s(s + 1)}{(s + 2)(s + 3)}\cdot\frac{1}{s^2} = \frac{s + 1}{s(s + 2)(s + 3)}$, and the coefficients are $\frac{1}{2\cdot 3} = \frac{1}{6}$ at $s = 0$, $\frac{-1}{(-2)(1)} = \frac{1}{2}$ at $s = -2$, and $\frac{-2}{(-3)(-1)} = -\frac{2}{3}$ at $s = -3$.
 
-$$
+```math
 e(t) = \frac{1}{6} + \frac{1}{2}e^{-2t} - \frac{2}{3}e^{-3t} \;\longrightarrow\; \frac{1}{6}
-$$
+```
 
 The output follows the command with the same slope but lags behind it by $\frac{1}{6}$ ((b) of Figure 7).
 
 **Unit parabolic input.** The acceleration error constant is 0, so the error is infinite.
 
-$$
+```math
 K_a = \lim_{s\to 0} s^2\cdot\frac{4s + 6}{s(s + 1)} = 0, \qquad e_{ss} = \frac{1}{K_a} = \infty
-$$
+```
 
 Expanding $E(s) = \frac{s + 1}{s^2(s + 2)(s + 3)}$ in the same way gives $e(t) = \frac{t}{6} + \frac{1}{36} - \frac{1}{4}e^{-2t} + \frac{2}{9}e^{-3t}$. The error keeps growing like $\frac{t}{6}$, so at $t = 10$ s, for example, the command is $\frac{10^2}{2} = 50$ while the output is about 48.3, an error of about 1.69 ((c) of Figure 7).
 
@@ -341,9 +341,9 @@ The system is therefore a **type 1 system**, with a nonzero finite error of $\fr
 
 Let us generalize the results of the two examples. If the open-loop transfer function of a unity feedback system has $N$ poles at the origin, it can be written as follows, arranging the part other than the poles at the origin so that it equals 1 at $s = 0$.
 
-$$
+```math
 D(s)G(s) = \frac{K_N\,(1 + \beta_1 s)(1 + \beta_2 s)\cdots}{s^N\,(1 + \alpha_1 s)(1 + \alpha_2 s)\cdots}, \qquad K_N \ne 0
-$$
+```
 
 As $s \to 0$, every factor in parentheses approaches 1, so $D(s)G(s) \approx \frac{K_N}{s^N}$. Substitute this into the error constants of Section 1.
 
@@ -391,63 +391,63 @@ flowchart LR
 
 The output of the summing point is $R - HY$ and $Y = DG(R - HY)$, so solving for $Y$ gives the closed-loop transfer function.
 
-$$
+```math
 Y\,(1 + DGH) = DGR \quad\Longrightarrow\quad T(s) = \frac{Y(s)}{R(s)} = \frac{D(s)G(s)}{1 + D(s)G(s)H(s)}
-$$
+```
 
 Here the output of the summing point, $R - HY$, is not the error $R - Y$, because the signal compared with the command is the output passed through $H$, not the output itself. Computing the error constants of Table 2 with $D(s)G(s)H(s)$ therefore gives only the steady-state value of the summing-point signal, not the error between the command and the output (Section 3.6). In a non-unity feedback system the error is taken by definition as $E = R - Y$ and computed directly from the closed-loop transfer function.
 
-$$
+```math
 E(s) = R(s) - Y(s) = [1 - T(s)]\,R(s)
-$$
+```
 
 Write the closed-loop transfer function as a ratio of numerator and denominator polynomials. If the numerator has a lower degree than the denominator, the coefficients $b_i$ of the missing powers are set to 0.
 
-$$
+```math
 T(s) = \frac{b_n s^n + b_{n-1}s^{n-1} + \cdots + b_1 s + b_0}{a_n s^n + a_{n-1}s^{n-1} + \cdots + a_1 s + a_0}
-$$
+```
 
 Then $1 - T(s)$ is the denominator minus the numerator, divided by the denominator.
 
-$$
+```math
 1 - T(s) = \frac{(a_n - b_n)s^n + (a_{n-1} - b_{n-1})s^{n-1} + \cdots + (a_1 - b_1)s + (a_0 - b_0)}{a_n s^n + a_{n-1}s^{n-1} + \cdots + a_1 s + a_0}
-$$
+```
 
 ### 3.2 Conditions for Types 0, 1, and 2
 
 **Condition for type 0.** Apply the final value theorem to a unit step input $R(s) = \frac{1}{s}$.
 
-$$
+```math
 e_{ss} = \lim_{s\to 0} s\left(\frac{(a_n - b_n)s^n + (a_{n-1} - b_{n-1})s^{n-1} + \cdots + (a_1 - b_1)s + (a_0 - b_0)}{a_n s^n + a_{n-1}s^{n-1} + \cdots + a_1 s + a_0}\right)\frac{1}{s} = \frac{a_0 - b_0}{a_0}
-$$
+```
 
 This is because $s$ and $\frac{1}{s}$ cancel and only the constant terms remain in the numerator and denominator as $s \to 0$. For this value to be nonzero and finite, $a_0 \ne 0$ and $a_0 - b_0 \ne 0$ are required. The condition $a_0 \ne 0$ means that the closed-loop system has no pole at the origin, which a stable system always satisfies. Also, $\frac{a_0 - b_0}{a_0} = 1 - \frac{b_0}{a_0} = 1 - T(0)$, so the error for a step input is 1 minus the DC gain of the closed loop.
 
 **Condition for type 1.** For a unit ramp input $R(s) = \frac{1}{s^2}$, one $s$ remains in the denominator.
 
-$$
+```math
 e_{ss} = \lim_{s\to 0} s\left(\frac{(a_n - b_n)s^n + \cdots + (a_1 - b_1)s + (a_0 - b_0)}{a_n s^n + \cdots + a_1 s + a_0}\right)\frac{1}{s^2} = \lim_{s\to 0}\frac{(a_n - b_n)s^n + \cdots + (a_1 - b_1)s + (a_0 - b_0)}{s\,(a_n s^n + \cdots + a_1 s + a_0)}
-$$
+```
 
 If $a_0 - b_0 \ne 0$, the numerator tends to a nonzero constant while the denominator tends to 0, so $e_{ss} = \infty$. If $a_0 - b_0 = 0$, every term of the numerator contains $s$, which cancels the $s$ of the denominator.
 
-$$
+```math
 e_{ss} = \lim_{s\to 0}\frac{(a_n - b_n)s^{n-1} + \cdots + (a_2 - b_2)s + (a_1 - b_1)}{a_n s^n + \cdots + a_1 s + a_0} = \frac{a_1 - b_1}{a_0}
-$$
+```
 
 The conditions for type 1 are therefore $(a_1 - b_1) \ne 0$, $(a_0 - b_0) = 0$, and $a_0 \ne 0$.
 
 **Condition for type 2.** For a unit parabolic input $R(s) = \frac{1}{s^3}$, $s^2$ remains in the denominator.
 
-$$
+```math
 e_{ss} = \lim_{s\to 0} s\left(\frac{(a_n - b_n)s^n + \cdots + (a_1 - b_1)s + (a_0 - b_0)}{a_n s^n + \cdots + a_1 s + a_0}\right)\frac{1}{s^3} = \lim_{s\to 0}\frac{(a_n - b_n)s^n + \cdots + (a_1 - b_1)s + (a_0 - b_0)}{s^2\,(a_n s^n + \cdots + a_1 s + a_0)}
-$$
+```
 
 To cancel the $s^2$ of the denominator, both the constant term and the first-order term in $s$ of the numerator must vanish. If $a_0 - b_0 = 0$ and $a_1 - b_1 = 0$:
 
-$$
+```math
 e_{ss} = \lim_{s\to 0}\frac{(a_n - b_n)s^{n-2} + \cdots + (a_2 - b_2)}{a_n s^n + \cdots + a_0} = \frac{a_2 - b_2}{a_0}
-$$
+```
 
 The conditions for type 2 are therefore $(a_2 - b_2) \ne 0$, $(a_1 - b_1) = 0$, $(a_0 - b_0) = 0$, and $a_0 \ne 0$.
 
@@ -455,9 +455,9 @@ The conditions for type 2 are therefore $(a_2 - b_2) \ne 0$, $(a_1 - b_1) = 0$, 
 
 Extend the same reasoning to the command of order $N$, $\frac{t^N}{N!}u_s(t)$, that is, $R(s) = \frac{1}{s^{N+1}}$. Applying the final value theorem leaves $s^N$ in the denominator, so the error is finite only if all coefficients of the numerator from $s^0$ to $s^{N-1}$ are 0, and nonzero only if the coefficient of $s^N$ is not 0. The conditions for system type $N$ and the corresponding error are as follows.
 
-$$
+```math
 (a_N - b_N) \ne 0, \quad (a_{N-1} - b_{N-1}) = 0, \quad \ldots, \quad (a_0 - b_0) = 0, \quad a_0 \ne 0, \qquad e_{ss} = \frac{a_N - b_N}{a_0}
-$$
+```
 
 | System type | Conditions | Nonzero finite error |
 |:-----|:-----|:-----|
@@ -468,7 +468,7 @@ $$
 
 *Table 5. Conditions for system type in terms of the coefficients of the closed-loop transfer function*
 
-In other words, the system type is the degree of the lowest-order nonzero term in the numerator of $1 - T(s)$. Since these conditions use only the closed-loop transfer function, they hold whether or not the feedback is unity. For a unity feedback system, writing the open-loop transfer function as $D(s)G(s) = \frac{N_L(s)}{s^N D_L(s)}$ ($N_L(0) \ne 0$, $D_L(0) \ne 0$) gives $T(s) = \frac{N_L}{s^N D_L + N_L}$, so the numerator of $1 - T$ is $s^N D_L(s)$ and exactly the coefficients from $s^0$ to $s^{N-1}$ are 0. The two tests (the number of poles at the origin and the coefficient conditions) therefore give the same answer for unity feedback systems.
+In other words, the system type is the degree of the lowest-order nonzero term in the numerator of $1 - T(s)$. Since these conditions use only the closed-loop transfer function, they hold whether or not the feedback is unity. For a unity feedback system, writing the open-loop transfer function as $D(s)G(s) = \frac{N_L(s)}{s^N D_L(s)}$ ($N_L(0) \ne 0$, $`D_L(0) \ne 0`$) gives $T(s) = \frac{N_L}{s^N D_L + N_L}$, so the numerator of $1 - T$ is $s^N D_L(s)$ and exactly the coefficients from $s^0$ to $s^{N-1}$ are 0. The two tests (the number of poles at the origin and the coefficient conditions) therefore give the same answer for unity feedback systems.
 
 > **Key Point:** The type and the steady-state error of a non-unity feedback system are found by starting from the definition of the error $E = R - Y$ and comparing the low-order coefficients of the numerator and denominator of the closed-loop transfer function $T(s)$. In particular, $a_0 = b_0$, that is, $T(0) = 1$, is needed for the error for a step input to be 0.
 
@@ -476,15 +476,15 @@ In other words, the system type is the degree of the lowest-order nonzero term i
 
 Determine the type of the system of Section 2.3 (Figure 6) again with the coefficient conditions. Find the closed-loop transfer function symbolically.
 
-$$
+```math
 T(s) = \frac{\frac{A(K_1 s + K_2)}{s(\tau s + 1)}}{1 + \frac{A(K_1 s + K_2)}{s(\tau s + 1)}} = \frac{AK_1 s + AK_2}{\tau s^2 + (1 + AK_1)s + AK_2}
-$$
+```
 
 Reading the coefficients gives $a_2 = \tau$, $a_1 = 1 + AK_1$, $a_0 = AK_2$, $b_2 = 0$, $b_1 = AK_1$, and $b_0 = AK_2$. Hence $a_0 - b_0 = 0$ and $a_1 - b_1 = 1 \ne 0$, and if $AK_2 \ne 0$ then $a_0 \ne 0$, so the system is type 1. The error for a unit ramp input is as follows.
 
-$$
+```math
 e_{ss} = \frac{a_1 - b_1}{a_0} = \frac{1}{AK_2} = \frac{1}{2 \cdot 3} = \frac{1}{6}
-$$
+```
 
 Numerically $T(s) = \frac{4s + 6}{s^2 + 5s + 6}$, so $a_1 - b_1 = 5 - 4 = 1$ and $a_0 = 6$. This agrees with the value found from $K_v = 6$ in Section 2.3. The result is meaningful only when the closed-loop system is stable; the second-order characteristic equation $\tau s^2 + (1 + AK_1)s + AK_2 = 0$ is stable when all three coefficients are positive.
 
@@ -492,15 +492,15 @@ Numerically $T(s) = \frac{4s + 6}{s^2 + 5s + 6}$, so $a_1 - b_1 = 5 - 4 = 1$ and
 
 Determine the type of the system with the structure of Figure 3 in which the controller is a constant gain $D(s) = K = 1$ and the plant is $G(s) = \frac{4}{s^2 + 2s + 2}$.
 
-$$
+```math
 T(s) = \frac{\frac{4}{s^2 + 2s + 2}}{1 + \frac{4}{s^2 + 2s + 2}} = \frac{4}{s^2 + 2s + 6}
-$$
+```
 
 The roots of the characteristic equation $s^2 + 2s + 6 = 0$ are $s = -1 \pm j\sqrt{5}$, in the left half-plane, so the system is stable. The coefficients are $a_0 = 6$ and $b_0 = 4$, and $a_0 - b_0 = 2 \ne 0$, so the system is **type 0**. The error for a unit step input is as follows.
 
-$$
+```math
 e_{ss} = \frac{a_0 - b_0}{a_0} = \frac{2}{6} = \frac{1}{3}
-$$
+```
 
 Since the feedback is unity, the method of Section 1 also confirms this. $K_p = \lim_{s\to 0}\frac{4}{s^2 + 2s + 2} = 2$, so $e_{ss} = \frac{1}{1 + 2} = \frac{1}{3}$, and the output stays at $T(0) = \frac{4}{6} = \frac{2}{3}$. This also agrees with the observation that the plant has no pole at the origin and the controller is a constant, so the open-loop transfer function has no integrator and the system is type 0.
 
@@ -510,9 +510,9 @@ This example shows that judging the type from the open-loop transfer function al
 
 Compute by the definition. The closed-loop transfer function is as follows.
 
-$$
+```math
 T(s) = \frac{\frac{10}{s(s + 2)}}{1 + \frac{10}{s(s + 2)}\cdot 0.5} = \frac{10}{s(s + 2) + 5} = \frac{10}{s^2 + 2s + 5}
-$$
+```
 
 The roots of the characteristic equation are $s = -1 \pm j2$, so the system is stable. Since $a_0 = 5$ and $b_0 = 10$, $a_0 - b_0 = -5 \ne 0$ and the system is **type 0**. The error for a unit step input is $e_{ss} = \frac{-5}{5} = -1$. Indeed the output is $y(t) = 2 - e^{-t}(2\cos 2t + \sin 2t)$, so $y(t) \to 2$, which exceeds the command 1 by 1.
 
@@ -558,7 +558,7 @@ The result is interpreted as follows. The integrator in the loop drives the summ
 | Final value theorem | $e_{ss} = \lim_{s\to 0} sE(s)$, usable only when all poles of $sE(s)$ lie in the left half-plane, for which closed-loop stability is a necessary condition. |
 | Unity feedback | A structure whose feedback path is $H(s) = 1$; if a gain matching the units of the command and the output appears in both paths, the system can be redrawn as unity feedback. |
 | Error of unity feedback | Since $E(s) = \frac{R(s)}{1 + D(s)G(s)}$, the steady-state error is determined by the form of the input and the behavior of the open-loop transfer function near $s \to 0$. |
-| Standard inputs | The unit step ($1/s$), unit ramp ($1/s^2$), and unit parabola ($1/s^3$) are inputs of order 0, 1, and 2, and complex commands can be approximated piecewise by them. |
+| Standard inputs | The unit step ($`1/s`$), unit ramp ($`1/s^2`$), and unit parabola ($`1/s^3`$) are inputs of order 0, 1, and 2, and complex commands can be approximated piecewise by them. |
 | Error constants | $K_p = \lim DG$, $K_v = \lim sDG$, $K_a = \lim s^2DG$, and the errors are $\frac{1}{1 + K_p}$, $\frac{1}{K_v}$, and $\frac{1}{K_a}$, respectively. |
 | System type | The $N$ for which the steady-state error for a command of order $N$ is nonzero and finite; with unity feedback it is the number of poles at the origin of the open-loop transfer function. |
 | Error by type | A type $N$ system has zero error for inputs of order lower than $N$, a finite error for the input of order $N$, and $\infty$ for higher-order inputs. |

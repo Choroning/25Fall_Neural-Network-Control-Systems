@@ -216,21 +216,21 @@ Differential equations are classified by order and degree.
 
 **Galileo's falling bodies.** While studying the motion of falling bodies, Galileo found that when a freely falling body falls a distance $x$ in time $t$, its acceleration $x''(t)$ is constant and equal to the gravitational acceleration $g$. Written as a differential equation, this is as follows.
 
-$$
+```math
 x''(t) = g
-$$
+```
 
 Integrating both sides once with respect to $t$ gives the velocity, and integrating once more gives the position.
 
-$$
+```math
 x'(t) = g t + C_1, \qquad x(t) = \frac{1}{2} g t^2 + C_1 t + C_2
-$$
+```
 
 If the body is released from rest, then $x(0) = 0$ and $x'(0) = 0$, so $C_2 = 0$ and $C_1 = 0$, and the following solution is obtained.
 
-$$
+```math
 x(t) = \frac{1}{2} g t^2
-$$
+```
 
 ![Figure 10. Galileo's experiment of dropping objects from the Leaning Tower of Pisa](../../images/Week02_2-1_p15.png)
 
@@ -246,19 +246,19 @@ Galileo's law of falling bodies is often introduced as the first example of a la
 
 *Figure 11. An RC circuit connected to a step-function voltage source*
 
-The differential equation is derived from two laws. By Kirchhoff's voltage law, which says that the sum of voltages around a loop is zero, the source voltage is the sum of the voltage across the resistor and the voltage across the capacitor. If $i(t)$ is the current in the circuit, the voltage across the resistor is $R i(t)$, and the current of the capacitor is proportional to the rate of change of its voltage, $i(t) = C \, dy/dt$.
+The differential equation is derived from two laws. By Kirchhoff's voltage law, which says that the sum of voltages around a loop is zero, the source voltage is the sum of the voltage across the resistor and the voltage across the capacitor. If $i(t)$ is the current in the circuit, the voltage across the resistor is $R i(t)$, and the current of the capacitor is proportional to the rate of change of its voltage, $`i(t) = C \, dy/dt`$.
 
-$$
+```math
 u(t) = R\, i(t) + y(t), \qquad i(t) = C \frac{dy(t)}{dt}
-$$
+```
 
 Substituting the second equation into the first gives the differential equation of the RC circuit.
 
-$$
+```math
 RC \frac{dy(t)}{dt} + y(t) = u(t)
-$$
+```
 
-This is a first-order differential equation. Solving it with the method of Section 3.2 for the unit step input $u(t) = 1$ ($t \geq 0$) and the initial condition $y(0) = 0$ gives $y(t) = 1 - e^{-t/RC}$. The capacitor voltage starts at 0 and rises exponentially toward 1 V, reaching $1 - e^{-1} \approx 0.632$, about 63.2% of its final value, at $t = RC$. This $RC$ is called the **time constant** of the circuit.
+This is a first-order differential equation. Solving it with the method of Section 3.2 for the unit step input $u(t) = 1$ ($`t \geq 0`$) and the initial condition $y(0) = 0$ gives $y(t) = 1 - e^{-t/RC}$. The capacitor voltage starts at 0 and rises exponentially toward 1 V, reaching $1 - e^{-1} \approx 0.632$, about 63.2% of its final value, at $t = RC$. This $RC$ is called the **time constant** of the circuit.
 
 **Mass-spring system.** Consider a body of mass $m$ attached to the end of a spring fixed to a wall, displaced by $y$ from its equilibrium position.
 
@@ -269,13 +269,13 @@ This is a first-order differential equation. Solving it with the method of Secti
 In Figure 12, (a) is the equilibrium state in which the spring is neither stretched nor compressed, (b) is the state in which the body is pulled to the right by $y$ and the spring is stretched, and (c) is the state in which the body is pushed to the left and the spring is compressed. The spring force $F$ points to the left (toward equilibrium) in (b) and to the right (toward equilibrium) in (c). Two physical laws are used.
 
 - **Hooke's law:** The spring force is proportional to the displacement and points opposite to it. $F = -K y$, where $K$ is the spring constant.
-- **Newton's second law:** The force acting on a body equals its mass times its acceleration. $F = m a = m \, d^2 y/dt^2$.
+- **Newton's second law:** The force acting on a body equals its mass times its acceleration. $`F = m a = m \, d^2 y/dt^2`$.
 
 If the spring force is the only force acting on the body, the $F$ in the two equations is the same, giving the following differential equation.
 
-$$
+```math
 m \frac{d^2 y}{dt^2} = -K y \quad \Rightarrow \quad m \frac{d^2 y}{dt^2} + K y = 0
-$$
+```
 
 This is a second-order differential equation. If an external force $f(t)$ is applied to the body, that force becomes the input and the equation becomes $m \ddot{y} + K y = f(t)$. The roots of the characteristic equation $m\lambda^2 + K = 0$ of this equation are $\lambda = \pm j\sqrt{K/m}$, which are purely imaginary, so solving it with the method of Section 3.5 gives a combination of cosine and sine that oscillates forever with angular frequency $\sqrt{K/m}$. Modeling of mechanical systems with friction or dampers is covered in Week 4.
 
@@ -293,7 +293,7 @@ flowchart LR
 
 *Figure 13. Relation between the time domain and the frequency domain*
 
-For the functions treated in control engineering (such as functions continuous for $t \ge 0$), there is a one-to-one correspondence between the original function and the transformed function (Week 3), so transforming and then inverse transforming returns the original function. This gives the following advantages.
+For the functions treated in control engineering (such as functions continuous for $`t \ge 0`$), there is a one-to-one correspondence between the original function and the transformed function (Week 3), so transforming and then inverse transforming returns the original function. This gives the following advantages.
 
 - Problems that are hard to solve with the original function become easy with the transformed function. For example, the Laplace transform turns differentiation into multiplication by $s$ and turns differential equations into algebraic equations.
 - Information that is hard to obtain from the original function can be read from the transformed function. The stability and response speed of a system are examples.
@@ -310,15 +310,15 @@ The definition and properties of the Laplace transform are covered in Week 3. Be
 
 > **Definition:** A **complex number** is a number made of a real number and an imaginary number. A number whose square is less than 0 is called an **imaginary number**, and the number whose square is $-1$ is called the **imaginary unit** $i$.
 
-$$
+```math
 i^2 = -1 \quad \Rightarrow \quad i = \sqrt{-1}
-$$
+```
 
 In fields that deal with electronics and electricity, the imaginary unit is written $j$ to avoid confusion with the symbol $i$ for current. This course also uses $j$ and mostly denotes a complex number by $s$.
 
-$$
+```math
 s = a + jb = a + b\sqrt{-1}
-$$
+```
 
 Here $a$ is called the **real part** and written $a = \mathrm{Re}\lbrace s\rbrace$, and $b$ is called the **imaginary part** and written $b = \mathrm{Im}\lbrace s\rbrace$. Note that the imaginary part $b$ is itself a real number.
 
@@ -330,13 +330,13 @@ Here $a$ is called the **real part** and written $a = \mathrm{Re}\lbrace s\rbrac
 
 *Table 4. Classification of complex numbers*
 
-> **Note:** A number whose square is negative, that is, $bj$ ($b \neq 0$) with $(bj)^2 = -b^2 < 0$, is strictly called a **purely imaginary number**. In mathematics, the term imaginary number often refers to every complex number that is not real ($b \neq 0$). Also, $e^{\pi j}$ looks imaginary, but by Euler's formula in Section 2.6, $e^{j\pi} = -1$, a real number. An example of a purely imaginary number is $e^{j\pi/2} = j$.
+> **Note:** A number whose square is negative, that is, $bj$ ($`b \neq 0`$) with $(bj)^2 = -b^2 < 0$, is strictly called a **purely imaginary number**. In mathematics, the term imaginary number often refers to every complex number that is not real ($`b \neq 0`$). Also, $e^{\pi j}$ looks imaginary, but by Euler's formula in Section 2.6, $e^{j\pi} = -1$, a real number. An example of a purely imaginary number is $e^{j\pi/2} = j$.
 
 For example, $1 + j2 = 1 + 2\sqrt{-1}$ has real part $\mathrm{Re}\lbrace1 + j2\rbrace= 1$ and imaginary part $\mathrm{Im}\lbrace1 + j2\rbrace= 2$. Squaring the purely imaginary number $j2$ gives a negative number.
 
-$$
+```math
 (j2)^2 = \left(2\sqrt{-1}\right)^2 = 4 \times (-1) = -4
-$$
+```
 
 A complex number is a pair of two real numbers, the real part and the imaginary part, so it can be represented as a point in a plane through a coordinate system (Sections 2.3 and 2.4).
 
@@ -344,15 +344,15 @@ A complex number is a pair of two real numbers, the real part and the imaginary 
 
 Applying $j^2 = -1$ repeatedly, the powers of $j$ cycle through four values in turn.
 
-$$
+```math
 j^1 = j, \quad j^2 = -1, \quad j^3 = j^2 \cdot j = -j, \quad j^4 = (j^2)^2 = 1, \quad j^5 = j^4 \cdot j = j, \quad \ldots
-$$
+```
 
 Therefore the following periodicity holds for every natural number $n$.
 
-$$
+```math
 j^{4n-3} = j, \qquad j^{4n-2} = -1, \qquad j^{4n-1} = -j, \qquad j^{4n} = 1
-$$
+```
 
 For example, $j^{10}$ is $-1$ because $10 = 4 \times 3 - 2$, and $j^{23}$ is $-j$ because $23 = 4 \times 6 - 1$. As Section 2.8 shows, multiplying by $j$ is the same as rotating by 90° in the complex plane, so the geometric meaning of this periodicity is that multiplying four times turns 360° and returns to the starting point.
 
@@ -367,7 +367,7 @@ For example, $j^{10}$ is $-1$ because $10 = 4 \times 3 - 2$, and $j^{23}$ is $-j
 
 *Figure 14. The Cartesian and polar coordinate systems*
 
-In panel (a) of Figure 14, the point $(2, 3)$ is the position reached by going 2 along the $x$-axis and 3 along the $y$-axis from the origin, and $(-3, 1)$, $(-1.5, -2.5)$, and $(0, 0)$ are read the same way. Panel (b) is a polar coordinate system made of concentric circles (distances) centered at the pole and radial lines (angles) at 30° intervals; the point $(r, \theta)$ is at distance $r$ from the pole and at angle $\theta$ counterclockwise from the reference line ($\theta = 0$).
+In panel (a) of Figure 14, the point $(2, 3)$ is the position reached by going 2 along the $x$-axis and 3 along the $y$-axis from the origin, and $(-3, 1)$, $(-1.5, -2.5)$, and $(0, 0)$ are read the same way. Panel (b) is a polar coordinate system made of concentric circles (distances) centered at the pole and radial lines (angles) at 30° intervals; the point $(r, \theta)$ is at distance $r$ from the pole and at angle $\theta$ counterclockwise from the reference line ($`\theta = 0`$).
 
 ### 2.4 Cartesian Form and Polar Form
 
@@ -382,17 +382,17 @@ The plane whose horizontal axis is the **real axis** and whose vertical axis is 
 
 In the right triangle of Figure 15, the hypotenuse is $r$, the base is $a$, and the height is $b$, so by the definitions of the trigonometric functions the polar form can be converted to the Cartesian form.
 
-$$
+```math
 a = r\cos\theta, \qquad b = r\sin\theta, \qquad r\angle\theta = (r\cos\theta) + j(r\sin\theta) = a + jb
-$$
+```
 
 Conversely, the Pythagorean theorem and the definition of the tangent convert the Cartesian form to the polar form.
 
-$$
+```math
 r = \sqrt{a^2 + b^2}, \qquad \theta = \tan^{-1}\left(\frac{b}{a}\right)
-$$
+```
 
-> **Caution:** $\tan^{-1}$ returns values only between $-90^\circ$ and $90^\circ$, so $\theta = \tan^{-1}(b/a)$ is correct only when the complex number lies in the first or fourth quadrant ($a > 0$). If $a < 0$, the points $(a, b)$ and $(-a, -b)$ give the same value of $b/a$, so 180° must be added or subtracted according to the quadrant. If $a = 0$, the angle is $90^\circ$ when $b > 0$ and $-90^\circ$ when $b < 0$.
+> **Caution:** $\tan^{-1}$ returns values only between $-90^\circ$ and $90^\circ$, so $\theta = \tan^{-1}(b/a)$ is correct only when the complex number lies in the first or fourth quadrant ($`a > 0`$). If $a < 0$, the points $(a, b)$ and $(-a, -b)$ give the same value of $b/a$, so 180° must be added or subtracted according to the quadrant. If $a = 0$, the angle is $90^\circ$ when $b > 0$ and $-90^\circ$ when $b < 0$.
 
 | Location of the complex number | Argument $\theta$ |
 |:-----|:-----|
@@ -408,39 +408,39 @@ $$
 
 **Example 1: from Cartesian form to polar form.** Express $A = \sqrt{3} + j$ in polar form. Since $a = \sqrt{3} > 0$ and $b = 1$, it lies in the first quadrant.
 
-$$
+```math
 r = \sqrt{(\sqrt{3})^2 + 1^2} = \sqrt{3 + 1} = 2, \qquad \theta = \tan^{-1}\left(\frac{1}{\sqrt{3}}\right) = 30^\circ
-$$
+```
 
 Therefore $A = 2\angle 30^\circ$.
 
 **Example 2: from polar form (degrees) to Cartesian form.** Express $2\angle 45^\circ$ and $2\angle 135^\circ$ in Cartesian form. Since $\cos 45^\circ = \sin 45^\circ = \sqrt{2}/2$, $\cos 135^\circ = -\sqrt{2}/2$, and $\sin 135^\circ = \sqrt{2}/2$, the results are as follows.
 
-$$
+```math
 2\angle 45^\circ = 2\cos 45^\circ + j\,2\sin 45^\circ = 2 \cdot \frac{\sqrt{2}}{2} + j\,2 \cdot \frac{\sqrt{2}}{2} = \sqrt{2} + j\sqrt{2}
-$$
+```
 
-$$
+```math
 2\angle 135^\circ = 2\cos 135^\circ + j\,2\sin 135^\circ = -\sqrt{2} + j\sqrt{2}
-$$
+```
 
 The two complex numbers have the same magnitude and are symmetric about the imaginary axis.
 
 **Example 3: from polar form (radians) to Cartesian form.** Angles are also written in radians. Since $\pi$ rad $= 180^\circ$, we have $\pi/4 = 45^\circ$ and $-\pi/2 = -90^\circ$.
 
-$$
+```math
 1\angle(\pi/4) = \cos\frac{\pi}{4} + j\sin\frac{\pi}{4} = \frac{\sqrt{2}}{2} + j\frac{\sqrt{2}}{2} \approx 0.707 + j0.707
-$$
+```
 
-$$
+```math
 1\angle(-\pi/2) = \cos\left(-\frac{\pi}{2}\right) + j\sin\left(-\frac{\pi}{2}\right) = 0 + j(-1) = -j
-$$
+```
 
 **Example 4: a case that requires attention to the quadrant.** Express $-\sqrt{3} + j$ in polar form. The magnitude is $r = \sqrt{3 + 1} = 2$. A calculator gives $\tan^{-1}(1/(-\sqrt{3})) = -30^\circ$, but since $a < 0$ and $b > 0$, this complex number lies in the second quadrant. By Table 5, 180° is added.
 
-$$
+```math
 \theta = -30^\circ + 180^\circ = 150^\circ \quad \Rightarrow \quad -\sqrt{3} + j = 2\angle 150^\circ
-$$
+```
 
 Checking, $2\cos 150^\circ = 2 \times (-\sqrt{3}/2) = -\sqrt{3}$ and $2\sin 150^\circ = 2 \times 1/2 = 1$, which gives back the original complex number.
 
@@ -452,31 +452,31 @@ Checking, $2\cos 150^\circ = 2 \times (-\sqrt{3}/2) = -\sqrt{3}$ and $2\sin 150^
 
 **Euler's formula** connects the exponential function and the trigonometric functions through complex numbers.
 
-$$
+```math
 e^{j\theta} = \cos\theta + j\sin\theta
-$$
+```
 
 This formula can be derived with **Taylor series**. A Taylor series represents a function $f(x)$ that can be differentiated infinitely many times as an infinite sum of polynomial terms near a point $a$.
 
-$$
+```math
 T_f(x) = \sum_{n=0}^{\infty} \frac{f^{(n)}(a)}{n!}(x - a)^n = f(a) + f'(a)(x - a) + \frac{1}{2} f''(a)(x - a)^2 + \frac{1}{6} f'''(a)(x - a)^3 + \cdots
-$$
+```
 
 > **[Calculus]** Taylor series rest on the idea that if the value of a function and the values of all its derivatives at one point are known, the function near that point can be approximated by a polynomial. The expansion at $a = 0$ is called the Maclaurin series, and the more terms are added, the wider the range over which the approximation is accurate. The Taylor series of sine, cosine, and the exponential function converge to the original functions for every real $x$.
 
 Expand the three functions at $a = 0$. The derivatives of $\cos x$ repeat $\cos, -\sin, -\cos, \sin$, so their values at $x = 0$ repeat $1, 0, -1, 0$; those of $\sin x$ repeat $0, 1, 0, -1$; and every derivative of $e^x$ is $e^x$, so it is always 1 at $x = 0$.
 
-$$
+```math
 \cos x = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \frac{x^6}{6!} + \cdots
-$$
+```
 
-$$
+```math
 \sin x = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \frac{x^7}{7!} + \cdots
-$$
+```
 
-$$
+```math
 e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \frac{x^4}{4!} + \frac{x^5}{5!} + \frac{x^6}{6!} + \frac{x^7}{7!} + \cdots
-$$
+```
 
 ![Figure 17. The sine function and its Taylor polynomials of various degrees](../../images/Week02_Taylor-Sine.png)
 
@@ -486,31 +486,31 @@ Figure 17 shows the polynomials obtained by summing the Taylor series of $\sin x
 
 Now substitute $ix$ for $x$ in the series of $e^x$. Since $i^2 = -1$, $i^3 = -i$, and $i^4 = 1$, we have $(ix)^2 = -x^2$, $(ix)^3 = -ix^3$, $(ix)^4 = x^4$, and so on.
 
-$$
+```math
 e^{ix} = 1 + ix - \frac{x^2}{2!} - i\frac{x^3}{3!} + \frac{x^4}{4!} + i\frac{x^5}{5!} - \frac{x^6}{6!} - i\frac{x^7}{7!} + \cdots
-$$
+```
 
 Grouping the terms without $i$ and the terms with $i$ separately, the former is the series of $\cos x$ and the latter is $i$ times the series of $\sin x$.
 
-$$
+```math
 e^{ix} = \left(1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \cdots\right) + i\left(x - \frac{x^3}{3!} + \frac{x^5}{5!} - \cdots\right) = \cos x + i\sin x
-$$
+```
 
 Writing $\theta$ for $x$ and $j$ for $i$ gives Euler's formula $e^{j\theta} = \cos\theta + j\sin\theta$. Since $\lvert e^{j\theta} \rvert = \sqrt{\cos^2\theta + \sin^2\theta} = 1$, $e^{j\theta}$ is the point on the unit circle of the complex plane with argument $\theta$.
 
 **Euler's identity.** Substituting $\theta = \pi$ into Euler's formula gives the following.
 
-$$
+```math
 e^{j\pi} = \cos\pi + j\sin\pi = -1 + j \cdot 0 = -1 \quad \Rightarrow \quad e^{j\pi} + 1 = 0
-$$
+```
 
 This equation is called **Euler's identity**. It brings the five fundamental constants of mathematics, $0$, $1$, $\pi$, $e$, and $j$, together in one simple equation and is often called the most beautiful formula in mathematics. In 1988 the mathematics magazine The Mathematical Intelligencer published a survey that presented 24 well-known theorems and asked readers to score the beauty of each from 0 to 10, and in the results published in 1990 Euler's identity took first place with an average of 7.7 [1].
 
 **Exponential form.** With Euler's formula, the polar form can be written in exponential form.
 
-$$
+```math
 r\angle\theta = r(\cos\theta + j\sin\theta) = r e^{j\theta}
-$$
+```
 
 This is called the **exponential form**, and Sections 2.8 and 2.9 use it to compute multiplication and division simply with the laws of exponents.
 
@@ -518,21 +518,21 @@ This is called the **exponential form**, and Sections 2.8 and 2.9 use it to comp
 
 The addition and subtraction of two complex numbers $S_1 = a_1 + jb_1$ and $S_2 = a_2 + jb_2$ are computed in Cartesian form, real part with real part and imaginary part with imaginary part.
 
-$$
+```math
 S_1 + S_2 = a_1 + jb_1 + a_2 + jb_2 = (a_1 + a_2) + j(b_1 + b_2)
-$$
+```
 
-$$
+```math
 S_1 - S_2 = a_1 + jb_1 - a_2 - jb_2 = (a_1 - a_2) + j(b_1 - b_2)
-$$
+```
 
 In the complex plane, addition gives the diagonal of the parallelogram formed by the two arrows. Since $S_1 - S_2 = S_1 + (-S_2)$, subtraction adds to $S_1$ the number $-S_2$ obtained by flipping $S_2$ through the origin; and since $S_2 + (S_1 - S_2) = S_1$, the arrow $S_1 - S_2$ has the same length and direction as the arrow from the tip of $S_2$ to the tip of $S_1$.
 
 **Example.** For $S_1 = 2 + j$ and $S_2 = 1 + j2$, the results are as follows.
 
-$$
+```math
 S_1 + S_2 = (2 + 1) + j(1 + 2) = 3 + j3, \qquad S_1 - S_2 = (2 - 1) + j(1 - 2) = 1 - j
-$$
+```
 
 ![Figure 18. Addition and subtraction of complex numbers](../../images/Week02_Complex-Addition-Subtraction.png)
 
@@ -542,21 +542,21 @@ $$
 
 **Computation in Cartesian form.** Expand with the distributive law and use $j^2 = -1$.
 
-$$
+```math
 S_1 S_2 = (a_1 + jb_1)(a_2 + jb_2) = a_1a_2 + ja_1b_2 + ja_2b_1 + j^2 b_1b_2 = (a_1a_2 - b_1b_2) + j(a_1b_2 + a_2b_1)
-$$
+```
 
 **Computation in polar form.** Write the two complex numbers in exponential form.
 
-$$
+```math
 S_1 = r_1\angle\theta_1 = (r_1\cos\theta_1) + j(r_1\sin\theta_1) = r_1 e^{j\theta_1}, \qquad S_2 = r_2\angle\theta_2 = r_2 e^{j\theta_2}
-$$
+```
 
 Using the law of exponents $e^{x}e^{y} = e^{x + y}$ gives the following.
 
-$$
+```math
 S_1 S_2 = (r_1 e^{j\theta_1})(r_2 e^{j\theta_2}) = r_1 r_2 e^{j\theta_1} e^{j\theta_2} = r_1 r_2 e^{j(\theta_1 + \theta_2)} = r_1 r_2 \angle(\theta_1 + \theta_2)
-$$
+```
 
 > **Key Point:** In polar form, multiplication **multiplies the magnitudes and adds the angles.** Multiplication in Cartesian form requires expanding four terms, but in polar form it takes one multiplication and one addition, so multiplication is convenient in polar form. In particular, multiplying by $j = 1\angle 90^\circ$ keeps the magnitude and increases only the angle by 90°, so multiplying by $j$ is the same as rotating by 90° in the complex plane.
 
@@ -564,15 +564,15 @@ $$
 
 In Cartesian form, $a_1 = 1/2$, $b_1 = \sqrt{3}/2$, $a_2 = \sqrt{3}$, and $b_2 = 1$.
 
-$$
+```math
 a_1a_2 - b_1b_2 = \frac{1}{2}\cdot\sqrt{3} - \frac{\sqrt{3}}{2}\cdot 1 = 0, \qquad a_1b_2 + a_2b_1 = \frac{1}{2}\cdot 1 + \sqrt{3}\cdot\frac{\sqrt{3}}{2} = \frac{1}{2} + \frac{3}{2} = 2
-$$
+```
 
 Therefore $S_1 S_2 = 0 + j2 = j2$. In polar form the computation is as follows.
 
-$$
+```math
 S_1 S_2 = (1 \times 2)\angle(60^\circ + 30^\circ) = 2\angle 90^\circ = 2\cos 90^\circ + j\,2\sin 90^\circ = j2
-$$
+```
 
 The two results agree.
 
@@ -582,27 +582,27 @@ The two results agree.
 
 **Computation in Cartesian form.** To make the denominator real, multiply the numerator and denominator by the conjugate of the denominator.
 
-$$
+```math
 \frac{S_1}{S_2} = \frac{a_1 + jb_1}{a_2 + jb_2} = \frac{(a_1 + jb_1)(a_2 - jb_2)}{(a_2 + jb_2)(a_2 - jb_2)}
-$$
+```
 
 Expanding the numerator with $j^2 = -1$ gives the following, and the denominator is $a_2^2 + b_2^2$.
 
-$$
+```math
 (a_1 + jb_1)(a_2 - jb_2) = a_1a_2 - ja_1b_2 + ja_2b_1 - j^2 b_1b_2 = (a_1a_2 + b_1b_2) + j(a_2b_1 - a_1b_2)
-$$
+```
 
-$$
+```math
 \frac{S_1}{S_2} = \frac{(a_1a_2 + b_1b_2) + j(a_2b_1 - a_1b_2)}{a_2^2 + b_2^2}
-$$
+```
 
 > **Caution:** When expanding the numerator, $jb_1 \cdot a_2 = +ja_2b_1$ and $a_1 \cdot (-jb_2) = -ja_1b_2$, so the imaginary part is $a_2b_1 - a_1b_2$. Getting a sign wrong and computing the imaginary part as $-(a_1b_2 + a_2b_1)$ gives the wrong value $-j\frac{1}{2}$ instead of $j\frac{1}{4}$ in the example below. Checking against the result in polar form catches such mistakes.
 
 **Computation in polar form.** Use the law of exponents $e^{x}/e^{y} = e^{x - y}$.
 
-$$
+```math
 \frac{S_1}{S_2} = \frac{r_1 e^{j\theta_1}}{r_2 e^{j\theta_2}} = \frac{r_1}{r_2}\cdot\frac{e^{j\theta_1}}{e^{j\theta_2}} = \frac{r_1}{r_2} e^{j(\theta_1 - \theta_2)} = \frac{r_1}{r_2}\angle(\theta_1 - \theta_2)
-$$
+```
 
 > **Key Point:** In polar form, division **divides the magnitudes and subtracts the angles.**
 
@@ -610,19 +610,19 @@ $$
 
 Compute in Cartesian form.
 
-$$
+```math
 a_1a_2 + b_1b_2 = \frac{\sqrt{3}}{2} + \frac{\sqrt{3}}{2} = \sqrt{3}, \qquad a_2b_1 - a_1b_2 = \sqrt{3}\cdot\frac{\sqrt{3}}{2} - \frac{1}{2}\cdot 1 = \frac{3}{2} - \frac{1}{2} = 1, \qquad a_2^2 + b_2^2 = 3 + 1 = 4
-$$
+```
 
-$$
+```math
 \frac{S_1}{S_2} = \frac{\sqrt{3} + j1}{4} = \frac{\sqrt{3}}{4} + j\frac{1}{4} \approx 0.433 + j0.25
-$$
+```
 
 In polar form the computation is as follows.
 
-$$
+```math
 \frac{S_1}{S_2} = \frac{1}{2}\angle(60^\circ - 30^\circ) = 0.5\angle 30^\circ = 0.5\cos 30^\circ + j\,0.5\sin 30^\circ = \frac{\sqrt{3}}{4} + j\frac{1}{4}
-$$
+```
 
 ![Figure 19. Multiplication and division of complex numbers](../../images/Week02_Complex-Multiplication-Division.png)
 
@@ -636,29 +636,29 @@ In Figure 19, the product $S_1S_2$ is an arrow with magnitude $1 \times 2 = 2$ a
 
 **Example 1: $G(s) = s^2$.** Find the function values at $s_1 = j$ and $s_2 = 1 + j$.
 
-$$
+```math
 G(s_1) = j^2 = -1, \qquad G(s_2) = (1 + j)^2 = 1 + 2j + j^2 = 1 + 2j - 1 = j2
-$$
+```
 
 In polar form, $s_2 = \sqrt{2}\angle 45^\circ$, so $s_2^2 = (\sqrt{2})^2\angle 90^\circ = 2\angle 90^\circ = j2$, which is the same as squaring the magnitude and doubling the angle.
 
 **Example 2: $G(s) = \dfrac{1}{s + 1}$.** Find the value at points $s = j\omega$ on the imaginary axis ($\omega$ real). Multiply the numerator and denominator by the conjugate $1 - j\omega$ of the denominator.
 
-$$
+```math
 G(s)\Big\vert_{s = j\omega} = G(j\omega) = \frac{1}{1 + j\omega} = \frac{1 - j\omega}{(1 + j\omega)(1 - j\omega)} = \frac{1 - j\omega}{1 + \omega^2}
-$$
+```
 
 The real and imaginary parts are therefore as follows.
 
-$$
+```math
 \mathrm{Re}\lbrace G(j\omega)\rbrace= \frac{1}{1 + \omega^2}, \qquad \mathrm{Im}\lbrace G(j\omega)\rbrace= \frac{-\omega}{1 + \omega^2}
-$$
+```
 
 Evaluating at a few values of $\omega$ gives $1$ at $\omega = 0$, $0.5 - j0.5$ at $\omega = 1$, and $0.2 - j0.4$ at $\omega = 2$, and the value approaches $0$ as $\omega \to \infty$. Writing $X$ for the real part and $Y$ for the imaginary part, $X^2 + Y^2 = \frac{1 + \omega^2}{(1 + \omega^2)^2} = \frac{1}{1 + \omega^2} = X$, so the points satisfy the following equation of a circle.
 
-$$
+```math
 X^2 - X + Y^2 = 0 \quad \Rightarrow \quad \left(X - \frac{1}{2}\right)^2 + Y^2 = \left(\frac{1}{2}\right)^2
-$$
+```
 
 That is, the points on the imaginary axis are mapped to the circle in the $G(s)$-plane with center $(1/2, 0)$ and radius $1/2$. For $\omega \geq 0$ the imaginary part $-\omega/(1 + \omega^2)$ is at most 0, so the image is the lower half of the circle; as $\omega$ grows from 0, the point starts at $1$ and moves along the lower semicircle toward $0$. The part with $\omega < 0$ is the upper semicircle, symmetric about the real axis.
 
@@ -680,9 +680,9 @@ In this section, derivatives with respect to time $t$ are written with dots: $\d
 
 Consider the following first-order differential equation and initial condition.
 
-$$
+```math
 \dot{x} + x = 0 \quad \Leftrightarrow \quad \dot{x} = -x, \qquad x(0) = 1
-$$
+```
 
 Since $\dot{x} = -x$, the solution must be **a function whose derivative has the same form as the function itself**. Let us test a few functions.
 
@@ -691,21 +691,21 @@ Since $\dot{x} = -x$, the solution must be **a function whose derivative has the
 
 The **exponential function** keeps the form of the original function after differentiation. Setting the solution as $x = Ke^{\lambda t}$ gives $\dot{x} = K\lambda e^{\lambda t}$, and substituting into the differential equation gives the following.
 
-$$
+```math
 \dot{x} = K\lambda e^{\lambda t} = -x = -Ke^{\lambda t} \quad \Rightarrow \quad K(\lambda + 1)e^{\lambda t} = 0
-$$
+```
 
 $e^{\lambda t}$ is never 0, and if $K = 0$ then $x = 0$, which cannot satisfy the initial condition $x(0) = 1$; hence $\lambda + 1 = 0$, that is, $\lambda = -1$.
 
-$$
+```math
 x(t) = Ke^{-t}
-$$
+```
 
 Use the initial condition to determine $K$. Substituting $t = 0$ gives $x(0) = Ke^{0} = K = 1$, so the solution is as follows.
 
-$$
+```math
 x(t) = e^{-t}
-$$
+```
 
 Checking, $\dot{x} = -e^{-t}$ and $x = e^{-t}$, so $\dot{x} + x = -e^{-t} + e^{-t} = 0$ holds.
 
@@ -713,27 +713,27 @@ Checking, $\dot{x} = -e^{-t}$ and $x = e^{-t}$, so $\dot{x} + x = -e^{-t} + e^{-
 
 Consider the case in which the right-hand side is the constant 1.
 
-$$
+```math
 \dot{x} + x = 1, \qquad x(0) = 0
-$$
+```
 
 Since the right-hand side is a constant, assume that the solution also has a constant term and set $x(t) = K_1 e^{\lambda t} + K_2$. Since $\dot{x} = K_1\lambda e^{\lambda t}$, substituting gives the following.
 
-$$
+```math
 \dot{x} + x = K_1\lambda e^{\lambda t} + K_1 e^{\lambda t} + K_2 = K_1 e^{\lambda t}(\lambda + 1) + K_2 = 1
-$$
+```
 
 For this to hold for every $t$, the time-varying part $K_1 e^{\lambda t}(\lambda + 1)$ must be 0 and the constant part $K_2$ must equal the 1 on the right-hand side. Hence $\lambda = -1$ and $K_2 = 1$.
 
-$$
+```math
 x(t) = K_1 e^{-t} + 1
-$$
+```
 
 From the initial condition $x(0) = K_1 + 1 = 0$, $K_1 = -1$, so the solution is as follows.
 
-$$
+```math
 x(t) = -e^{-t} + 1 = 1 - e^{-t}
-$$
+```
 
 The solution starts at 0 and approaches 1 exponentially. The two parts of the solution have names.
 
@@ -742,49 +742,49 @@ The solution starts at 0 and approaches 1 exponentially. The two parts of the so
 
 > **Key Point:** The general solution of a constant coefficient linear differential equation is the sum of the homogeneous solution and the particular solution. The unknown constants appear only in the homogeneous solution, and they must be determined from the initial conditions **after** the particular solution has been added.
 
-Solving the general first-order equation $\tau\dot{x} + x = u$ ($\tau > 0$, $u$ constant) in the same way gives $\lambda = -1/\tau$ and the particular solution $u$, hence the following solution. This formula is used directly for the RC circuit of Section 1.8 ($\tau = RC$) and for the room temperature of Section 3.7.
+Solving the general first-order equation $\tau\dot{x} + x = u$ ($\tau > 0$, $u$ constant) in the same way gives $\lambda = -1/\tau$ and the particular solution $u$, hence the following solution. This formula is used directly for the RC circuit of Section 1.8 ($`\tau = RC`$) and for the room temperature of Section 3.7.
 
-$$
+```math
 x(t) = u + \left(x(0) - u\right) e^{-t/\tau}
-$$
+```
 
 ### 3.3 Second-Order Differential Equations and the Characteristic Equation
 
 Consider the following second-order differential equation.
 
-$$
+```math
 \ddot{x} + 3\dot{x} + 2x = 0, \qquad x(0) = 1, \quad \dot{x}(0) = 0
-$$
+```
 
 As in the first-order case, set $x = Ke^{\lambda t}$, so that $\dot{x} = K\lambda e^{\lambda t}$ and $\ddot{x} = K\lambda^2 e^{\lambda t}$. Substituting gives the following.
 
-$$
+```math
 \ddot{x} + 3\dot{x} + 2x = K\lambda^2 e^{\lambda t} + 3K\lambda e^{\lambda t} + 2Ke^{\lambda t} = K(\lambda^2 + 3\lambda + 2)e^{\lambda t} = 0
-$$
+```
 
 Since $K \neq 0$ and $e^{\lambda t} \neq 0$, the expression in parentheses must be 0.
 
-$$
+```math
 \lambda^2 + 3\lambda + 2 = (\lambda + 1)(\lambda + 2) = 0 \quad \Rightarrow \quad \lambda = -1, -2
-$$
+```
 
 This algebraic equation $\lambda^2 + 3\lambda + 2 = 0$, obtained by replacing $\dot{x}$ with $\lambda$ and $\ddot{x}$ with $\lambda^2$ in the differential equation, is called the **characteristic equation**. Both $e^{-t}$ and $e^{-2t}$, corresponding to the two roots, are solutions, and since the equation is linear, any linear combination of them is also a solution (the superposition principle of Section 2.6 of Week 1).
 
-$$
+```math
 x(t) = K_1 e^{-t} + K_2 e^{-2t}
-$$
+```
 
 The solution of a second-order differential equation has two constants to be determined, so **two initial conditions are also needed.** Since $\dot{x}(t) = -K_1 e^{-t} - 2K_2 e^{-2t}$, the two initial conditions become the following system of equations.
 
-$$
+```math
 x(0) = K_1 + K_2 = 1, \qquad \dot{x}(0) = -K_1 - 2K_2 = 0
-$$
+```
 
 Adding the two equations gives $-K_2 = 1$, that is, $K_2 = -1$, and the first equation gives $K_1 = 1 - K_2 = 2$. The solution is therefore as follows.
 
-$$
+```math
 x(t) = 2e^{-t} - e^{-2t}
-$$
+```
 
 Checking, $x(0) = 2 - 1 = 1$ and $\dot{x}(0) = -2 + 2 = 0$.
 
@@ -792,33 +792,33 @@ Checking, $x(0) = 2 - 1 = 1$ and $\dot{x}(0) = -2 + 2 = 0$.
 
 Consider the case in which the right-hand side is the constant 1 and both initial conditions are 0.
 
-$$
+```math
 \ddot{x} + 3\dot{x} + 2x = 1, \qquad x(0) = 0, \quad \dot{x}(0) = 0
-$$
+```
 
 Assume that the solution has a constant term and set $x = K_1 e^{\lambda t} + K_3$; then $\dot{x} = K_1\lambda e^{\lambda t}$ and $\ddot{x} = K_1\lambda^2 e^{\lambda t}$.
 
-$$
+```math
 \ddot{x} + 3\dot{x} + 2x = K_1\lambda^2 e^{\lambda t} + 3K_1\lambda e^{\lambda t} + 2K_1 e^{\lambda t} + 2K_3 = K_1 e^{\lambda t}(\lambda^2 + 3\lambda + 2) + 2K_3 = 1
-$$
+```
 
 For the time-varying part to be 0, $\lambda^2 + 3\lambda + 2 = 0$, so $\lambda = -1, -2$; from the constant part, $2K_3 = 1$, that is, $K_3 = 1/2$. Using both roots, the general solution is as follows.
 
-$$
+```math
 x(t) = K_1 e^{-t} + K_2 e^{-2t} + \frac{1}{2}
-$$
+```
 
 Use the two initial conditions to determine the two constants.
 
-$$
+```math
 x(0) = K_1 + K_2 + 0.5 = 0, \qquad \dot{x}(0) = -K_1 - 2K_2 = 0
-$$
+```
 
 The second equation gives $K_1 = -2K_2$, and substituting into the first gives $-2K_2 + K_2 = -0.5$, that is, $K_2 = 0.5$ and $K_1 = -1$.
 
-$$
+```math
 x(t) = -e^{-t} + 0.5e^{-2t} + 0.5
-$$
+```
 
 After a sufficiently long time the two exponential terms vanish and $x \to 0.5$. This value can also be found directly from $2x = 1$, since $\ddot{x} = \dot{x} = 0$ in steady state.
 
@@ -826,51 +826,51 @@ After a sufficiently long time the two exponential terms vanish and $x \to 0.5$.
 
 Consider the following differential equation.
 
-$$
+```math
 \ddot{x} + 2\dot{x} + 5x = 0, \qquad x(0) = 0.5, \quad \dot{x}(0) = -0.5
-$$
+```
 
 The characteristic equation is $\lambda^2 + 2\lambda + 5 = 0$. By the quadratic formula the discriminant is negative, so the roots are complex.
 
-$$
+```math
 \lambda = \frac{-2 \pm \sqrt{2^2 - 4 \cdot 5}}{2} = \frac{-2 \pm \sqrt{-16}}{2} = \frac{-2 \pm j4}{2} = -1 \pm j2
-$$
+```
 
 The reasoning of Section 3.3 still holds when the roots are complex, so the general solution is as follows.
 
-$$
+```math
 x(t) = K_1 e^{(-1 + j2)t} + K_2 e^{(-1 - j2)t}
-$$
+```
 
 Use the two initial conditions to determine the two constants. $\dot{x}(t) = (-1 + j2)K_1 e^{(-1 + j2)t} + (-1 - j2)K_2 e^{(-1 - j2)t}$.
 
-$$
+```math
 x(0) = K_1 + K_2 = 0.5
-$$
+```
 
-$$
+```math
 \dot{x}(0) = (-1 + j2)K_1 + (-1 - j2)K_2 = -(K_1 + K_2) + j2(K_1 - K_2) = -0.5 + j2(K_1 - K_2) = -0.5
-$$
+```
 
 The second equation gives $K_1 - K_2 = 0$, so $K_1 = K_2 = 0.25$. Euler's formula of Section 2.6 turns the solution into a real function.
 
-$$
+```math
 x(t) = 0.25e^{-t}\left(e^{j2t} + e^{-j2t}\right) = 0.25e^{-t}\left[(\cos 2t + j\sin 2t) + (\cos 2t - j\sin 2t)\right] = 0.5e^{-t}\cos 2t
-$$
+```
 
 Checking, $x(0) = 0.5$, and since $\dot{x}(t) = 0.5\left(-e^{-t}\cos 2t - 2e^{-t}\sin 2t\right)$, $\dot{x}(0) = -0.5$.
 
-> **Key Point:** If the roots of the characteristic equation are $\sigma \pm j\omega$, the solution has the form $e^{\sigma t}(A\cos\omega t + B\sin\omega t)$. The real part $\sigma$ sets how fast the amplitude shrinks or grows (here it decays as $e^{-t}$), and the imaginary part $\omega$ sets the angular frequency of oscillation (here 2 rad/s). The fact that the location of complex roots determines the shape of the response is taken up again in Week 9 with the response by pole location.
+> **Key Point:** If the roots of the characteristic equation are $\sigma \pm j\omega$, the solution has the form $e^{\sigma t}(A\cos\omega t + B\sin\omega t)$. The real part $\sigma$ sets how fast the amplitude shrinks or grows (here it decays as $`e^{-t}`$), and the imaginary part $\omega$ sets the angular frequency of oscillation (here 2 rad/s). The fact that the location of complex roots determines the shape of the response is taken up again in Week 9 with the response by pole location.
 
 ### 3.6 nth-Order Constant Coefficient Linear Differential Equations
 
 All the examples so far are special cases of the following **constant coefficient linear differential equation**.
 
-$$
+```math
 a_n x^{(n)} + a_{n-1} x^{(n-1)} + \cdots + a_1 x^{(1)} + a_0 x = u
-$$
+```
 
-Here $x^{(k)}$ is the $k$th derivative of $x$, the coefficients $a_0, \ldots, a_n$ are constants, and $u$ is the input. The dynamic characteristics of many **linear time-invariant systems (LTI systems)** can be represented by a differential equation of this form (the more general form with derivatives of the input on the right-hand side appears in Week 5). The equation is of first degree in $x$ and its derivatives, so the superposition principle holds and the system is linear; the coefficients do not change with time, so the same input applied later produces the same response delayed by the same amount, and the system is time-invariant.
+Here $x^{(k)}$ is the $`k`$th derivative of $x$, the coefficients $a_0, \ldots, a_n$ are constants, and $u$ is the input. The dynamic characteristics of many **linear time-invariant systems (LTI systems)** can be represented by a differential equation of this form (the more general form with derivatives of the input on the right-hand side appears in Week 5). The equation is of first degree in $x$ and its derivatives, so the superposition principle holds and the system is linear; the coefficients do not change with time, so the same input applied later produces the same response delayed by the same amount, and the system is time-invariant.
 
 The solution method is also the same. Find the $n$ roots of the characteristic equation $a_n\lambda^n + a_{n-1}\lambda^{n-1} + \cdots + a_1\lambda + a_0 = 0$, build the homogeneous solution by adding the terms below according to the type of root, add the particular solution, and determine the $n$ constants from $n$ initial conditions [3].
 
@@ -888,15 +888,15 @@ For example, the characteristic equation $\lambda^2 + 2\lambda + 1 = (\lambda + 
 
 **Example of a changing room temperature.** When heating starts in a room at 10°C with a target of 20°C, the room temperature rises quickly at first and then more and more slowly as it approaches 20°C. This dynamic behavior can be described by a first-order differential equation.
 
-$$
+```math
 \tau\dot{x} + x = u, \qquad u = 20, \quad x(0) = 10
-$$
+```
 
 Substituting into the result of Section 3.2 gives the following solution.
 
-$$
+```math
 x(t) = 20 + (10 - 20)e^{-t/\tau} = 20 - 10e^{-t/\tau}, \qquad t \geq 0
-$$
+```
 
 The larger $\tau$ is (the larger the heat capacity of the room), the more slowly the temperature rises. At $t = \tau$, $x = 20 - 10e^{-1} \approx 16.3$°C, so about 63.2% of the total change of 10°C has taken place.
 
@@ -909,7 +909,7 @@ flowchart LR
 
 *Figure 21. A system described by a second-order differential equation*
 
-With the differential equation, the output for a given input can be predicted. For example, if a constant input $u = 1$ is applied to this system starting at rest ($x(0) = \dot{x}(0) = 0$), the output is $x = -e^{-t} + 0.5e^{-2t} + 0.5$ as found in Section 3.4, starting at 0 and approaching 0.5.
+With the differential equation, the output for a given input can be predicted. For example, if a constant input $u = 1$ is applied to this system starting at rest ($`x(0) = \dot{x}(0) = 0`$), the output is $x = -e^{-t} + 0.5e^{-2t} + 0.5$ as found in Section 3.4, starting at 0 and approaching 0.5.
 
 ![Figure 22. Solutions of the differential equations in this section](../../images/Week02_Differential-Equation-Solutions.png)
 

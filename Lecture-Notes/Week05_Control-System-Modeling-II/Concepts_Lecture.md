@@ -58,15 +58,15 @@ Week 4 covers the modeling of translational motion, rotational motion, and elect
 
 > **Definition:** The **transfer function** of a linear time-invariant system is the ratio of the Laplace transform of the output signal to the Laplace transform of the input signal when all initial conditions are zero.
 
-$$
+```math
 G(s) = \frac{Y(s)}{U(s)} = \frac{\mathcal{L}\lbrace y(t) \rbrace}{\mathcal{L}\lbrace u(t) \rbrace} \qquad (\text{all initial conditions are } 0)
-$$
+```
 
 Here $u(t)$ is the input signal, $y(t)$ is the output signal, $U(s)$ and $Y(s)$ are their Laplace transforms, and $s$ is the complex Laplace variable. Reading the definition backward, the output is the input multiplied by the transfer function.
 
-$$
+```math
 Y(s) = G(s)U(s)
-$$
+```
 
 Figure 1 shows this relation as a picture. The transfer function is written inside a box (a block), and arrows indicate the input and output signals. Such a picture is called a block diagram, and Section 3 treats it in detail.
 
@@ -100,21 +100,21 @@ The transfer function is obtained in three steps.
 
 As an example, consider the following differential equation. $\dot{y}$ and $\ddot{y}$ are the first and second time derivatives of $y$.
 
-$$
+```math
 \ddot{y}(t) + 3\dot{y}(t) + 2y(t) = u(t)
-$$
+```
 
 The differentiation property of Week 3 states $\mathcal{L}\lbrace\dot{y} \rbrace= sY(s) - y(0)$ and $\mathcal{L}\lbrace\ddot{y} \rbrace= s^2Y(s) - sy(0) - \dot{y}(0)$. With the initial conditions $y(0) = 0$ and $\dot{y}(0) = 0$, the initial-value terms vanish and each differentiation becomes one multiplication by $s$. Transforming both sides gives the following.
 
-$$
+```math
 s^2Y(s) + 3sY(s) + 2Y(s) = U(s)
-$$
+```
 
 Factoring $Y(s)$ out of the left side gives $(s^2 + 3s + 2)Y(s) = U(s)$, and dividing both sides by $U(s)$ and by $(s^2 + 3s + 2)$ gives the transfer function.
 
-$$
+```math
 G(s) = \frac{Y(s)}{U(s)} = \frac{1}{s^2 + 3s + 2} = \frac{1}{(s+1)(s+2)}
-$$
+```
 
 The coefficients $1, 3, 2$ on the left (output) side of the differential equation become the coefficients of the denominator polynomial, and the coefficient $1$ on the right (input) side becomes the numerator. Figure 2 shows the same system in the time domain and in the $s$ domain. In the time domain the input and output are entangled through a differential equation, whereas in the $s$ domain the output is the input multiplied by $G(s)$.
 
@@ -141,31 +141,31 @@ flowchart LR
 
 Once the transfer function is known, the output for any input follows from $Y(s) = G(s)U(s)$. As an example, apply a **unit step input** to the system of Section 1.2. The unit step function is 0 for $t < 0$ and 1 for $t \ge 0$, and its Laplace transform is $1/s$ (Week 3).
 
-$$
+```math
 Y(s) = G(s)U(s) = \frac{1}{(s+1)(s+2)} \cdot \frac{1}{s} = \frac{1}{s(s+1)(s+2)}
-$$
+```
 
 The inverse transform uses the partial fraction expansion of Week 3. The denominator roots $0$, $-1$, and $-2$ are distinct real numbers, so the expansion has the following form.
 
-$$
+```math
 \frac{1}{s(s+1)(s+2)} = \frac{K_1}{s} + \frac{K_2}{s+1} + \frac{K_3}{s+2}
-$$
+```
 
 Each coefficient is found by multiplying both sides by the corresponding factor and substituting the root of that factor, because all other terms vanish at that root.
 
-$$
+```math
 \begin{aligned}
 K_1 &= \left.\frac{1}{(s+1)(s+2)}\right|_{s=0} = \frac{1}{1 \cdot 2} = \frac{1}{2} \\
 K_2 &= \left.\frac{1}{s(s+2)}\right|_{s=-1} = \frac{1}{(-1)(1)} = -1 \\
 K_3 &= \left.\frac{1}{s(s+1)}\right|_{s=-2} = \frac{1}{(-2)(-1)} = \frac{1}{2}
 \end{aligned}
-$$
+```
 
 Applying $\mathcal{L}^{-1}\lbrace1/s \rbrace= 1$ and $\mathcal{L}^{-1}\lbrace1/(s+a) \rbrace= e^{-at}$, the output for $t \ge 0$ is as follows.
 
-$$
+```math
 y(t) = \frac{1}{2} - e^{-t} + \frac{1}{2}e^{-2t}
-$$
+```
 
 The result can be checked in two ways. At $t = 0$, $y(0) = 1/2 - 1 + 1/2 = 0$, which matches the initial condition. As $t \to \infty$ the exponential terms vanish and $y \to 1/2$; this agrees with the steady state, in which all derivatives are zero, the differential equation becomes $2y = 1$, and therefore $y = 1/2$. The shape of this response appears in Figure 8 of Section 2.6.
 
@@ -177,47 +177,47 @@ In the circuit of Figure 3, the voltage source $u(t)$ is the input and the volta
 
 *Figure 3. RC circuit consisting of a voltage source, a resistor, and a capacitor*
 
-**Writing the differential equation.** Nothing is connected to the output terminals, so by Kirchhoff's current law (KCL) the current through the resistor equals the current through the capacitor. The resistor current is the voltage across it divided by the resistance, $(u - y)/R$, and the capacitor current is $C\,dy/dt$.
+**Writing the differential equation.** Nothing is connected to the output terminals, so by Kirchhoff's current law (KCL) the current through the resistor equals the current through the capacitor. The resistor current is the voltage across it divided by the resistance, $(u - y)/R$, and the capacitor current is $`C\,dy/dt`$.
 
-$$
+```math
 \frac{u(t) - y(t)}{R} = C\frac{dy(t)}{dt}
-$$
+```
 
 Multiplying both sides by $R$ and rearranging gives the following first-order differential equation.
 
-$$
+```math
 RC\frac{dy(t)}{dt} + y(t) = u(t)
-$$
+```
 
 **Finding the transfer function.** With the initial condition $y(0) = 0$, the Laplace transform gives $RCsY(s) + Y(s) = U(s)$, that is, $(RCs + 1)Y(s) = U(s)$. The ratio of the Laplace transforms of output and input is as follows.
 
-$$
+```math
 G(s) = \frac{Y(s)}{U(s)} = \frac{1}{RCs + 1}
-$$
+```
 
 The product $RC$ has the dimension of time and is called the **time constant**. Week 7 analyzes the response speed of first-order systems through the time constant.
 
 ### 1.5 Example 2: Mass, Spring, and Damper System
 
-Figure 4 shows a mass $M$ connected to a wall through a spring (stiffness $K$) and a damper (viscous friction coefficient $B$), with an external force $f$ acting on it. The quantity of interest is the time behavior of the displacement $y$ caused by $f$.
+Figure 4 shows a mass $M$ connected to a wall through a spring (stiffness $`K`$) and a damper (viscous friction coefficient $`B`$), with an external force $f$ acting on it. The quantity of interest is the time behavior of the displacement $y$ caused by $f$.
 
 ![Figure 4. Mass connected to a wall through a spring and a damper](../../images/Week05_5-1_p09.png)
 
 *Figure 4. Mass connected to a wall through a spring and a damper*
 
-**Writing the differential equation.** As in Week 4, the sum of all forces acting on the mass equals the mass times the acceleration by Newton's second law. The external force $f$ acts in the $+y$ direction, while the spring restoring force $Ky$ and the damper friction force $B\,dy/dt$ act in the $-y$ direction.
+**Writing the differential equation.** As in Week 4, the sum of all forces acting on the mass equals the mass times the acceleration by Newton's second law. The external force $f$ acts in the $+y$ direction, while the spring restoring force $Ky$ and the damper friction force $`B\,dy/dt`$ act in the $-y$ direction.
 
-$$
+```math
 f - Ky - B\frac{dy}{dt} = M\frac{d^2y}{dt^2}
 \quad\Longrightarrow\quad
 M\frac{d^2y}{dt^2} + B\frac{dy}{dt} + Ky = f
-$$
+```
 
 **Finding the transfer function.** Setting the initial conditions to zero and transforming both sides gives $Ms^2Y(s) + BsY(s) + KY(s) = F(s)$. Factor out $Y(s)$ and divide by $F(s)$.
 
-$$
+```math
 G(s) = \frac{Y(s)}{F(s)} = \frac{1}{Ms^2 + Bs + K}
-$$
+```
 
 The denominator is a second-degree polynomial, so this is a second-order system. The differential equation of Section 1.2 is the case $M = 1$, $B = 3$, $K = 2$.
 
@@ -229,53 +229,53 @@ Figure 5 shows two masses $M_1$ and $M_2$ connected by a spring $K$, with $M_2$ 
 
 *Figure 5. Two masses connected by a spring and a damper connected to the wall*
 
-**Writing the differential equations.** Write Newton's second law for each mass. The spring is stretched by the difference of the end displacements $y_1 - y_2$ and produces the force $K(y_1 - y_2)$, which pulls $M_1$ in the $-$ direction and $M_2$ in the $+$ direction. The damper produces the friction force $B\,dy_2/dt$, proportional to the velocity of $M_2$, in the $-$ direction.
+**Writing the differential equations.** Write Newton's second law for each mass. The spring is stretched by the difference of the end displacements $y_1 - y_2$ and produces the force $K(y_1 - y_2)$, which pulls $M_1$ in the $-$ direction and $M_2$ in the $+$ direction. The damper produces the friction force $`B\,dy_2/dt`$, proportional to the velocity of $M_2$, in the $-$ direction.
 
-$$
+```math
 \begin{aligned}
 M_1: &\quad f - K(y_1 - y_2) = M_1\frac{d^2y_1}{dt^2} \\
 M_2: &\quad K(y_1 - y_2) - B\frac{dy_2}{dt} = M_2\frac{d^2y_2}{dt^2}
 \end{aligned}
-$$
+```
 
 **Laplace transform.** Set the initial conditions to zero, transform each equation, and collect the terms in $Y_1$ and $Y_2$. The first equation becomes $F - KY_1 + KY_2 = M_1s^2Y_1$, and the second becomes $KY_1 - KY_2 - BsY_2 = M_2s^2Y_2$.
 
-$$
+```math
 \begin{aligned}
 (M_1s^2 + K)Y_1(s) &= F(s) + KY_2(s) \\
 (M_2s^2 + Bs + K)Y_2(s) &= KY_1(s)
 \end{aligned}
-$$
+```
 
 The two outputs are coupled, so the two simultaneous equations must be solved together. Express $Y_2$ in terms of $Y_1$ from the second equation.
 
-$$
+```math
 Y_2(s) = \frac{K}{M_2s^2 + Bs + K}\,Y_1(s)
-$$
+```
 
 Substitute this into the first equation and factor out $Y_1$.
 
-$$
+```math
 \left[(M_1s^2 + K) - \frac{K^2}{M_2s^2 + Bs + K}\right]Y_1(s) = F(s)
-$$
+```
 
 Bringing the bracket to a common denominator gives the numerator $(M_1s^2 + K)(M_2s^2 + Bs + K) - K^2$. Expanding it cancels the $K^2$ terms and leaves a factor $s$ in every term.
 
-$$
+```math
 \begin{aligned}
 (M_1s^2 + K)(M_2s^2 + Bs + K) - K^2
 &= M_1M_2s^4 + M_1Bs^3 + (M_1 + M_2)Ks^2 + BKs + K^2 - K^2 \\
 &= s\left[M_1M_2s^3 + M_1Bs^2 + (M_1 + M_2)Ks + BK\right]
 \end{aligned}
-$$
+```
 
 Denoting the cubic polynomial in the bracket by $D(s) = M_1M_2s^3 + M_1Bs^2 + (M_1 + M_2)Ks + BK$, the two transfer functions are as follows. The second transfer function is the product of $Y_2/Y_1$ and $Y_1/F$.
 
-$$
+```math
 \frac{Y_1(s)}{F(s)} = \frac{M_2s^2 + Bs + K}{s\,D(s)},
 \qquad
 \frac{Y_2(s)}{F(s)} = \frac{Y_2(s)}{Y_1(s)} \cdot \frac{Y_1(s)}{F(s)} = \frac{K}{s\,D(s)}
-$$
+```
 
 The two transfer functions share the same denominator and differ only in the numerator. The denominator is a property of the whole system, whereas the numerator depends on which displacement is taken as the output. The factor $s$ in the denominator is a pole at the origin (Section 2.9). Since the damper is the only element attached to the wall, a constant force applied indefinitely pushes both masses away without bound.
 
@@ -291,13 +291,13 @@ The time-domain function most closely related to the transfer function is the im
 
 > **Definition:** A **pulse function** lasts for a short time and has a constant value during that time. The pulse function $\delta_\Delta(t)$ of width $\Delta t$ has its height set to the reciprocal of the width, $1/\Delta t$, so that its area is 1.
 
-$$
+```math
 \delta_\Delta(t) =
 \begin{cases}
 \dfrac{1}{\Delta t}, & -\dfrac{\Delta t}{2} \le t \le \dfrac{\Delta t}{2} \\
 0, & \text{otherwise}
 \end{cases}
-$$
+```
 
 ![Figure 6. Pulse function with unit area](../../images/Week05_5-2_p05.png)
 
@@ -305,30 +305,30 @@ $$
 
 The area of the pulse is the product of its width and height, so it is 1 regardless of the width.
 
-$$
+```math
 \int_{-\infty}^{\infty}\delta_\Delta(t)\,dt = \int_{-\Delta t/2}^{\Delta t/2}\frac{1}{\Delta t}\,dt = \Delta t \cdot \frac{1}{\Delta t} = 1
-$$
+```
 
 > **Definition:** The **impulse function** $\delta(t)$ is the limit of the pulse function as its width becomes infinitely small. The width shrinks to zero while the height grows to infinity, and the integral stays equal to 1. It is also called the unit impulse or the Dirac delta function.
 
-$$
+```math
 \delta(t) = \lim_{\Delta t \to 0}\delta_\Delta(t), \qquad
 \int_{-\infty}^{\infty}\delta(t)\,dt = \int_{0^-}^{0^+}\delta(t)\,dt = 1
-$$
+```
 
 $0^-$ and $0^+$ denote the instants just before and just after 0. Since the impulse is concentrated at $t = 0$, integrating from $0^-$ to $0^+$ already captures the whole area 1. The impulse idealizes an input, such as a single hammer blow, that is applied with a large magnitude over a very short moment but has a finite total effect (area).
 
 Strictly speaking, $\delta(t)$ is not an ordinary function, because an ordinary function that is zero everywhere except at one point has integral zero. The impulse is a generalized function defined by its action inside an integral, and that action is expressed by the following **sifting property** [1]. If a function $f$ is continuous at $t = a$, then the following holds.
 
-$$
+```math
 \int_{-\infty}^{\infty} f(t)\,\delta(t - a)\,dt = f(a)
-$$
+```
 
 **Laplace transform of the impulse function.** Put $f(t) = e^{-st}$ and $a = 0$ into the sifting property. Taking the lower limit of the Laplace transform as $0^-$ so that the impulse at $t = 0$ lies inside the integration interval, and using $e^{-st} = e^0 = 1$ near $t = 0$, gives the following.
 
-$$
+```math
 \mathcal{L}\lbrace\delta(t) \rbrace= \int_{0^-}^{\infty}\delta(t)e^{-st}\,dt = \int_{0^-}^{0^+}\delta(t) \cdot 1\,dt = 1
-$$
+```
 
 > **Caution:** If the lower limit of the Laplace transform is taken as $0^+$, the impulse at $t = 0$ falls outside the integration interval and $\mathcal{L}\lbrace\delta(t) \rbrace= 0$ results. When impulse inputs are involved, take the lower limit as $0^-$ and interpret the initial condition $y(0)$ as the value $y(0^-)$ just before the input arrives [1].
 
@@ -338,15 +338,15 @@ $$
 
 When the input is an impulse, its Laplace transform is 1, so $Y(s) = G(s)U(s)$ shows that the Laplace transform of the output is the transfer function itself.
 
-$$
+```math
 u(t) = \delta(t) \;\Rightarrow\; U(s) = 1 \;\Rightarrow\; Y(s) = G(s)
-$$
+```
 
 Inverting both sides shows that the inverse Laplace transform of the transfer function is the impulse response.
 
-$$
+```math
 y(t) = \mathcal{L}^{-1}\lbrace G(s) \rbrace= g(t)
-$$
+```
 
 > **Key Point:** The impulse response $g(t)$ and the transfer function $G(s)$ form a Laplace transform pair. The inverse Laplace transform of the transfer function is the impulse response and the Laplace transform of the impulse response is the transfer function, so knowing one means knowing the other.
 
@@ -356,48 +356,48 @@ For example, $G(s) = 1/[(s+1)(s+2)]$ of Section 1.2 expands into partial fractio
 
 Returning $Y(s) = G(s)U(s)$ to the time domain, the product in the $s$ domain becomes a **convolution** in the time domain (the convolution theorem of the Laplace transform).
 
-$$
+```math
 y(t) = \mathcal{L}^{-1}\lbrace Y(s) \rbrace= \mathcal{L}^{-1}\lbrace G(s)U(s) \rbrace= \mathcal{L}^{-1}\lbrace G(s) \rbrace* \mathcal{L}^{-1}\lbrace U(s) \rbrace= g(t) * u(t) = \int_0^t g(t-\tau)\,u(\tau)\,d\tau
-$$
+```
 
-Here $*$ denotes convolution, and the definition used is the one for an input and an impulse response that are zero for $t < 0$. The formula can be understood as follows.
+Here $`*`$ denotes convolution, and the definition used is the one for an input and an impulse response that are zero for $t < 0$. The formula can be understood as follows.
 
-1. Dividing the input $u(\tau)$ into very short pieces of width $d\tau$, the piece at time $\tau$ can be regarded as an impulse of area $u(\tau)\,d\tau$.
+1. Dividing the input $u(\tau)$ into very short pieces of width $d\tau$, the piece at time $\tau$ can be regarded as an impulse of area $`u(\tau)\,d\tau`$.
 2. By time invariance, a unit impulse arriving at time $\tau$ produces the response $g(t - \tau)$, which starts $\tau$ later.
-3. By linearity, the response to an impulse of area $u(\tau)\,d\tau$ is $g(t - \tau)\,u(\tau)\,d\tau$.
+3. By linearity, the response to an impulse of area $`u(\tau)\,d\tau`$ is $`g(t - \tau)\,u(\tau)\,d\tau`$.
 4. By superposition, the sum (integral) of all these responses is the output at time $t$. The integration runs from $0$ to $t$ because there is no input for $\tau < 0$ and an input arriving at $\tau > t$ cannot yet affect the output at time $t$.
 
 > **Key Point:** An LTI system is completely determined by its impulse response $g(t)$ alone. The output for any input is the convolution of the input with $g(t)$ [2].
 
-> **[Calculus]** Substituting $\sigma = t - \tau$ in the convolution integral gives $d\sigma = -d\tau$ and swaps the ends of the interval, so $\int_0^t g(t-\tau)u(\tau)\,d\tau = \int_0^t g(\sigma)u(t-\sigma)\,d\sigma$. Hence $g * u = u * g$, and convolution is commutative. The computation in Section 2.6 uses this substitution.
+> **[Calculus]** Substituting $\sigma = t - \tau$ in the convolution integral gives $d\sigma = -d\tau$ and swaps the ends of the interval, so $`\int_0^t g(t-\tau)u(\tau)\,d\tau = \int_0^t g(\sigma)u(t-\sigma)\,d\sigma`$. Hence $`g * u = u * g`$, and convolution is commutative. The computation in Section 2.6 uses this substitution.
 
 ### 2.4 Example 1: Impulse Response of an RC Circuit
 
-For the RC circuit of Section 1.4 (Figure 3), find the output this time allowing a nonzero initial condition $y(0)$. Transform the differential equation $RC\,\dot{y} + y = u$ with the differentiation property $\mathcal{L}\lbrace\dot{y} \rbrace= sY(s) - y(0)$.
+For the RC circuit of Section 1.4 (Figure 3), find the output this time allowing a nonzero initial condition $y(0)$. Transform the differential equation $`RC\,\dot{y} + y = u`$ with the differentiation property $\mathcal{L}\lbrace\dot{y} \rbrace= sY(s) - y(0)$.
 
-$$
+```math
 RC\left[sY(s) - y(0)\right] + Y(s) = U(s)
-$$
+```
 
 Collecting the terms in $Y(s)$ on the left gives $(RCs + 1)Y(s) = U(s) + y(0)RC$, so the Laplace transform of the output signal is as follows.
 
-$$
+```math
 Y(s) = \frac{1}{RCs + 1}\left[U(s) + y(0)RC\right]
-$$
+```
 
 The first term $U(s)/(RCs + 1) = G(s)U(s)$ is the part due to the input, and the second term $y(0)RC/(RCs + 1)$ is the part due to the initial condition. Insert the impulse input $U(s) = 1$ and divide the numerator and denominator by $RC$ to make the inverse transform easy.
 
-$$
+```math
 Y(s) = \frac{1 + y(0)RC}{RCs + 1} = \frac{\dfrac{1}{RC} + y(0)}{s + \dfrac{1}{RC}}
-$$
+```
 
 Apply $\mathcal{L}^{-1}\lbrace1/(s+a) \rbrace= e^{-at}$ with $a = 1/RC$ to take the inverse Laplace transform.
 
-$$
+```math
 y(t) = \left[\frac{1}{RC} + y(0)\right]e^{-t/RC} = \underbrace{\frac{1}{RC}e^{-t/RC}}_{\text{impulse response } g(t)} + \underbrace{y(0)\,e^{-t/RC}}_{\text{response to the initial condition}}
-$$
+```
 
-If the initial condition is zero, the second term vanishes and the first term $g(t) = \frac{1}{RC}e^{-t/RC}$ is the impulse response of the RC circuit. It equals the inverse Laplace transform of $G(s) = 1/(RCs + 1)$. Physically, at the instant the impulse voltage arrives, the charge $\int i\,dt = \int \delta(t)/R\,dt = 1/R$ flows through the resistor into the capacitor and the capacitor voltage jumps to $1/(RC)$; afterward the input is zero, so the capacitor discharges through the resistor and the voltage decays exponentially with time constant $RC$.
+If the initial condition is zero, the second term vanishes and the first term $g(t) = \frac{1}{RC}e^{-t/RC}$ is the impulse response of the RC circuit. It equals the inverse Laplace transform of $G(s) = 1/(RCs + 1)$. Physically, at the instant the impulse voltage arrives, the charge $`\int i\,dt = \int \delta(t)/R\,dt = 1/R`$ flows through the resistor into the capacitor and the capacitor voltage jumps to $1/(RC)$; afterward the input is zero, so the capacitor discharges through the resistor and the voltage decays exponentially with time constant $RC$.
 
 ### 2.5 Example 2: Impulse Response of an RL Circuit
 
@@ -407,29 +407,29 @@ In the circuit of Figure 7, an inductor $L$ and a resistor $R$ are connected in 
 
 *Figure 7. RL circuit with an inductor and a resistor in series*
 
-**Writing the differential equation.** By Kirchhoff's voltage law (KVL), the input voltage is the sum of the inductor voltage $L\,di/dt$ and the resistor voltage $Ri$. Since the output is $y = Ri$, substitute $i = y/R$.
+**Writing the differential equation.** By Kirchhoff's voltage law (KVL), the input voltage is the sum of the inductor voltage $`L\,di/dt`$ and the resistor voltage $Ri$. Since the output is $y = Ri$, substitute $i = y/R$.
 
-$$
+```math
 u = L\frac{di}{dt} + Ri = \frac{L}{R}\frac{dy}{dt} + y
-$$
+```
 
 **Laplace transform of the output signal.** Transform while keeping the initial condition $y(0)$, and insert the impulse input $U(s) = 1$.
 
-$$
+```math
 \frac{L}{R}\left[sY(s) - y(0)\right] + Y(s) = U(s) = 1
-$$
+```
 
 Factoring out $Y(s)$ gives $\left(\frac{L}{R}s + 1\right)Y(s) = 1 + \frac{L}{R}y(0)$, and dividing the numerator and denominator by $L/R$ gives the following.
 
-$$
+```math
 Y(s) = \frac{1 + \dfrac{L}{R}y(0)}{\dfrac{L}{R}s + 1} = \frac{\dfrac{R}{L} + y(0)}{s + \dfrac{R}{L}}
-$$
+```
 
 **Inverse Laplace transform.** Invert with $a = R/L$.
 
-$$
+```math
 y(t) = \left[\frac{R}{L} + y(0)\right]e^{-Rt/L}
-$$
+```
 
 If the initial condition is zero, the impulse response is $g(t) = \frac{R}{L}e^{-Rt/L}$ and the transfer function is $G(s) = 1/\left(\frac{L}{R}s + 1\right)$. The RC circuit and the RL circuit are physically different, but both are first-order systems of the form $G(s) = 1/(\tau s + 1)$, with time constants $\tau = RC$ and $\tau = L/R$, respectively.
 
@@ -437,38 +437,38 @@ If the initial condition is zero, the impulse response is $g(t) = \frac{R}{L}e^{
 
 Find the output of the following system for the unit step input $U(s) = 1/s$ in two ways.
 
-$$
+```math
 G(s) = \frac{Y(s)}{U(s)} = \frac{s}{(s+2)(s+1)}, \qquad U(s) = \frac{1}{s}
-$$
+```
 
 **Method 1: partial fraction expansion.** In the Laplace transform of the output signal, the $s$ in the numerator cancels the input's $1/s$.
 
-$$
+```math
 Y(s) = G(s)U(s) = \frac{s}{(s+2)(s+1)} \cdot \frac{1}{s} = \frac{1}{(s+1)(s+2)}
-$$
+```
 
 Expanding into partial fractions $K_1/(s+1) + K_2/(s+2)$ gives $K_1 = \frac{1}{s+2}\big\vert_{s=-1} = 1$ and $K_2 = \frac{1}{s+1}\big\vert_{s=-2} = -1$, so the inverse Laplace transform is as follows.
 
-$$
+```math
 Y(s) = \frac{1}{s+1} - \frac{1}{s+2} \quad\Longrightarrow\quad y(t) = e^{-t} - e^{-2t} \quad (t \ge 0)
-$$
+```
 
 **Method 2: convolution.** First find the impulse response $g(t) = \mathcal{L}^{-1}\lbrace G(s) \rbrace$ by partial fraction expansion.
 
-$$
+```math
 \frac{s}{(s+1)(s+2)} = \frac{A}{s+1} + \frac{B}{s+2}, \qquad
 A = \left.\frac{s}{s+2}\right|_{s=-1} = \frac{-1}{1} = -1, \qquad
 B = \left.\frac{s}{s+1}\right|_{s=-2} = \frac{-2}{-1} = 2
-$$
+```
 
-Hence $g(t) = -e^{-t} + 2e^{-2t}$. The unit step input is $u(\tau) = 1$ for $\tau \ge 0$, so the convolution is $y(t) = \int_0^t g(t-\tau)\,d\tau$. Substituting $\sigma = t - \tau$ gives $d\sigma = -d\tau$, with $\sigma = t$ when $\tau = 0$ and $\sigma = 0$ when $\tau = t$, so the result is as follows.
+Hence $g(t) = -e^{-t} + 2e^{-2t}$. The unit step input is $u(\tau) = 1$ for $\tau \ge 0$, so the convolution is $`y(t) = \int_0^t g(t-\tau)\,d\tau`$. Substituting $\sigma = t - \tau$ gives $d\sigma = -d\tau$, with $\sigma = t$ when $\tau = 0$ and $\sigma = 0$ when $\tau = t$, so the result is as follows.
 
-$$
+```math
 \begin{aligned}
 y(t) &= \int_0^t g(\sigma)\,d\sigma = \int_0^t \left(-e^{-\sigma} + 2e^{-2\sigma}\right)d\sigma \\
 &= \Big[\,e^{-\sigma} - e^{-2\sigma}\,\Big]_0^t = \left(e^{-t} - e^{-2t}\right) - (1 - 1) = e^{-t} - e^{-2t}
 \end{aligned}
-$$
+```
 
 The two methods agree. The step response is the integral of the impulse response from 0 to $t$, which corresponds to multiplying $G(s)$ by $1/s$ in the $s$ domain.
 
@@ -480,24 +480,24 @@ Figure 8 compares the step response of Section 1.3 with the step response of thi
 
 ### 2.7 General Form of the Transfer Function
 
-Consider a linear time-invariant system described by an $n$th-order differential equation. With the coefficient of the highest output derivative normalized to 1, the general form is as follows, where $a_i$ and $b_i$ are constants.
+Consider a linear time-invariant system described by an $`n`$th-order differential equation. With the coefficient of the highest output derivative normalized to 1, the general form is as follows, where $a_i$ and $b_i$ are constants.
 
-$$
+```math
 \frac{d^ny(t)}{dt^n} + a_{n-1}\frac{d^{n-1}y(t)}{dt^{n-1}} + \cdots + a_1\frac{dy(t)}{dt} + a_0y(t)
 = b_m\frac{d^mu(t)}{dt^m} + b_{m-1}\frac{d^{m-1}u(t)}{dt^{m-1}} + \cdots + b_1\frac{du(t)}{dt} + b_0u(t)
-$$
+```
 
-Taking the Laplace transform with zero initial conditions turns the $k$th derivative into multiplication by $s^k$.
+Taking the Laplace transform with zero initial conditions turns the $`k`$th derivative into multiplication by $s^k$.
 
-$$
+```math
 (s^n + a_{n-1}s^{n-1} + \cdots + a_1s + a_0)\,Y(s) = (b_ms^m + b_{m-1}s^{m-1} + \cdots + b_1s + b_0)\,U(s)
-$$
+```
 
 Therefore the transfer function is a ratio of two polynomials, that is, a rational function of $s$.
 
-$$
+```math
 G(s) = \frac{Y(s)}{U(s)} = \frac{b_ms^m + b_{m-1}s^{m-1} + \cdots + b_1s + b_0}{s^n + a_{n-1}s^{n-1} + \cdots + a_1s + a_0}
-$$
+```
 
 The coefficients of the denominator polynomial are those of the left (output) side of the differential equation, and the coefficients of the numerator polynomial are those of the right (input) side. The degree $n$ of the denominator is called the **order** of the system. In real physical systems $m \le n$ in most cases; a transfer function with $m \le n$ is called a **proper transfer function**, and one with $m < n$ is called a **strictly proper transfer function**.
 
@@ -505,11 +505,11 @@ The coefficients of the denominator polynomial are those of the left (output) si
 
 > **Definition:** The equation obtained by setting the denominator of the transfer function to zero is called the **characteristic equation** of the system.
 
-$$
+```math
 s^n + a_{n-1}s^{n-1} + \cdots + a_1s + a_0 = 0
-$$
+```
 
-The characteristic equation provides important information about the properties of the system. This polynomial is the same characteristic equation used in Week 2 to solve homogeneous differential equations. Substituting $y = e^{\lambda t}$ into the homogeneous equation $y^{(n)} + a_{n-1}y^{(n-1)} + \cdots + a_0y = 0$ (where $y^{(k)}$ is the $k$th derivative of $y$) gives $\lambda^n + a_{n-1}\lambda^{n-1} + \cdots + a_0 = 0$; only the name of the variable has changed from $\lambda$ to $s$. Hence the roots $p_i$ of the characteristic equation fix the exponents of the motions $e^{p_it}$ that the system exhibits by itself. For example, the characteristic equation of the system in Section 1.2 is $s^2 + 3s + 2 = 0$ with roots $-1$ and $-2$, so $e^{-t}$ and $e^{-2t}$ appear in its responses (Sections 1.3 and 2.2).
+The characteristic equation provides important information about the properties of the system. This polynomial is the same characteristic equation used in Week 2 to solve homogeneous differential equations. Substituting $y = e^{\lambda t}$ into the homogeneous equation $y^{(n)} + a_{n-1}y^{(n-1)} + \cdots + a_0y = 0$ (where $y^{(k)}$ is the $`k`$th derivative of $`y`$) gives $\lambda^n + a_{n-1}\lambda^{n-1} + \cdots + a_0 = 0$; only the name of the variable has changed from $\lambda$ to $s$. Hence the roots $p_i$ of the characteristic equation fix the exponents of the motions $e^{p_it}$ that the system exhibits by itself. For example, the characteristic equation of the system in Section 1.2 is $s^2 + 3s + 2 = 0$ with roots $-1$ and $-2$, so $e^{-t}$ and $e^{-2t}$ appear in its responses (Sections 1.3 and 2.2).
 
 ### 2.9 Poles and Zeros
 
@@ -522,8 +522,8 @@ The value of the transfer function becomes infinite in two cases.
 
 **Poles and zeros at infinity.** As $\lvert s\rvert \to \infty$, $G(s)$ behaves like the ratio of the leading terms, $b_ms^m/s^n = b_ms^{m-n}$.
 
-- If the degree of the numerator exceeds that of the denominator ($m > n$), then $G(s) \to \infty$, so there are poles at infinity, $m - n$ of them.
-- If the degree of the denominator exceeds that of the numerator ($n > m$), then $G(s) \to 0$, so there are zeros at infinity, $n - m$ of them.
+- If the degree of the numerator exceeds that of the denominator ($`m > n`$), then $G(s) \to \infty$, so there are poles at infinity, $m - n$ of them.
+- If the degree of the denominator exceeds that of the numerator ($`n > m`$), then $G(s) \to 0$, so there are zeros at infinity, $n - m$ of them.
 
 Counting those at infinity, the numbers of poles and zeros are equal to $\max(m, n)$. Poles and zeros are plotted in the complex plane, the $s$ plane (horizontal axis $\sigma$ for the real part, vertical axis $j\omega$ for the imaginary part), with poles marked × and zeros marked ○; this plot is called a **pole-zero map**.
 
@@ -535,9 +535,9 @@ Counting those at infinity, the numbers of poles and zeros are equal to $\max(m,
 
 **Example 4.** Find the characteristic equation, poles, and zeros of the following transfer function. $j = \sqrt{-1}$ is the imaginary unit.
 
-$$
+```math
 G(s) = \frac{(s+1)^2}{(s+2)(s^2 + 2s + 2)}
-$$
+```
 
 - **Characteristic equation:** $(s+2)(s^2 + 2s + 2) = 0$.
 - **Poles:** $s + 2 = 0$ gives $-2$. The quadratic formula applied to $s^2 + 2s + 2 = 0$ gives $s = \frac{-2 \pm \sqrt{4 - 8}}{2} = -1 \pm j$, which can also be confirmed by completing the square, $(s+1)^2 + 1 = 0$. Hence the poles are $-2$, $-1 + j$, and $-1 - j$.
@@ -551,20 +551,20 @@ Figure 9 is the pole-zero map of this transfer function. The complex poles $-1 \
 
 **Example 5.** Find the characteristic equation, poles, and zeros of the following transfer function.
 
-$$
+```math
 G(s) = \frac{s(s+1)}{s+2}
-$$
+```
 
 - **Characteristic equation:** $s + 2 = 0$.
 - **Poles:** $-2$. In addition, the degree 2 of the numerator is higher than the degree 1 of the denominator, so there is one pole at infinity.
 - **Zeros:** The numerator $s(s+1) = 0$ gives $0$ and $-1$. The degree of the denominator does not exceed that of the numerator, so there is no zero at infinity.
 
-> **Note:** Some materials list the zeros of Example 5 as $-1$ and infinity, but the numerator $s(s+1)$ also vanishes at $s = 0$, so the zeros are $0$ and $-1$. Because the numerator has the higher degree, infinity is a pole, not a zero. Counting infinity, there are two poles ($-2$, $\infty$) and two zeros ($0$, $-1$), so the counts match.
+> **Note:** Some materials list the zeros of Example 5 as $-1$ and infinity, but the numerator $s(s+1)$ also vanishes at $s = 0$, so the zeros are $0$ and $-1$. Because the numerator has the higher degree, infinity is a pole, not a zero. Counting infinity, there are two poles ($-2$, $`\infty`$) and two zeros ($0$, $`-1`$), so the counts match.
 
 | Transfer function | Finite poles | Finite zeros | At infinity |
 |:-----|:-----|:-----|:-----|
-| Example 4: $\dfrac{(s+1)^2}{(s+2)(s^2+2s+2)}$ | $-2$, $-1 \pm j$ | $-1$ (double) | 1 zero ($n - m = 1$) |
-| Example 5: $\dfrac{s(s+1)}{s+2}$ | $-2$ | $0$, $-1$ | 1 pole ($m - n = 1$) |
+| Example 4: $\dfrac{(s+1)^2}{(s+2)(s^2+2s+2)}$ | $-2$, $-1 \pm j$ | $-1$ (double) | 1 zero ($`n - m = 1`$) |
+| Example 5: $\dfrac{s(s+1)}{s+2}$ | $-2$ | $0$, $-1$ | 1 pole ($`m - n = 1`$) |
 
 *Table 1. Poles and zeros of Examples 4 and 5*
 
@@ -584,7 +584,7 @@ In the $s$ domain the output can be written as the input multiplied by the trans
 >
 > - **Block:** The basic block (Figure 1) multiplies its input signal by the transfer function inside the block to produce its output signal.
 > - **Signal:** It is drawn as an arrow and flows only in the direction of the arrow.
-> - **Summing point:** It is drawn as a circle and adds the incoming signals with the sign ($+$ or $-$) attached to each arrow.
+> - **Summing point:** It is drawn as a circle and adds the incoming signals with the sign ($+$ or $`-`$) attached to each arrow.
 > - **Takeoff point:** It is a point that sends one signal to several places. Taking off a signal does not reduce its value, and every branch receives the same value.
 
 In the equations below, $(s)$ is omitted for brevity, so that $G_1(s)$ is written $G_1$ and $U_1(s)$ is written $U_1$.
@@ -606,9 +606,9 @@ flowchart LR
 
 Substituting the block relations $Y_1 = G_1U_1$, $U_2 = Y_1$, and $Y_2 = G_2U_2$ in turn gives $Y_2 = G_2Y_1 = G_2G_1U_1$. Therefore the transfer function of the whole system connected in series equals the product of the individual transfer functions.
 
-$$
+```math
 \frac{Y_2(s)}{U_1(s)} = G_1(s)G_2(s)
-$$
+```
 
 > **Caution:** The product rule for series connections assumes that the second block does not affect the output of the first block (no loading effect). For example, if two RC circuits are simply joined, the second circuit draws current from the first and changes its behavior, so the overall transfer function is not the product of the two transfer functions. In such cases the equations of the whole connected circuit must be written anew [3].
 
@@ -631,9 +631,9 @@ flowchart LR
 
 The two inputs that split at the takeoff point satisfy $U_1 = U_2 = U$, and the output is $Y = Y_1 + Y_2 = G_1U + G_2U$. Therefore the transfer function of the whole system connected in parallel equals the sum of the individual transfer functions.
 
-$$
+```math
 \frac{Y(s)}{U(s)} = G_1(s) + G_2(s)
-$$
+```
 
 If one branch has the sign $-$ at the summing point, its transfer function is subtracted.
 
@@ -656,27 +656,27 @@ flowchart LR
 
 The signals are related as follows.
 
-$$
+```math
 U_1 = R - Y_2, \qquad Y_1 = G_1U_1, \qquad U_2 = Y_1, \qquad Y_2 = G_2U_2
-$$
+```
 
 Insert the first relation into the second and substitute $Y_2 = G_2U_2 = G_2Y_1$.
 
-$$
+```math
 Y_1 = G_1(R - G_2Y_1) = G_1R - G_1G_2Y_1
-$$
+```
 
 Collecting the terms in $Y_1$ on the left gives $(1 + G_1G_2)Y_1 = G_1R$, and therefore the following.
 
-$$
+```math
 \frac{Y_1(s)}{R(s)} = \frac{G_1(s)}{1 + G_1(s)G_2(s)}
-$$
+```
 
 This ratio is called the **closed-loop transfer function**, and the product of all transfer functions met while going once around the loop, such as $G_1G_2$ in the denominator, is called the **loop gain**. In words, the result for negative feedback is the following.
 
-$$
+```math
 \text{closed-loop transfer function} = \frac{\text{transfer function of the forward path}}{1 + \text{loop gain}}
-$$
+```
 
 - With **positive feedback**, which adds the feedback signal at the summing point, the first relation becomes $U_1 = R + Y_2$ and the sign in the denominator flips, giving $G_1/(1 - G_1G_2)$.
 - The case in which the feedback path has transfer function 1 is called **unity feedback**, and the closed-loop transfer function is then $G_1/(1 + G_1)$.
@@ -825,15 +825,15 @@ flowchart LR
 
 **Step 1: inner loop.** No other signal enters or leaves between the second summing point and the takeoff point behind $G_1$, so the inner loop is a self-contained feedback connection. Replace it by a single block using the result of Section 3.4.
 
-$$
+```math
 G_A = \frac{G_1}{1 + G_1G_2}
-$$
+```
 
 **Step 2: series connection.** $G_A$ and $G_4$ are in series, so multiply them. The result is the block diagram of Figure 18.
 
-$$
+```math
 G_AG_4 = \frac{G_1G_4}{1 + G_1G_2}
-$$
+```
 
 ```mermaid
 flowchart LR
@@ -854,19 +854,19 @@ flowchart LR
 
 **Step 3: outer loop.** This is a feedback connection with forward path $G_AG_4$ and feedback path $G_3$. Substitute into the result of Section 3.4, then multiply the numerator and denominator by $1 + G_1G_2$ to clear the compound fraction.
 
-$$
+```math
 \frac{G_AG_4}{1 + G_AG_4G_3}
 = \frac{\dfrac{G_1G_4}{1 + G_1G_2}}{1 + \dfrac{G_1G_3G_4}{1 + G_1G_2}}
 = \frac{G_1G_4}{1 + G_1G_2 + G_1G_3G_4}
-$$
+```
 
 **Step 4: parallel connection.** $G_5$ and $G_6$ receive the same signal and are added, giving $G_5 + G_6$.
 
 **Step 5: series connection.** The results of Steps 3 and 4 are in series, so multiply them (Figure 19).
 
-$$
+```math
 \frac{Y(s)}{R(s)} = \frac{G_1G_4(G_5 + G_6)}{1 + G_1G_2 + G_1G_3G_4}
-$$
+```
 
 ```mermaid
 flowchart LR
@@ -903,9 +903,9 @@ flowchart LR
 
 *Figure 20. Block diagram of Example 2*
 
-**The difficulty.** The takeoff point feeding $G_5$ lies inside the feedback loop (between $G_1$ and $G_2$), but the output of $G_5$ is added outside the loop. A signal leaves from inside the loop, so the loop cannot be replaced by a single block with Section 3.4 directly.
+**The difficulty.** The takeoff point feeding $G_5$ lies inside the feedback loop (between $G_1$ and $`G_2`$), but the output of $G_5$ is added outside the loop. A signal leaves from inside the loop, so the loop cannot be replaced by a single block with Section 3.4 directly.
 
-**Step 1: moving the takeoff point behind a block.** Move the takeoff point feeding $G_5$ behind $G_2$. By Rule 3, inserting $1/G_2$ in the branch turns the $G_5$ branch into $G_5/G_2$. As a check, after the move the output of the $G_5$ branch is $(G_2X_1)\cdot G_5/G_2 = G_5X_1$, the same as before the move ($X_1$ is the output of $G_1$). Both takeoff points now lie behind $G_2$, as shown in Figure 21.
+**Step 1: moving the takeoff point behind a block.** Move the takeoff point feeding $G_5$ behind $G_2$. By Rule 3, inserting $1/G_2$ in the branch turns the $G_5$ branch into $G_5/G_2$. As a check, after the move the output of the $G_5$ branch is $(G_2X_1)\cdot G_5/G_2 = G_5X_1$, the same as before the move ($X_1$ is the output of $`G_1`$). Both takeoff points now lie behind $G_2$, as shown in Figure 21.
 
 ```mermaid
 flowchart LR
@@ -931,9 +931,9 @@ flowchart LR
 
 **Step 4: series connection.** Multiply the two results, distribute, and cancel $G_2$ (Figure 22).
 
-$$
+```math
 \frac{Y(s)}{R(s)} = \frac{G_1G_2}{1 + G_1G_2G_3}\left(G_4 + \frac{G_5}{G_2}\right) = \frac{G_1G_2G_4 + G_1G_5}{1 + G_1G_2G_3}
-$$
+```
 
 ```mermaid
 flowchart LR
@@ -974,10 +974,10 @@ Only the loop gain $G_1G_2G_3$ appears in the denominator of the result, and the
 | Concept | Key Summary |
 |:-----|:-----|
 | Transfer function | It is the ratio $G(s) = Y(s)/U(s)$ of the Laplace transforms of the output and the input of an LTI system with all initial conditions zero. |
-| Finding a transfer function | Transforming the differential equation with zero initial conditions turns the $k$th derivative into multiplication by $s^k$; the left-side coefficients form the denominator and the right-side coefficients form the numerator. |
+| Finding a transfer function | Transforming the differential equation with zero initial conditions turns the $`k`$th derivative into multiplication by $s^k$; the left-side coefficients form the denominator and the right-side coefficients form the numerator. |
 | Impulse function | It is the limit of a unit-area pulse as its width goes to zero, and its Laplace transform is 1. |
 | Impulse response | It is the output of a system with zero initial conditions to an impulse input and equals the inverse Laplace transform of the transfer function, $g(t) = \mathcal{L}^{-1}\lbrace G(s) \rbrace$. |
-| Convolution | The output for an arbitrary input is $y(t) = \int_0^t g(t-\tau)u(\tau)\,d\tau$, which corresponds to the product $G(s)U(s)$ in the $s$ domain. |
+| Convolution | The output for an arbitrary input is $`y(t) = \int_0^t g(t-\tau)u(\tau)\,d\tau`$, which corresponds to the product $G(s)U(s)$ in the $s$ domain. |
 | Characteristic equation | It is the equation obtained by setting the denominator of the transfer function to zero, and its roots fix the exponents of the exponentials $e^{pt}$ in the response. |
 | Poles and zeros | Poles are the values of $s$ that make the transfer function infinite and zeros those that make it zero; if the numerator and denominator degrees differ, poles or zeros lie at infinity in the number of the difference. |
 | Block diagram | It represents the algebraic relations of the $s$ domain with blocks, signals, summing points, and takeoff points. |
@@ -1004,7 +1004,7 @@ Only the loop gain $G_1G_2G_3$ appears in the denominator of the result, and the
    <details>
    <summary>Answer</summary>
 
-   The impulse response is $g(t) = \mathcal{L}^{-1}\lbrace3/(s+4) \rbrace= 3e^{-4t}$. The unit step response is obtained from $Y(s) = \dfrac{3}{s(s+4)} = \dfrac{3/4}{s} - \dfrac{3/4}{s+4}$, so $y(t) = \frac{3}{4}(1 - e^{-4t})$. This equals $\int_0^t 3e^{-4\sigma}\,d\sigma = \frac{3}{4}(1 - e^{-4t})$, the integral of the impulse response.
+   The impulse response is $g(t) = \mathcal{L}^{-1}\lbrace3/(s+4) \rbrace= 3e^{-4t}$. The unit step response is obtained from $Y(s) = \dfrac{3}{s(s+4)} = \dfrac{3/4}{s} - \dfrac{3/4}{s+4}$, so $y(t) = \frac{3}{4}(1 - e^{-4t})$. This equals $`\int_0^t 3e^{-4\sigma}\,d\sigma = \frac{3}{4}(1 - e^{-4t})`$, the integral of the impulse response.
 
    </details>
 
@@ -1022,7 +1022,7 @@ Only the loop gain $G_1G_2G_3$ appears in the denominator of the result, and the
    <details>
    <summary>Answer</summary>
 
-   Since $u(\tau) = 1$, $y(t) = \int_0^t e^{-(t-\tau)}\,d\tau = e^{-t}\int_0^t e^{\tau}\,d\tau = e^{-t}(e^t - 1) = 1 - e^{-t}$. With the Laplace transform, $G(s) = 1/(s+1)$ and $U(s) = 1/s$, so $Y(s) = \dfrac{1}{s(s+1)} = \dfrac{1}{s} - \dfrac{1}{s+1}$, and the inverse transform gives the same $y(t) = 1 - e^{-t}$.
+   Since $u(\tau) = 1$, $`y(t) = \int_0^t e^{-(t-\tau)}\,d\tau = e^{-t}\int_0^t e^{\tau}\,d\tau = e^{-t}(e^t - 1) = 1 - e^{-t}`$. With the Laplace transform, $G(s) = 1/(s+1)$ and $U(s) = 1/s$, so $Y(s) = \dfrac{1}{s(s+1)} = \dfrac{1}{s} - \dfrac{1}{s+1}$, and the inverse transform gives the same $y(t) = 1 - e^{-t}$.
 
    </details>
 
@@ -1035,12 +1035,12 @@ Only the loop gain $G_1G_2G_3$ appears in the denominator of the result, and the
 
    </details>
 
-6. **RC circuit:** In the RC circuit of Section 1.4, $R = 1\,\mathrm{M\Omega}$ and $C = 0.5\,\mathrm{\mu F}$. Find the time constant and the impulse response.
+6. **RC circuit:** In the RC circuit of Section 1.4, $`R = 1\,\mathrm{M\Omega}`$ and $`C = 0.5\,\mathrm{\mu F}`$. Find the time constant and the impulse response.
 
    <details>
    <summary>Answer</summary>
 
-   $RC = 10^6 \times 0.5 \times 10^{-6} = 0.5\,\mathrm{s}$. The transfer function is $G(s) = 1/(0.5s + 1) = 2/(s + 2)$, so the impulse response is $g(t) = 2e^{-2t}$. This is $\frac{1}{RC}e^{-t/RC}$ with $RC = 0.5$.
+   $`RC = 10^6 \times 0.5 \times 10^{-6} = 0.5\,\mathrm{s}`$. The transfer function is $G(s) = 1/(0.5s + 1) = 2/(s + 2)$, so the impulse response is $g(t) = 2e^{-2t}$. This is $\frac{1}{RC}e^{-t/RC}$ with $RC = 0.5$.
 
    </details>
 

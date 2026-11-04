@@ -158,9 +158,9 @@ An **artificial neural network** is a computational model that imitates the way 
 2. It multiplies each input by a **weight** $w_1, w_2, \ldots, w_n$ and adds them to obtain the **weighted sum** $\sum_{i=1}^{n} w_i x_i$.
 3. It passes the weighted sum through an **activation function** $f$ to produce the output $y$. The activation function determines how much of the weighted sum is passed on to the output.
 
-$$
+```math
 y = f\left(\sum_{i=1}^{n} w_i x_i\right)
-$$
+```
 
 ![Figure 9. An artificial neuron and a multilayer neural network](../../images/Week01_1-1_p12.png)
 
@@ -312,13 +312,13 @@ Its main characteristics are as follows.
 
 Control systems are also divided into **linear control systems** and **nonlinear control systems** according to whether the relation between input and output is linear. The word linear comes from line, and it refers to a function or system whose input-output relation satisfies the following two conditions.
 
-$$
+```math
 f(x + y) = f(x) + f(y)
-$$
+```
 
-$$
+```math
 f(ax) = a f(x)
-$$
+```
 
 The first condition, **additivity**, means that the output for a sum of inputs equals the sum of the individual outputs, and the second, **homogeneity**, means that scaling the input by a constant scales the output by the same constant. The two conditions together are called the **superposition principle**.
 
@@ -338,11 +338,11 @@ The first condition, **additivity**, means that the output for a sum of inputs e
 
 To build an open-loop controller, the relation between pedal angle and speed must be known in advance. The process of measuring the speed reached at various pedal angles to obtain a **mathematical model** $\text{Speed} = f(\text{pedal angle})$ is called **system identification**. The graph at the bottom of Figure 13 is the relation between pedal angle and speed obtained in this way. Once the model is available, the controller computes the required pedal angle with its inverse function.
 
-$$
+```math
 \text{pedal angle} = f^{-1}(\text{Speed}) = f^{-1}(30\ \text{km/h})
-$$
+```
 
-This method holds 30 km/h exactly only when the model is accurate and there is no disturbance. If the car meets an uphill road or a headwind (disturbance $d$), or if more passengers make the model $f$ differ from reality, the speed drifts away from 30 km/h, but the controller does not notice because it does not measure the speed.
+This method holds 30 km/h exactly only when the model is accurate and there is no disturbance. If the car meets an uphill road or a headwind (disturbance $`d`$), or if more passengers make the model $f$ differ from reality, the speed drifts away from 30 km/h, but the controller does not notice because it does not measure the speed.
 
 **Example 2: autonomous driving control.** Consider an open-loop approach that computes the route from the start to the destination in advance and fixes, in order, commands such as accelerating for a few seconds, braking for a few seconds, and turning the wheel by some degrees at a certain point.
 
@@ -367,11 +367,11 @@ flowchart LR
 
 **The risk of closed-loop control.** Closed-loop control can be somewhat risky because it changes the **dynamics** of the system, that is, how its state changes over time. The dynamics of a system are expressed in the following form.
 
-$$
+```math
 \dot{x} = f(x)
-$$
+```
 
-Here $x$ is the current state and $\dot{x} = dx/dt$ is the rate of change of the state. The equation says that the current state affects the change of the state, and hence the future state, and it provides a methodology for analyzing and predicting how the state changes over time. With a control input the equation becomes $\dot{x} = f(x, u)$, and when feedback chooses the input according to the state ($u = k(x)$), the closed-loop dynamics become $\dot{x} = f(x, k(x))$. If the feedback rule $k$ is chosen badly, even an originally stable system can oscillate or diverge, so in closed-loop design **maintaining the stability of the system is important.**
+Here $x$ is the current state and $\dot{x} = dx/dt$ is the rate of change of the state. The equation says that the current state affects the change of the state, and hence the future state, and it provides a methodology for analyzing and predicting how the state changes over time. With a control input the equation becomes $\dot{x} = f(x, u)$, and when feedback chooses the input according to the state ($`u = k(x)`$), the closed-loop dynamics become $\dot{x} = f(x, k(x))$. If the feedback rule $k$ is chosen badly, even an originally stable system can oscillate or diverge, so in closed-loop design **maintaining the stability of the system is important.**
 
 **Planning.** The reference of a closed loop is set in the **planning** stage. References take many forms, such as the angle a lever or joystick should point to, the speed a speedometer needle should indicate, or the path a vehicle should follow.
 
@@ -396,7 +396,7 @@ Here $x$ is the current state and $\dot{x} = dx/dt$ is the rate of change of the
 
 *Figure 17. A Kalman filter and a moving average filter*
 
-- **Moving average filter:** It uses the average of the most recent $N$ measurements as the current estimate. The estimate at time step $k$ is $\bar{x}_k = \frac{1}{N} \sum_{i=0}^{N-1} x_{k-i}$. The right side of Figure 17 applies 5-year (SMA_5) and 20-year (SMA_20) simple moving averages to the yearly average temperatures of New Zealand (Raw) (the horizontal axis is the year and the vertical axis the temperature in °C; the two axis labels of the graph are swapped); the larger $N$ is, the smoother the curve, but the more slowly it follows changes.
+- **Moving average filter:** It uses the average of the most recent $N$ measurements as the current estimate. The estimate at time step $k$ is $`\bar{x}_k = \frac{1}{N} \sum_{i=0}^{N-1} x_{k-i}`$. The right side of Figure 17 applies 5-year (SMA_5) and 20-year (SMA_20) simple moving averages to the yearly average temperatures of New Zealand (Raw) (the horizontal axis is the year and the vertical axis the temperature in °C; the two axis labels of the graph are swapped); the larger $N$ is, the smoother the curve, but the more slowly it follows changes.
 - **Kalman filter:** It quickly estimates the true value (position, velocity, temperature, and so on) by repeating a computation that takes a weighted average of the value predicted by a model of the system and the noisy measurement, according to their respective uncertainties [3]. On the left side of Figure 17, the × marks are measured temperatures, and the estimate curve, starting from an initial estimate, converges quickly to the actual temperature through repeated computation.
 
 The overall structure of the closed loop, including planning, control, observation, noise, and filtering, is as follows.
@@ -429,9 +429,9 @@ flowchart LR
 
 *Figure 19. Structure of a feedback control system*
 
-$$
+```math
 e(t) = r(t) - x(t)
-$$
+```
 
 The reference $r$ is the value to be achieved, and what is wanted is zero error. The key question of controller design is therefore **how to drive the error to zero over time**. The two examples that follow show the most basic answers to this question in turn.
 
@@ -449,21 +449,21 @@ flowchart LR
 
 At the start the error is $50 - 0 = 50$ m. The most natural strategy is to choose the walking speed **in proportion to the error**: walk fast when far away and slowly when close. A controller that determines the control input by multiplying the error by a gain $K_P$ is called a **proportional controller (P controller)**.
 
-$$
+```math
 u(t) = K_P\, e(t) = K_P \left( 50 - x(t) \right)
-$$
+```
 
 With gain $K_P = 0.1$, the walking speed at the start is $0.1 \times 50 = 5$ m/s. The walking speed is the rate of change of the location, so $\dot{x} = u$, which gives the following differential equation.
 
-$$
+```math
 \dot{x}(t) = 0.1 \left( 50 - x(t) \right), \qquad x(0) = 0
-$$
+```
 
 Solving it with the method of Section 3.2 of Week 2 gives the following.
 
-$$
+```math
 x(t) = 50 \left( 1 - e^{-0.1 t} \right), \qquad u(t) = 0.1 \left( 50 - x(t) \right) = 5 e^{-0.1 t}
-$$
+```
 
 For example, after 10 seconds the location is $50(1 - e^{-1}) \approx 31.6$ m and the walking speed is $5 e^{-1} \approx 1.84$ m/s. As the error decreases, the speed also decreases, and the person approaches the target point smoothly.
 
@@ -492,9 +492,9 @@ With the proportional controller $u = K_P e$, the error at the start is $50 - 0 
 
 In general the drone stops at the altitude where $u = 100$ rpm, so the error $e_{ss}$ and altitude $x_{ss}$ at which it stops are as follows.
 
-$$
+```math
 K_P\, e_{ss} = 100 \quad \Rightarrow \quad e_{ss} = \frac{100}{K_P}, \qquad x_{ss} = 50 - \frac{100}{K_P}
-$$
+```
 
 | Gain $K_P$ | Propeller speed at start (rpm) | Final altitude $x_{ss}$ (m) | Remaining error $e_{ss}$ (m) |
 |:-----|:-----|:-----|:-----|
@@ -509,7 +509,7 @@ $$
 
 *Figure 23. Drone altitude for different gains of the proportional controller*
 
-Figure 23 plots the altitude for each gain in a simplified model in which the climb rate of the drone is proportional to the difference between the propeller speed and the hovering speed, $\dot{x} = c\,(u - 100)$ with $c = 0.02$ (m/s)/rpm. As the gain grows the error becomes smaller and smaller, but **the error never becomes zero.** If the error were zero, then $u = K_P \times 0 = 0$ rpm and the drone could not stay in the air. Such an error that remains after a sufficiently long time is called the **steady-state error**, and a proportional controller alone cannot remove it.
+Figure 23 plots the altitude for each gain in a simplified model in which the climb rate of the drone is proportional to the difference between the propeller speed and the hovering speed, $`\dot{x} = c\,(u - 100)`$ with $c = 0.02$ (m/s)/rpm. As the gain grows the error becomes smaller and smaller, but **the error never becomes zero.** If the error were zero, then $u = K_P \times 0 = 0$ rpm and the drone could not stay in the air. Such an error that remains after a sufficiently long time is called the **steady-state error**, and a proportional controller alone cannot remove it.
 
 > **Caution:** Increasing the gain reduces the steady-state error, but the gain cannot be increased without limit. In Table 9, $K_P = 100$ requires 5000 rpm at the start, but a real motor has a maximum speed and cannot exceed it (saturation). In addition, in a real system with inertia, an excessively large gain can make the output pass the target and oscillate or become unstable. Steady-state error is analyzed systematically in Week 10.
 
@@ -526,17 +526,17 @@ flowchart LR
 
 *Figure 24. Structure of a proportional-integral controller*
 
-$$
+```math
 u(t) = K_P\, e(t) + K_I \int_0^t e(\tau)\, d\tau
-$$
+```
 
 The integral path accumulates the total amount of the input signal (the error) over time. The area under the error curve is the value of the integral. If the drone settles in a steady state below the desired altitude, a nonzero error keeps accumulating, the integral grows, the propeller speed increases accordingly, and the drone rises again.
 
 The proportional path and the integral path work together to bring the error down to zero. When the drone stays at the target altitude of 50 m, the error is zero, so the output of the proportional path is zero. The integral path keeps changing as long as an error remains, and once the error becomes zero it holds the value accumulated so far. The output of the integral path therefore stops changing exactly when it reaches 100 rpm, and the drone hovers at 50 m with no error.
 
-$$
+```math
 e = 0, \quad K_P\, e = 0, \quad K_I \int_0^t e(\tau)\, d\tau = 100\ \text{rpm}
-$$
+```
 
 The integral path, however, has a side effect. At the moment the drone reaches 50 m it is still rising, and because of the integral accumulated so far, the propeller speed can exceed 100 rpm. The drone then passes 50 m and climbs further, which is called **overshoot**; its maximum value is called the **maximum overshoot** (Week 7). Above 50 m the error becomes negative and the integral decreases, and as the integral path removes the excess propeller speed, the drone returns to 50 m.
 
@@ -575,14 +575,14 @@ flowchart LR
 
 *Figure 27. Drone altitude control system with a PID controller*
 
-$$
+```math
 u(t) = K_P\, e(t) + K_I \int_0^t e(\tau)\, d\tau + K_D \frac{de(t)}{dt}
-$$
+```
 
 | Path | Gain | Error it looks at | What it does |
 |:-----|:-----|:-----|:-----|
 | Proportional (P) | $K_P$ | The present error $e(t)$ | Controls more strongly when the error is larger |
-| Integral (I) | $K_I$ | The accumulation of past errors $\int_0^t e\, d\tau$ | Keeps accumulating the remaining error to remove the steady-state error |
+| Integral (I) | $K_I$ | The accumulation of past errors $`\int_0^t e\, d\tau`$ | Keeps accumulating the remaining error to remove the steady-state error |
 | Derivative (D) | $K_D$ | The rate of change of the error $de/dt$ (a prediction of future error) | Slows down in advance when the error decreases quickly, reducing overshoot |
 
 *Table 10. The three paths of a PID controller*

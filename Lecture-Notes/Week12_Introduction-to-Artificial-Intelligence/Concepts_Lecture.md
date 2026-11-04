@@ -267,9 +267,9 @@ The top of Figure 5 shows clustering, which groups documents (TEXT) into three c
 
 Training data consist of $n$ **samples**. A training dataset for supervised learning is written as pairs of inputs and labels.
 
-$$
+```math
 (x_1, y_1), (x_2, y_2), \ldots, (x_n, y_n), \qquad x_i \in \mathbb{R}^d
-$$
+```
 
 Here $x_i$ is the input of the $i$-th sample, a $d$-dimensional vector collecting $d$ **feature** values, also called a **feature vector**. $y_i$ is the label of that sample. Writing the $j$-th feature value of $x_i$ as $x_{ij}$, the training data become a table whose rows are samples and whose columns are features, as in Figure 6.
 
@@ -283,7 +283,7 @@ Here $x_i$ is the input of the $i$-th sample, a $d$-dimensional vector collectin
 
 *Figure 6. Matrix representation of training data*
 
-For example, in fruit data, each fruit has three features ($d = 3$), its length, width, and weight, and its label is the kind of fruit.
+For example, in fruit data, each fruit has three features ($`d = 3`$), its length, width, and weight, and its label is the kind of fruit.
 
 | Fruit | Length | Width | Weight | Label |
 |:-----|:-----|:-----|:-----|:-----|
@@ -306,15 +306,15 @@ The first row of Table 6 means $x_1 = (165, 38, 172)$ and $y_1 = \text{Banana}$.
 
 The training data of unsupervised learning contain only inputs.
 
-$$
+```math
 x_1, x_2, \ldots, x_n, \qquad x_i \in \mathbb{R}^d
-$$
+```
 
 A typical unsupervised learning task is **clustering**, also called **segmentation**. Clustering is the problem of finding a function $f$ that maps each data point to one of $K$ **clusters**.
 
-$$
+```math
 f : \mathbb{R}^d \to \lbrace C_1, C_2, \ldots, C_K\rbrace\quad (\text{set of clusters})
-$$
+```
 
 > **Definition:** A **cluster** is a group of mutually similar data points. Similarity is usually measured by distance in the feature space: data in the same cluster are close to each other and far from data in other clusters. The **feature space** is the space with one axis per feature, in which each sample becomes a single point.
 
@@ -333,16 +333,16 @@ K-means clustering proceeds in the following four steps.
 1. **Initial centroids:** Choose $K$ cluster centroids $\mu_1, \ldots, \mu_K$ at random within the data region.
 2. **Cluster assignment:** Assign each data point to the cluster of its nearest centroid.
 
-   $$
+   ```math
    c(i) = \arg\min_{k \in \lbrace1, \ldots, K\rbrace} \lVert x_i - \mu_k \rVert
-   $$
+   ```
 
    Here $c(i)$ is the index of the cluster to which the data point $x_i$ is assigned, and $\lVert x_i - \mu_k \rVert$ is the Euclidean distance between $x_i$ and the centroid $\mu_k$.
 3. **Centroid update:** Move each centroid to the mean position of the data in its cluster. With $C_k$ the set of data in the $k$-th cluster and $\lvert C_k \rvert$ their number, this is:
 
-   $$
+   ```math
    \mu_k = \frac{1}{\lvert C_k \rvert} \sum_{x_i \in C_k} x_i
-   $$
+   ```
 
 4. **Repetition and convergence:** Repeat cluster assignment and centroid update, and stop when the assignment no longer changes or the centroids barely move.
 
@@ -369,9 +369,9 @@ Figure 8 shows K-means clustering with $K = 3$ applied to gray data arranged in 
 
 **Update in iteration 1.** Cluster 1 is $\lbrace A, C\rbrace$ and cluster 2 is $\lbrace B, D, E, F\rbrace$, so the new centroids are:
 
-$$
+```math
 \mu_1 = \left(\frac{1 + 1}{2}, \frac{1 + 2}{2}\right) = (1, 1.5), \qquad \mu_2 = \left(\frac{2 + 5 + 6 + 5}{4}, \frac{1 + 4 + 5 + 5}{4}\right) = (4.5, 3.75)
-$$
+```
 
 **Assignment in iteration 2.** Recompute the distances with the new centroids. $B(2, 1)$ is $\sqrt{1^2 + 0.5^2} \approx 1.118$ from $\mu_1$ and $\sqrt{2.5^2 + 2.75^2} \approx 3.717$ from $\mu_2$, so it moves to cluster 1.
 
@@ -392,9 +392,9 @@ $$
 
 The quantity that K-means clustering decreases is the **within-cluster sum of squares**, the sum of the squared distances between each data point and the centroid of its cluster.
 
-$$
+```math
 J = \sum_{k=1}^{K} \sum_{x_i \in C_k} \lVert x_i - \mu_k \rVert^2
-$$
+```
 
 The assignment step attaches each point to its nearest centroid, so it does not increase $J$, and the update step moves each centroid to the mean, which is the point that minimizes the sum of squared distances within the cluster, so it does not increase $J$ either. Because the number of possible assignments is finite, the algorithm stops after a finite number of iterations [9]. In the example of Section 2.4, $J$ decreases from 76 at the first assignment to 20.25 after the first update, 7.6875 after the second assignment, and about 2.667 after the second update.
 
@@ -427,9 +427,9 @@ The training data of supervised learning are pairs of inputs $x$ and labels $y$,
 
 In **classification**, the label $y$ is discrete, that is, one of a few categories. With only two categories, one usually writes $y \in \lbrace-1, +1\rbrace$, and the function that sends an input to one of the two categories,
 
-$$
+```math
 f : \mathbb{R}^d \to \lbrace-1, +1\rbrace
-$$
+```
 
 is called a **binary classifier**. Problems such as yes/no, banana/orange, and spam/ham (legitimate mail) are binary classification.
 
@@ -443,15 +443,15 @@ is called a **binary classifier**. Problems such as yes/no, banana/orange, and s
 
 *Figure 12. Decision boundaries of binary and three-class classification*
 
-The left of Figure 12 is binary classification, which separates two categories ($+$ and $-$) with a single curve, and the right is **multiclass classification**, which separates three categories ($+$, $-$, $\times$) with boundaries where three curves meet. With $C$ categories, the label is written as $y \in \lbrace1, 2, \ldots, C\rbrace$.
+The left of Figure 12 is binary classification, which separates two categories ($+$ and $`-`$) with a single curve, and the right is **multiclass classification**, which separates three categories ($+$, $-$, $`\times`$) with boundaries where three curves meet. With $C$ categories, the label is written as $y \in \lbrace1, 2, \ldots, C\rbrace$.
 
 ### 2.7 k-Nearest Neighbors Classification
 
-The **k-nearest neighbors (k-NN) classifier** is based on the principle that birds of a feather flock together: if an object is similar to its neighbors, it is likely to belong to the same class. Here a **class** means a category of the classification. k-NN usually determines the nearest neighbors with the standard **Euclidean distance**. The Euclidean distance between two points $x = (x_1, \ldots, x_d)$ and $x' = (x'_1, \ldots, x'_d)$ is:
+The **k-nearest neighbors (k-NN) classifier** is based on the principle that birds of a feather flock together: if an object is similar to its neighbors, it is likely to belong to the same class. Here a **class** means a category of the classification. k-NN usually determines the nearest neighbors with the standard **Euclidean distance**. The Euclidean distance between two points $x = (x_1, \ldots, x_d)$ and $`x' = (x'_1, \ldots, x'_d)`$ is:
 
-$$
+```math
 \mathrm{dist}(x, x') = \sqrt{\sum_{j=1}^{d} (x_j - x'_j)^2}
-$$
+```
 
 The k-NN classifier works through the following process.
 
@@ -466,7 +466,7 @@ Because it builds no model in advance in the training phase and does all the com
 
 *Figure 13. Neighbors in k-NN classification for different k*
 
-Figure 13 contains training data of two classes ($\times$ and $\circ$) and two points ($+$) whose classes are unknown. The left $+$ has a single $\times$ right next to it, but its surroundings are mostly $\circ$.
+Figure 13 contains training data of two classes ($\times$ and $`\circ`$) and two points ($`+`$) whose classes are unknown. The left $+$ has a single $\times$ right next to it, but its surroundings are mostly $\circ$.
 
 - **1-NN:** The nearest neighbor of the left $+$ is a $\times$, so it is classified as $\times$ (red circle). The right $+$ follows its nearest $\circ$ and becomes $\circ$.
 - **3-NN:** The three neighbors of the left $+$ are one $\times$ and two $\circ$, so it is classified as $\circ$. The right $+$ also has two $\circ$ and one $\times$, so it is $\circ$.
@@ -478,13 +478,13 @@ Thus, with a small $k$ the prediction is sensitive to the single sample right ne
 
 *Figure 14. Neighbors and decision boundary of 3-NN*
 
-On the left of Figure 14, the three nearest neighbors of the new point ($\times$), inside the green circle, are two blue points and one orange point, so the new point is classified into the blue class. The right shows the result of classifying every location on the plane with 3-NN and coloring it; the boundary is not a straight line but a winding nonlinear decision boundary that follows the arrangement of the data.
+On the left of Figure 14, the three nearest neighbors of the new point ($`\times`$), inside the green circle, are two blue points and one orange point, so the new point is classified into the blue class. The right shows the result of classifying every location on the plane with 3-NN and coloring it; the boundary is not a straight line but a winding nonlinear decision boundary that follows the arrangement of the data.
 
 **Example.** Using the five fruits of Table 6 as training data, classify a new fruit with length 150, width 40, and weight 165 by 3-NN. The distance from the new fruit $q = (150, 40, 165)$ to fruit 1 is
 
-$$
+```math
 \mathrm{dist}(q, x_1) = \sqrt{(150 - 165)^2 + (40 - 38)^2 + (165 - 172)^2} = \sqrt{225 + 4 + 49} = \sqrt{278} \approx 16.67
-$$
+```
 
 and computing the rest in the same way gives Table 10.
 
@@ -515,9 +515,9 @@ The labels of the three nearest neighbors are banana, banana, and orange, so by 
 
 The **support vector machine (SVM) classifier** finds the **hyperplane** that best separates the different classes in feature space [8]. A hyperplane is a flat $(d-1)$-dimensional boundary that divides a $d$-dimensional space into two; it is a line in two dimensions and a plane in three dimensions. The linear classification function found by an SVM is:
 
-$$
+```math
 f(x) = \operatorname{sgn}(w \cdot x + b)
-$$
+```
 
 Here $w \in \mathbb{R}^d$ is the **weight vector** perpendicular to the hyperplane, $b$ is the **bias** that sets the position of the hyperplane, $w \cdot x$ is the dot product, and $\operatorname{sgn}$ is the sign function, which outputs $+1$ for positive values and $-1$ for negative values. The hyperplane is the set of points with $w \cdot x + b = 0$, and the distance from a point $x$ to the hyperplane is $\lvert w \cdot x + b \rvert / \lVert w \rVert$.
 
@@ -529,9 +529,9 @@ There are infinitely many lines that separate two classes. Among them, an SVM ch
 
 Multiplying $w$ and $b$ by the same positive number gives the same hyperplane, so if they are scaled so that $\lvert w \cdot x + b \rvert = 1$ at the support vectors, the width of the margin becomes $2 / \lVert w \rVert$. Maximizing the margin is therefore equivalent to minimizing $\lVert w \rVert$ while keeping every training sample on the correct side [8].
 
-$$
+```math
 \min_{w, b} \ \frac{1}{2} \lVert w \rVert^2 \quad \text{subject to} \quad y_i (w \cdot x_i + b) \ge 1, \quad i = 1, \ldots, n
-$$
+```
 
 **Example.** With $w = (1, 1)$ and $b = -3$, the hyperplane is the line $x_1 + x_2 = 3$. At the point $(2, 2)$, $w \cdot x + b = 2 + 2 - 3 = 1 > 0$, so $f = +1$; at the point $(1, 1)$, $1 + 1 - 3 = -1 < 0$, so $f = -1$. Since $\lvert w \cdot x + b \rvert = 1$ at both points, if they are support vectors the width of the margin is $2 / \lVert w \rVert = 2 / \sqrt{2} = \sqrt{2} \approx 1.414$.
 
@@ -539,11 +539,11 @@ $$
 
 ### 2.9 Supervised Learning: Regression
 
-In **regression**, the label $y$ is a real number ($y \in \mathbb{R}$). The function that sends an input to a real number,
+In **regression**, the label $y$ is a real number ($`y \in \mathbb{R}`$). The function that sends an input to a real number,
 
-$$
+```math
 f : \mathbb{R}^d \to \mathbb{R}
-$$
+```
 
 is called a **regressor**. Predicting the weight of a fruit from its features, or predicting a person's height from other body measurements, are regression problems.
 
@@ -551,52 +551,52 @@ is called a **regressor**. Predicting the weight of a fruit from its features, o
 
 *Figure 16. Three regression models fitted to the same data*
 
-The data ($\times$) in Figure 16 show a trend that rises and then falls. The green line is too simple to follow this trend, the red curve wiggles excessively to pass through every point, and the blue curve follows the overall trend of the points reasonably. The criteria for judging which model is good are covered in Section 3.2.
+The data ($`\times`$) in Figure 16 show a trend that rises and then falls. The green line is too simple to follow this trend, the red curve wiggles excessively to pass through every point, and the blue curve follows the overall trend of the points reasonably. The criteria for judging which model is good are covered in Section 3.2.
 
 ### 2.10 Linear Regression and the Least Squares Method
 
 **Regression analysis** is a statistical method for modeling the relationship between a **dependent variable**, the value to be predicted, and one or more **independent variables**, the values used for prediction. **Linear regression** expresses this relationship with a first-degree equation, and its goal is to estimate the coefficients that best fit the observed data and minimize the difference between the observed values and the values predicted by the linear equation. The linear equation of **multiple linear regression** with $d$ features is:
 
-$$
+```math
 \hat{y} = b_0 + b_1 x_1 + b_2 x_2 + \cdots + b_d x_d
-$$
+```
 
 Here $b_0$ is the intercept and $b_1, \ldots, b_d$ are the coefficients of the features. **Simple linear regression**, with only one feature, is written as the line $\hat{y} = ax + b$. The $b$ in this section is the intercept of the line, a different quantity from the bias $b$ of the SVM in Section 2.8 despite the same letter. The symbols mean the following.
 
 - $y_i$: the true value of the $i$-th sample
-- $\hat{y}_i = a x_i + b$: the value estimated by the model (the curve fitting value)
-- $e_i = y_i - \hat{y}_i$: the error, or **residual**
+- $`\hat{y}_i = a x_i + b`$: the value estimated by the model (the curve fitting value)
+- $`e_i = y_i - \hat{y}_i`$: the error, or **residual**
 - $\mathrm{SSE} = \sum_{i=1}^{n} e_i^2$: the **sum of squared errors**
 
 ![Figure 17. Regression line and residuals of weight and height data](../../images/Week12_12-2_p21.png)
 
 *Figure 17. Regression line and residuals of weight and height data*
 
-Figure 17 shows the regression line $\hat{y} = ax + b$ that predicts height $y$ (cm) from weight $x$ (kg) and the residuals $e_1, \ldots, e_7$ of seven samples. A point above the line has a positive residual (green $e_3$, $e_4$), and a point below it has a negative residual (red). Adding the residuals directly would let positive and negative values cancel, so the SSE, which adds their squares, measures how poorly the line fits the data. Squaring also penalizes large errors more heavily and is easy to differentiate.
+Figure 17 shows the regression line $\hat{y} = ax + b$ that predicts height $y$ (cm) from weight $x$ (kg) and the residuals $e_1, \ldots, e_7$ of seven samples. A point above the line has a positive residual (green $e_3$, $`e_4`$), and a point below it has a negative residual (red). Adding the residuals directly would let positive and negative values cancel, so the SSE, which adds their squares, measures how poorly the line fits the data. Squaring also penalizes large errors more heavily and is easy to differentiate.
 
 To find the best-fitting line, the SSE must be minimized; this is called the **least squares method**. The SSE is a function of $a$ and $b$.
 
-$$
+```math
 \mathrm{SSE}(a, b) = \sum_{i=1}^{n} (y_i - a x_i - b)^2
-$$
+```
 
 At the minimum, both partial derivatives must be zero. Differentiating each term with the chain rule gives $\frac{\partial}{\partial a}(y_i - ax_i - b)^2 = 2(y_i - ax_i - b)\cdot(-x_i)$ and $\frac{\partial}{\partial b}(y_i - ax_i - b)^2 = 2(y_i - ax_i - b)\cdot(-1)$, so:
 
-$$
+```math
 \frac{\partial\,\mathrm{SSE}}{\partial a} = -2 \sum_{i=1}^{n} x_i (y_i - a x_i - b) = 0, \qquad \frac{\partial\,\mathrm{SSE}}{\partial b} = -2 \sum_{i=1}^{n} (y_i - a x_i - b) = 0
-$$
+```
 
 Dividing both sides by $-2$ and rearranging the terms gives the **normal equations**.
 
-$$
+```math
 a \sum_{i=1}^{n} x_i^2 + b \sum_{i=1}^{n} x_i = \sum_{i=1}^{n} x_i y_i, \qquad a \sum_{i=1}^{n} x_i + n b = \sum_{i=1}^{n} y_i
-$$
+```
 
 Dividing the second equation by $n$ gives $b = \bar{y} - a\bar{x}$ ($\bar{x}$ and $\bar{y}$ are the means). Substituting this into the first equation and rearranging yields the $a$ and $b$ of the fitting line.
 
-$$
+```math
 a = \frac{\sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y})}{\sum_{i=1}^{n} (x_i - \bar{x})^2}, \qquad b = \bar{y} - a \bar{x}
-$$
+```
 
 > **[Calculus]** At a point where a differentiable function has an extremum, all partial derivatives are zero. The SSE is a convex quadratic function of $a$ and $b$ (provided the $x_i$ are not all equal), so there is exactly one point where the partial derivatives vanish, and that point is the minimum.
 
@@ -612,39 +612,39 @@ Fit a line $\hat{y} = ax + b$ to the three samples $(1, 2)$, $(2, 3)$, $(3, 5)$,
 
 **Step 1: Set up the SSE.** The residual of each sample is $y_i - a x_i - b$, so
 
-$$
+```math
 \mathrm{SSE} = \sum_{i=1}^{3} e_i^2 = (2 - a - b)^2 + (3 - 2a - b)^2 + (5 - 3a - b)^2
-$$
+```
 
 is the function to be minimized.
 
 **Step 2: Set the partial derivatives to zero.**
 
-$$
+```math
 \frac{\partial\,\mathrm{SSE}}{\partial a} = -2\big[1 \cdot (2 - a - b) + 2(3 - 2a - b) + 3(5 - 3a - b)\big] = -2\big[23 - 14a - 6b\big] = 0
-$$
+```
 
-$$
+```math
 \frac{\partial\,\mathrm{SSE}}{\partial b} = -2\big[(2 - a - b) + (3 - 2a - b) + (5 - 3a - b)\big] = -2\big[10 - 6a - 3b\big] = 0
-$$
+```
 
 The bracket of the first equation collects the constant $2 + 6 + 15 = 23$, the coefficient of $a$, $1 + 4 + 9 = 14$, and the coefficient of $b$, $1 + 2 + 3 = 6$. The system of equations is therefore:
 
-$$
+```math
 14a + 6b = 23, \qquad 6a + 3b = 10
-$$
+```
 
 **Step 3: Solve the system.** Multiplying the second equation by 2 gives $12a + 6b = 20$, and subtracting it from the first gives $2a = 3$, so $a = 1.5$. Substituting into the second equation gives $3b = 10 - 9 = 1$, so $b = 1/3 \approx 0.3333$. The formula using means confirms this: $\bar{x} = 2$, $\bar{y} = 10/3$, $\sum (x_i - \bar{x})(y_i - \bar{y}) = (-1)(-\tfrac{4}{3}) + 0 + (1)(\tfrac{5}{3}) = 3$, and $\sum (x_i - \bar{x})^2 = 1 + 0 + 1 = 2$, so $a = 3/2 = 1.5$ and $b = 10/3 - 1.5 \times 2 = 1/3$.
 
 **Step 4: Estimate.** The regression line is $\hat{y} = 1.5x + 0.3333$, and the estimate at $x = 1.5$ is
 
-$$
+```math
 \hat{y}(1.5) = 1.5 \times 1.5 + \frac{1}{3} = 2.25 + 0.3333 \approx 2.583
-$$
+```
 
 to three decimal places.
 
-| $x_i$ | $y_i$ | $\hat{y}_i = 1.5x_i + 1/3$ | Residual $e_i = y_i - \hat{y}_i$ | $e_i^2$ |
+| $x_i$ | $y_i$ | $`\hat{y}_i = 1.5x_i + 1/3`$ | Residual $`e_i = y_i - \hat{y}_i`$ | $e_i^2$ |
 |:-----|:-----|:-----|:-----|:-----|
 | 1 | 2 | 1.8333 | 0.1667 | 0.0278 |
 | 2 | 3 | 3.3333 | $-0.3333$ | 0.1111 |
@@ -666,9 +666,9 @@ After a model is trained, it must be evaluated. This part covers training error 
 
 A **loss function** $\mathrm{loss}(y_i, f(x_i))$ expresses numerically how far the model's prediction $f(x_i)$ is from the true value $y_i$ for a single sample. The sum of the losses over all training data is called the **training error** or **empirical error**.
 
-$$
+```math
 E^{\text{train}}(f) = \sum_{i=1}^{n} \mathrm{loss}\big(y_i, f(x_i)\big)
-$$
+```
 
 ```mermaid
 flowchart TB
@@ -682,15 +682,15 @@ As in Figure 19, a machine learning algorithm takes the training data and finds 
 
 - **Classification error:** 1 if the sign of the prediction differs from the sign of the true label, and 0 if they are the same. This is also called the 0-1 loss, and the training error becomes the number of misclassified samples.
 
-  $$
+  ```math
   \mathrm{loss}\big(y_i, f(x_i)\big) = \begin{cases} 1, & \operatorname{sign}(y_i) \ne \operatorname{sign}\big(f(x_i)\big) \\ 0, & \text{otherwise} \end{cases}
-  $$
+  ```
 
 - **Least squares loss:** Squares the difference between the true value and the prediction. With this loss, the training error equals the SSE of Section 2.10.
 
-  $$
+  ```math
   \mathrm{loss}\big(y_i, f(x_i)\big) = \big(y_i - f(x_i)\big)^2
-  $$
+  ```
 
 **Example.** For five samples with labels $y = (+1, -1, +1, +1, -1)$, let the model outputs be $f(x) = (0.8, 0.3, -0.2, 1.5, -0.7)$.
 
@@ -765,9 +765,9 @@ The three **evaluation metrics** used to evaluate regression models compare as f
 
 | Metric | Formula | Characteristics |
 |:-----|:-----|:-----|
-| Coefficient of determination $R^2$ | $1 - \dfrac{\sum_i (y_i - \hat{y}_i)^2}{\sum_i (y_i - \bar{y})^2}$ | Can be measured with the data already obtained. Used for regression models. |
+| Coefficient of determination $R^2$ | $`1 - \dfrac{\sum_i (y_i - \hat{y}_i)^2}{\sum_i (y_i - \bar{y})^2}`$ | Can be measured with the data already obtained. Used for regression models. |
 | RMSE | $\sqrt{\dfrac{1}{N_{\text{test}}} \sum_{i=1}^{N_{\text{test}}} \big(y(x_i) - \hat{y}(x_i)\big)^2}$ | Requires additional test data. Gives more weight to large errors, emphasizing large mistakes. Has the same unit as the original data, so it is easy to interpret. |
-| Cross-validation | $e_{cv}(j) = \mathbf{Y}^{(j)} - \hat{\mathbf{y}}_{-j}\big(\mathbf{X}^{(j)}\big)$ | Can be measured with the data already obtained. Evaluates the model by dividing the dataset into several parts, which helps prevent overfitting. |
+| Cross-validation | $`e_{cv}(j) = \mathbf{Y}^{(j)} - \hat{\mathbf{y}}_{-j}\big(\mathbf{X}^{(j)}\big)`$ | Can be measured with the data already obtained. Evaluates the model by dividing the dataset into several parts, which helps prevent overfitting. |
 
 *Table 15. Comparison of the three evaluation metrics*
 
@@ -775,17 +775,17 @@ The three **evaluation metrics** used to evaluate regression models compare as f
 
 *Figure 23. Errors measured by the coefficient of determination, RMSE, and cross-validation*
 
-The left of Figure 23 is the coefficient of determination, which compares the differences between the data points and the regression line $f$ (such as $y_1 - f_1$) with the differences between the data points and the mean $\bar{y}$. The middle is RMSE, which measures the error $e$ from the prediction curve at an additional sample (red point) not used in building the model. The right is cross-validation, which measures the error $e$ that a surrogate model (red curve) built without one sample (or one set of samples) makes at the position of the left-out sample. A surrogate model is a model that approximates the real function.
+The left of Figure 23 is the coefficient of determination, which compares the differences between the data points and the regression line $f$ (such as $`y_1 - f_1`$) with the differences between the data points and the mean $\bar{y}$. The middle is RMSE, which measures the error $e$ from the prediction curve at an additional sample (red point) not used in building the model. The right is cross-validation, which measures the error $e$ that a surrogate model (red curve) built without one sample (or one set of samples) makes at the position of the left-out sample. A surrogate model is a model that approximates the real function.
 
 ### 3.5 Coefficient of Determination
 
 The **coefficient of determination** $R^2$ measures how well the regression line fits the data.
 
-$$
+```math
 R^2 = 1 - \frac{SS_{\text{RES}}}{SS_{\text{TOT}}} = 1 - \frac{\sum_i (y_i - \hat{y}_i)^2}{\sum_i (y_i - \bar{y})^2}
-$$
+```
 
-- $SS_{\text{RES}} = \sum_i (y_i - \hat{y}_i)^2$ is the **residual sum of squares**, the variation that the model leaves unexplained.
+- $`SS_{\text{RES}} = \sum_i (y_i - \hat{y}_i)^2`$ is the **residual sum of squares**, the variation that the model leaves unexplained.
 - $SS_{\text{TOT}} = \sum_i (y_i - \bar{y})^2$ is the **total sum of squares**, the spread of the data around their mean. It equals the sum of squared errors of a model that ignores the input and always predicts the mean $\bar{y}$.
 
 $R^2$ is therefore the fraction of the total variation of the true values that the model explains. $R^2 = 1$ means every prediction equals the true value, and $R^2 = 0$ means the model is no better than predicting the mean.
@@ -796,7 +796,7 @@ $R^2$ is therefore the fraction of the total variation of the true values that t
 
 **Example.** Figure 24 shows a model that predicts 1.9, 4.2, and 5.9 for three samples whose true values (horizontal axis) are 2, 4, and 6. Points on the diagonal $y = x$ are exact predictions, and the red dashed lines are the errors.
 
-| $i$ | True value $y_i$ | Prediction $\hat{y}_i$ | $y_i - \hat{y}_i$ | $(y_i - \hat{y}_i)^2$ | $y_i - \bar{y}$ | $(y_i - \bar{y})^2$ |
+| $i$ | True value $y_i$ | Prediction $`\hat{y}_i`$ | $`y_i - \hat{y}_i`$ | $`(y_i - \hat{y}_i)^2`$ | $y_i - \bar{y}$ | $(y_i - \bar{y})^2$ |
 |:-----|:-----|:-----|:-----|:-----|:-----|:-----|
 | 1 | 2 | 1.9 | 0.1 | 0.01 | $-2$ | 4 |
 | 2 | 4 | 4.2 | $-0.2$ | 0.04 | 0 | 0 |
@@ -806,9 +806,9 @@ $R^2$ is therefore the fraction of the total variation of the true values that t
 
 The mean is $\bar{y} = (2 + 4 + 6)/3 = 4$, $SS_{\text{RES}} = 0.01 + 0.04 + 0.01 = 0.06$, and $SS_{\text{TOT}} = 4 + 0 + 4 = 8$. Therefore
 
-$$
+```math
 R^2 = 1 - \frac{0.06}{8} = 1 - 0.0075 = 0.9925
-$$
+```
 
 and the model explains 99.25% of the variation of the true values. Applied to the linear regression example of Section 2.11, $SS_{\text{RES}} = 1/6$, $\bar{y} = 10/3$, and $SS_{\text{TOT}} = (-\tfrac{4}{3})^2 + (-\tfrac{1}{3})^2 + (\tfrac{5}{3})^2 = 14/3$, so $R^2 = 1 - (1/6)/(14/3) = 1 - 1/28 = 27/28 \approx 0.964$.
 
@@ -816,23 +816,23 @@ and the model explains 99.25% of the variation of the true values. Applied to th
 
 **R value.** Regression results are often reported together with the **correlation coefficient** $R$ between the true values and the predictions. For example, MATLAB's neural network regression plot shows the $R$ value between outputs and targets; $R = 1$ means there is an exact linear relationship between them, and $R$ close to 0 means there is no linear relationship [10].
 
-> **[Probability and Statistics]** The sample correlation coefficient of two variables $u$ and $v$ is $r = \dfrac{\sum_i (u_i - \bar{u})(v_i - \bar{v})}{\sqrt{\sum_i (u_i - \bar{u})^2}\sqrt{\sum_i (v_i - \bar{v})^2}}$, with $-1 \le r \le 1$. When a simple linear regression with an intercept is fitted by least squares, the coefficient of determination equals the square of the correlation coefficient of $x$ and $y$ ($R^2 = r^2$) [9]. In the example of Section 2.11, $r^2 = 27/28$, the same as the coefficient of determination. If the predictions do not come from a least squares line, as in Figure 24, the two do not coincide. For the data of Figure 24, $r = 8 / \sqrt{8 \times 8.06} \approx 0.9963$ and $r^2 \approx 0.9926$, slightly different from $R^2 = 0.9925$.
+> **[Probability and Statistics]** The sample correlation coefficient of two variables $u$ and $v$ is $r = \dfrac{\sum_i (u_i - \bar{u})(v_i - \bar{v})}{\sqrt{\sum_i (u_i - \bar{u})^2}\sqrt{\sum_i (v_i - \bar{v})^2}}$, with $-1 \le r \le 1$. When a simple linear regression with an intercept is fitted by least squares, the coefficient of determination equals the square of the correlation coefficient of $x$ and $y$ ($`R^2 = r^2`$) [9]. In the example of Section 2.11, $r^2 = 27/28$, the same as the coefficient of determination. If the predictions do not come from a least squares line, as in Figure 24, the two do not coincide. For the data of Figure 24, $r = 8 / \sqrt{8 \times 8.06} \approx 0.9963$ and $r^2 \approx 0.9926$, slightly different from $R^2 = 0.9925$.
 
 ### 3.6 Root Mean Square Error
 
 The **root mean square error (RMSE)** is the square root of the mean of the squared errors.
 
-$$
+```math
 \mathrm{RMSE} = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (\hat{y}_i - y_i)^2}
-$$
+```
 
 Because of the square root, RMSE has the same unit as the original data. For example, if a model that predicts height in cm has an RMSE of 3, the typical size of its prediction errors can be interpreted as about 3 cm. The mean of the absolute errors (the mean absolute error) is never larger than the RMSE. RMSE is nonnegative, and an RMSE of 0 means every prediction is exact. RMSE is usually computed on additional test data not used in building the model, to measure the model's predictive ability.
 
 **Example.** For the three samples of Figure 24, the errors are 0.1, $-0.2$, and 0.1, so
 
-$$
+```math
 \mathrm{RMSE} = \sqrt{\frac{0.1^2 + (-0.2)^2 + 0.1^2}{3}} = \sqrt{\frac{0.06}{3}} = \sqrt{0.02} \approx 0.1414
-$$
+```
 
 is obtained.
 
@@ -844,9 +844,9 @@ Because the errors are squared, RMSE gives more weight to large errors. The diff
 
 **k-fold cross-validation** divides a dataset of $N$ samples into $k$ subsets (folds) of similar size. In the $j$-th iteration, the $j$-th subset is held out for testing (the test fold), the model is trained on the remaining $k - 1$ subsets (the training folds), and the error $E_j$ is measured on the held-out subset. This is repeated for $j = 1, \ldots, k$, and the results are averaged.
 
-$$
+```math
 E = \frac{1}{k} \sum_{j=1}^{k} E_j
-$$
+```
 
 ![Figure 25. Iterations of k-fold cross-validation](../../images/Week12_12-3_p12.png)
 
@@ -856,11 +856,11 @@ In Figure 25, each row is one iteration, and the shaded cell is the test subset 
 
 The cross-validation error $e_{cv}$ on the $j$-th subset is defined as follows.
 
-$$
+```math
 e_{cv}(j) = \mathbf{Y}^{(j)} - \hat{\mathbf{y}}_{-j}\big(\mathbf{X}^{(j)}\big), \qquad j = 1, 2, \ldots, k
-$$
+```
 
-Here $\mathbf{X}^{(j)}$ is the input of the held-out $j$-th subset, $\mathbf{Y}^{(j)}$ is the true values of that subset, and $\hat{\mathbf{y}}_{-j}\big(\mathbf{X}^{(j)}\big)$ is the prediction for the held-out inputs $\mathbf{X}^{(j)}$ made by the model built without the $j$-th subset. The subscript $-j$ means "without the $j$-th."
+Here $\mathbf{X}^{(j)}$ is the input of the held-out $j$-th subset, $\mathbf{Y}^{(j)}$ is the true values of that subset, and $`\hat{\mathbf{y}}_{-j}\big(\mathbf{X}^{(j)}\big)`$ is the prediction for the held-out inputs $\mathbf{X}^{(j)}$ made by the model built without the $j$-th subset. The subscript $-j$ means "without the $j$-th."
 
 > **Definition:** When $k = N$, that is, each subset holds one sample, training on the remaining $N - 1$ samples with one sample left out is repeated $N$ times. This is called **leave-one-out cross-validation (LOOCV)**. In practice, $k = 5$ or $k = 10$ is often used, balancing computation against the stability of the estimate [9].
 
@@ -868,9 +868,9 @@ Here $\mathbf{X}^{(j)}$ is the input of the held-out $j$-th subset, $\mathbf{Y}^
 
 **Example 1: The Branin-Hoo function.** The Branin-Hoo function is a two-variable function widely used as a test case in optimization and surrogate modeling research [11].
 
-$$
+```math
 f(x_1, x_2) = \left(x_2 - \frac{5.1}{4\pi^2} x_1^2 + \frac{5}{\pi} x_1 - 6\right)^2 + 10\left(1 - \frac{1}{8\pi}\right)\cos x_1 + 10
-$$
+```
 
 It is usually defined on $x_1 \in [-5, 10]$, $x_2 \in [0, 15]$. Leave-one-out cross-validation is performed with 10 training samples $X_1, \ldots, X_{10}$ obtained from this function. The prediction at each $X_j$ is the value given by a surrogate model built from the remaining 9 samples without $X_j$.
 
@@ -893,17 +893,17 @@ From these results, three cross-validation errors (CVE) are computed. Here $N_{\
 
 **(1) Root mean squared CVE.** The sum of the squared errors is $61.47 + 64.00 + \cdots + 5583.08 = 14800.78$, so
 
-$$
+```math
 E = \sqrt{\frac{1}{N_{\text{test}}} \sum_{j=1}^{N_{\text{test}}} e_j^2} = \sqrt{\frac{14800.78}{10}} = \sqrt{1480.08} \approx 38.47
-$$
+```
 
 is obtained. This is the RMSE of Section 3.6 applied to cross-validation errors.
 
 **(2) Relative root mean squared CVE.** The squares of the relative errors, each error divided by the true value, are averaged. The last column of Table 17 sums to 27.39, so
 
-$$
+```math
 E_{\text{rel}} = \sqrt{\frac{1}{N_{\text{test}}} \sum_{j=1}^{N_{\text{test}}} \frac{e_j^2}{y_j^2}} = \sqrt{\frac{27.39}{10}} = \sqrt{2.739} \approx 1.655
-$$
+```
 
 is obtained. Relative errors become large for samples with small true values. $X_9$ and $X_{10}$ have small true values, 13.42 and 16.89, so their two terms (6.5364 and 19.5711) make up about 95% of the sum 27.39.
 
@@ -911,9 +911,9 @@ is obtained. Relative errors become large for samples with small true values. $X
 
 **(3) Normalized root mean squared CVE.** The root mean squared CVE is divided by the range of the true values to express the error as a percentage of the output range.
 
-$$
+```math
 E_{\text{norm}} = \frac{\sqrt{\frac{1}{N_{\text{test}}} \sum_{j=1}^{N_{\text{test}}} e_j^2}}{\max(y_j) - \min(y_j)} = \frac{38.47}{223.3 - 13.42} = \frac{38.47}{209.88} \approx 0.1833
-$$
+```
 
 The average prediction error reaches about 18% of the output range, so this surrogate model can hardly be called accurate yet. More samples are needed to improve the accuracy of the prediction model.
 
@@ -943,15 +943,15 @@ The mean of the squared CVE is $(1 + 0.25 + 1)/3 = 2.25/3 = 0.75$, and its squar
 
 The goal of reinforcement learning is to maximize the sum of the rewards received over time.
 
-$$
+```math
 \text{Maximize} \ \sum_{i=1}^{\infty} \text{Reward}(\text{State}_i, \text{Action}_i)
-$$
+```
 
-Unlike supervised learning, reinforcement learning has no labels that tell the correct action for each state. The data used for learning are obtained by the agent's own actions. When the agent takes action $\text{Action}_i$ in state $\text{State}_i$, the environment returns a reward and the next state.
+Unlike supervised learning, reinforcement learning has no labels that tell the correct action for each state. The data used for learning are obtained by the agent's own actions. When the agent takes action $`\text{Action}_i`$ in state $`\text{State}_i`$, the environment returns a reward and the next state.
 
-$$
+```math
 \text{Reward}_i, \ \text{State}_{i+1} = \text{Interact}(\text{State}_i, \text{Action}_i)
-$$
+```
 
 ```mermaid
 flowchart LR
@@ -1107,7 +1107,7 @@ The policy in Figure 31 reaches the treasure from every state in the fewest move
 | Underfitting and overfitting | A model that is too simple has high bias and large errors of both kinds; a model that is too complex has high variance, with a small training error but a large test error. |
 | Training, validation, and test data | Parameters are set with training data, hyperparameters and models are chosen with validation data, and only the final performance is evaluated with test data. The model must not be tuned with test data. |
 | Coefficient of determination | $R^2 = 1 - SS_{\text{RES}}/SS_{\text{TOT}}$, the fraction of the variation of the true values that the model explains. On the training data of a least squares line it lies between 0 and 1 and equals the square of the correlation coefficient. |
-| RMSE | $\sqrt{\frac{1}{n}\sum (\hat{y}_i - y_i)^2}$. It has the same unit as the original data and emphasizes large errors. |
+| RMSE | $`\sqrt{\frac{1}{n}\sum (\hat{y}_i - y_i)^2}`$. It has the same unit as the original data and emphasizes large errors. |
 | Cross-validation | Divides the data into $k$ subsets and averages the errors of models trained with each subset held out in turn. With $k = N$, it is leave-one-out cross-validation. |
 | Reinforcement learning | An agent interacts with an environment and learns, from states, actions, and rewards, a policy that maximizes the sum of rewards. A discount factor keeps the return finite and favors earlier rewards. |
 

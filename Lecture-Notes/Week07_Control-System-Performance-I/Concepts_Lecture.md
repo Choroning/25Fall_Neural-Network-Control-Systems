@@ -122,9 +122,9 @@ flowchart LR
 
 Let the output of the summing point be $E_a(s) = R(s) - H(s)Y(s)$. Then $U = DE_a$ and $Y = GU$, so $Y = DG(R - HY)$. Solving for $Y$ gives the **closed-loop transfer function** derived in Week 5.
 
-$$
+```math
 Y(1 + DGH) = DGR \quad\Longrightarrow\quad T(s) = \frac{Y(s)}{R(s)} = \frac{D(s)G(s)}{1 + D(s)G(s)H(s)}
-$$
+```
 
 A system with $H(s) = 1$, which feeds the output back unchanged, is called a **unity feedback** system. Even a system that is not unity feedback can be converted into one by block diagram operations. Figure 5 is the same system as Figure 4.
 
@@ -143,11 +143,11 @@ flowchart LR
 
 That the two systems are the same is checked by comparing the closed-loop transfer functions. The inner loop of Figure 5 is a unity feedback loop with forward path $DHG$, so its transfer function is $DHG/(1 + DHG)$, and it is multiplied by $1/H$ in front.
 
-$$
+```math
 T(s) = \frac{1}{H}\cdot\frac{DHG}{1 + DHG} = \frac{DG}{1 + DGH}
-$$
+```
 
-The result equals $T(s)$ of Figure 4. The control input is also $U = HD\,(R/H - Y) = D(R - HY)$, the same as in Figure 4, so the two block diagrams agree not only in input and output but also in the signal entering the plant. This conversion holds when $H(s)$ is a nonzero transfer function.
+The result equals $T(s)$ of Figure 4. The control input is also $`U = HD\,(R/H - Y) = D(R - HY)`$, the same as in Figure 4, so the two block diagrams agree not only in input and output but also in the signal entering the plant. This conversion holds when $H(s)$ is a nonzero transfer function.
 
 > **Key Point:** A system with a sensor transfer function $H(s)$ can be treated as a unity feedback system by placing $1/H(s)$ on the input side and moving $H(s)$ into the forward path. For this reason, performance analysis of control systems is usually done on unity feedback systems.
 
@@ -168,9 +168,9 @@ flowchart LR
 
 Substitute $D = K$, $G = 1/(s+1)$, and $H = 1$ into the closed-loop transfer function and multiply the numerator and denominator by $s + 1$.
 
-$$
+```math
 T(s) = \frac{K\cdot\frac{1}{s+1}}{1 + K\cdot\frac{1}{s+1}} = \frac{K}{s + 1 + K}
-$$
+```
 
 Figure 7 shows the output for a unit step command $r(t) = 1$ with $K = 5$ and $K = 10$. With $K = 10$ the output moves faster than with $K = 5$, and its final position is also closer to the command value 1. Hence the case $K = 10$ can be said to have better characteristics.
 
@@ -191,11 +191,11 @@ This comparison reveals the two criteria for evaluating the performance of a con
 
 The three typical test inputs are the following, and all of them are 0 for $t < 0$.
 
-$$
+```math
 u_s(t) = \begin{cases} 1, & t \ge 0 \\ 0, & t < 0 \end{cases} \qquad u_r(t) = \begin{cases} t, & t \ge 0 \\ 0, & t < 0 \end{cases} \qquad u_p(t) = \begin{cases} \dfrac{t^2}{2}, & t \ge 0 \\ 0, & t < 0 \end{cases}
-$$
+```
 
-| Test input | Time function ($t \ge 0$) | Laplace transform | Command it represents |
+| Test input | Time function ($`t \ge 0`$) | Laplace transform | Command it represents |
 |:-----|:-----|:-----|:-----|
 | Unit step input | $u_s(t) = 1$ | $U_s(s) = 1/s$ | A target that changes suddenly and then stays at the new value |
 | Unit ramp input | $u_r(t) = t$ | $U_r(s) = 1/s^2$ | A target that changes at a constant rate |
@@ -203,7 +203,7 @@ $$
 
 *Table 2. The three test input signals and their Laplace transforms*
 
-The ramp input is also called the slope input. Each of the three signals is the integral of the previous one. $u_r(t) = \int_0^t u_s(\lambda)\,d\lambda$ and $u_p(t) = \int_0^t u_r(\lambda)\,d\lambda$, and by the integration theorem of Week 3, integration in time corresponds to multiplication by $1/s$ in the $s$ domain, so the Laplace transforms run $1/s$, $1/s^2$, $1/s^3$. The factor $1/2$ in the parabolic input is there to make its transform exactly $1/s^3$.
+The ramp input is also called the slope input. Each of the three signals is the integral of the previous one. $`u_r(t) = \int_0^t u_s(\lambda)\,d\lambda`$ and $`u_p(t) = \int_0^t u_r(\lambda)\,d\lambda`$, and by the integration theorem of Week 3, integration in time corresponds to multiplication by $1/s$ in the $s$ domain, so the Laplace transforms run $1/s$, $1/s^2$, $1/s^3$. The factor $1/2$ in the parabolic input is there to make its transform exactly $1/s^3$.
 
 ![Figure 8. Unit step, unit ramp, and unit parabolic inputs](../../images/Week07_Test-Input-Signals.png)
 
@@ -215,19 +215,19 @@ Test input signals are seldom used as command inputs in the actual operation of 
 
 Solving the system of Section 1.3 in the time domain makes clear which part of the response each kind of performance refers to. Moving the denominator of the closed-loop transfer function $Y(s)/R(s) = K/(s + 1 + K)$ to the other side gives $(s + 1 + K)Y(s) = KR(s)$. With zero initial conditions, $sY(s)$ is the Laplace transform of $\dot{y}(t)$ (Week 3), so this equation corresponds to the following **differential equation**.
 
-$$
+```math
 \dot{y}(t) + (K + 1)\,y(t) = K\,r(t)
-$$
+```
 
-Solve this first-order differential equation with the unit step input $r(t) = 1$ ($t \ge 0$) and the initial condition $y(0) = 0$ by the method of Week 2.
+Solve this first-order differential equation with the unit step input $r(t) = 1$ ($`t \ge 0`$) and the initial condition $y(0) = 0$ by the method of Week 2.
 
 1. **Homogeneous solution:** The solution of $\dot{y} + (K+1)y = 0$ is $y_h(t) = Ce^{-(K+1)t}$.
-2. **Particular solution:** The input is constant, so assume a constant $y_p$. Then $\dot{y}_p = 0$, and $(K + 1)y_p = K$ gives $y_p = K/(K+1)$.
+2. **Particular solution:** The input is constant, so assume a constant $y_p$. Then $`\dot{y}_p = 0`$, and $(K + 1)y_p = K$ gives $y_p = K/(K+1)$.
 3. **Initial condition:** $y(0) = C + K/(K+1) = 0$ gives $C = -K/(K+1)$.
 
-$$
+```math
 y(t) = -\frac{K}{K+1}\,e^{-(K+1)t} + \frac{K}{K+1}, \qquad t \ge 0
-$$
+```
 
 The Laplace transform gives the same result. The inverse transform of $Y(s) = \dfrac{K}{s(s + K + 1)} = \dfrac{K}{K+1}\left(\dfrac{1}{s} - \dfrac{1}{s + K + 1}\right)$ is the expression above.
 
@@ -260,15 +260,15 @@ Transient performance is usually expressed with the unit step response. Figure 9
 
 **Maximum overshoot $M_p$.** The phenomenon in which the output, on reaching the target, swings above or below it is called **overshoot**, and its largest size is the maximum overshoot. It is the maximum output $y(t_p)$ minus the steady-state value $y_{ss}$, expressed as a ratio to $y_{ss}$, and it is often written as a percentage with the steady-state output taken as 100% [1].
 
-$$
+```math
 M_p = \frac{y(t_p) - y_{ss}}{y_{ss}}, \qquad \text{percent overshoot} = \frac{y(t_p) - y_{ss}}{y_{ss}} \times 100\,\%
-$$
+```
 
 The maximum overshoot is an important measure for evaluating the stability and performance of a control system. A large maximum overshoot means that the damping is small and oscillation occurs easily, so the margin of stability is small. In position control the system may also pass the target position and collide with something, so minimizing the maximum overshoot is important.
 
 **Peak time $t_p$.** The time at which the output first reaches its maximum. In general, a shorter peak time indicates a faster system reaction, so the peak time is used to evaluate the speed of response, and reducing the peak time is important in systems that must react quickly.
 
-**Settling time $t_s$.** The time at which the output enters a specified tolerance band around the final value and stays inside that band from then on. The band is set as a percentage of the final value, usually $\pm 5\%$ or $\pm 2\%$ [1]. For example, the 5% settling time is the time from which the output stays within $\pm 5\%$ of the final value. The settling time shows how quickly the system comes to hold a steady output.
+**Settling time $t_s$.** The time at which the output enters a specified tolerance band around the final value and stays inside that band from then on. The band is set as a percentage of the final value, usually $`\pm 5\%`$ or $`\pm 2\%`$ [1]. For example, the 5% settling time is the time from which the output stays within $`\pm 5\%`$ of the final value. The settling time shows how quickly the system comes to hold a steady output.
 
 **Rise time $t_r$.** The time the output takes to first get near the final value. It is usually computed as the time from 10% to 90% of the final value, and for oscillating responses the time from 0% to 100% is also used [1]. A short rise time means that the system reacts quickly to the input signal.
 
@@ -276,40 +276,40 @@ The maximum overshoot is an important measure for evaluating the stability and p
 |:-----|:-----|:-----|:-----|
 | Maximum overshoot | $M_p$ | $(y(t_p) - y_{ss})/y_{ss}$ | Amount of damping, margin of stability |
 | Peak time | $t_p$ | Time at which the output first reaches its maximum | Speed of reaction |
-| Settling time | $t_s$ | Time from which the output stays within $\pm 5\%$ (or $\pm 2\%$) | Speed of reaching a steady output |
+| Settling time | $t_s$ | Time from which the output stays within $`\pm 5\%`$ (or $`\pm 2\%`$) | Speed of reaching a steady output |
 | Rise time | $t_r$ | Time for the output to rise from 10% to 90% of the final value | Speed of the initial reaction |
 
 *Table 4. The four quantitative measures of transient performance*
 
-The response in Figure 9 is the second-order system derived in Section 3.6 with damping ratio $\zeta = 0.3$ and natural frequency $\omega_n = 1$ rad/s. For this response $M_p \approx 37\%$, $t_p \approx 3.3$ s, $t_r \approx 1.3$ s, and the 5% settling time is $t_s \approx 10.1$ s.
+The response in Figure 9 is the second-order system derived in Section 3.6 with damping ratio $\zeta = 0.3$ and natural frequency $\omega_n = 1$ rad/s. For this response $`M_p \approx 37\%`$, $t_p \approx 3.3$ s, $t_r \approx 1.3$ s, and the 5% settling time is $t_s \approx 10.1$ s.
 
 ### 2.2 Unit Step Response of a First-Order System
 
 A system whose transfer function has a denominator of first degree in $s$ is called a **first-order system**. The standard form of a first-order system with steady-state gain 1 is the following.
 
-$$
+```math
 \frac{Y(s)}{R(s)} = G_T(s) = \frac{1}{\tau s + 1}, \qquad \tau > 0
-$$
+```
 
 $\tau$ is called the **time constant**. The only pole is $s = -1/\tau$, the root of $\tau s + 1 = 0$. Applying the unit step input $U_s(s) = 1/s$ gives $(\tau s + 1)Y(s) = U_s(s)$, which in the time domain is the following differential equation.
 
-$$
+```math
 \tau\,\dot{y}(t) + y(t) = u_s(t)
-$$
+```
 
 Find the response with the Laplace transform. Divide the denominator by $\tau$ and expand in partial fractions (Week 3).
 
-$$
+```math
 Y(s) = \frac{1}{s(\tau s + 1)} = \frac{1/\tau}{s\,(s + 1/\tau)} = \frac{A}{s} + \frac{B}{s + 1/\tau}
-$$
+```
 
-$$
+```math
 A = \left. sY(s) \right|_{s=0} = \frac{1/\tau}{1/\tau} = 1, \qquad B = \left. \left(s + \tfrac{1}{\tau}\right)Y(s) \right|_{s=-1/\tau} = \frac{1/\tau}{-1/\tau} = -1
-$$
+```
 
-$$
+```math
 y(t) = 1 - e^{-t/\tau}, \qquad t \ge 0
-$$
+```
 
 The response starts at 0 and increases monotonically without exceeding 1. Its values at a few instants are the following.
 
@@ -325,29 +325,29 @@ The slope at $t = 0$ is $\dot{y}(0) = 1/\tau$. If the output kept its initial sl
 
 *Figure 10. Unit step response of a first-order system with its time constant, rise time, and settling time*
 
-> **Definition:** The **time constant** $\tau$ is the time at which the step response of a first-order system reaches $1 - e^{-1} \approx 63.2\%$ of its final value, and it is the reciprocal of the distance between the pole $s = -1/\tau$ and the origin. The farther the pole is from the origin, the smaller the time constant and the faster the response.
+> **Definition:** The **time constant** $\tau$ is the time at which the step response of a first-order system reaches $`1 - e^{-1} \approx 63.2\%`$ of its final value, and it is the reciprocal of the distance between the pole $s = -1/\tau$ and the origin. The farther the pole is from the origin, the smaller the time constant and the faster the response.
 
 ### 2.3 Rise Time and Settling Time of a First-Order System
 
 **Rise time.** Find the times at which the output reaches 10% and 90%.
 
-$$
+```math
 1 - e^{-t_{10}/\tau} = 0.1 \;\Rightarrow\; t_{10} = \tau\ln\frac{1}{0.9} \approx 0.105\,\tau, \qquad 1 - e^{-t_{90}/\tau} = 0.9 \;\Rightarrow\; t_{90} = \tau\ln\frac{1}{0.1} \approx 2.303\,\tau
-$$
+```
 
-$$
+```math
 t_r = t_{90} - t_{10} = \tau\left(\ln 10 - \ln\frac{10}{9}\right) = \tau\ln 9 \approx 2.2\,\tau
-$$
+```
 
 **Settling time.** Because the response increases monotonically, the difference from the final value is $1 - y(t) = e^{-t/\tau}$, and from the moment this equals the tolerance, the output stays inside the band.
 
-$$
+```math
 e^{-t_s/\tau} = 0.05 \;\Rightarrow\; t_s = \tau\ln 20 \approx 3.0\,\tau \;(\pm 5\%), \qquad e^{-t_s/\tau} = 0.02 \;\Rightarrow\; t_s = \tau\ln 50 \approx 3.9\,\tau \;(\pm 2\%)
-$$
+```
 
-The $\pm 2\%$ settling time is commonly approximated as $4\tau$ [1]. The step response of a first-order system never exceeds its final value, so the maximum overshoot is 0, and since the maximum is not reached in finite time, the peak time is not defined.
+The $`\pm 2\%`$ settling time is commonly approximated as $4\tau$ [1]. The step response of a first-order system never exceeds its final value, so the maximum overshoot is 0, and since the maximum is not reached in finite time, the peak time is not defined.
 
-> **Key Point:** The transient performance of a first-order system is set by the single time constant $\tau$. Since $t_r \approx 2.2\tau$ and $t_s \approx 3\tau$ ($\pm 5\%$), reducing the time constant, that is, moving the pole $-1/\tau$ to the left, shortens the rise time and settling time in the same proportion. If the transfer function has a steady-state gain $K_{dc}$, as in $K_{dc}/(\tau s + 1)$, the whole response is scaled by $K_{dc}$ and the time measures do not change.
+> **Key Point:** The transient performance of a first-order system is set by the single time constant $\tau$. Since $t_r \approx 2.2\tau$ and $t_s \approx 3\tau$ ($`\pm 5\%`$), reducing the time constant, that is, moving the pole $-1/\tau$ to the left, shortens the rise time and settling time in the same proportion. If the transfer function has a steady-state gain $K_{dc}$, as in $K_{dc}/(\tau s + 1)$, the whole response is scaled by $K_{dc}$ and the time measures do not change.
 
 ### 2.4 Example: Time Constant of a DC Motor
 
@@ -359,31 +359,31 @@ The armature-controlled DC motor modeled in Week 4 is shown in Figure 11 [2]. Wh
 
 Apply Kirchhoff's voltage law to the armature circuit and the equation of rotational motion to the rotating part. $K_b$ is the back emf constant, $K_t$ is the torque constant, and $\omega = d\theta/dt$ is the angular velocity.
 
-$$
+```math
 e_a = R_a i_a + L_a\frac{di_a}{dt} + e_b = R_a i_a + L_a\frac{di_a}{dt} + K_b\frac{d\theta}{dt}
-$$
+```
 
-$$
+```math
 T = K_t i_a = J_a\frac{d^2\theta}{dt^2} + B\frac{d\theta}{dt}
-$$
+```
 
 Taking the Laplace transform with zero initial conditions gives $E_a = (R_a + L_a s)I_a + K_b\Omega$ and $K_t I_a = (J_a s + B)\Omega$. Substituting $I_a = (J_a s + B)\Omega/K_t$ from the second equation into the first gives $\Omega/E_a$.
 
-$$
+```math
 \frac{\Omega(s)}{E_a(s)} = \frac{K_t}{(R_a + L_a s)(J_a s + B) + K_t K_b}
-$$
+```
 
 This expression has a second-degree denominator. In a typical DC motor the electrical time constant $L_a/R_a$ of the armature circuit is much smaller than the mechanical time constant of the rotor, so the current changes much faster than the rotational speed and $L_a \approx 0$ can be assumed [3]; assuming also that viscous friction is small, $B \approx 0$, the motor becomes a first-order system.
 
-$$
+```math
 \frac{\Omega(s)}{E_a(s)} = \frac{K_t}{R_a J_a s + K_t K_b} = \frac{1/K_b}{\dfrac{J_a R_a}{K_t K_b}\,s + 1} = \frac{1}{K_b}\times\frac{1/\tau_m}{s + 1/\tau_m}
-$$
+```
 
 The second equality divides the numerator and denominator by $K_t K_b$. Comparing with the standard form of Section 2.2 gives the time constant of the motor.
 
-$$
+```math
 \tau_m = \frac{J_a R_a}{K_t K_b}
-$$
+```
 
 The motor time constant is proportional to the moment of inertia $J_a$. A motor with a large inertia therefore has a large time constant and takes long for its speed to reach the target.
 
@@ -406,13 +406,13 @@ flowchart LR
 
 The forward path is $\dfrac{K/K_b}{\tau_m s + 1}$, so the closed-loop transfer function is the following. The second line multiplies the numerator and denominator by $K_b$ and then divides by $K_b + K$ to match the first-order standard form.
 
-$$
+```math
 T(s) = \frac{\dfrac{K/K_b}{\tau_m s + 1}}{1 + \dfrac{K/K_b}{\tau_m s + 1}} = \frac{K/K_b}{\tau_m s + 1 + K/K_b} = \frac{K}{K_b\tau_m s + K_b + K}
-$$
+```
 
-$$
+```math
 T(s) = \frac{K/(K_b + K)}{\dfrac{K_b\tau_m}{K_b + K}\,s + 1}, \qquad \tau_c = \frac{K_b\,\tau_m}{K_b + K} = \frac{\tau_m}{1 + K/K_b}
-$$
+```
 
 The closed-loop system is also first order, and its time constant $\tau_c$ is smaller than the motor's own time constant $\tau_m$. Raising the constant gain $K$ of the controller shrinks $\tau_c$ and speeds up the response, so the time constant of the closed-loop system can be adjusted with $K$. For example, for a motor with $\tau_m = 1$ s and $K_b = 1$:
 
@@ -449,9 +449,9 @@ flowchart LR
 
 Multiply the numerator and denominator of the closed-loop transfer function by $s(s+1)$.
 
-$$
+```math
 T(s) = \frac{\dfrac{K}{s(s+1)}}{1 + \dfrac{K}{s(s+1)}} = \frac{K}{s^2 + s + K}
-$$
+```
 
 Since the denominator is of second degree in $s$, this closed-loop system is a **second-order system**. The response of a second-order system may or may not oscillate depending on the denominator coefficients, so the denominator is rewritten in a standard form and classified.
 
@@ -459,39 +459,39 @@ Since the denominator is of second degree in $s$, this closed-loop system is a *
 
 A second-order system with steady-state gain 1 and no zeros is written in the following standard form.
 
-$$
+```math
 \frac{Y(s)}{R(s)} = G_T(s) = \frac{1}{(s/\omega_n)^2 + 2\zeta s/\omega_n + 1} = \frac{\omega_n^2}{s^2 + 2\zeta\omega_n s + \omega_n^2}
-$$
+```
 
 The second equality multiplies the numerator and denominator by $\omega_n^2$. $\zeta$ is called the **damping ratio** and $\omega_n > 0$ the **natural frequency**, and $\omega_n$ is measured in rad/s. For $\zeta > 0$ both poles lie in the left half-plane and $G_T(0) = 1$, so the final value for a unit step input is 1.
 
 The physical meaning of the two parameters can be seen in the mass-spring-damper system of Week 4. When a force $f$ acts on a system with mass $M$, viscous friction coefficient $B$, and spring constant $K$, the equation of motion is $M\ddot{y} + B\dot{y} + Ky = f$, and comparing its transfer function with the standard form gives the following.
 
-$$
+```math
 \frac{Y(s)}{F(s)} = \frac{1}{Ms^2 + Bs + K} = \frac{1}{K}\cdot\frac{K/M}{s^2 + (B/M)s + K/M} \quad\Longrightarrow\quad \omega_n = \sqrt{\frac{K}{M}}, \qquad \zeta = \frac{B}{2\sqrt{KM}}
-$$
+```
 
 The natural frequency is the angular frequency at which the mass and spring oscillate without friction, and the damping ratio indicates how strongly the friction $B$ suppresses that oscillation. For the system of Section 3.1, comparing $s^2 + s + K$ with $s^2 + 2\zeta\omega_n s + \omega_n^2$ gives $\omega_n = \sqrt{K}$ and $\zeta = 1/(2\sqrt{K})$.
 
 **Unit step response.** Since $U_s(s) = 1/s$, the Laplace transform of the output is the following.
 
-$$
+```math
 Y(s) = G_T(s)U_s(s) = \frac{\omega_n^2}{(s^2 + 2\zeta\omega_n s + \omega_n^2)\,s}
-$$
+```
 
 Finding $y(t)$ by the inverse Laplace transform requires a partial fraction expansion, and the partial fraction expansion requires factoring the denominator. That is, the roots of the following **characteristic equation** must be found, and the form of the response depends on the kind of roots.
 
-$$
+```math
 s^2 + 2\zeta\omega_n s + \omega_n^2 = 0
-$$
+```
 
 ### 3.3 Classifying the Roots of the Characteristic Equation
 
 Let the two roots of the characteristic equation be $s_1$ and $s_2$, so that $s^2 + 2\zeta\omega_n s + \omega_n^2 = (s - s_1)(s - s_2)$. Apply the quadratic formula.
 
-$$
+```math
 s = \frac{-2\zeta\omega_n \pm \sqrt{4\zeta^2\omega_n^2 - 4\omega_n^2}}{2} \quad\Longrightarrow\quad s_1 = -\zeta\omega_n + \sqrt{(\zeta^2 - 1)\,\omega_n^2}, \qquad s_2 = -\zeta\omega_n - \sqrt{(\zeta^2 - 1)\,\omega_n^2}
-$$
+```
 
 The sign under the square root is the sign of $\zeta^2 - 1$, which is decided by comparing $\zeta$ with 1. The case $\zeta > 0$ splits into the following three. The cases $\zeta = 0$ and $\zeta < 0$ are treated in Week 9.
 
@@ -503,19 +503,19 @@ The sign under the square root is the sign of $\zeta^2 - 1$, which is decided by
 
 *Table 7. Roots of the characteristic equation and response type for each range of the damping ratio*
 
-When the two roots are distinct ($\zeta \ne 1$), $Y(s)$ expands as follows. Each coefficient is found as in Week 3, by multiplying by the factor of its pole and evaluating at that pole.
+When the two roots are distinct ($`\zeta \ne 1`$), $Y(s)$ expands as follows. Each coefficient is found as in Week 3, by multiplying by the factor of its pole and evaluating at that pole.
 
-$$
+```math
 Y(s) = \frac{\omega_n^2}{(s - s_1)(s - s_2)\,s} = \frac{K_1}{s - s_1} + \frac{K_2}{s - s_2} + \frac{K_3}{s}
-$$
+```
 
-$$
+```math
 K_1 = \frac{\omega_n^2}{(s_1 - s_2)\,s_1}, \qquad K_2 = \frac{\omega_n^2}{(s_2 - s_1)\,s_2}, \qquad K_3 = \frac{\omega_n^2}{s_1 s_2}
-$$
+```
 
-$$
+```math
 y(t) = K_1e^{s_1t} + K_2e^{s_2t} + K_3, \qquad t \ge 0
-$$
+```
 
 By the relation between roots and coefficients, $s_1 s_2 = \omega_n^2$, so $K_3 = 1$. $K_3$ is the steady-state component (the particular solution) that comes from the input pole $s = 0$, and $K_1e^{s_1t}$ and $K_2e^{s_2t}$ are the transient components that come from the system poles.
 
@@ -523,13 +523,13 @@ By the relation between roots and coefficients, $s_1 s_2 = \omega_n^2$, so $K_3 
 
 If $\zeta > 1$, the two roots are distinct real numbers. Since $\omega_n\sqrt{\zeta^2 - 1} < \zeta\omega_n$, both roots are negative, and this case is called **overdamped**. Assign a time constant to each root as for a first-order system.
 
-$$
+```math
 \tau_1 = -\frac{1}{s_1} = \frac{1}{\zeta\omega_n - \sqrt{(\zeta^2 - 1)\,\omega_n^2}}, \qquad \tau_2 = -\frac{1}{s_2} = \frac{1}{\zeta\omega_n + \sqrt{(\zeta^2 - 1)\,\omega_n^2}}
-$$
+```
 
-$$
+```math
 y(t) = 1 + K_1e^{-t/\tau_1} + K_2e^{-t/\tau_2}, \qquad t \ge 0
-$$
+```
 
 Both time constants are greater than 0, so both exponential terms vanish and the output converges to the value of the particular solution, $K_3 = 1$. Because the general solution consists only of exponential functions, the output does not oscillate. Since $\tau_1 > \tau_2$, the term of the pole $s_1$ closer to the origin vanishes more slowly, and this term mainly determines the later part of the response.
 
@@ -537,17 +537,17 @@ Both time constants are greater than 0, so both exponential terms vanish and the
 
 Comparing with the standard form, $\omega_n^2 = 2$ gives $\omega_n = \sqrt{2} \approx 1.414$ rad/s, and $2\zeta\omega_n = 3$ gives $\zeta = 3/(2\sqrt{2}) \approx 1.061$. Since $\zeta > 1$, the system is overdamped, and its roots are $s_1 = -1$ and $s_2 = -2$. Multiply by $U_s(s) = 1/s$ and expand in partial fractions.
 
-$$
+```math
 Y(s) = \frac{2}{s(s+1)(s+2)} = \frac{A}{s} + \frac{B}{s+1} + \frac{C}{s+2}
-$$
+```
 
-$$
+```math
 A = \left.\frac{2}{(s+1)(s+2)}\right|_{s=0} = 1, \qquad B = \left.\frac{2}{s(s+2)}\right|_{s=-1} = \frac{2}{(-1)(1)} = -2, \qquad C = \left.\frac{2}{s(s+1)}\right|_{s=-2} = \frac{2}{(-2)(-1)} = 1
-$$
+```
 
-$$
+```math
 y(t) = 1 - 2e^{-t} + e^{-2t}, \qquad t \ge 0
-$$
+```
 
 The formulas of Section 3.3 give the same values: $K_1 = 2/[(-1+2)(-1)] = -2$, $K_2 = 2/[(-2+1)(-2)] = 1$, and $K_3 = 2/[(-1)(-2)] = 1$. $y(0) = 1 - 2 + 1 = 0$ and $\dot{y}(0) = 2 - 2 = 0$, so the response starts with zero slope. As Figure 14 shows, the output is 1 plus the sum of the two exponential terms $-2e^{-t}$ and $e^{-2t}$, and after $e^{-2t}$ dies out first, $-2e^{-t}$ determines the response.
 
@@ -559,19 +559,19 @@ The formulas of Section 3.3 give the same values: $K_1 = 2/[(-1+2)(-1)] = -2$, $
 
 If $\zeta = 1$, the expression under the square root becomes 0 and the two roots coincide at $s_1 = s_2 = -\omega_n$. This case is called **critically damped**. For a double root the formulas of Section 3.3 cannot be used (the factor $s_1 - s_2$ in the denominator becomes 0), so use the partial fraction expansion for a repeated factor.
 
-$$
+```math
 Y(s) = \frac{\omega_n^2}{s\,(s + \omega_n)^2} = \frac{A}{s} + \frac{B}{s + \omega_n} + \frac{C}{(s + \omega_n)^2}
-$$
+```
 
-$$
+```math
 A = \left.\frac{\omega_n^2}{(s + \omega_n)^2}\right|_{s=0} = 1, \qquad C = \left.\frac{\omega_n^2}{s}\right|_{s=-\omega_n} = -\omega_n, \qquad B = \left.\frac{d}{ds}\left(\frac{\omega_n^2}{s}\right)\right|_{s=-\omega_n} = \left.-\frac{\omega_n^2}{s^2}\right|_{s=-\omega_n} = -1
-$$
+```
 
 Since $\mathcal{L}^{-1}\lbrace1/(s+a)^2 \rbrace= te^{-at}$ (Week 3), the response is the following.
 
-$$
+```math
 y(t) = 1 - e^{-\omega_n t} - \omega_n t\,e^{-\omega_n t} = 1 - e^{-\omega_n t}(1 + \omega_n t), \qquad t \ge 0
-$$
+```
 
 Even with the $te^{-\omega_n t}$ term, the exponential function shrinks faster, so the output converges to 1, and it does not oscillate. Critical damping is the boundary between overdamping and underdamping, and for the same $\omega_n$ it is the fastest among the responses that converge without oscillation (Week 9).
 
@@ -579,50 +579,50 @@ Even with the $te^{-\omega_n t}$ term, the exponential function shrinks faster, 
 
 If $0 < \zeta < 1$, then $\zeta^2 - 1 < 0$, so the expression under the square root is negative and $\sqrt{(\zeta^2 - 1)\omega_n^2} = j\sqrt{(1 - \zeta^2)\omega_n^2}$. This case is called **underdamped**.
 
-$$
+```math
 s_1 = -\zeta\omega_n + j\sqrt{(1 - \zeta^2)\,\omega_n^2}, \qquad s_2 = -\zeta\omega_n - j\sqrt{(1 - \zeta^2)\,\omega_n^2}
-$$
+```
 
 Name the real and imaginary parts. $\omega_d$ is called the **damped natural frequency**.
 
-$$
+```math
 \sigma = -\zeta\omega_n, \qquad \omega_d = \sqrt{(1 - \zeta^2)\,\omega_n^2} = \omega_n\sqrt{1 - \zeta^2}, \qquad s_1 = \sigma + j\omega_d, \qquad s_2 = \sigma - j\omega_d
-$$
+```
 
-The two roots are complex conjugates of each other ($s_2 = s_1^{\ast}$). Because the roots are distinct, the expansion of Section 3.3 still applies, and since the coefficients of a rational function with real coefficients at conjugate poles are conjugates, $K_2 = K_1^{\ast}$.
+The two roots are complex conjugates of each other ($`s_2 = s_1^{\ast}`$). Because the roots are distinct, the expansion of Section 3.3 still applies, and since the coefficients of a rational function with real coefficients at conjugate poles are conjugates, $K_2 = K_1^{\ast}$.
 
-$$
+```math
 y(t) = K_1e^{s_1t} + K_2e^{s_2t} + K_3 = K_1e^{s_1t} + K_1^{\ast}e^{s_1^{\ast}t} + K_3, \qquad K_1 = \frac{\omega_n^2}{(s_1 - s_2)\,s_1} = \frac{\omega_n^2}{2j\omega_d\,(\sigma + j\omega_d)}
-$$
+```
 
 **Converting to a real form.** Write $K_1$ in polar form, $K_1 = \vert K_1\vert e^{j\angle K_1}$ (Week 2), and rearrange the exponentials.
 
-$$
+```math
 \begin{aligned}
 y(t) &= K_1e^{\sigma t + j\omega_d t} + K_1^{\ast}e^{\sigma t - j\omega_d t} + K_3 \\
 &= \vert K_1\vert e^{j\angle K_1}e^{\sigma t + j\omega_d t} + \vert K_1\vert e^{-j\angle K_1}e^{\sigma t - j\omega_d t} + K_3 \\
 &= \vert K_1\vert e^{\sigma t}\left(e^{j(\omega_d t + \angle K_1)} + e^{-j(\omega_d t + \angle K_1)}\right) + K_3 \\
 &= 2\vert K_1\vert e^{\sigma t}\cos(\omega_d t + \angle K_1) + K_3, \qquad t \ge 0
 \end{aligned}
-$$
+```
 
 The last line uses $e^{jx} + e^{-jx} = 2\cos x$, which follows from Euler's formula $e^{jx} = \cos x + j\sin x$. The imaginary parts cancel, leaving a real response.
 
 **Computing the coefficients.** $\vert s_1\vert^2 = \sigma^2 + \omega_d^2 = \zeta^2\omega_n^2 + (1 - \zeta^2)\omega_n^2 = \omega_n^2$, so $\vert s_1\vert = \omega_n$ and $K_3 = \omega_n^2/(s_1 s_1^{\ast}) = \omega_n^2/\vert s_1\vert^2 = 1$. The magnitude and argument of $K_1$ are the following. $\phi$ is the angle defined below, and since $s_1$ lies in the second quadrant, its argument is $\angle s_1 = \pi/2 + \phi$.
 
-$$
+```math
 \vert K_1\vert = \frac{\omega_n^2}{2\omega_d\,\vert s_1\vert} = \frac{\omega_n}{2\omega_d} = \frac{1}{2\sqrt{1 - \zeta^2}}, \qquad \angle K_1 = -\frac{\pi}{2} - \angle s_1 = -\pi - \phi \equiv \pi - \phi, \qquad \phi = \tan^{-1}\frac{\zeta}{\sqrt{1 - \zeta^2}}
-$$
+```
 
 Since $\cos(x + \pi - \phi) = -\cos(x - \phi)$, the unit step response of an underdamped second-order system is the following.
 
-$$
+```math
 y(t) = 1 - \frac{1}{\sqrt{1 - \zeta^2}}\,e^{-\zeta\omega_n t}\cos\left(\omega_n\sqrt{1 - \zeta^2}\,t - \phi\right), \qquad t \ge 0
-$$
+```
 
 Since $\sin\phi = \zeta$ and $\cos\phi = \sqrt{1 - \zeta^2}$, expanding the cosine also gives $y(t) = 1 - e^{-\zeta\omega_n t}\left(\cos\omega_d t + \dfrac{\zeta}{\sqrt{1 - \zeta^2}}\sin\omega_d t\right)$, and substituting $t = 0$ gives $y(0) = 1 - 1 = 0$.
 
-**Interpreting the response.** The response is an oscillation at angular frequency $\omega_d$ around 1 whose amplitude shrinks along the envelope $e^{-\zeta\omega_n t}/\sqrt{1 - \zeta^2}$. How fast the oscillation dies is set by the magnitude of the real part of the pole, $\zeta\omega_n$, and how fast it oscillates by the imaginary part $\omega_d$. Also, since $\zeta\omega_n t$ and $\omega_d t = \sqrt{1 - \zeta^2}\,\omega_n t$ are both functions of $\omega_n t$, responses with the same $\zeta$ have the same shape, and only the time axis is stretched or shrunk by the factor $1/\omega_n$. The speed of the general solution is therefore proportional to $\omega_n$, and a larger $\omega_n$ gives a faster response. Figure 15 compares the responses for several values of $\zeta$ with $\omega_n t$ on the horizontal axis. The smaller $\zeta$ is, the larger the maximum overshoot and the longer the oscillation lasts.
+**Interpreting the response.** The response is an oscillation at angular frequency $\omega_d$ around 1 whose amplitude shrinks along the envelope $e^{-\zeta\omega_n t}/\sqrt{1 - \zeta^2}$. How fast the oscillation dies is set by the magnitude of the real part of the pole, $\zeta\omega_n$, and how fast it oscillates by the imaginary part $\omega_d$. Also, since $\zeta\omega_n t$ and $`\omega_d t = \sqrt{1 - \zeta^2}\,\omega_n t`$ are both functions of $\omega_n t$, responses with the same $\zeta$ have the same shape, and only the time axis is stretched or shrunk by the factor $1/\omega_n$. The speed of the general solution is therefore proportional to $\omega_n$, and a larger $\omega_n$ gives a faster response. Figure 15 compares the responses for several values of $\zeta$ with $\omega_n t$ on the horizontal axis. The smaller $\zeta$ is, the larger the maximum overshoot and the longer the oscillation lasts.
 
 ![Figure 15. Unit step responses of the standard second-order system for several damping ratios](../../images/Week07_Second-Order-Step-Response.png)
 
@@ -632,15 +632,15 @@ Since $\sin\phi = \zeta$ and $\cos\phi = \sqrt{1 - \zeta^2}$, expanding the cosi
 
 Plotting the underdamped pole $s_1 = \sigma + j\omega_d$ in the complex plane (the $s$-plane) gives Figure 16. As found in Section 3.6, the distance from the origin to the pole is $\vert s_1\vert = \sqrt{\zeta^2\omega_n^2 + (1 - \zeta^2)\omega_n^2} = \omega_n$, and this value is always $\omega_n$ regardless of $\zeta$. Let $\theta$ be the angle between the imaginary axis and the segment from the origin to the pole. The side opposite $\theta$ is $\zeta\omega_n$ and the hypotenuse is $\omega_n$, so the following holds.
 
-$$
+```math
 \sin\theta = \frac{\zeta\omega_n}{\omega_n} = \zeta
-$$
+```
 
 ![Figure 16. Relation between the location of an underdamped pole and the damping ratio and natural frequency](../../images/Week07_Underdamped-Pole-Geometry.png)
 
 *Figure 16. Relation between the location of an underdamped pole and the damping ratio and natural frequency*
 
-$\theta$ is the same angle as $\phi$ in Section 3.6 ($\sin\phi = \zeta$). Using instead the angle $\beta = 90^\circ - \theta$ between the same segment and the negative real axis, the relation can also be written $\cos\beta = \zeta$, and many textbooks use this form.
+$\theta$ is the same angle as $\phi$ in Section 3.6 ($`\sin\phi = \zeta`$). Using instead the angle $\beta = 90^\circ - \theta$ between the same segment and the negative real axis, the relation can also be written $\cos\beta = \zeta$, and many textbooks use this form.
 
 | Geometric quantity of the pole | Value | Meaning in the response |
 |:-----|:-----|:-----|
@@ -651,7 +651,7 @@ $\theta$ is the same angle as $\phi$ in Section 3.6 ($\sin\phi = \zeta$). Using 
 
 *Table 8. Correspondence between the location of an underdamped pole and the response characteristics*
 
-> **Key Point:** The transient response of a second-order system is determined by the pole locations. The farther the poles are from the origin (the larger $\omega_n$), the faster the response, and the larger the angle between the imaginary axis and the line from the origin to the poles (the larger $\zeta$), the smaller the oscillation. Week 9 uses this relation to treat quantitatively how changes in $\omega_n$ and $\zeta$ affect the speed of response, the maximum overshoot, and the settling time.
+> **Key Point:** The transient response of a second-order system is determined by the pole locations. The farther the poles are from the origin (the larger $`\omega_n`$), the faster the response, and the larger the angle between the imaginary axis and the line from the origin to the poles (the larger $`\zeta`$), the smaller the oscillation. Week 9 uses this relation to treat quantitatively how changes in $\omega_n$ and $\zeta$ affect the speed of response, the maximum overshoot, and the settling time.
 
 ---
 
@@ -697,8 +697,8 @@ For the system of Section 3.1, $\zeta = 1/(2\sqrt{K})$, so raising $K$ makes the
 | Conversion to unity feedback | Placing $1/H(s)$ on the input side and moving $H(s)$ into the forward path gives a unity feedback system with the same input and output. |
 | Transient and steady-state performance | Transient performance judges how fast the output reaches the command value; steady-state performance judges how close the final value is to it. |
 | Test inputs | The unit step $1/s$, unit ramp $1/s^2$, and unit parabola $1/s^3$ are standard inputs for performance evaluation and comparison. |
-| Transient performance measures | Maximum overshoot $M_p$, peak time $t_p$, settling time $t_s$ ($\pm 5\%$ or $\pm 2\%$), and rise time $t_r$ (10% to 90%). |
-| First-order system | The step response of $1/(\tau s + 1)$ is $1 - e^{-t/\tau}$, with $t_r \approx 2.2\tau$, $t_s \approx 3\tau$ ($\pm 5\%$), and $M_p = 0$. |
+| Transient performance measures | Maximum overshoot $M_p$, peak time $t_p$, settling time $t_s$ ($`\pm 5\%`$ or $`\pm 2\%`$), and rise time $t_r$ (10% to 90%). |
+| First-order system | The step response of $1/(\tau s + 1)$ is $1 - e^{-t/\tau}$, with $t_r \approx 2.2\tau$, $t_s \approx 3\tau$ ($`\pm 5\%`$), and $M_p = 0$. |
 | Time constant of a DC motor | With $L_a \approx 0$ and $B \approx 0$, $\tau_m = J_aR_a/(K_tK_b)$, and proportional feedback reduces the closed-loop time constant to $\tau_m/(1 + K/K_b)$. |
 | Standard second-order form | In $\omega_n^2/(s^2 + 2\zeta\omega_n s + \omega_n^2)$, $\zeta$ is the damping ratio and $\omega_n$ the natural frequency. |
 | Classification of roots | $\zeta > 1$ gives two negative real roots (overdamped), $\zeta = 1$ a double root (critically damped), and $0 < \zeta < 1$ complex conjugate roots (underdamped). |
@@ -780,7 +780,7 @@ For the system of Section 3.1, $\zeta = 1/(2\sqrt{K})$, so raising $K$ makes the
    <details>
    <summary>Answer</summary>
 
-   $\omega_n^2 = 9$ gives $\omega_n = 3$ rad/s, and $2\zeta\omega_n = 2$ gives $\zeta = 1/3$. $\sigma = -\zeta\omega_n = -1$ and $\omega_d = 3\sqrt{1 - 1/9} = 2\sqrt{2} \approx 2.828$ rad/s, so the poles are $-1 \pm j2.828$. $\phi = \tan^{-1}\dfrac{1/3}{\sqrt{8/9}} = \tan^{-1}\dfrac{1}{2\sqrt{2}} \approx 0.340$ rad and $1/\sqrt{1 - \zeta^2} = 3/(2\sqrt{2}) \approx 1.061$, so $y(t) = 1 - 1.061\,e^{-t}\cos(2.828t - 0.340)$.
+   $\omega_n^2 = 9$ gives $\omega_n = 3$ rad/s, and $2\zeta\omega_n = 2$ gives $\zeta = 1/3$. $\sigma = -\zeta\omega_n = -1$ and $\omega_d = 3\sqrt{1 - 1/9} = 2\sqrt{2} \approx 2.828$ rad/s, so the poles are $-1 \pm j2.828$. $\phi = \tan^{-1}\dfrac{1/3}{\sqrt{8/9}} = \tan^{-1}\dfrac{1}{2\sqrt{2}} \approx 0.340$ rad and $1/\sqrt{1 - \zeta^2} = 3/(2\sqrt{2}) \approx 1.061$, so $`y(t) = 1 - 1.061\,e^{-t}\cos(2.828t - 0.340)`$.
 
    </details>
 
@@ -798,7 +798,7 @@ For the system of Section 3.1, $\zeta = 1/(2\sqrt{K})$, so raising $K$ makes the
     <details>
     <summary>Answer</summary>
 
-    First, the steady-state coefficient of the partial fraction expansion is $K_3 = \omega_n^2/(s_1s_2)$, and by the relation between roots and coefficients $s_1s_2 = \omega_n^2$, so $K_3 = 1$. Second, when the transient components die out ($\zeta > 0$), the final value equals the steady-state gain $G_T(0) = \omega_n^2/\omega_n^2 = 1$. Hence $\zeta$ changes only the way the output reaches that value (the transient response), not the final value itself.
+    First, the steady-state coefficient of the partial fraction expansion is $K_3 = \omega_n^2/(s_1s_2)$, and by the relation between roots and coefficients $s_1s_2 = \omega_n^2$, so $K_3 = 1$. Second, when the transient components die out ($`\zeta > 0`$), the final value equals the steady-state gain $G_T(0) = \omega_n^2/\omega_n^2 = 1$. Hence $\zeta$ changes only the way the output reaches that value (the transient response), not the final value itself.
 
     </details>
 

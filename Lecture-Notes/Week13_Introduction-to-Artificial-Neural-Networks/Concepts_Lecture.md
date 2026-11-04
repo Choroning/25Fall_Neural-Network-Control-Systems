@@ -134,9 +134,9 @@ An **artificial neuron** is a computational unit that mathematically imitates th
 2. It multiplies each input by a weight $w_1, w_2, \dots, w_n$ and adds the products to obtain the **weighted sum** $\sum_{i=1}^{n} x_i w_i$.
 3. It passes the weighted sum through an **activation function** $f$ to produce the output.
 
-$$
+```math
 \text{output} = f\left(\sum_{i=1}^{n} x_i w_i\right)
-$$
+```
 
 The activation function determines how much of the weighted sum is passed on to the output. The two small graphs at the top of the figure are examples of activation functions: the left one is a step function whose output jumps from 0 to 1 the moment the weighted sum crosses a threshold, and the right one is an S-shaped curve whose output changes smoothly. The elements of a biological neuron and an artificial neuron correspond as in Table 3.
 
@@ -183,9 +183,9 @@ Artificial neural networks have developed through several turning points over a 
 
 The McCulloch-Pitts neuron of 1943 was a logic element that received inputs of 0 or 1 and output 1 if their sum was at least a threshold $T$ and 0 otherwise; it is often written in the following simplified form.
 
-$$
+```math
 y = \begin{cases} 1, & \sum_{i} w_i x_i \ge T \\ 0, & \text{otherwise} \end{cases}
-$$
+```
 
 The weights and the threshold of this model were designed by a person. Rosenblatt's perceptron was revolutionary in that it allowed the weights to be learned from example data [4]. The model names in the table mean the following.
 
@@ -220,27 +220,27 @@ The **perceptron** is the artificial neuron of Section 1.4 with an additional co
 
 The computation takes two steps. First, the linear combination of the inputs $z$ is computed (Sum in the figure), and then it is passed through a nonlinear activation function $g$ (Non-Linearity in the figure) to obtain the output $\hat{y}$.
 
-$$
+```math
 z = \theta_0 + \sum_{j=1}^{m} x_j \theta_j, \qquad \hat{y} = g\left(\theta_0 + \sum_{j=1}^{m} x_j \theta_j\right)
-$$
+```
 
 The hat on $\hat{y}$ ("y hat") means a value estimated by the model and distinguishes it from the true answer $y$. The $\int$ symbol drawn in place of $g$ in the figure is not an integral but a pictorial symbol for an S-shaped activation function.
 
-> **Definition:** The **bias** $\theta_0$ is a constant term added regardless of the inputs. Using a bias adds a constant to the weighted sum, which shifts the activation function left or right. For example, with one input, the center of $g(\theta_0 + \theta_1 x)$ (the point where $z = 0$) is at $x = -\theta_0/\theta_1$, so changing $\theta_0$ moves the whole curve sideways (Figure 20 in Section 2.8). Without a bias, the boundary where $z = 0$ would always have to pass through the origin, which limits what the model can represent.
+> **Definition:** The **bias** $\theta_0$ is a constant term added regardless of the inputs. Using a bias adds a constant to the weighted sum, which shifts the activation function left or right. For example, with one input, the center of $g(\theta_0 + \theta_1 x)$ (the point where $`z = 0`$) is at $x = -\theta_0/\theta_1$, so changing $\theta_0$ moves the whole curve sideways (Figure 20 in Section 2.8). Without a bias, the boundary where $z = 0$ would always have to pass through the origin, which limits what the model can represent.
 
 Collecting the inputs and weights into vectors gives a compact form.
 
-$$
+```math
 \hat{y} = g\left(\theta_0 + \mathbf{X}^{T}\boldsymbol{\theta}\right), \qquad \mathbf{X} = \begin{bmatrix} x_1 \\ \vdots \\ x_m \end{bmatrix}, \quad \boldsymbol{\theta} = \begin{bmatrix} \theta_1 \\ \vdots \\ \theta_m \end{bmatrix}
-$$
+```
 
 > **[Linear Algebra]** For two column vectors $\mathbf{X}$ and $\boldsymbol{\theta}$, $\mathbf{X}^{T}\boldsymbol{\theta}$ is the product of a $1 \times m$ row vector and an $m \times 1$ column vector, so it is $1 \times 1$, that is, a scalar, and its value is the inner product $\sum_{j=1}^{m} x_j\theta_j$ obtained by multiplying entries in the same position and adding them. The vector form above is therefore the same as the form written with the summation sign.
 
 The **sigmoid function** $\sigma$ below can be used as an example of an activation function (Section 1.10).
 
-$$
+```math
 g(z) = \sigma(z) = \frac{1}{1 + e^{-z}}
-$$
+```
 
 For example, feeding $\mathbf{X} = [-1, 2]^{T}$ into a perceptron with $\theta_0 = 1$ and $\boldsymbol{\theta} = [3, -2]^{T}$ gives $z = 1 + (-1)(3) + (2)(-2) = -6$ and $\hat{y} = \sigma(-6) = 1/(1 + e^{6}) \approx 0.0025$. Feeding $\mathbf{X} = [1, 1]^{T}$ gives $z = 1 + 3 - 2 = 2$ and $\hat{y} = \sigma(2) \approx 0.8808$. Because the output of the sigmoid always lies between 0 and 1, it can be interpreted as "the probability that the input belongs to a certain class."
 
@@ -258,22 +258,22 @@ The **sigmoid function** is an S-shaped function that activates a neuron by mapp
 
 *Figure 7. The sigmoid function and its derivative*
 
-$$
+```math
 g(z) = \frac{1}{1 + e^{-z}}, \qquad g'(z) = g(z)\bigl(1 - g(z)\bigr)
-$$
+```
 
 The derivative is derived as follows. Applying the chain rule to $g(z) = (1 + e^{-z})^{-1}$ multiplies the derivative $-u^{-2}$ of the outer function $u^{-1}$ by the derivative $-e^{-z}$ of the inner function $1 + e^{-z}$.
 
-$$
+```math
 g'(z) = -(1 + e^{-z})^{-2} \cdot (-e^{-z}) = \frac{e^{-z}}{(1 + e^{-z})^{2}} = \frac{1}{1 + e^{-z}} \cdot \frac{e^{-z}}{1 + e^{-z}}
-$$
+```
 
 The second factor is $\dfrac{e^{-z}}{1 + e^{-z}} = \dfrac{(1 + e^{-z}) - 1}{1 + e^{-z}} = 1 - \dfrac{1}{1 + e^{-z}} = 1 - g(z)$, so $g'(z) = g(z)(1 - g(z))$. Thanks to this form, the derivative can be obtained directly from $g(z)$, which forward propagation has already computed.
 
 The sigmoid function has two drawbacks.
 
 - **Vanishing gradient:** When the input is large or small (roughly 5 or above, -5 or below), the derivative approaches 0 and training does not progress well. Since $g(0) = 0.5$, the maximum of the derivative is $g'(0) = 0.5 \times 0.5 = 0.25$, and at $z = 5$, $g(5) \approx 0.9933$, so $g'(5) \approx 0.9933 \times 0.0067 \approx 0.0066$ only. Backpropagation in Section 3 multiplies by the derivative of the activation function at every layer, so after ten sigmoid layers the gradient is multiplied by at most $0.25^{10} \approx 9.5 \times 10^{-7}$, and the weights of the early layers barely change.
-- **Non-zero-centered output:** Because the output is always positive, the direction of learning is restricted. If a neuron in the next layer receives sigmoid outputs $a_j > 0$ as its inputs, the gradient with respect to its weight $w_j$ is $\partial L/\partial w_j = \delta \cdot a_j$ by the method of Section 3.2 ($\delta$ is the gradient of the loss with respect to that neuron's weighted sum and is common to all $j$). Since all $a_j$ are positive, every gradient has the same sign as $\delta$, so in a single update the weights of that neuron all increase together or all decrease together. When reaching the optimum requires some weights to increase and others to decrease, the update path zigzags and training slows down.
+- **Non-zero-centered output:** Because the output is always positive, the direction of learning is restricted. If a neuron in the next layer receives sigmoid outputs $a_j > 0$ as its inputs, the gradient with respect to its weight $w_j$ is $\partial L/\partial w_j = \delta \cdot a_j$ by the method of Section 3.2 ($\delta$ is the gradient of the loss with respect to that neuron's weighted sum and is common to all $`j`$). Since all $a_j$ are positive, every gradient has the same sign as $\delta$, so in a single update the weights of that neuron all increase together or all decrease together. When reaching the optimum requires some weights to increase and others to decrease, the update path zigzags and training slows down.
 
 ### 1.11 The Hyperbolic Tangent Function
 
@@ -283,15 +283,15 @@ The **hyperbolic tangent function (tanh)** is an S-shaped function that activate
 
 *Figure 8. The hyperbolic tangent function and its derivative*
 
-$$
+```math
 g(z) = \frac{e^{z} - e^{-z}}{e^{z} + e^{-z}}, \qquad g'(z) = 1 - g(z)^{2}
-$$
+```
 
 The derivative follows from the quotient rule. The derivative of the numerator $e^{z} - e^{-z}$ is $e^{z} + e^{-z}$, and the derivative of the denominator $e^{z} + e^{-z}$ is $e^{z} - e^{-z}$.
 
-$$
+```math
 g'(z) = \frac{(e^{z} + e^{-z})(e^{z} + e^{-z}) - (e^{z} - e^{-z})(e^{z} - e^{-z})}{(e^{z} + e^{-z})^{2}} = 1 - \left(\frac{e^{z} - e^{-z}}{e^{z} + e^{-z}}\right)^{2} = 1 - g(z)^{2}
-$$
+```
 
 Because the output can be both positive and negative, the non-zero-centered problem of the sigmoid is solved. In addition, $g'(0) = 1$, which is larger than the maximum slope 0.25 of the sigmoid. However, the vanishing gradient problem, in which the derivative becomes small and training does not progress well when the input is large or small (roughly 5 or above, -5 or below), remains. Since $g(5) \approx 0.99991$, $g'(5) \approx 1.8 \times 10^{-4}$.
 
@@ -305,9 +305,9 @@ The **ReLU (rectified linear unit)** activates a neuron only when the input is g
 
 *Figure 9. The ReLU function and its derivative*
 
-$$
+```math
 g(z) = \max(0, z), \qquad g'(z) = \begin{cases} 1, & z > 0 \\ 0, & \text{otherwise} \end{cases}
-$$
+```
 
 The strengths and weaknesses of ReLU are as follows.
 
@@ -335,13 +335,13 @@ The purpose of an activation function is to introduce **nonlinearity** into the 
 
 As on the left, a linear activation function produces only linear decisions that divide the space with a single straight line (a plane in higher dimensions), so it cannot properly separate regions where green and red points are mixed. As on the right, with a nonlinear activation function the neural network can produce nonlinear decisions that divide the space with curved boundaries even for functions with complicated shapes. Such a boundary that separates the data by class is called a **decision boundary**.
 
-If the activation function is linear, stacking more layers does not help. Consider a two-layer network whose activation function is the identity $g(z) = z$: the hidden layer output is $\mathbf{h} = W_1\mathbf{x} + \mathbf{b}_1$, and the final output is as follows.
+If the activation function is linear, stacking more layers does not help. Consider a two-layer network whose activation function is the identity $g(z) = z$: the hidden layer output is $`\mathbf{h} = W_1\mathbf{x} + \mathbf{b}_1`$, and the final output is as follows.
 
-$$
+```math
 \hat{\mathbf{y}} = W_2\mathbf{h} + \mathbf{b}_2 = W_2(W_1\mathbf{x} + \mathbf{b}_1) + \mathbf{b}_2 = (W_2W_1)\mathbf{x} + (W_2\mathbf{b}_1 + \mathbf{b}_2)
-$$
+```
 
-Setting $W = W_2W_1$ and $\mathbf{b} = W_2\mathbf{b}_1 + \mathbf{b}_2$ gives $\hat{\mathbf{y}} = W\mathbf{x} + \mathbf{b}$, so the two-layer network is equivalent to a single-layer linear model. By the same argument, any number of stacked layers is still a single linear model. Conversely, the **universal approximation theorem** states that a network with even one hidden layer using a nonlinear activation function such as the sigmoid can approximate a continuous function defined on a closed and bounded region to any desired accuracy, provided that it has enough hidden neurons [11].
+Setting $W = W_2W_1$ and $`\mathbf{b} = W_2\mathbf{b}_1 + \mathbf{b}_2`$ gives $\hat{\mathbf{y}} = W\mathbf{x} + \mathbf{b}$, so the two-layer network is equivalent to a single-layer linear model. By the same argument, any number of stacked layers is still a single linear model. Conversely, the **universal approximation theorem** states that a network with even one hidden layer using a nonlinear activation function such as the sigmoid can approximate a continuous function defined on a closed and bounded region to any desired accuracy, provided that it has enough hidden neurons [11].
 
 > **Caution:** The universal approximation theorem only guarantees that such a network exists. It says nothing about how many hidden neurons are needed or whether training can actually find the weights.
 
@@ -355,15 +355,15 @@ Consider the problem of classifying aircraft as bombers or fighters according to
 
 Bombers are slow and heavy, while fighters are fast and light. The line that separates the two types of aircraft is the following.
 
-$$
+```math
 x_2 = 1.5x_1 + 0.5
-$$
+```
 
 Moving all terms to one side defines the **decision function** $f(x_1, x_2) = -x_2 + 1.5x_1 + 0.5$, which is $f = 0$ on the line, $f > 0$ below the line (the fighter side), and $f < 0$ above it (the bomber side). The classification rule is therefore the following.
 
-$$
+```math
 d = \begin{cases} \text{Fighter}, & f(x_1, x_2) \ge 0 \\ \text{Bomber}, & f(x_1, x_2) < 0 \end{cases}
-$$
+```
 
 For example, a fighter at $(0.4, 0.5)$ gives $f(0.4, 0.5) = -0.5 + 1.5 \times 0.4 + 0.5 = -0.5 + 0.6 + 0.5 = 0.6 \ge 0$, so it is correctly classified as a fighter. The bomber near $(0.2, 2)$ in the figure gives $f(0.2, 2) = -2 + 0.3 + 0.5 = -1.2 < 0$, so it is classified as a bomber.
 
@@ -379,9 +379,9 @@ flowchart LR
 
 *Figure 12. Perceptron for aircraft classification*
 
-$$
+```math
 \text{summation} = w_0 + \sum_{i=1}^{2} x_i w_i = 0.5 + 1.5x_1 - x_2
-$$
+```
 
 The output is Fighter if the weighted sum is at least 0 and Bomber if it is less than 0. The activation function of this perceptron is a **step function** whose output switches at 0. The derivative of a step function is 0 at every point other than 0, so it cannot be used with the gradient-based training of Section 3. Training therefore uses smooth activation functions such as the sigmoid.
 
@@ -391,9 +391,9 @@ Data whose two classes can be completely separated by a single straight line (a 
 
 A classic counterexample is exclusive OR (XOR). The four points $(0, 0)$ and $(1, 1)$ have output 0, and $(0, 1)$ and $(1, 0)$ have output 1. Suppose there are weights such that $w_0 + w_1x_1 + w_2x_2 \ge 0$ at the points with output 1 and $< 0$ at the points with output 0; then the following four inequalities must hold.
 
-$$
+```math
 w_0 < 0, \qquad w_0 + w_2 \ge 0, \qquad w_0 + w_1 \ge 0, \qquad w_0 + w_1 + w_2 < 0
-$$
+```
 
 Adding the middle two inequalities gives $w_1 + w_2 + 2w_0 \ge 0$, that is, $w_0 + w_1 + w_2 \ge -w_0$. From the first inequality $-w_0 > 0$, so $w_0 + w_1 + w_2 > 0$, which contradicts the last inequality. Therefore no perceptron solves XOR. Minsky and Papert analyzed such limitations in 1969 [12], which became one of the causes of a period of stagnation in neural network research. A multi-layer network with a hidden layer can solve this problem, and the method for training multi-layer networks is the backpropagation of the 1980s (Table 4).
 
@@ -411,11 +411,11 @@ When several outputs are needed, as many perceptrons as outputs are placed side 
 
 *Figure 13. The multi-output perceptron*
 
-Output neuron $i$ has its own weights $\theta_{j,i}$ (the weight from input $j$ to output $i$) and its own bias $\theta_{0,i}$.
+Output neuron $i$ has its own weights $\theta_{j,i}$ (the weight from input $j$ to output $`i`$) and its own bias $\theta_{0,i}$.
 
-$$
+```math
 z_i = \theta_{0,i} + \sum_{j=1}^{m} x_j\theta_{j,i}, \qquad y_i = g(z_i), \qquad i = 1, 2
-$$
+```
 
 Every input is connected to every output, so this layer is fully connected, and it has $m + 1$ parameters per output, $2(m + 1)$ in total.
 
@@ -433,23 +433,23 @@ Joining two multi-output perceptrons gives the **single-hidden-layer neural netw
 
 The weights from the input layer to the hidden layer are written $\theta^{(1)}$, and the weights from the hidden layer to the output layer $\theta^{(2)}$. The superscripts $(1)$ and $(2)$ are not powers; they indicate the layer to which the weights belong. With $d_1$ neurons in the hidden layer, the weighted sum of hidden neuron $i$ is the following.
 
-$$
+```math
 z_i = \theta_{0,i}^{(1)} + \sum_{j=1}^{m} x_j\theta_{j,i}^{(1)}, \qquad i = 1, \dots, d_1
-$$
+```
 
-For example, writing out the sum for the second hidden neuron ($i = 2$) gives the following.
+For example, writing out the sum for the second hidden neuron ($`i = 2`$) gives the following.
 
-$$
+```math
 z_2 = \theta_{0,2}^{(1)} + \sum_{j=1}^{m} x_j\theta_{j,2}^{(1)} = \theta_{0,2}^{(1)} + x_1\theta_{1,2}^{(1)} + x_2\theta_{2,2}^{(1)} + \cdots + x_m\theta_{m,2}^{(1)}
-$$
+```
 
 Each hidden neuron outputs $g(z_i)$, obtained by passing $z_i$ through the activation function, and the output layer takes these values as its inputs and performs the same computation once more.
 
-$$
+```math
 \hat{y}_i = g\left(\theta_{0,i}^{(2)} + \sum_{j=1}^{d_1} g(z_j)\,\theta_{j,i}^{(2)}\right), \qquad i = 1, 2
-$$
+```
 
-This process of computing step by step from the input toward the output is called **forward propagation**. In matrix form, letting $\boldsymbol{\Theta}^{(1)}$ be the $m \times d_1$ matrix whose $(j, i)$ entry is $\theta_{j,i}^{(1)}$ and $\boldsymbol{\theta}_0^{(1)}$ the $d_1$-dimensional vector of biases, the whole hidden layer is computed at once as $\mathbf{z} = \boldsymbol{\theta}_0^{(1)} + (\boldsymbol{\Theta}^{(1)})^{T}\mathbf{x}$. This is the perceptron formula $\theta_0 + \mathbf{X}^{T}\boldsymbol{\theta}$ of Section 1.8 written for $d_1$ neurons at once. The number of parameters is $(m + 1)d_1$ for the hidden layer and $(d_1 + 1) \times 2$ for the output layer.
+This process of computing step by step from the input toward the output is called **forward propagation**. In matrix form, letting $\boldsymbol{\Theta}^{(1)}$ be the $m \times d_1$ matrix whose $(j, i)$ entry is $\theta_{j,i}^{(1)}$ and $`\boldsymbol{\theta}_0^{(1)}`$ the $d_1$-dimensional vector of biases, the whole hidden layer is computed at once as $`\mathbf{z} = \boldsymbol{\theta}_0^{(1)} + (\boldsymbol{\Theta}^{(1)})^{T}\mathbf{x}`$. This is the perceptron formula $\theta_0 + \mathbf{X}^{T}\boldsymbol{\theta}$ of Section 1.8 written for $d_1$ neurons at once. The number of parameters is $(m + 1)d_1$ for the hidden layer and $(d_1 + 1) \times 2$ for the output layer.
 
 > **Note:** Conventions for counting the layers of a neural network differ across the literature. Some texts call a network with one hidden layer a single layer neural network, while others use the term single-layer perceptron for a perceptron without hidden layers, whose inputs connect directly to the outputs. To keep the two usages apart, it is clearer to call a network with one hidden layer a "single-hidden-layer neural network."
 
@@ -463,11 +463,11 @@ In Figure 15, each box marked X is a shorthand symbol for one fully connected la
 
 *Figure 15. A deep neural network*
 
-Neuron $i$ of the $k$-th hidden layer takes the outputs of the immediately preceding layer (layer $k - 1$) as its inputs. Generalizing the equation of Section 2.2 gives the following.
+Neuron $i$ of the $k$-th hidden layer takes the outputs of the immediately preceding layer (layer $`k - 1`$) as its inputs. Generalizing the equation of Section 2.2 gives the following.
 
-$$
+```math
 z_{k,i} = \theta_{0,i}^{(k)} + \sum_{j=1}^{d_{k-1}} g(z_{k-1,j})\,\theta_{j,i}^{(k)}
-$$
+```
 
 For $k = 1$, the input $x_j$ takes the place of the previous layer's output $g(z_{0,j})$. Repeating this computation from the first hidden layer to the output layer is the forward propagation of a deep neural network.
 
@@ -502,9 +502,9 @@ Reducing the loss for only one data point can make the predictions for other dat
 
 > **Definition:** The **empirical loss** is the average of the loss over the whole data set. It is also called the **objective function**, the **cost function**, or the **empirical risk**.
 
-$$
+```math
 J(\boldsymbol{\theta}) = \frac{1}{n}\sum_{i=1}^{n} L\bigl(f(\mathbf{x}^{(i)}; \boldsymbol{\theta}), y^{(i)}\bigr)
-$$
+```
 
 $n$ is the number of data points. Part of the data of the class example and the predictions of the untrained network are shown in Table 7. Each row of $\mathbf{X}$ is one student's $[x_1, x_2]$.
 
@@ -518,17 +518,17 @@ $n$ is the number of data points. Part of the data of the class example and the 
 
 The empirical loss is a function of $\boldsymbol{\theta}$ alone, because the data $\mathbf{x}^{(i)}$ and $y^{(i)}$ are given and fixed, and the only thing training can change is $\boldsymbol{\theta}$. Training therefore becomes the optimization problem of finding the $\boldsymbol{\theta}$ that minimizes $J(\boldsymbol{\theta})$.
 
-$$
+```math
 \boldsymbol{\theta}^{*} = \arg\min_{\boldsymbol{\theta}} J(\boldsymbol{\theta})
-$$
+```
 
 ### 2.6 Mean Squared Error and Cross-Entropy
 
 The loss function is chosen to suit the type of problem. The **mean squared error (MSE)** can be used with regression models that output continuous real numbers.
 
-$$
+```math
 J(\boldsymbol{\theta}) = \frac{1}{n}\sum_{i=1}^{n}\bigl(y^{(i)} - f(\mathbf{x}^{(i)}; \boldsymbol{\theta})\bigr)^{2}
-$$
+```
 
 For example, suppose that in a regression problem predicting the final scores of the same students, the network's predictions and the actual scores are as in Table 8. The predictions for the first two students are far off, and the third is fairly close.
 
@@ -540,15 +540,17 @@ For example, suppose that in a regression problem predicting the final scores of
 
 *Table 8. Errors in predicting final scores*
 
-$$
+```math
 J = \frac{3600 + 3600 + 100}{3} = \frac{7300}{3} \approx 2433.3
-$$
+```
 
 There are three reasons to square the errors. First, positive and negative errors do not cancel (adding the errors 60 and -60 of students 1 and 2 as they are gives 0). Second, large errors are penalized more heavily (the square of an error of 60 is 36 times the square of an error of 10). Third, the function is differentiable everywhere, which makes the gradient of Section 2.9 easy to compute.
 
 > **Note:** For binary classification whose output is a probability between 0 and 1, like the class example, the **binary cross-entropy (BCE)** loss is mainly used [13].
 >
-> $$J(\boldsymbol{\theta}) = -\frac{1}{n}\sum_{i=1}^{n}\Bigl[y^{(i)}\log f(\mathbf{x}^{(i)}; \boldsymbol{\theta}) + \bigl(1 - y^{(i)}\bigr)\log\bigl(1 - f(\mathbf{x}^{(i)}; \boldsymbol{\theta})\bigr)\Bigr]$$
+> ```math
+> J(\boldsymbol{\theta}) = -\frac{1}{n}\sum_{i=1}^{n}\Bigl[y^{(i)}\log f(\mathbf{x}^{(i)}; \boldsymbol{\theta}) + \bigl(1 - y^{(i)}\bigr)\log\bigl(1 - f(\mathbf{x}^{(i)}; \boldsymbol{\theta})\bigr)\Bigr]
+> ```
 >
 > If the answer is 1 only the first term $-\log f$ remains, and if the answer is 0 only the second term $-\log(1 - f)$ remains (log is the natural logarithm). For the three students of Table 7 the terms are $-\ln 0.1 \approx 2.3026$, $-\ln(1 - 0.8) = -\ln 0.2 \approx 1.6094$, and $-\ln 0.6 \approx 0.5108$, with mean $4.4228/3 \approx 1.4743$. Using the squared error for the same predictions gives $(0.81 + 0.64 + 0.16)/3 \approx 0.5367$. Cross-entropy assigns a very large loss to a confident wrong answer that gives the correct class a probability near 0, so it provides a stronger learning signal in classification problems.
 
@@ -564,9 +566,9 @@ Suppose that feeding in data from several people gives the results in Table 9. T
 
 | Person | Input | Network computation | Estimate $\hat{y}$ | Answer $y$ | Verdict |
 |:-----|:-----|:-----|:-----|:-----|:-----|
-| 1 | $\mathbf{x}_1$ | $f(\mathbf{x}_1, \boldsymbol{\theta})$ | 0 | 0 | Correct |
-| 2 | $\mathbf{x}_2$ | $f(\mathbf{x}_2, \boldsymbol{\theta})$ | 0 | 1 | Incorrect |
-| 3 | $\mathbf{x}_3$ | $f(\mathbf{x}_3, \boldsymbol{\theta})$ | 1 | 1 | Correct |
+| 1 | $`\mathbf{x}_1`$ | $`f(\mathbf{x}_1, \boldsymbol{\theta})`$ | 0 | 0 | Correct |
+| 2 | $`\mathbf{x}_2`$ | $`f(\mathbf{x}_2, \boldsymbol{\theta})`$ | 0 | 1 | Incorrect |
+| 3 | $`\mathbf{x}_3`$ | $`f(\mathbf{x}_3, \boldsymbol{\theta})`$ | 1 | 1 | Correct |
 
 *Table 9. Comparison of gender estimates with the answers*
 
@@ -587,9 +589,9 @@ flowchart LR
 
 $w_1$ and $w_2$ are weights, $b_1$ and $b_2$ are biases, and together they form the **parameter vector** $\boldsymbol{\theta}$.
 
-$$
+```math
 \hat{y} = f(x; \boldsymbol{\theta}), \qquad \boldsymbol{\theta} = [w_1, b_1, w_2, b_2]
-$$
+```
 
 The accuracy of the neural network is expressed by a loss function of this $\boldsymbol{\theta}$. The weights determine how strongly the input affects the output, and the biases shift the activation function left or right. In Figure 20, the thick blue curve is a sigmoid drawn between $-10$ and $10$, and the dotted curves are that curve shifted left and right by changing the bias. The center of $\sigma(z + b)$ is at $z = -b$, so the curve moves left if $b > 0$ and right if $b < 0$.
 
@@ -599,9 +601,9 @@ The accuracy of the neural network is expressed by a loss function of this $\bol
 
 Changing the parameter vector $\boldsymbol{\theta}$ can reduce the loss. To decide in which direction and by how much each of the four parameters should move, however, one must know how much the loss changes when each parameter changes slightly. The vector that collects this information is the **gradient vector** $\nabla_{\boldsymbol{\theta}}L$.
 
-$$
+```math
 \nabla_{\boldsymbol{\theta}}L = \begin{bmatrix} \dfrac{\partial L}{\partial w_1} & \dfrac{\partial L}{\partial b_1} & \dfrac{\partial L}{\partial w_2} & \dfrac{\partial L}{\partial b_2} \end{bmatrix}^{T}
-$$
+```
 
 > **[Calculus]** The **partial derivative** $\partial f/\partial x_i$ of a multivariable function $f(x_1, \dots, x_n)$ is the derivative with respect to $x_i$ alone with the other variables held constant, and it is the rate at which $f$ changes when only $x_i$ changes slightly. The vector of all partial derivatives, $\nabla f = [\partial f/\partial x_1, \dots, \partial f/\partial x_n]^{T}$, is called the **gradient**.
 
@@ -609,9 +611,9 @@ $$
 
 The **gradient** points in the direction in which a function increases most. To minimize a function, one must therefore move in the direction opposite to the gradient. Why the gradient is the direction of steepest increase can be explained with the directional derivative. The rate of change of $f$ (the directional derivative) when moving from a point $\mathbf{p}$ in a direction $\mathbf{u}$ of length 1 is the following.
 
-$$
+```math
 D_{\mathbf{u}}f(\mathbf{p}) = \nabla f(\mathbf{p}) \cdot \mathbf{u} = \lVert \nabla f(\mathbf{p}) \rVert \cos\phi
-$$
+```
 
 $\phi$ is the angle between $\nabla f$ and $\mathbf{u}$. Since $\cos\phi$ has its maximum 1 at $\phi = 0$ and its minimum $-1$ at $\phi = \pi$, $f$ increases fastest when moving in the direction of the gradient and decreases fastest when moving in the opposite direction $-\nabla f$. The magnitude of the rate of change is then $\lVert \nabla f \rVert$.
 
@@ -625,9 +627,9 @@ Figure 21 draws a loss function of two parameters as a three-dimensional surface
 
 Why a small move against the gradient reduces the loss can be seen from a first-order Taylor approximation. Moving $\boldsymbol{\theta}$ by $-\alpha\nabla J$ for a small positive $\alpha$ gives the following.
 
-$$
+```math
 J(\boldsymbol{\theta} - \alpha\nabla J) \approx J(\boldsymbol{\theta}) - \alpha\,\nabla J \cdot \nabla J = J(\boldsymbol{\theta}) - \alpha\lVert \nabla J \rVert^{2}
-$$
+```
 
 If $\nabla J \neq \mathbf{0}$, then $\alpha\lVert \nabla J \rVert^{2} > 0$, so the loss decreases. For the approximation to hold, however, $\alpha$ must be small enough, and this $\alpha$ is the learning rate of Section 3.5. Gradient descent follows the same principle as the gradient-based optimization used to tune PID gains in Week 11.
 
@@ -639,23 +641,23 @@ The gradients of the following three functions are computed at the given points.
 
 **(1)** $f(x, y, z) = 2x^{2} + 3y^{2} + z^{2}$ at the point $(1, 1, 1)$
 
-$$
+```math
 \frac{\partial f}{\partial x} = 4x, \quad \frac{\partial f}{\partial y} = 6y, \quad \frac{\partial f}{\partial z} = 2z \quad\Rightarrow\quad \nabla f(1, 1, 1) = [4, 6, 2]^{T}
-$$
+```
 
 **(2)** $f(x, y, z) = x^{2}y + z$ at the point $(2, 2, 0)$
 
-$$
+```math
 \frac{\partial f}{\partial x} = 2xy, \quad \frac{\partial f}{\partial y} = x^{2}, \quad \frac{\partial f}{\partial z} = 1 \quad\Rightarrow\quad \nabla f(2, 2, 0) = [2 \cdot 2 \cdot 2,\ 2^{2},\ 1]^{T} = [8, 4, 1]^{T}
-$$
+```
 
 When differentiating with respect to $x$, $y$ is a constant, so the derivative of $x^{2}y$ is $2x \cdot y$; when differentiating with respect to $y$, $x^{2}$ becomes a constant coefficient.
 
 **(3)** $f(x, y, z) = e^{2x} + \sin y + \cos z$ at the point $(0, 0, 0)$
 
-$$
+```math
 \frac{\partial f}{\partial x} = 2e^{2x}, \quad \frac{\partial f}{\partial y} = \cos y, \quad \frac{\partial f}{\partial z} = -\sin z \quad\Rightarrow\quad \nabla f(0, 0, 0) = [2, 1, 0]^{T}
-$$
+```
 
 By the chain rule, the derivative of $e^{2x}$ is $e^{2x} \cdot 2$.
 
@@ -697,9 +699,9 @@ flowchart LR
 
 $E$ depends on $x$ only through $q$, so the **chain rule** is used.
 
-$$
+```math
 \frac{\partial E}{\partial x} = \frac{\partial q}{\partial x}\frac{\partial E}{\partial q} = 1 \cdot z = z, \qquad \frac{\partial E}{\partial y} = \frac{\partial q}{\partial y}\frac{\partial E}{\partial q} = 1 \cdot z = z, \qquad \frac{\partial E}{\partial z} = q
-$$
+```
 
 The two factors of each product have names. A derivative of a node with respect to its own input, such as $\partial q/\partial x$, is called a **local gradient**, and a gradient passed back from the final output to the output of that node, such as $\partial E/\partial q$, is called an **upstream gradient**. Each node needs to know only its own local gradient; it multiplies the upstream gradient by the local gradient and passes the result on to the next node. Repeating this local computation is the core of backpropagation.
 
@@ -711,23 +713,23 @@ Let us follow the numbers. With $x = 1$, $y = 3$, and $z = -2$, forward propagat
 
 As a check, increasing $x$ from 1 to 1.01 gives $E = (4.01)(-2) = -8.02$, a change of $-0.02 = -2 \times 0.01$, which agrees with $\partial E/\partial x = -2$.
 
-> **[Calculus]** The derivative of a composite function $y = f(g(x))$ is $\dfrac{dy}{dx} = f'(g(x))\,g'(x)$, the product of the derivatives of the outer and inner functions. With several variables, if $E$ depends on $x$ through an intermediate variable $q$, then $\dfrac{\partial E}{\partial x} = \dfrac{\partial E}{\partial q}\dfrac{\partial q}{\partial x}$, and if $x$ affects $E$ through several paths, the products found for each path are added.
+> **[Calculus]** The derivative of a composite function $y = f(g(x))$ is $`\dfrac{dy}{dx} = f'(g(x))\,g'(x)`$, the product of the derivatives of the outer and inner functions. With several variables, if $E$ depends on $x$ through an intermediate variable $q$, then $\dfrac{\partial E}{\partial x} = \dfrac{\partial E}{\partial q}\dfrac{\partial q}{\partial x}$, and if $x$ affects $E$ through several paths, the products found for each path are added.
 
 ### 3.2 Backpropagation in a Two-Layer Neural Network
 
 Backpropagation is applied to the network of Section 2.8 (Figure 19). Both layers use the sigmoid $\sigma$ as the activation function, and the loss is the squared error. Forward propagation consists of the following five equations.
 
-$$
+```math
 S_1 = xw_1 + b_1, \qquad A_1 = \sigma(S_1), \qquad S_2 = A_1w_2 + b_2, \qquad A_2 = \sigma(S_2), \qquad L = (\hat{y} - y)^{2} = (A_2 - y)^{2}
-$$
+```
 
 $S_1$ and $S_2$ are the weighted sums of the layers, and $A_1$ and $A_2$ are the outputs after the activation function. The goal is the four components of the gradient vector $\nabla_{\boldsymbol{\theta}}L = [\partial L/\partial w_1, \partial L/\partial b_1, \partial L/\partial w_2, \partial L/\partial b_2]^{T}$. As the name backpropagation suggests, $w_2$ and $b_2$, which are closest to the output, are found first.
 
 **Step 1: $\partial L/\partial w_2$.** $w_2$ affects the loss along the path $S_2 \to A_2 \to L$, so by the chain rule the three local gradients are multiplied.
 
-$$
+```math
 \frac{\partial L}{\partial w_2} = \frac{\partial S_2}{\partial w_2}\frac{\partial A_2}{\partial S_2}\frac{\partial L}{\partial A_2} = A_1 \cdot \sigma'(S_2) \cdot 2(A_2 - y)
-$$
+```
 
 The three factors are found as follows.
 
@@ -737,36 +739,36 @@ The three factors are found as follows.
 
 The product of the last two factors is defined as the **error signal** $\delta_2$ of the output layer. $\delta_2$ is the gradient of the loss with respect to the output layer's weighted sum $S_2$.
 
-$$
+```math
 \delta_2 = \frac{\partial L}{\partial S_2} = \frac{\partial A_2}{\partial S_2}\frac{\partial L}{\partial A_2} = \sigma'(S_2) \cdot 2(A_2 - y), \qquad \frac{\partial L}{\partial w_2} = A_1\,\delta_2
-$$
+```
 
 **Step 2: $\partial L/\partial b_2$.** Differentiating $S_2$ with respect to $b_2$ gives 1, so the following holds.
 
-$$
+```math
 \frac{\partial L}{\partial b_2} = \frac{\partial S_2}{\partial b_2}\,\delta_2 = 1 \cdot \delta_2 = \delta_2
-$$
+```
 
 **Step 3: $\partial L/\partial w_1$.** $w_1$ affects the loss along the long path $S_1 \to A_1 \to S_2 \to A_2 \to L$. The product for the last part of this path, $S_2 \to A_2 \to L$, has already been computed as $\delta_2$, so it need not be computed again.
 
-$$
+```math
 \frac{\partial L}{\partial w_1} = \frac{\partial S_1}{\partial w_1}\frac{\partial A_1}{\partial S_1}\frac{\partial S_2}{\partial A_1}\underbrace{\frac{\partial A_2}{\partial S_2}\frac{\partial L}{\partial A_2}}_{\delta_2} = x \cdot \sigma'(S_1) \cdot w_2 \cdot \delta_2
-$$
+```
 
-Differentiating $S_2 = A_1w_2 + b_2$ with respect to $A_1$ gives $w_2$, $\sigma'(S_1) = A_1(1 - A_1)$, and differentiating $S_1 = xw_1 + b_1$ with respect to $w_1$ gives $x$. Defining the error signal of the hidden layer as $\delta_1 = \partial L/\partial S_1 = \sigma'(S_1)\,w_2\,\delta_2$ gives $\partial L/\partial w_1 = x\,\delta_1$.
+Differentiating $S_2 = A_1w_2 + b_2$ with respect to $A_1$ gives $w_2$, $\sigma'(S_1) = A_1(1 - A_1)$, and differentiating $S_1 = xw_1 + b_1$ with respect to $w_1$ gives $x$. Defining the error signal of the hidden layer as $`\delta_1 = \partial L/\partial S_1 = \sigma'(S_1)\,w_2\,\delta_2`$ gives $`\partial L/\partial w_1 = x\,\delta_1`$.
 
 **Step 4: $\partial L/\partial b_1$.** Differentiating $S_1$ with respect to $b_1$ gives 1, so $\partial L/\partial b_1 = \delta_1$.
 
 | Parameter | Gradient | Reused values |
 |:-----|:-----|:-----|
-| $w_2$ | $A_1\,\sigma'(S_2)\,2(A_2 - y)$ | $\delta_2$ |
-| $b_2$ | $\sigma'(S_2)\,2(A_2 - y)$ | $\delta_2$ |
-| $w_1$ | $x\,\sigma'(S_1)\,w_2\,\sigma'(S_2)\,2(A_2 - y)$ | $\delta_2$, $\delta_1$ |
-| $b_1$ | $\sigma'(S_1)\,w_2\,\sigma'(S_2)\,2(A_2 - y)$ | $\delta_2$, $\delta_1$ |
+| $w_2$ | $`A_1\,\sigma'(S_2)\,2(A_2 - y)`$ | $\delta_2$ |
+| $b_2$ | $`\sigma'(S_2)\,2(A_2 - y)`$ | $\delta_2$ |
+| $w_1$ | $`x\,\sigma'(S_1)\,w_2\,\sigma'(S_2)\,2(A_2 - y)`$ | $\delta_2$, $\delta_1$ |
+| $b_1$ | $`\sigma'(S_1)\,w_2\,\sigma'(S_2)\,2(A_2 - y)`$ | $\delta_2$, $\delta_1$ |
 
 *Table 11. The four gradients of the two-layer neural network*
 
-> **Key Point:** The factor $\sigma'(S_2)\,2(A_2 - y) = \delta_2$, common to all the gradients, is computed only once, and one more local gradient is multiplied in each time the computation moves to an earlier layer. Passing the error signal from the output toward the input while reusing gradients in this way is backpropagation.
+> **Key Point:** The factor $`\sigma'(S_2)\,2(A_2 - y) = \delta_2`$, common to all the gradients, is computed only once, and one more local gradient is multiplied in each time the computation moves to an earlier layer. Passing the error signal from the output toward the input while reusing gradients in this way is backpropagation.
 
 ### 3.3 A Worked Backpropagation Example
 
@@ -793,17 +795,17 @@ For the answer 1, the network output 0.4834, and the loss is 0.2668.
 | $\partial L/\partial A_2$ | $2(A_2 - y) = 2(0.4834 - 1)$ | -1.0331 |
 | $\sigma'(S_2)$ | $A_2(1 - A_2) = 0.4834 \times 0.5166$ | 0.2497 |
 | $\delta_2$ | $-1.0331 \times 0.2497$ | -0.2580 |
-| $\partial L/\partial w_2$ | $A_1\,\delta_2 = 0.6225 \times (-0.2580)$ | -0.1606 |
+| $\partial L/\partial w_2$ | $`A_1\,\delta_2 = 0.6225 \times (-0.2580)`$ | -0.1606 |
 | $\partial L/\partial b_2$ | $\delta_2$ | -0.2580 |
-| $\partial L/\partial A_1$ | $w_2\,\delta_2 = 1.5 \times (-0.2580)$ | -0.3870 |
+| $\partial L/\partial A_1$ | $`w_2\,\delta_2 = 1.5 \times (-0.2580)`$ | -0.3870 |
 | $\sigma'(S_1)$ | $A_1(1 - A_1) = 0.6225 \times 0.3775$ | 0.2350 |
 | $\delta_1$ | $-0.3870 \times 0.2350$ | -0.0909 |
-| $\partial L/\partial w_1$ | $x\,\delta_1 = 2 \times (-0.0909)$ | -0.1819 |
+| $\partial L/\partial w_1$ | $`x\,\delta_1 = 2 \times (-0.0909)`$ | -0.1819 |
 | $\partial L/\partial b_1$ | $\delta_1$ | -0.0909 |
 
 *Table 13. Backpropagation*
 
-All four gradients are negative. The output 0.4834 is below the answer 1, so the output must grow, and in this network increasing any of the four parameters makes the output larger. The output-layer gradient is larger in magnitude ($|\partial L/\partial b_2| = 0.2580$) than the hidden-layer gradient ($|\partial L/\partial b_1| = 0.0909$) because $\sigma'(S_1) = 0.2350$ and $w_2 = 1.5$ were multiplied in on the way to the hidden layer; this is the vanishing gradient of Section 1.10 on a small scale.
+All four gradients are negative. The output 0.4834 is below the answer 1, so the output must grow, and in this network increasing any of the four parameters makes the output larger. The output-layer gradient is larger in magnitude ($`|\partial L/\partial b_2| = 0.2580`$) than the hidden-layer gradient ($`|\partial L/\partial b_1| = 0.0909`$) because $\sigma'(S_1) = 0.2350$ and $w_2 = 1.5$ were multiplied in on the way to the hidden layer; this is the vanishing gradient of Section 1.10 on a small scale.
 
 **Step 3: parameter update.** Using gradient descent (Section 3.5) with the learning rate $\alpha = 1$, compute $\boldsymbol{\theta} \leftarrow \boldsymbol{\theta} - \alpha\nabla_{\boldsymbol{\theta}}L$.
 
@@ -820,11 +822,11 @@ All four gradients are negative. The output 0.4834 is below the answer 1, so the
 
 Whether the gradients obtained by backpropagation are correct can be checked by comparing them with **numerical differentiation**. The **central difference**, which divides the difference between the losses with one parameter increased and decreased by a very small $\varepsilon$ by $2\varepsilon$, has an error proportional to $\varepsilon^{2}$ and is very accurate.
 
-$$
+```math
 \frac{\partial L}{\partial \theta_i} \approx \frac{L(\boldsymbol{\theta} + \varepsilon\mathbf{e}_i) - L(\boldsymbol{\theta} - \varepsilon\mathbf{e}_i)}{2\varepsilon}
-$$
+```
 
-$\mathbf{e}_i$ is the vector whose $i$-th component is 1 and whose other components are 0. Numerical differentiation needs two forward passes per parameter, so it is too slow for training, but it is widely used for **gradient checking**, which tests a backpropagation implementation. The following Python code performs the forward pass, backpropagation, gradient check, and one update of the example above.
+$`\mathbf{e}_i`$ is the vector whose $i$-th component is 1 and whose other components are 0. Numerical differentiation needs two forward passes per parameter, so it is too slow for training, but it is widely used for **gradient checking**, which tests a backpropagation implementation. The following Python code performs the forward pass, backpropagation, gradient check, and one update of the example above.
 
 ```python
 import numpy as np
@@ -896,19 +898,19 @@ loss     : 0.2668 -> 0.1503
 
 The computation of Section 3.2 is generalized to $K$ layers with several neurons each [5][13]. Let the weight matrix of layer $k$ be $W^{(k)}$, its bias vector $\mathbf{b}^{(k)}$, its weighted sum $\mathbf{S}^{(k)}$, and its output $\mathbf{A}^{(k)}$, and let $\mathbf{A}^{(0)} = \mathbf{x}$.
 
-$$
+```math
 \mathbf{S}^{(k)} = W^{(k)}\mathbf{A}^{(k-1)} + \mathbf{b}^{(k)}, \qquad \mathbf{A}^{(k)} = g\bigl(\mathbf{S}^{(k)}\bigr), \qquad k = 1, \dots, K
-$$
+```
 
 Backpropagation starts from the error signal of the output layer and moves back one layer at a time. $\odot$ denotes multiplication of entries in the same position.
 
-$$
+```math
 \boldsymbol{\delta}^{(K)} = \nabla_{\mathbf{A}^{(K)}}L \odot g'\bigl(\mathbf{S}^{(K)}\bigr), \qquad \boldsymbol{\delta}^{(k)} = \bigl(W^{(k+1)}\bigr)^{T}\boldsymbol{\delta}^{(k+1)} \odot g'\bigl(\mathbf{S}^{(k)}\bigr)
-$$
+```
 
-$$
+```math
 \frac{\partial L}{\partial W^{(k)}} = \boldsymbol{\delta}^{(k)}\bigl(\mathbf{A}^{(k-1)}\bigr)^{T}, \qquad \frac{\partial L}{\partial \mathbf{b}^{(k)}} = \boldsymbol{\delta}^{(k)}
-$$
+```
 
 With one neuron per layer the matrices become scalars, and these equations reduce to $\delta_2 = 2(A_2 - y)\sigma'(S_2)$, $\delta_1 = w_2\delta_2\sigma'(S_1)$, and $\partial L/\partial w_1 = \delta_1 x$ of Section 3.2. One training step proceeds in the following order.
 
@@ -923,9 +925,9 @@ With one neuron per layer the matrices become scalars, and these equations reduc
 
 The **gradient descent algorithm** updates the parameters in the direction in which the loss function decreases fastest, that is, the direction of the negative gradient.
 
-$$
+```math
 \boldsymbol{\theta}_{k+1} = \boldsymbol{\theta}_k - \alpha_k\nabla_{\boldsymbol{\theta}}L
-$$
+```
 
 $k$ is the iteration count, and $\alpha_k$ is the **learning rate**, which sets how far to move at each step. The learning rate is an important **hyperparameter** that must be tuned when training a neural network. A hyperparameter is a value that a person sets before training, unlike parameters such as weights that are determined by training. The subscript $k$ indicates that the learning rate can change from iteration to iteration (Section 3.6).
 
@@ -940,9 +942,9 @@ Figure 23 shows three paths on the loss curve of one weight, all starting from t
 
 The effect of the learning rate can be computed exactly for the simple loss function $L(w) = w^{2}$. Its gradient is $L'(w) = 2w$, so the update equation is the following.
 
-$$
+```math
 w_{k+1} = w_k - \alpha \cdot 2w_k = (1 - 2\alpha)\,w_k \quad\Rightarrow\quad w_k = (1 - 2\alpha)^{k}\,w_0
-$$
+```
 
 The minimum is at $w = 0$, and for $w_k$ to converge to 0 one needs $|1 - 2\alpha| < 1$, that is, $0 < \alpha < 1$. The results starting from $w_0 = 1$ are shown in Table 16.
 
@@ -953,7 +955,7 @@ The minimum is at $w = 0$, and for $w_k$ to converge to 0 one needs $|1 - 2\alph
 | 1.0 | -1 | -1, 1, -1, 1, -1 | Alternates between two values and does not converge. |
 | 1.1 | -1.2 | -1.2, 1.44, -1.728, 2.0736, -2.4883 | Oscillates and diverges. |
 
-*Table 16. Results of gradient descent on the loss function $L(w) = w^{2}$ for different learning rates*
+*Table 16. Results of gradient descent on the loss function $`L(w) = w^{2}`$ for different learning rates*
 
 Training is repeated a fixed number of times or stopped when the loss no longer improves. One pass that uses all of the training data once is called an **epoch**, and the whole training process is the loop in Figure 24.
 
@@ -977,35 +979,35 @@ There are two ideas for choosing an appropriate learning rate.
 - **Idea I:** Try various learning rates and check which value works appropriately. Values differing by factors of 10, such as 0.1, 0.01, and 0.001, are usually tried.
 - **Idea II:** Design an **adaptive learning rate** that adapts to the training situation. The learning rate is not fixed and can become larger or smaller depending on factors such as the magnitude of the gradient, the speed of learning, and the size of particular weights.
 
-Representative optimization methods that implement Idea II are the following. In the equations below, $\mathbf{g}_k = \nabla_{\boldsymbol{\theta}}L(\boldsymbol{\theta}_k)$, and squares, square roots, and divisions are taken entry by entry.
+Representative optimization methods that implement Idea II are the following. In the equations below, $`\mathbf{g}_k = \nabla_{\boldsymbol{\theta}}L(\boldsymbol{\theta}_k)`$, and squares, square roots, and divisions are taken entry by entry.
 
 **Momentum** remembers the previous update direction and adds it with a fixed ratio $\beta$ [14]. Like a ball rolling down a slope and gaining speed, the update accelerates when the gradient keeps the same direction, and oscillations whose direction keeps changing cancel out.
 
-$$
+```math
 \mathbf{v}_{k+1} = \beta\mathbf{v}_k + \mathbf{g}_k, \qquad \boldsymbol{\theta}_{k+1} = \boldsymbol{\theta}_k - \alpha\mathbf{v}_{k+1}
-$$
+```
 
 **AdaGrad** divides the learning rate by $\mathbf{r}$, the accumulated squares of all gradients so far [15]. Parameters whose gradients have been large get a smaller learning rate, and parameters whose gradients have been small get a relatively larger one. $\epsilon$ is a small number that prevents division by 0.
 
-$$
+```math
 \mathbf{r}_{k+1} = \mathbf{r}_k + \mathbf{g}_k^{2}, \qquad \boldsymbol{\theta}_{k+1} = \boldsymbol{\theta}_k - \frac{\alpha}{\sqrt{\mathbf{r}_{k+1}} + \epsilon}\,\mathbf{g}_k
-$$
+```
 
 **RMSProp** replaces the cumulative sum of AdaGrad with an exponential moving average that weights recent gradients more, which prevents the learning rate from only ever shrinking [16].
 
-$$
+```math
 \mathbf{r}_{k+1} = \rho\,\mathbf{r}_k + (1 - \rho)\,\mathbf{g}_k^{2}, \qquad \boldsymbol{\theta}_{k+1} = \boldsymbol{\theta}_k - \frac{\alpha}{\sqrt{\mathbf{r}_{k+1}} + \epsilon}\,\mathbf{g}_k
-$$
+```
 
 **Adam (adaptive moment estimation)** combines momentum and RMSProp and is widely used [17]. It uses both a moving average $\mathbf{m}$ of the gradients and a moving average $\mathbf{v}$ of the squared gradients, and divides by $1 - \beta^{k}$ to correct the bias toward small values early on, which arises because both averages start at 0. The proposed default values are $\alpha = 0.001$, $\beta_1 = 0.9$, $\beta_2 = 0.999$, and $\epsilon = 10^{-8}$.
 
-$$
+```math
 \mathbf{m}_{k} = \beta_1\mathbf{m}_{k-1} + (1 - \beta_1)\mathbf{g}_k, \qquad \mathbf{v}_{k} = \beta_2\mathbf{v}_{k-1} + (1 - \beta_2)\mathbf{g}_k^{2}
-$$
+```
 
-$$
+```math
 \hat{\mathbf{m}}_k = \frac{\mathbf{m}_k}{1 - \beta_1^{k}}, \qquad \hat{\mathbf{v}}_k = \frac{\mathbf{v}_k}{1 - \beta_2^{k}}, \qquad \boldsymbol{\theta}_{k} = \boldsymbol{\theta}_{k-1} - \frac{\alpha\,\hat{\mathbf{m}}_k}{\sqrt{\hat{\mathbf{v}}_k} + \epsilon}
-$$
+```
 
 | Method | Basis for changing the learning rate | Effect |
 |:-----|:-----|:-----|
@@ -1138,7 +1140,7 @@ The six input variables and two output variables are listed in Table 20. Materia
 
 > **Note:** The von Mises stress is computed from the three principal stresses $\sigma_1, \sigma_2, \sigma_3$ as $\sigma_{v} = \sqrt{\tfrac{1}{2}\bigl[(\sigma_1 - \sigma_2)^{2} + (\sigma_2 - \sigma_3)^{2} + (\sigma_3 - \sigma_1)^{2}\bigr]}$, and a ductile material is judged to yield when this value reaches its yield strength. Such outputs are usually obtained by time-consuming numerical analyses such as finite element analysis, so a neural network trained on them can serve as a surrogate model that instantly predicts the results for new combinations of design variables.
 
-The data are stored as the input matrix `x_input` ($6 \times 500$) and the output vectors `y_mises` ($1 \times 500$) and `y_disp` ($1 \times 500$). MATLAB neural network functions use a format in which rows are variables and columns are samples [19], so each column of `x_input` holds the six inputs of one design. The two outputs could be predicted together by one network, but here a separate network with 6 inputs, 10 hidden neurons, and 1 output is trained for each output (Figure 29).
+The data are stored as the input matrix `x_input` ($`6 \times 500`$) and the output vectors `y_mises` ($`1 \times 500`$) and `y_disp` ($`1 \times 500`$). MATLAB neural network functions use a format in which rows are variables and columns are samples [19], so each column of `x_input` holds the six inputs of one design. The two outputs could be predicted together by one network, but here a separate network with 6 inputs, 10 hidden neurons, and 1 output is trained for each output (Figure 29).
 
 ```mermaid
 flowchart LR
@@ -1172,9 +1174,9 @@ biases2 = biases{2,1};
 | `% [net_mises, tr] = ...` | The original code that trains on the stress values as they are, commented out with a leading `%`. |
 | `train(net_mises, x_input, log(y_mises(1,:)), ...)` | Trains the network with the inputs `x_input` and the targets. The targets are the natural logarithm of the first row of the stress `y_mises`. `'useParallel','yes'` is an option that performs the computation on parallel workers if a parallel pool is open [19]. |
 | `[net_mises, tr]` | Receives the trained network and the training record `tr` (performance per epoch, the division into training, validation, and test data, and so on) [19]. |
-| `net_mises.IW{1,1}` | The input weight matrix ($10 \times 6$) from the input to the first layer (the hidden layer). |
-| `net_mises.LW{2,1}` | The layer weight matrix ($1 \times 10$) from the first layer to the second layer (the output layer). |
-| `net_mises.b` | A cell array of the biases of each layer; `biases{1,1}` is the hidden layer bias ($10 \times 1$) and `biases{2,1}` is the output layer bias ($1 \times 1$). |
+| `net_mises.IW{1,1}` | The input weight matrix ($`10 \times 6`$) from the input to the first layer (the hidden layer). |
+| `net_mises.LW{2,1}` | The layer weight matrix ($`1 \times 10`$) from the first layer to the second layer (the output layer). |
+| `net_mises.b` | A cell array of the biases of each layer; `biases{1,1}` is the hidden layer bias ($`10 \times 1`$) and `biases{2,1}` is the output layer bias ($`1 \times 1`$). |
 
 *Table 21. Explanation of the stress prediction code*
 
@@ -1195,11 +1197,11 @@ biases2 = biases{2,1};
 
 With the extracted weights and biases, the computation of the network can be written as an equation. The hidden layer of `feedforwardnet` uses the tansig activation function by default, which is mathematically equivalent to tanh [21]. The output layer uses a linear function (purelin) that passes its input through unchanged.
 
-$$
+```math
 \hat{y} = \text{LW}\,\tanh\bigl(\text{IW}\,\mathbf{x} + \mathbf{b}_1\bigr) + b_2
-$$
+```
 
-There are 60 parameters in $\text{IW}$, 10 in $\mathbf{b}_1$, 10 in $\text{LW}$, and 1 in $b_2$, 81 in total, which matches the formula of Section 2.2, $(6 + 1) \times 10 + (10 + 1) \times 1 = 81$. The output of the stress network is the logarithm of the stress, so the actual stress is recovered as $e^{\hat{y}}$. Taking the logarithm of a value that is always positive and spans a wide range, such as stress, narrows its range and makes training weigh the relative errors of large and small values similarly. Moreover, $e^{\hat{y}}$ is always positive, so the impossible prediction of a negative stress cannot occur.
+There are 60 parameters in $\text{IW}$, 10 in $`\mathbf{b}_1`$, 10 in $\text{LW}$, and 1 in $b_2$, 81 in total, which matches the formula of Section 2.2, $(6 + 1) \times 10 + (10 + 1) \times 1 = 81$. The output of the stress network is the logarithm of the stress, so the actual stress is recovered as $e^{\hat{y}}$. Taking the logarithm of a value that is always positive and spans a wide range, such as stress, narrows its range and makes training weigh the relative errors of large and small values similarly. Moreover, $e^{\hat{y}}$ is always positive, so the impossible prediction of a negative stress cannot occur.
 
 During training, `train` monitors performance on the validation data and performs early stopping (Section 3.10). The default training function `trainlm` stops training when validation performance fails to improve for `max_fail` consecutive epochs (default 6) [22].
 
@@ -1232,7 +1234,7 @@ During training, `train` monitors performance on the validation data and perform
 | If all activation functions are linear, stacking more layers makes it possible to create more complex decision boundaries. | **F.** A composition of linear maps is again a linear map, so regardless of the number of layers the network is equivalent to a single linear model. |
 | The derivative of the sigmoid function is $\sigma(z)(1 - \sigma(z))$, with maximum 0.25 at $z = 0$. | **T.** |
 | The gradient points in the direction in which the function decreases fastest. | **F.** The gradient points in the direction of fastest increase; to decrease, move in the opposite direction $-\nabla f$. |
-| In backpropagation, the output-layer error signal $\delta_2$ is reused to compute the gradients of the hidden layer. | **T.** $\delta_1 = \sigma'(S_1)\,w_2\,\delta_2$. |
+| In backpropagation, the output-layer error signal $\delta_2$ is reused to compute the gradients of the hidden layer. | **T.** $`\delta_1 = \sigma'(S_1)\,w_2\,\delta_2`$. |
 | Dropout drops neurons at the same rate during prediction (testing) as during training. | **F.** Dropout is applied only during training, and all neurons are used for prediction. |
 | Using the loss on the test data as the criterion for early stopping measures generalization performance accurately. | **F.** The test data then influence the training process and performance is measured optimistically, so validation data must be used. |
 
@@ -1258,7 +1260,7 @@ During training, `train` monitors performance on the validation data and perform
 | Training | The process of using data with correct answers to change the parameter vector $\boldsymbol{\theta}$ in the direction that reduces the loss. |
 | Gradient | The vector of partial derivatives, pointing in the direction in which a function increases most. |
 | Backpropagation | It uses the chain rule to pass error signals from the output toward the input and efficiently computes the gradients of all parameters. |
-| Gradient descent | It updates the parameters in the direction opposite to the gradient by $\boldsymbol{\theta}_{k+1} = \boldsymbol{\theta}_k - \alpha_k\nabla_{\boldsymbol{\theta}}L$. |
+| Gradient descent | It updates the parameters in the direction opposite to the gradient by $`\boldsymbol{\theta}_{k+1} = \boldsymbol{\theta}_k - \alpha_k\nabla_{\boldsymbol{\theta}}L`$. |
 | Learning rate | Too large a rate diverges and too small a rate converges slowly. Momentum, AdaGrad, RMSProp, and Adam adjust the learning rate to the situation. |
 | Mini-batch | An approach that updates with the gradient estimated on a randomly chosen subset of the data; the most widely used. |
 | Overfitting | The phenomenon in which a model learns even the noise and fails to predict new data well; it is reduced by regularization. |
@@ -1295,7 +1297,7 @@ During training, `train` monitors performance on the validation data and perform
    <details>
    <summary>Answer</summary>
 
-   The hidden layer output is $\mathbf{h} = W_1\mathbf{x} + \mathbf{b}_1$, and the output is $W_2\mathbf{h} + \mathbf{b}_2 = W_2W_1\mathbf{x} + W_2\mathbf{b}_1 + \mathbf{b}_2$. Setting $W = W_2W_1$ and $\mathbf{b} = W_2\mathbf{b}_1 + \mathbf{b}_2$ gives $W\mathbf{x} + \mathbf{b}$, which is a single-layer linear model, and the decision boundary is also restricted to a straight line (hyperplane).
+   The hidden layer output is $`\mathbf{h} = W_1\mathbf{x} + \mathbf{b}_1`$, and the output is $`W_2\mathbf{h} + \mathbf{b}_2 = W_2W_1\mathbf{x} + W_2\mathbf{b}_1 + \mathbf{b}_2`$. Setting $W = W_2W_1$ and $`\mathbf{b} = W_2\mathbf{b}_1 + \mathbf{b}_2`$ gives $W\mathbf{x} + \mathbf{b}$, which is a single-layer linear model, and the decision boundary is also restricted to a straight line (hyperplane).
 
    </details>
 
@@ -1349,7 +1351,7 @@ During training, `train` monitors performance on the validation data and perform
    <details>
    <summary>Answer</summary>
 
-   Forward propagation is unchanged, so $A_2 = 0.4834$ and $\partial L/\partial A_2 = 2(0.4834 - 0) \approx 0.9669 > 0$. Then $\delta_2 = 0.9669 \times 0.2497 \approx 0.2414 > 0$, so $\partial L/\partial b_2 > 0$ and $\partial L/\partial w_2 = A_1\delta_2 \approx 0.1503 > 0$. Since $w_2 = 1.5 > 0$, $\delta_1 = \sigma'(S_1)\,w_2\,\delta_2 \approx 0.0851 > 0$, so $\partial L/\partial b_1 > 0$ and $\partial L/\partial w_1 = x\delta_1 \approx 0.1702 > 0$. All four gradients are positive, so gradient descent decreases all four parameters and lowers the output toward 0.
+   Forward propagation is unchanged, so $A_2 = 0.4834$ and $\partial L/\partial A_2 = 2(0.4834 - 0) \approx 0.9669 > 0$. Then $\delta_2 = 0.9669 \times 0.2497 \approx 0.2414 > 0$, so $\partial L/\partial b_2 > 0$ and $\partial L/\partial w_2 = A_1\delta_2 \approx 0.1503 > 0$. Since $w_2 = 1.5 > 0$, $`\delta_1 = \sigma'(S_1)\,w_2\,\delta_2 \approx 0.0851 > 0`$, so $\partial L/\partial b_1 > 0$ and $\partial L/\partial w_1 = x\delta_1 \approx 0.1702 > 0$. All four gradients are positive, so gradient descent decreases all four parameters and lowers the output toward 0.
 
    </details>
 
@@ -1358,7 +1360,7 @@ During training, `train` monitors performance on the validation data and perform
     <details>
     <summary>Answer</summary>
 
-    The update is $w_{k+1} = (1 - 2 \times 0.75)w_k = -0.5\,w_k$, so $w$ takes the values $-0.5$, $0.25$, $-0.125$, and $0.0625$. The sign alternates and $w$ moves back and forth across the minimum, but $|1 - 2\alpha| = 0.5 < 1$, so it converges to 0.
+    The update is $`w_{k+1} = (1 - 2 \times 0.75)w_k = -0.5\,w_k`$, so $w$ takes the values $-0.5$, $0.25$, $-0.125$, and $0.0625$. The sign alternates and $w$ moves back and forth across the minimum, but $|1 - 2\alpha| = 0.5 < 1$, so it converges to 0.
 
     </details>
 

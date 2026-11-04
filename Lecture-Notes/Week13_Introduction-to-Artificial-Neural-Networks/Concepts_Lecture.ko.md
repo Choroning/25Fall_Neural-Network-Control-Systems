@@ -134,9 +134,9 @@
 2. 각 입력에 가중치 $w_1, w_2, \dots, w_n$을 곱해 더한 **가중합(weighted sum)** $\sum_{i=1}^{n} x_i w_i$를 구한다.
 3. 가중합을 **활성화 함수(activation function)** $f$에 통과시켜 출력을 만든다.
 
-$$
+```math
 \text{output} = f\left(\sum_{i=1}^{n} x_i w_i\right)
-$$
+```
 
 활성화 함수는 가중합이 출력에 전달되는 정도를 결정한다. 그림 위쪽의 작은 그래프 두 개는 활성화 함수의 예로, 왼쪽은 가중합이 문턱을 넘는 순간 출력이 0에서 1로 바뀌는 계단 함수이고 오른쪽은 출력이 부드럽게 바뀌는 S자 곡선이다. 생물학적 뉴런과 인공뉴런의 요소는 표 3처럼 대응한다.
 
@@ -183,9 +183,9 @@ $$
 
 1943년의 매컬럭-피츠 뉴런은 0 또는 1의 입력을 받아 그 합이 문턱 $T$ 이상이면 1을, 그렇지 않으면 0을 출력하는 논리 소자였으며, 흔히 다음과 같이 단순화하여 쓴다.
 
-$$
+```math
 y = \begin{cases} 1, & \sum_{i} w_i x_i \ge T \\ 0, & \text{otherwise} \end{cases}
-$$
+```
 
 이 모델의 가중치와 문턱은 사람이 설계하는 값이었다. 로젠블랫의 퍼셉트론은 가중치를 예시 데이터로부터 학습할 수 있게 했다는 점에서 혁신적이었다[4]. 표에 나온 모델 이름의 뜻은 다음과 같다.
 
@@ -220,9 +220,9 @@ $$
 
 계산은 두 단계로 이루어진다. 먼저 입력의 선형 결합(linear combination) $z$를 구하고(그림의 Sum), 이를 비선형 활성화 함수 $g$에 통과시켜(그림의 Non-Linearity) 출력 $\hat{y}$를 얻는다.
 
-$$
+```math
 z = \theta_0 + \sum_{j=1}^{m} x_j \theta_j, \qquad \hat{y} = g\left(\theta_0 + \sum_{j=1}^{m} x_j \theta_j\right)
-$$
+```
 
 $\hat{y}$("와이 햇")의 모자 기호는 모델이 추정한 값이라는 뜻이며, 실제 정답 $y$와 구별한다. 그림에서 $g$ 자리에 그려진 $\int$ 기호는 적분이 아니라 S자 모양의 활성화 함수를 나타내는 그림 기호이다.
 
@@ -230,17 +230,17 @@ $\hat{y}$("와이 햇")의 모자 기호는 모델이 추정한 값이라는 뜻
 
 입력과 가중치를 벡터로 모으면 식을 간결하게 쓸 수 있다.
 
-$$
+```math
 \hat{y} = g\left(\theta_0 + \mathbf{X}^{T}\boldsymbol{\theta}\right), \qquad \mathbf{X} = \begin{bmatrix} x_1 \\ \vdots \\ x_m \end{bmatrix}, \quad \boldsymbol{\theta} = \begin{bmatrix} \theta_1 \\ \vdots \\ \theta_m \end{bmatrix}
-$$
+```
 
 > **[선형대수학]** 두 열벡터 $\mathbf{X}$와 $\boldsymbol{\theta}$에 대해 $\mathbf{X}^{T}\boldsymbol{\theta}$는 $1 \times m$ 행벡터와 $m \times 1$ 열벡터의 곱이므로 $1 \times 1$, 즉 스칼라이며, 그 값은 같은 위치의 성분끼리 곱해 더한 내적 $\sum_{j=1}^{m} x_j\theta_j$이다. 따라서 위의 벡터 식은 합 기호로 쓴 식과 같다.
 
 활성화 함수의 예로 다음의 **시그모이드 함수(sigmoid function)** $\sigma$를 쓸 수 있다(1.10절).
 
-$$
+```math
 g(z) = \sigma(z) = \frac{1}{1 + e^{-z}}
-$$
+```
 
 예를 들어 $\theta_0 = 1$, $\boldsymbol{\theta} = [3, -2]^{T}$인 퍼셉트론에 $\mathbf{X} = [-1, 2]^{T}$를 넣으면 $z = 1 + (-1)(3) + (2)(-2) = -6$이고 $\hat{y} = \sigma(-6) = 1/(1 + e^{6}) \approx 0.0025$이다. $\mathbf{X} = [1, 1]^{T}$를 넣으면 $z = 1 + 3 - 2 = 2$이고 $\hat{y} = \sigma(2) \approx 0.8808$이다. 시그모이드의 출력은 항상 0과 1 사이이므로, 이 출력을 "입력이 어떤 부류에 속할 확률"로 해석할 수 있다.
 
@@ -258,15 +258,15 @@ $$
 
 *그림 7. 시그모이드 함수와 그 도함수*
 
-$$
+```math
 g(z) = \frac{1}{1 + e^{-z}}, \qquad g'(z) = g(z)\bigl(1 - g(z)\bigr)
-$$
+```
 
 도함수는 다음과 같이 유도한다. $g(z) = (1 + e^{-z})^{-1}$에 연쇄 법칙을 적용하면 바깥 함수 $u^{-1}$의 도함수 $-u^{-2}$와 안쪽 함수 $1 + e^{-z}$의 도함수 $-e^{-z}$를 곱하게 된다.
 
-$$
+```math
 g'(z) = -(1 + e^{-z})^{-2} \cdot (-e^{-z}) = \frac{e^{-z}}{(1 + e^{-z})^{2}} = \frac{1}{1 + e^{-z}} \cdot \frac{e^{-z}}{1 + e^{-z}}
-$$
+```
 
 두 번째 인수는 $\dfrac{e^{-z}}{1 + e^{-z}} = \dfrac{(1 + e^{-z}) - 1}{1 + e^{-z}} = 1 - \dfrac{1}{1 + e^{-z}} = 1 - g(z)$이므로 $g'(z) = g(z)(1 - g(z))$이다. 이 형태 덕분에 순전파에서 이미 계산한 $g(z)$만으로 도함수를 바로 구할 수 있다.
 
@@ -283,15 +283,15 @@ $$
 
 *그림 8. 하이퍼볼릭 탄젠트 함수와 그 도함수*
 
-$$
+```math
 g(z) = \frac{e^{z} - e^{-z}}{e^{z} + e^{-z}}, \qquad g'(z) = 1 - g(z)^{2}
-$$
+```
 
 도함수는 몫의 미분법으로 구한다. 분자 $e^{z} - e^{-z}$의 도함수는 $e^{z} + e^{-z}$이고, 분모 $e^{z} + e^{-z}$의 도함수는 $e^{z} - e^{-z}$이다.
 
-$$
+```math
 g'(z) = \frac{(e^{z} + e^{-z})(e^{z} + e^{-z}) - (e^{z} - e^{-z})(e^{z} - e^{-z})}{(e^{z} + e^{-z})^{2}} = 1 - \left(\frac{e^{z} - e^{-z}}{e^{z} + e^{-z}}\right)^{2} = 1 - g(z)^{2}
-$$
+```
 
 출력이 양수와 음수 모두 가능하므로 시그모이드의 non-zero centered 문제가 해결된다. 또 $g'(0) = 1$로 시그모이드의 최대 기울기 0.25보다 크다. 그러나 입력이 크거나 작을 때(대략 5 이상, -5 이하) 도함수가 작아져 학습이 잘 되지 않는 기울기 소실 문제는 그대로 남는다. $g(5) \approx 0.99991$이므로 $g'(5) \approx 1.8 \times 10^{-4}$이다.
 
@@ -305,9 +305,9 @@ $$
 
 *그림 9. ReLU 함수와 그 도함수*
 
-$$
+```math
 g(z) = \max(0, z), \qquad g'(z) = \begin{cases} 1, & z > 0 \\ 0, & \text{otherwise} \end{cases}
-$$
+```
 
 ReLU의 장단점은 다음과 같다.
 
@@ -335,13 +335,13 @@ ReLU의 장단점은 다음과 같다.
 
 왼쪽처럼 선형 활성화 함수는 직선(고차원에서는 평면) 하나로 공간을 나누는 선형 결정만 도출하므로, 초록 점과 빨간 점이 섞인 영역을 제대로 나눌 수 없다. 오른쪽처럼 비선형 활성화 함수를 쓰면 신경망은 형상이 복잡한 함수에 대해서도 굽은 경계로 공간을 나누는 비선형적 결정을 도출할 수 있다. 데이터를 부류별로 나누는 이 경계를 **결정 경계(decision boundary)** 라 한다.
 
-활성화 함수가 선형이면 층을 아무리 많이 쌓아도 소용이 없다. 활성화 함수가 항등 함수 $g(z) = z$인 2층 신경망을 생각하면, 은닉층 출력은 $\mathbf{h} = W_1\mathbf{x} + \mathbf{b}_1$이고 최종 출력은 다음과 같다.
+활성화 함수가 선형이면 층을 아무리 많이 쌓아도 소용이 없다. 활성화 함수가 항등 함수 $g(z) = z$인 2층 신경망을 생각하면, 은닉층 출력은 $`\mathbf{h} = W_1\mathbf{x} + \mathbf{b}_1`$이고 최종 출력은 다음과 같다.
 
-$$
+```math
 \hat{\mathbf{y}} = W_2\mathbf{h} + \mathbf{b}_2 = W_2(W_1\mathbf{x} + \mathbf{b}_1) + \mathbf{b}_2 = (W_2W_1)\mathbf{x} + (W_2\mathbf{b}_1 + \mathbf{b}_2)
-$$
+```
 
-$W = W_2W_1$, $\mathbf{b} = W_2\mathbf{b}_1 + \mathbf{b}_2$로 두면 $\hat{\mathbf{y}} = W\mathbf{x} + \mathbf{b}$이므로, 2층 신경망이 층 하나짜리 선형 모델과 같아진다. 같은 논리로 몇 층을 쌓아도 결과는 선형 모델 하나이다. 반대로 시그모이드처럼 비선형 활성화 함수를 쓰는 은닉층이 하나라도 있으면, 은닉 뉴런이 충분히 많을 때 유계이고 닫힌 영역에서 정의된 연속 함수를 원하는 정밀도로 근사할 수 있다는 **보편 근사 정리(universal approximation theorem)** 가 알려져 있다[11].
+$W = W_2W_1$, $`\mathbf{b} = W_2\mathbf{b}_1 + \mathbf{b}_2`$로 두면 $\hat{\mathbf{y}} = W\mathbf{x} + \mathbf{b}$이므로, 2층 신경망이 층 하나짜리 선형 모델과 같아진다. 같은 논리로 몇 층을 쌓아도 결과는 선형 모델 하나이다. 반대로 시그모이드처럼 비선형 활성화 함수를 쓰는 은닉층이 하나라도 있으면, 은닉 뉴런이 충분히 많을 때 유계이고 닫힌 영역에서 정의된 연속 함수를 원하는 정밀도로 근사할 수 있다는 **보편 근사 정리(universal approximation theorem)** 가 알려져 있다[11].
 
 > **주의:** 보편 근사 정리는 그런 신경망이 존재한다는 것만 보장한다. 은닉 뉴런이 몇 개 필요한지, 학습으로 그 가중치를 실제로 찾을 수 있는지는 알려 주지 않는다.
 
@@ -355,15 +355,15 @@ $W = W_2W_1$, $\mathbf{b} = W_2\mathbf{b}_1 + \mathbf{b}_2$로 두면 $\hat{\mat
 
 폭격기는 느리고 무거우며 전투기는 빠르고 가볍다. 두 종류의 항공기를 나누는 직선은 다음과 같다.
 
-$$
+```math
 x_2 = 1.5x_1 + 0.5
-$$
+```
 
 모든 항을 한쪽으로 옮겨 **결정 함수(decision function)** $f(x_1, x_2) = -x_2 + 1.5x_1 + 0.5$를 정의하면, 직선 위의 점에서 $f = 0$이고 직선 아래쪽(전투기 쪽)에서 $f > 0$, 위쪽(폭격기 쪽)에서 $f < 0$이다. 따라서 분류 규칙은 다음과 같다.
 
-$$
+```math
 d = \begin{cases} \text{Fighter}, & f(x_1, x_2) \ge 0 \\ \text{Bomber}, & f(x_1, x_2) < 0 \end{cases}
-$$
+```
 
 예를 들어 $(0.4, 0.5)$에 있는 전투기는 $f(0.4, 0.5) = -0.5 + 1.5 \times 0.4 + 0.5 = -0.5 + 0.6 + 0.5 = 0.6 \ge 0$이므로 전투기로 바르게 분류된다. 그림에서 $(0.2, 2)$ 근처의 폭격기는 $f(0.2, 2) = -2 + 0.3 + 0.5 = -1.2 < 0$이므로 폭격기로 분류된다.
 
@@ -379,9 +379,9 @@ flowchart LR
 
 *그림 12. 항공기 분류 퍼셉트론*
 
-$$
+```math
 \text{summation} = w_0 + \sum_{i=1}^{2} x_i w_i = 0.5 + 1.5x_1 - x_2
-$$
+```
 
 출력은 가중합이 0 이상이면 Fighter, 0보다 작으면 Bomber이다. 이 퍼셉트론의 활성화 함수는 0을 기준으로 출력이 바뀌는 **계단 함수(step function)** 이다. 계단 함수는 0이 아닌 모든 점에서 도함수가 0이라, 3절의 기울기 기반 학습에는 쓸 수 없다. 그래서 학습에는 시그모이드처럼 매끄러운 활성화 함수를 쓴다.
 
@@ -391,9 +391,9 @@ $$
 
 대표적인 반례는 배타적 논리합(XOR)이다. 네 점 $(0, 0)$, $(1, 1)$의 출력은 0이고 $(0, 1)$, $(1, 0)$의 출력은 1이다. 출력이 1인 점에서 $w_0 + w_1x_1 + w_2x_2 \ge 0$, 0인 점에서 $< 0$이 되는 가중치가 있다고 가정하면 다음 네 부등식이 성립해야 한다.
 
-$$
+```math
 w_0 < 0, \qquad w_0 + w_2 \ge 0, \qquad w_0 + w_1 \ge 0, \qquad w_0 + w_1 + w_2 < 0
-$$
+```
 
 가운데 두 부등식을 더하면 $w_1 + w_2 + 2w_0 \ge 0$, 즉 $w_0 + w_1 + w_2 \ge -w_0$이다. 첫 부등식에서 $-w_0 > 0$이므로 $w_0 + w_1 + w_2 > 0$이 되어 마지막 부등식과 모순이다. 따라서 XOR을 푸는 퍼셉트론은 존재하지 않는다. 민스키(Minsky)와 페퍼트(Papert)는 1969년에 이런 한계를 분석했고[12], 이는 신경망 연구가 한동안 침체된 원인 중 하나가 되었다. 은닉층을 둔 다층 신경망은 이 문제를 풀 수 있으며, 다층 신경망을 학습시키는 방법이 1980년대의 역전파이다(표 4).
 
@@ -413,9 +413,9 @@ $$
 
 출력 뉴런 $i$는 자신만의 가중치 $\theta_{j,i}$(입력 $j$에서 출력 $i$로 가는 가중치)와 편향 $\theta_{0,i}$를 가진다.
 
-$$
+```math
 z_i = \theta_{0,i} + \sum_{j=1}^{m} x_j\theta_{j,i}, \qquad y_i = g(z_i), \qquad i = 1, 2
-$$
+```
 
 모든 입력이 모든 출력에 연결되어 있으므로 이 층은 완전 연결층이며, 매개변수는 출력마다 $m + 1$개씩 모두 $2(m + 1)$개이다.
 
@@ -433,23 +433,23 @@ $$
 
 입력층에서 은닉층으로 가는 가중치를 $\theta^{(1)}$, 은닉층에서 출력층으로 가는 가중치를 $\theta^{(2)}$로 쓴다. 위첨자 $(1)$, $(2)$는 거듭제곱이 아니라 몇 번째 층의 가중치인지를 나타낸다. 은닉층에 뉴런이 $d_1$개 있을 때 은닉 뉴런 $i$의 가중합은 다음과 같다.
 
-$$
+```math
 z_i = \theta_{0,i}^{(1)} + \sum_{j=1}^{m} x_j\theta_{j,i}^{(1)}, \qquad i = 1, \dots, d_1
-$$
+```
 
-예를 들어 두 번째 은닉 뉴런($i = 2$)에 대해 합을 풀어 쓰면 다음과 같다.
+예를 들어 두 번째 은닉 뉴런($`i = 2`$)에 대해 합을 풀어 쓰면 다음과 같다.
 
-$$
+```math
 z_2 = \theta_{0,2}^{(1)} + \sum_{j=1}^{m} x_j\theta_{j,2}^{(1)} = \theta_{0,2}^{(1)} + x_1\theta_{1,2}^{(1)} + x_2\theta_{2,2}^{(1)} + \cdots + x_m\theta_{m,2}^{(1)}
-$$
+```
 
 은닉 뉴런은 $z_i$를 활성화 함수에 통과시킨 $g(z_i)$를 출력하고, 출력층은 이 값들을 입력으로 삼아 같은 계산을 한 번 더 한다.
 
-$$
+```math
 \hat{y}_i = g\left(\theta_{0,i}^{(2)} + \sum_{j=1}^{d_1} g(z_j)\,\theta_{j,i}^{(2)}\right), \qquad i = 1, 2
-$$
+```
 
-입력에서 출력 방향으로 이렇게 차례로 계산하는 과정을 **순전파(forward propagation)** 라 한다. 행렬로 쓰면 $\boldsymbol{\Theta}^{(1)}$을 $(j, i)$ 성분이 $\theta_{j,i}^{(1)}$인 $m \times d_1$ 행렬, $\boldsymbol{\theta}_0^{(1)}$을 편향을 모은 $d_1$차원 벡터라 할 때 $\mathbf{z} = \boldsymbol{\theta}_0^{(1)} + (\boldsymbol{\Theta}^{(1)})^{T}\mathbf{x}$로 은닉층 전체를 한 번에 계산할 수 있다. 1.8절의 퍼셉트론 식 $\theta_0 + \mathbf{X}^{T}\boldsymbol{\theta}$를 뉴런 $d_1$개에 대해 한꺼번에 쓴 것이다. 매개변수의 수는 은닉층이 $(m + 1)d_1$개, 출력층이 $(d_1 + 1) \times 2$개이다.
+입력에서 출력 방향으로 이렇게 차례로 계산하는 과정을 **순전파(forward propagation)** 라 한다. 행렬로 쓰면 $\boldsymbol{\Theta}^{(1)}$을 $(j, i)$ 성분이 $\theta_{j,i}^{(1)}$인 $m \times d_1$ 행렬, $`\boldsymbol{\theta}_0^{(1)}`$을 편향을 모은 $d_1$차원 벡터라 할 때 $`\mathbf{z} = \boldsymbol{\theta}_0^{(1)} + (\boldsymbol{\Theta}^{(1)})^{T}\mathbf{x}`$로 은닉층 전체를 한 번에 계산할 수 있다. 1.8절의 퍼셉트론 식 $\theta_0 + \mathbf{X}^{T}\boldsymbol{\theta}$를 뉴런 $d_1$개에 대해 한꺼번에 쓴 것이다. 매개변수의 수는 은닉층이 $(m + 1)d_1$개, 출력층이 $(d_1 + 1) \times 2$개이다.
 
 > **참고:** 신경망의 층 수를 세는 방법은 문헌마다 다르다. 은닉층이 하나인 신경망을 단일 계층(single layer) 신경망이라 부르는 문헌이 있는가 하면, 은닉층 없이 입력이 출력에 바로 연결된 퍼셉트론을 단층 퍼셉트론(single-layer perceptron)이라 부르는 문헌도 있다. 두 용법이 섞이지 않도록 은닉층이 하나인 신경망은 "단일 은닉층 신경망"이라 부르는 편이 명확하다.
 
@@ -465,9 +465,9 @@ $$
 
 $k$번째 은닉층의 뉴런 $i$는 바로 앞 층($k - 1$번째 층)의 출력을 입력으로 받는다. 2.2절의 식을 일반화하면 다음과 같다.
 
-$$
+```math
 z_{k,i} = \theta_{0,i}^{(k)} + \sum_{j=1}^{d_{k-1}} g(z_{k-1,j})\,\theta_{j,i}^{(k)}
-$$
+```
 
 $k = 1$일 때는 앞 층의 출력 $g(z_{0,j})$ 자리에 입력 $x_j$를 넣는다. 이 계산을 첫 은닉층부터 출력층까지 반복하는 것이 심층 신경망의 순전파이다.
 
@@ -502,9 +502,9 @@ $k = 1$일 때는 앞 층의 출력 $g(z_{0,j})$ 자리에 입력 $x_j$를 넣�
 
 > **용어 정의:** **경험적 손실(empirical loss)** 은 데이터 집합 전체에 대한 손실의 평균이다. **목적 함수(objective function)**, **비용 함수(cost function)**, **경험적 위험(empirical risk)** 이라고도 한다.
 
-$$
+```math
 J(\boldsymbol{\theta}) = \frac{1}{n}\sum_{i=1}^{n} L\bigl(f(\mathbf{x}^{(i)}; \boldsymbol{\theta}), y^{(i)}\bigr)
-$$
+```
 
 $n$은 데이터의 개수이다. 수업 통과 예제의 데이터 일부와 학습 전 신경망의 예측은 표 7과 같다. $\mathbf{X}$의 각 행이 학생 한 명의 $[x_1, x_2]$이다.
 
@@ -518,17 +518,17 @@ $n$은 데이터의 개수이다. 수업 통과 예제의 데이터 일부와 �
 
 경험적 손실은 $\boldsymbol{\theta}$만의 함수이다. 데이터 $\mathbf{x}^{(i)}$와 $y^{(i)}$는 주어져 고정되어 있고, 학습으로 바꿀 수 있는 것은 $\boldsymbol{\theta}$뿐이기 때문이다. 따라서 학습은 $J(\boldsymbol{\theta})$를 최소로 만드는 $\boldsymbol{\theta}$를 찾는 최적화 문제가 된다.
 
-$$
+```math
 \boldsymbol{\theta}^{*} = \arg\min_{\boldsymbol{\theta}} J(\boldsymbol{\theta})
-$$
+```
 
 ### 2.6 평균 제곱 오차와 교차 엔트로피
 
 손실 함수는 문제의 종류에 맞게 고른다. **평균 제곱 오차(mean squared error, MSE)** 는 연속적인 실수를 출력하는 회귀(regression) 모델과 함께 사용할 수 있다.
 
-$$
+```math
 J(\boldsymbol{\theta}) = \frac{1}{n}\sum_{i=1}^{n}\bigl(y^{(i)} - f(\mathbf{x}^{(i)}; \boldsymbol{\theta})\bigr)^{2}
-$$
+```
 
 예를 들어 같은 학생들의 기말 점수를 예측하는 회귀 문제에서 신경망의 예측과 실제 점수가 표 8과 같다고 가정한다. 앞의 두 학생은 예측이 크게 틀렸고 세 번째 학생은 비교적 잘 맞았다.
 
@@ -540,15 +540,17 @@ $$
 
 *표 8. 기말 점수 예측의 오차*
 
-$$
+```math
 J = \frac{3600 + 3600 + 100}{3} = \frac{7300}{3} \approx 2433.3
-$$
+```
 
 오차를 제곱하는 이유는 세 가지이다. 첫째, 양의 오차와 음의 오차가 서로 상쇄되지 않는다(1번과 2번 학생의 오차 60과 -60을 그대로 더하면 0이 된다). 둘째, 큰 오차에 더 큰 벌점을 준다(오차 60의 제곱은 오차 10의 제곱의 36배이다). 셋째, 모든 점에서 미분할 수 있어 2.9절의 기울기를 구하기 쉽다.
 
 > **참고:** 수업 통과 예제처럼 출력이 0과 1 사이의 확률인 이진 분류에서는 **이진 교차 엔트로피(binary cross-entropy, BCE)** 손실을 주로 쓴다[13].
 >
-> $$J(\boldsymbol{\theta}) = -\frac{1}{n}\sum_{i=1}^{n}\Bigl[y^{(i)}\log f(\mathbf{x}^{(i)}; \boldsymbol{\theta}) + \bigl(1 - y^{(i)}\bigr)\log\bigl(1 - f(\mathbf{x}^{(i)}; \boldsymbol{\theta})\bigr)\Bigr]$$
+> ```math
+> J(\boldsymbol{\theta}) = -\frac{1}{n}\sum_{i=1}^{n}\Bigl[y^{(i)}\log f(\mathbf{x}^{(i)}; \boldsymbol{\theta}) + \bigl(1 - y^{(i)}\bigr)\log\bigl(1 - f(\mathbf{x}^{(i)}; \boldsymbol{\theta})\bigr)\Bigr]
+> ```
 >
 > 정답이 1이면 첫째 항 $-\log f$만, 정답이 0이면 둘째 항 $-\log(1 - f)$만 남는다(log는 자연로그이다). 표 7의 세 학생에 대해 각 항은 $-\ln 0.1 \approx 2.3026$, $-\ln(1 - 0.8) = -\ln 0.2 \approx 1.6094$, $-\ln 0.6 \approx 0.5108$이고 평균은 $4.4228/3 \approx 1.4743$이다. 같은 예측에 제곱 오차를 쓰면 $(0.81 + 0.64 + 0.16)/3 \approx 0.5367$이다. 교차 엔트로피는 정답에 0에 가까운 확률을 준 확신에 찬 오답에 매우 큰 손실을 주므로, 분류 문제에서 더 강한 학습 신호를 준다.
 
@@ -564,9 +566,9 @@ $$
 
 | 사람 | 입력 | 신경망의 계산 | 추정 $\hat{y}$ | 정답 $y$ | 판정 |
 |:-----|:-----|:-----|:-----|:-----|:-----|
-| 1 | $\mathbf{x}_1$ | $f(\mathbf{x}_1, \boldsymbol{\theta})$ | 0 | 0 | 맞음 |
-| 2 | $\mathbf{x}_2$ | $f(\mathbf{x}_2, \boldsymbol{\theta})$ | 0 | 1 | 틀림 |
-| 3 | $\mathbf{x}_3$ | $f(\mathbf{x}_3, \boldsymbol{\theta})$ | 1 | 1 | 맞음 |
+| 1 | $`\mathbf{x}_1`$ | $`f(\mathbf{x}_1, \boldsymbol{\theta})`$ | 0 | 0 | 맞음 |
+| 2 | $`\mathbf{x}_2`$ | $`f(\mathbf{x}_2, \boldsymbol{\theta})`$ | 0 | 1 | 틀림 |
+| 3 | $`\mathbf{x}_3`$ | $`f(\mathbf{x}_3, \boldsymbol{\theta})`$ | 1 | 1 | 맞음 |
 
 *표 9. 성별 추정 결과와 정답의 비교*
 
@@ -587,9 +589,9 @@ flowchart LR
 
 $w_1$, $w_2$는 가중치(weight), $b_1$, $b_2$는 편향(bias)이며, 이들을 모은 것이 **매개변수 벡터(parameter vector)** $\boldsymbol{\theta}$이다.
 
-$$
+```math
 \hat{y} = f(x; \boldsymbol{\theta}), \qquad \boldsymbol{\theta} = [w_1, b_1, w_2, b_2]
-$$
+```
 
 인공신경망의 정확도는 이 $\boldsymbol{\theta}$의 함수인 손실 함수로 표현된다. 가중치는 입력이 출력에 미치는 영향의 크기를 정하고, 편향은 활성화 함수를 좌우로 이동시킨다. 그림 20의 굵은 파란 곡선은 $-10$에서 $10$ 사이에 그린 시그모이드이고, 점선은 편향을 바꾸어 이 곡선을 왼쪽과 오른쪽으로 평행 이동한 것이다. $\sigma(z + b)$의 중심은 $z = -b$이므로 $b > 0$이면 곡선이 왼쪽으로, $b < 0$이면 오른쪽으로 이동한다.
 
@@ -599,9 +601,9 @@ $$
 
 매개변수 벡터 $\boldsymbol{\theta}$를 변경하면 손실을 줄일 수 있다. 그런데 네 매개변수를 각각 어느 방향으로 얼마나 움직여야 하는지 결정하려면, 각 매개변수를 조금 바꿀 때 손실이 얼마나 변하는지 알아야 한다. 이 정보를 모은 것이 **기울기 벡터(gradient vector)** $\nabla_{\boldsymbol{\theta}}L$이다.
 
-$$
+```math
 \nabla_{\boldsymbol{\theta}}L = \begin{bmatrix} \dfrac{\partial L}{\partial w_1} & \dfrac{\partial L}{\partial b_1} & \dfrac{\partial L}{\partial w_2} & \dfrac{\partial L}{\partial b_2} \end{bmatrix}^{T}
-$$
+```
 
 > **[미적분학]** 다변수 함수 $f(x_1, \dots, x_n)$의 **편미분(partial derivative)** $\partial f/\partial x_i$는 다른 변수를 상수로 고정하고 $x_i$로만 미분한 도함수이며, $x_i$만 조금 바꿀 때 $f$가 변하는 비율을 뜻한다. 모든 편미분을 모은 벡터 $\nabla f = [\partial f/\partial x_1, \dots, \partial f/\partial x_n]^{T}$를 **기울기(gradient)** 라 한다.
 
@@ -609,9 +611,9 @@ $$
 
 **기울기(gradient)** 는 함수가 가장 크게 증가하는 방향을 나타낸다. 따라서 함수를 최소화하려면 기울기의 반대 방향으로 이동해야 한다. 기울기가 가장 가파른 증가 방향인 이유는 방향 도함수로 설명할 수 있다. 점 $\mathbf{p}$에서 크기가 1인 방향 $\mathbf{u}$로 움직일 때 $f$의 변화율(방향 도함수)은 다음과 같다.
 
-$$
+```math
 D_{\mathbf{u}}f(\mathbf{p}) = \nabla f(\mathbf{p}) \cdot \mathbf{u} = \lVert \nabla f(\mathbf{p}) \rVert \cos\phi
-$$
+```
 
 $\phi$는 $\nabla f$와 $\mathbf{u}$ 사이의 각이다. $\cos\phi$는 $\phi = 0$일 때 최댓값 1, $\phi = \pi$일 때 최솟값 $-1$을 가지므로, 기울기와 같은 방향으로 갈 때 $f$가 가장 빠르게 증가하고 기울기의 반대 방향 $-\nabla f$로 갈 때 가장 빠르게 감소한다. 이때의 변화율의 크기는 $\lVert \nabla f \rVert$이다.
 
@@ -625,9 +627,9 @@ $\phi$는 $\nabla f$와 $\mathbf{u}$ 사이의 각이다. $\cos\phi$는 $\phi = 
 
 기울기 반대 방향으로 조금 움직이면 손실이 줄어드는 이유는 1차 테일러 근사로 확인할 수 있다. 작은 양수 $\alpha$에 대해 $\boldsymbol{\theta}$를 $-\alpha\nabla J$만큼 움직이면 다음이 성립한다.
 
-$$
+```math
 J(\boldsymbol{\theta} - \alpha\nabla J) \approx J(\boldsymbol{\theta}) - \alpha\,\nabla J \cdot \nabla J = J(\boldsymbol{\theta}) - \alpha\lVert \nabla J \rVert^{2}
-$$
+```
 
 $\nabla J \neq \mathbf{0}$이면 $\alpha\lVert \nabla J \rVert^{2} > 0$이므로 손실이 줄어든다. 다만 근사가 성립하려면 $\alpha$가 충분히 작아야 하며, 이 $\alpha$가 3.5절의 학습률이다. 경사 하강법은 11주차에서 PID 이득을 조정할 때도 쓰인 기울기 기반 최적화와 같은 원리이다.
 
@@ -639,23 +641,23 @@ $\nabla J \neq \mathbf{0}$이면 $\alpha\lVert \nabla J \rVert^{2} > 0$이므로
 
 **(1)** $f(x, y, z) = 2x^{2} + 3y^{2} + z^{2}$, 점 $(1, 1, 1)$
 
-$$
+```math
 \frac{\partial f}{\partial x} = 4x, \quad \frac{\partial f}{\partial y} = 6y, \quad \frac{\partial f}{\partial z} = 2z \quad\Rightarrow\quad \nabla f(1, 1, 1) = [4, 6, 2]^{T}
-$$
+```
 
 **(2)** $f(x, y, z) = x^{2}y + z$, 점 $(2, 2, 0)$
 
-$$
+```math
 \frac{\partial f}{\partial x} = 2xy, \quad \frac{\partial f}{\partial y} = x^{2}, \quad \frac{\partial f}{\partial z} = 1 \quad\Rightarrow\quad \nabla f(2, 2, 0) = [2 \cdot 2 \cdot 2,\ 2^{2},\ 1]^{T} = [8, 4, 1]^{T}
-$$
+```
 
 $x$로 편미분할 때 $y$는 상수이므로 $x^{2}y$의 도함수는 $2x \cdot y$이고, $y$로 편미분할 때는 $x^{2}$이 상수 계수가 된다.
 
 **(3)** $f(x, y, z) = e^{2x} + \sin y + \cos z$, 점 $(0, 0, 0)$
 
-$$
+```math
 \frac{\partial f}{\partial x} = 2e^{2x}, \quad \frac{\partial f}{\partial y} = \cos y, \quad \frac{\partial f}{\partial z} = -\sin z \quad\Rightarrow\quad \nabla f(0, 0, 0) = [2, 1, 0]^{T}
-$$
+```
 
 $e^{2x}$의 도함수는 연쇄 법칙에 따라 $e^{2x} \cdot 2$이다.
 
@@ -697,9 +699,9 @@ flowchart LR
 
 $E$는 $q$를 거쳐서만 $x$에 의존하므로 **연쇄 법칙(chain rule)** 을 쓴다.
 
-$$
+```math
 \frac{\partial E}{\partial x} = \frac{\partial q}{\partial x}\frac{\partial E}{\partial q} = 1 \cdot z = z, \qquad \frac{\partial E}{\partial y} = \frac{\partial q}{\partial y}\frac{\partial E}{\partial q} = 1 \cdot z = z, \qquad \frac{\partial E}{\partial z} = q
-$$
+```
 
 각 곱의 두 인수에는 이름이 있다. $\partial q/\partial x$처럼 노드 하나가 자기 입력에 대해 갖는 도함수를 **지역 기울기(local gradient)** 라 하고, $\partial E/\partial q$처럼 최종 출력에서 그 노드의 출력까지 거꾸로 전달되어 온 기울기를 **상류 기울기(upstream gradient)** 라 한다. 각 노드는 자기의 지역 기울기만 알면 되고, 상류 기울기에 지역 기울기를 곱해 다음 노드로 넘긴다. 이 지역적인 계산의 반복이 역전파의 핵심이다.
 
@@ -711,23 +713,23 @@ $$
 
 검산으로 $x$를 1에서 1.01로 늘리면 $E = (4.01)(-2) = -8.02$가 되어 $-0.02 = -2 \times 0.01$만큼 변하므로 $\partial E/\partial x = -2$와 맞는다.
 
-> **[미적분학]** 합성 함수 $y = f(g(x))$의 도함수는 $\dfrac{dy}{dx} = f'(g(x))\,g'(x)$로, 바깥 함수와 안쪽 함수의 도함수를 곱한다. 다변수에서 $E$가 중간 변수 $q$를 거쳐 $x$에 의존하면 $\dfrac{\partial E}{\partial x} = \dfrac{\partial E}{\partial q}\dfrac{\partial q}{\partial x}$이고, $x$가 여러 경로로 $E$에 영향을 주면 경로마다 구한 곱을 모두 더한다.
+> **[미적분학]** 합성 함수 $y = f(g(x))$의 도함수는 $`\dfrac{dy}{dx} = f'(g(x))\,g'(x)`$로, 바깥 함수와 안쪽 함수의 도함수를 곱한다. 다변수에서 $E$가 중간 변수 $q$를 거쳐 $x$에 의존하면 $\dfrac{\partial E}{\partial x} = \dfrac{\partial E}{\partial q}\dfrac{\partial q}{\partial x}$이고, $x$가 여러 경로로 $E$에 영향을 주면 경로마다 구한 곱을 모두 더한다.
 
 ### 3.2 2층 신경망의 역전파
 
 2.8절의 신경망(그림 19)에 역전파를 적용한다. 활성화 함수는 두 층 모두 시그모이드 $\sigma$이고, 손실은 제곱 오차이다. 순전파는 다음 다섯 식으로 이루어진다.
 
-$$
+```math
 S_1 = xw_1 + b_1, \qquad A_1 = \sigma(S_1), \qquad S_2 = A_1w_2 + b_2, \qquad A_2 = \sigma(S_2), \qquad L = (\hat{y} - y)^{2} = (A_2 - y)^{2}
-$$
+```
 
 $S_1$, $S_2$는 각 층의 가중합이고 $A_1$, $A_2$는 활성화 함수를 거친 출력이다. 구할 것은 기울기 벡터 $\nabla_{\boldsymbol{\theta}}L = [\partial L/\partial w_1, \partial L/\partial b_1, \partial L/\partial w_2, \partial L/\partial b_2]^{T}$의 네 성분이다. 역전파라는 이름대로 출력에 가까운 $w_2$, $b_2$부터 구한다.
 
 **1단계: $\partial L/\partial w_2$.** $w_2$는 $S_2 \to A_2 \to L$의 경로로 손실에 영향을 주므로, 연쇄 법칙으로 세 지역 기울기를 곱한다.
 
-$$
+```math
 \frac{\partial L}{\partial w_2} = \frac{\partial S_2}{\partial w_2}\frac{\partial A_2}{\partial S_2}\frac{\partial L}{\partial A_2} = A_1 \cdot \sigma'(S_2) \cdot 2(A_2 - y)
-$$
+```
 
 세 인수는 각각 다음과 같이 구한다.
 
@@ -737,36 +739,36 @@ $$
 
 여기서 뒤의 두 인수의 곱을 출력층의 **오차 신호(error signal)** $\delta_2$로 정의한다. $\delta_2$는 출력층 가중합 $S_2$에 대한 손실의 기울기이다.
 
-$$
+```math
 \delta_2 = \frac{\partial L}{\partial S_2} = \frac{\partial A_2}{\partial S_2}\frac{\partial L}{\partial A_2} = \sigma'(S_2) \cdot 2(A_2 - y), \qquad \frac{\partial L}{\partial w_2} = A_1\,\delta_2
-$$
+```
 
 **2단계: $\partial L/\partial b_2$.** $S_2$를 $b_2$로 미분하면 1이므로 다음과 같다.
 
-$$
+```math
 \frac{\partial L}{\partial b_2} = \frac{\partial S_2}{\partial b_2}\,\delta_2 = 1 \cdot \delta_2 = \delta_2
-$$
+```
 
 **3단계: $\partial L/\partial w_1$.** $w_1$은 $S_1 \to A_1 \to S_2 \to A_2 \to L$의 긴 경로로 손실에 영향을 준다. 이 경로의 뒷부분 $S_2 \to A_2 \to L$의 곱은 이미 $\delta_2$로 계산해 두었으므로 다시 계산할 필요가 없다.
 
-$$
+```math
 \frac{\partial L}{\partial w_1} = \frac{\partial S_1}{\partial w_1}\frac{\partial A_1}{\partial S_1}\frac{\partial S_2}{\partial A_1}\underbrace{\frac{\partial A_2}{\partial S_2}\frac{\partial L}{\partial A_2}}_{\delta_2} = x \cdot \sigma'(S_1) \cdot w_2 \cdot \delta_2
-$$
+```
 
-$S_2 = A_1w_2 + b_2$를 $A_1$로 미분하면 $w_2$이고, $\sigma'(S_1) = A_1(1 - A_1)$, $S_1 = xw_1 + b_1$을 $w_1$로 미분하면 $x$이다. 은닉층의 오차 신호를 $\delta_1 = \partial L/\partial S_1 = \sigma'(S_1)\,w_2\,\delta_2$로 정의하면 $\partial L/\partial w_1 = x\,\delta_1$이다.
+$S_2 = A_1w_2 + b_2$를 $A_1$로 미분하면 $w_2$이고, $\sigma'(S_1) = A_1(1 - A_1)$, $S_1 = xw_1 + b_1$을 $w_1$로 미분하면 $x$이다. 은닉층의 오차 신호를 $`\delta_1 = \partial L/\partial S_1 = \sigma'(S_1)\,w_2\,\delta_2`$로 정의하면 $`\partial L/\partial w_1 = x\,\delta_1`$이다.
 
 **4단계: $\partial L/\partial b_1$.** $S_1$을 $b_1$로 미분하면 1이므로 $\partial L/\partial b_1 = \delta_1$이다.
 
 | 매개변수 | 기울기 | 재사용하는 값 |
 |:-----|:-----|:-----|
-| $w_2$ | $A_1\,\sigma'(S_2)\,2(A_2 - y)$ | $\delta_2$ |
-| $b_2$ | $\sigma'(S_2)\,2(A_2 - y)$ | $\delta_2$ |
-| $w_1$ | $x\,\sigma'(S_1)\,w_2\,\sigma'(S_2)\,2(A_2 - y)$ | $\delta_2$, $\delta_1$ |
-| $b_1$ | $\sigma'(S_1)\,w_2\,\sigma'(S_2)\,2(A_2 - y)$ | $\delta_2$, $\delta_1$ |
+| $w_2$ | $`A_1\,\sigma'(S_2)\,2(A_2 - y)`$ | $\delta_2$ |
+| $b_2$ | $`\sigma'(S_2)\,2(A_2 - y)`$ | $\delta_2$ |
+| $w_1$ | $`x\,\sigma'(S_1)\,w_2\,\sigma'(S_2)\,2(A_2 - y)`$ | $\delta_2$, $\delta_1$ |
+| $b_1$ | $`\sigma'(S_1)\,w_2\,\sigma'(S_2)\,2(A_2 - y)`$ | $\delta_2$, $\delta_1$ |
 
 *표 11. 2층 신경망의 네 기울기*
 
-> **핵심:** 모든 기울기에 공통으로 들어 있는 $\sigma'(S_2)\,2(A_2 - y) = \delta_2$를 한 번만 계산해 두고, 앞쪽 층으로 갈 때마다 지역 기울기를 하나씩 곱해 나간다. 출력에서 입력 쪽으로 오차 신호를 전달하며 기울기를 재사용하는 이 방식이 역전파이다.
+> **핵심:** 모든 기울기에 공통으로 들어 있는 $`\sigma'(S_2)\,2(A_2 - y) = \delta_2`$를 한 번만 계산해 두고, 앞쪽 층으로 갈 때마다 지역 기울기를 하나씩 곱해 나간다. 출력에서 입력 쪽으로 오차 신호를 전달하며 기울기를 재사용하는 이 방식이 역전파이다.
 
 ### 3.3 역전파 계산 예제
 
@@ -793,17 +795,17 @@ $S_2 = A_1w_2 + b_2$를 $A_1$로 미분하면 $w_2$이고, $\sigma'(S_1) = A_1(1
 | $\partial L/\partial A_2$ | $2(A_2 - y) = 2(0.4834 - 1)$ | -1.0331 |
 | $\sigma'(S_2)$ | $A_2(1 - A_2) = 0.4834 \times 0.5166$ | 0.2497 |
 | $\delta_2$ | $-1.0331 \times 0.2497$ | -0.2580 |
-| $\partial L/\partial w_2$ | $A_1\,\delta_2 = 0.6225 \times (-0.2580)$ | -0.1606 |
+| $\partial L/\partial w_2$ | $`A_1\,\delta_2 = 0.6225 \times (-0.2580)`$ | -0.1606 |
 | $\partial L/\partial b_2$ | $\delta_2$ | -0.2580 |
-| $\partial L/\partial A_1$ | $w_2\,\delta_2 = 1.5 \times (-0.2580)$ | -0.3870 |
+| $\partial L/\partial A_1$ | $`w_2\,\delta_2 = 1.5 \times (-0.2580)`$ | -0.3870 |
 | $\sigma'(S_1)$ | $A_1(1 - A_1) = 0.6225 \times 0.3775$ | 0.2350 |
 | $\delta_1$ | $-0.3870 \times 0.2350$ | -0.0909 |
-| $\partial L/\partial w_1$ | $x\,\delta_1 = 2 \times (-0.0909)$ | -0.1819 |
+| $\partial L/\partial w_1$ | $`x\,\delta_1 = 2 \times (-0.0909)`$ | -0.1819 |
 | $\partial L/\partial b_1$ | $\delta_1$ | -0.0909 |
 
 *표 13. 역전파 계산*
 
-네 기울기가 모두 음수이다. 출력 0.4834가 정답 1보다 작으므로 출력을 키워야 하고, 이 신경망에서는 네 매개변수를 모두 늘리면 출력이 커지기 때문이다. 출력층 기울기의 크기($|\partial L/\partial b_2| = 0.2580$)가 은닉층 기울기의 크기($|\partial L/\partial b_1| = 0.0909$)보다 큰 것은 은닉층으로 가는 동안 $\sigma'(S_1) = 0.2350$과 $w_2 = 1.5$가 곱해졌기 때문이며, 1.10절에서 본 기울기 소실이 작은 규모로 나타난 것이다.
+네 기울기가 모두 음수이다. 출력 0.4834가 정답 1보다 작으므로 출력을 키워야 하고, 이 신경망에서는 네 매개변수를 모두 늘리면 출력이 커지기 때문이다. 출력층 기울기의 크기($`|\partial L/\partial b_2| = 0.2580`$)가 은닉층 기울기의 크기($`|\partial L/\partial b_1| = 0.0909`$)보다 큰 것은 은닉층으로 가는 동안 $\sigma'(S_1) = 0.2350$과 $w_2 = 1.5$가 곱해졌기 때문이며, 1.10절에서 본 기울기 소실이 작은 규모로 나타난 것이다.
 
 **3단계: 매개변수 갱신.** 경사 하강법(3.5절)으로 학습률 $\alpha = 1$을 써서 $\boldsymbol{\theta} \leftarrow \boldsymbol{\theta} - \alpha\nabla_{\boldsymbol{\theta}}L$을 계산한다.
 
@@ -820,11 +822,11 @@ $S_2 = A_1w_2 + b_2$를 $A_1$로 미분하면 $w_2$이고, $\sigma'(S_1) = A_1(1
 
 역전파로 구한 기울기가 맞는지는 **수치 미분(numerical differentiation)** 과 비교하여 확인할 수 있다. 매개변수 하나를 매우 작은 $\varepsilon$만큼 늘린 손실과 줄인 손실의 차이를 $2\varepsilon$으로 나누는 **중앙 차분(central difference)** 은 오차가 $\varepsilon^{2}$에 비례하여 매우 정확하다.
 
-$$
+```math
 \frac{\partial L}{\partial \theta_i} \approx \frac{L(\boldsymbol{\theta} + \varepsilon\mathbf{e}_i) - L(\boldsymbol{\theta} - \varepsilon\mathbf{e}_i)}{2\varepsilon}
-$$
+```
 
-$\mathbf{e}_i$는 $i$번째 성분만 1이고 나머지가 0인 벡터이다. 수치 미분은 매개변수마다 순전파를 두 번씩 해야 하므로 학습에 쓰기에는 느리지만, 역전파 구현을 검사하는 **기울기 검사(gradient checking)** 에 널리 쓰인다. 다음 Python 코드는 위 예제의 순전파, 역전파, 기울기 검사, 한 번의 갱신을 수행한다.
+$`\mathbf{e}_i`$는 $i$번째 성분만 1이고 나머지가 0인 벡터이다. 수치 미분은 매개변수마다 순전파를 두 번씩 해야 하므로 학습에 쓰기에는 느리지만, 역전파 구현을 검사하는 **기울기 검사(gradient checking)** 에 널리 쓰인다. 다음 Python 코드는 위 예제의 순전파, 역전파, 기울기 검사, 한 번의 갱신을 수행한다.
 
 ```python
 import numpy as np
@@ -896,19 +898,19 @@ loss     : 0.2668 -> 0.1503
 
 3.2절의 계산을 뉴런이 여러 개인 층 $K$개로 일반화한다[5][13]. $k$번째 층의 가중치 행렬을 $W^{(k)}$, 편향 벡터를 $\mathbf{b}^{(k)}$, 가중합을 $\mathbf{S}^{(k)}$, 출력을 $\mathbf{A}^{(k)}$라 하고 $\mathbf{A}^{(0)} = \mathbf{x}$로 둔다.
 
-$$
+```math
 \mathbf{S}^{(k)} = W^{(k)}\mathbf{A}^{(k-1)} + \mathbf{b}^{(k)}, \qquad \mathbf{A}^{(k)} = g\bigl(\mathbf{S}^{(k)}\bigr), \qquad k = 1, \dots, K
-$$
+```
 
 역전파는 출력층의 오차 신호에서 출발하여 한 층씩 거꾸로 내려간다. $\odot$은 같은 위치의 성분끼리 곱하는 연산이다.
 
-$$
+```math
 \boldsymbol{\delta}^{(K)} = \nabla_{\mathbf{A}^{(K)}}L \odot g'\bigl(\mathbf{S}^{(K)}\bigr), \qquad \boldsymbol{\delta}^{(k)} = \bigl(W^{(k+1)}\bigr)^{T}\boldsymbol{\delta}^{(k+1)} \odot g'\bigl(\mathbf{S}^{(k)}\bigr)
-$$
+```
 
-$$
+```math
 \frac{\partial L}{\partial W^{(k)}} = \boldsymbol{\delta}^{(k)}\bigl(\mathbf{A}^{(k-1)}\bigr)^{T}, \qquad \frac{\partial L}{\partial \mathbf{b}^{(k)}} = \boldsymbol{\delta}^{(k)}
-$$
+```
 
 뉴런이 하나씩이면 행렬이 스칼라가 되어 3.2절의 $\delta_2 = 2(A_2 - y)\sigma'(S_2)$, $\delta_1 = w_2\delta_2\sigma'(S_1)$, $\partial L/\partial w_1 = \delta_1 x$와 같아진다. 학습 한 단계는 다음 순서로 진행된다.
 
@@ -923,9 +925,9 @@ $$
 
 **경사 하강 알고리즘(gradient descent algorithm)** 은 손실 함수가 가장 빠르게 감소하는 방향, 즉 기울기의 음수 방향으로 매개변수를 업데이트한다.
 
-$$
+```math
 \boldsymbol{\theta}_{k+1} = \boldsymbol{\theta}_k - \alpha_k\nabla_{\boldsymbol{\theta}}L
-$$
+```
 
 $k$는 반복 횟수이고, $\alpha_k$는 한 번에 얼마나 움직일지 정하는 **학습률(learning rate)** 이다. 학습률은 신경망을 훈련할 때 조정해야 하는 중요한 **하이퍼파라미터(hyperparameter)** 이다. 하이퍼파라미터란 가중치처럼 학습으로 정해지는 매개변수와 달리 학습 전에 사람이 정하는 값을 말한다. 아래첨자 $k$는 학습률이 반복마다 달라질 수 있음을 나타낸다(3.6절).
 
@@ -940,9 +942,9 @@ $k$는 반복 횟수이고, $\alpha_k$는 한 번에 얼마나 움직일지 정�
 
 학습률의 영향은 간단한 손실 함수 $L(w) = w^{2}$로 정확히 계산할 수 있다. 기울기는 $L'(w) = 2w$이므로 갱신 식은 다음과 같다.
 
-$$
+```math
 w_{k+1} = w_k - \alpha \cdot 2w_k = (1 - 2\alpha)\,w_k \quad\Rightarrow\quad w_k = (1 - 2\alpha)^{k}\,w_0
-$$
+```
 
 최솟값은 $w = 0$이고, $w_k$가 0으로 수렴하려면 $|1 - 2\alpha| < 1$, 즉 $0 < \alpha < 1$이어야 한다. $w_0 = 1$에서 출발한 결과는 표 16과 같다.
 
@@ -953,7 +955,7 @@ $$
 | 1.0 | -1 | -1, 1, -1, 1, -1 | 양쪽을 오가며 수렴하지 않는다. |
 | 1.1 | -1.2 | -1.2, 1.44, -1.728, 2.0736, -2.4883 | 진동하며 발산한다. |
 
-*표 16. 손실 함수 $L(w) = w^{2}$에서 학습률에 따른 경사 하강의 결과*
+*표 16. 손실 함수 $`L(w) = w^{2}`$에서 학습률에 따른 경사 하강의 결과*
 
 학습은 정해진 횟수만큼 반복하거나, 손실이 더 이상 개선되지 않으면 중지한다. 학습 데이터 전체를 한 번 모두 사용하는 것을 **에포크(epoch)** 라 하며, 학습 과정 전체는 그림 24의 반복이다.
 
@@ -977,35 +979,35 @@ flowchart LR
 - **아이디어 I:** 다양한 학습률을 시도해 보고 어떤 값에서 적절하게 작동하는지 확인한다. 보통 0.1, 0.01, 0.001처럼 10배씩 다른 값을 시도한다.
 - **아이디어 II:** 학습 상황에 적응하는 **적응형 학습률(adaptive learning rate)** 을 설계한다. 학습률은 고정되지 않고 기울기의 크기, 학습 속도, 특정 가중치의 크기 등에 따라 더 커지거나 작아질 수 있다.
 
-아이디어 II를 구현한 대표적인 최적화 방법은 다음과 같다. 아래 식에서 $\mathbf{g}_k = \nabla_{\boldsymbol{\theta}}L(\boldsymbol{\theta}_k)$이고, 제곱, 제곱근, 나눗셈은 성분별 연산이다.
+아이디어 II를 구현한 대표적인 최적화 방법은 다음과 같다. 아래 식에서 $`\mathbf{g}_k = \nabla_{\boldsymbol{\theta}}L(\boldsymbol{\theta}_k)`$이고, 제곱, 제곱근, 나눗셈은 성분별 연산이다.
 
 **모멘텀(momentum)** 은 이전 갱신 방향을 일정 비율 $\beta$만큼 기억하여 더한다[14]. 공이 비탈을 구르며 속도가 붙듯이, 기울기의 방향이 일정하면 점점 빨라지고 방향이 자꾸 바뀌는 진동은 서로 상쇄된다.
 
-$$
+```math
 \mathbf{v}_{k+1} = \beta\mathbf{v}_k + \mathbf{g}_k, \qquad \boldsymbol{\theta}_{k+1} = \boldsymbol{\theta}_k - \alpha\mathbf{v}_{k+1}
-$$
+```
 
 **AdaGrad** 는 지금까지의 기울기 제곱을 누적한 $\mathbf{r}$로 학습률을 나눈다[15]. 기울기가 컸던 매개변수는 학습률이 작아지고, 기울기가 작았던 매개변수는 상대적으로 큰 학습률을 받는다. $\epsilon$은 0으로 나누는 것을 막는 작은 수이다.
 
-$$
+```math
 \mathbf{r}_{k+1} = \mathbf{r}_k + \mathbf{g}_k^{2}, \qquad \boldsymbol{\theta}_{k+1} = \boldsymbol{\theta}_k - \frac{\alpha}{\sqrt{\mathbf{r}_{k+1}} + \epsilon}\,\mathbf{g}_k
-$$
+```
 
 **RMSProp** 은 AdaGrad의 누적 합 대신 최근 기울기에 더 큰 비중을 두는 지수 이동 평균을 써서, 학습률이 계속 줄어들기만 하는 문제를 막는다[16].
 
-$$
+```math
 \mathbf{r}_{k+1} = \rho\,\mathbf{r}_k + (1 - \rho)\,\mathbf{g}_k^{2}, \qquad \boldsymbol{\theta}_{k+1} = \boldsymbol{\theta}_k - \frac{\alpha}{\sqrt{\mathbf{r}_{k+1}} + \epsilon}\,\mathbf{g}_k
-$$
+```
 
 **Adam(adaptive moment estimation)** 은 모멘텀과 RMSProp을 결합한 방법으로, 널리 쓰인다[17]. 기울기의 이동 평균 $\mathbf{m}$과 기울기 제곱의 이동 평균 $\mathbf{v}$를 함께 쓰고, 두 평균이 0에서 출발해 초기에 작게 치우치는 것을 $1 - \beta^{k}$로 나누어 보정한다. 제안된 기본값은 $\alpha = 0.001$, $\beta_1 = 0.9$, $\beta_2 = 0.999$, $\epsilon = 10^{-8}$이다.
 
-$$
+```math
 \mathbf{m}_{k} = \beta_1\mathbf{m}_{k-1} + (1 - \beta_1)\mathbf{g}_k, \qquad \mathbf{v}_{k} = \beta_2\mathbf{v}_{k-1} + (1 - \beta_2)\mathbf{g}_k^{2}
-$$
+```
 
-$$
+```math
 \hat{\mathbf{m}}_k = \frac{\mathbf{m}_k}{1 - \beta_1^{k}}, \qquad \hat{\mathbf{v}}_k = \frac{\mathbf{v}_k}{1 - \beta_2^{k}}, \qquad \boldsymbol{\theta}_{k} = \boldsymbol{\theta}_{k-1} - \frac{\alpha\,\hat{\mathbf{m}}_k}{\sqrt{\hat{\mathbf{v}}_k} + \epsilon}
-$$
+```
 
 | 방법 | 학습률을 바꾸는 근거 | 효과 |
 |:-----|:-----|:-----|
@@ -1138,7 +1140,7 @@ flowchart LR
 
 > **참고:** 폰 미제스 응력은 세 주응력 $\sigma_1, \sigma_2, \sigma_3$로부터 $\sigma_{v} = \sqrt{\tfrac{1}{2}\bigl[(\sigma_1 - \sigma_2)^{2} + (\sigma_2 - \sigma_3)^{2} + (\sigma_3 - \sigma_1)^{2}\bigr]}$로 계산하며, 연성 재료는 이 값이 항복 강도에 이르면 항복한다고 판단한다. 이런 출력은 보통 유한 요소 해석 같은 시간이 오래 걸리는 수치 해석으로 구하므로, 이를 학습한 신경망은 새로운 설계 변수 조합의 결과를 즉시 예측하는 대리 모델(surrogate model)로 쓸 수 있다.
 
-데이터는 입력 행렬 `x_input`($6 \times 500$)과 출력 벡터 `y_mises`($1 \times 500$), `y_disp`($1 \times 500$)로 저장되어 있다. MATLAB 신경망 함수는 행이 변수, 열이 샘플인 형식을 쓰므로[19] `x_input`의 각 열이 설계 하나의 입력 6개이다. 출력 두 개를 하나의 신경망으로 함께 예측할 수도 있지만, 여기서는 출력마다 입력 6개, 은닉 뉴런 10개, 출력 1개인 신경망을 따로 학습시킨다(그림 29).
+데이터는 입력 행렬 `x_input`($`6 \times 500`$)과 출력 벡터 `y_mises`($`1 \times 500`$), `y_disp`($`1 \times 500`$)로 저장되어 있다. MATLAB 신경망 함수는 행이 변수, 열이 샘플인 형식을 쓰므로[19] `x_input`의 각 열이 설계 하나의 입력 6개이다. 출력 두 개를 하나의 신경망으로 함께 예측할 수도 있지만, 여기서는 출력마다 입력 6개, 은닉 뉴런 10개, 출력 1개인 신경망을 따로 학습시킨다(그림 29).
 
 ```mermaid
 flowchart LR
@@ -1172,9 +1174,9 @@ biases2 = biases{2,1};
 | `% [net_mises, tr] = ...` | 응력 값을 그대로 학습시키는 원래 코드로, 앞에 `%`를 붙여 주석 처리했다. |
 | `train(net_mises, x_input, log(y_mises(1,:)), ...)` | 입력 `x_input`과 목표값으로 신경망을 학습시킨다. 목표값은 응력 `y_mises`의 첫째 행에 자연로그를 취한 값이다. `'useParallel','yes'`는 병렬 풀이 열려 있으면 계산을 병렬 작업자에서 수행하라는 옵션이다[19]. |
 | `[net_mises, tr]` | 학습된 신경망과 학습 기록 `tr`(에포크별 성능, 학습, 검증, 시험 데이터의 분할 정보 등)을 받는다[19]. |
-| `net_mises.IW{1,1}` | 입력에서 첫 층(은닉층)으로 가는 입력 가중치(input weight) 행렬($10 \times 6$)이다. |
-| `net_mises.LW{2,1}` | 첫 층에서 둘째 층(출력층)으로 가는 층 가중치(layer weight) 행렬($1 \times 10$)이다. |
-| `net_mises.b` | 층별 편향을 담은 셀 배열이며, `biases{1,1}`은 은닉층 편향($10 \times 1$), `biases{2,1}`은 출력층 편향($1 \times 1$)이다. |
+| `net_mises.IW{1,1}` | 입력에서 첫 층(은닉층)으로 가는 입력 가중치(input weight) 행렬($`10 \times 6`$)이다. |
+| `net_mises.LW{2,1}` | 첫 층에서 둘째 층(출력층)으로 가는 층 가중치(layer weight) 행렬($`1 \times 10`$)이다. |
+| `net_mises.b` | 층별 편향을 담은 셀 배열이며, `biases{1,1}`은 은닉층 편향($`10 \times 1`$), `biases{2,1}`은 출력층 편향($`1 \times 1`$)이다. |
 
 *표 21. 응력 예측 코드의 설명*
 
@@ -1195,11 +1197,11 @@ biases2 = biases{2,1};
 
 추출한 가중치와 편향으로 신경망의 계산을 수식으로 쓸 수 있다. `feedforwardnet`의 은닉층은 기본적으로 tansig 활성화 함수를 쓰는데, 이는 수학적으로 tanh와 같다[21]. 출력층은 입력을 그대로 내보내는 선형 함수(purelin)를 쓴다.
 
-$$
+```math
 \hat{y} = \text{LW}\,\tanh\bigl(\text{IW}\,\mathbf{x} + \mathbf{b}_1\bigr) + b_2
-$$
+```
 
-매개변수는 $\text{IW}$의 60개, $\mathbf{b}_1$의 10개, $\text{LW}$의 10개, $b_2$의 1개로 모두 81개이며, 2.2절의 공식 $(6 + 1) \times 10 + (10 + 1) \times 1 = 81$과 같다. 응력 신경망의 출력은 응력의 로그이므로 실제 응력은 $e^{\hat{y}}$로 되돌려 구한다. 응력처럼 항상 양수이고 크기의 범위가 넓은 값에 로그를 취하면 값의 범위가 좁아지고, 큰 값과 작은 값의 상대 오차를 비슷한 비중으로 학습하게 된다. 또 $e^{\hat{y}}$는 항상 양수이므로 음수 응력이라는 불가능한 예측도 나오지 않는다.
+매개변수는 $\text{IW}$의 60개, $`\mathbf{b}_1`$의 10개, $\text{LW}$의 10개, $b_2$의 1개로 모두 81개이며, 2.2절의 공식 $(6 + 1) \times 10 + (10 + 1) \times 1 = 81$과 같다. 응력 신경망의 출력은 응력의 로그이므로 실제 응력은 $e^{\hat{y}}$로 되돌려 구한다. 응력처럼 항상 양수이고 크기의 범위가 넓은 값에 로그를 취하면 값의 범위가 좁아지고, 큰 값과 작은 값의 상대 오차를 비슷한 비중으로 학습하게 된다. 또 $e^{\hat{y}}$는 항상 양수이므로 음수 응력이라는 불가능한 예측도 나오지 않는다.
 
 `train`은 학습 중에 검증 데이터의 성능을 감시하여 조기 종료(3.10절)를 수행한다. 기본 학습 함수 `trainlm`은 검증 성능이 개선되지 않는 에포크가 `max_fail`번(기본값 6) 연속되면 학습을 멈춘다[22].
 
@@ -1232,7 +1234,7 @@ $$
 | 활성화 함수가 모두 선형이면 층을 많이 쌓을수록 더 복잡한 결정 경계를 만들 수 있다. | **F.** 선형 변환의 합성은 다시 선형 변환이므로 층 수와 관계없이 선형 모델 하나와 같다. |
 | 시그모이드 함수의 도함수는 $\sigma(z)(1 - \sigma(z))$이며 최댓값은 $z = 0$에서 0.25이다. | **T.** |
 | 기울기는 함수가 가장 빠르게 감소하는 방향을 가리킨다. | **F.** 기울기는 가장 빠르게 증가하는 방향이며, 감소하려면 그 반대 방향 $-\nabla f$로 간다. |
-| 역전파에서 출력층의 오차 신호 $\delta_2$는 은닉층의 기울기를 구할 때 다시 쓰인다. | **T.** $\delta_1 = \sigma'(S_1)\,w_2\,\delta_2$이다. |
+| 역전파에서 출력층의 오차 신호 $\delta_2$는 은닉층의 기울기를 구할 때 다시 쓰인다. | **T.** $`\delta_1 = \sigma'(S_1)\,w_2\,\delta_2`$이다. |
 | 드롭아웃은 예측(시험)할 때도 학습할 때와 같은 비율로 뉴런을 삭제한다. | **F.** 드롭아웃은 학습할 때만 적용하고 예측할 때는 모든 뉴런을 쓴다. |
 | 조기 종료의 기준으로 시험 데이터의 손실을 쓰면 일반화 성능을 정확히 측정할 수 있다. | **F.** 시험 데이터가 학습 과정에 개입하여 성능이 낙관적으로 측정되므로, 검증 데이터를 써야 한다. |
 
@@ -1258,7 +1260,7 @@ $$
 | 학습 | 정답이 있는 데이터를 이용해 손실이 줄어드는 방향으로 매개변수 벡터 $\boldsymbol{\theta}$를 바꾸는 과정이다. |
 | 기울기 | 편미분을 모은 벡터로, 함수가 가장 크게 증가하는 방향을 가리킨다. |
 | 역전파 | 연쇄 법칙으로 출력에서 입력 쪽으로 오차 신호를 전달하며 모든 매개변수의 기울기를 효율적으로 계산한다. |
-| 경사 하강법 | $\boldsymbol{\theta}_{k+1} = \boldsymbol{\theta}_k - \alpha_k\nabla_{\boldsymbol{\theta}}L$로 기울기의 반대 방향으로 매개변수를 갱신한다. |
+| 경사 하강법 | $`\boldsymbol{\theta}_{k+1} = \boldsymbol{\theta}_k - \alpha_k\nabla_{\boldsymbol{\theta}}L`$로 기울기의 반대 방향으로 매개변수를 갱신한다. |
 | 학습률 | 너무 크면 발산하고 너무 작으면 수렴이 느리다. 모멘텀, AdaGrad, RMSProp, Adam은 학습률을 상황에 맞게 조정한다. |
 | 미니배치 | 무작위로 고른 일부 데이터로 기울기를 추정하여 갱신하는 방식으로, 가장 널리 쓰인다. |
 | 과적합 | 모델이 노이즈까지 학습하여 새 데이터를 잘 예측하지 못하는 현상이며, 정규화로 줄인다. |
@@ -1295,7 +1297,7 @@ $$
    <details>
    <summary>정답</summary>
 
-   은닉층 출력은 $\mathbf{h} = W_1\mathbf{x} + \mathbf{b}_1$이고 출력은 $W_2\mathbf{h} + \mathbf{b}_2 = W_2W_1\mathbf{x} + W_2\mathbf{b}_1 + \mathbf{b}_2$이다. $W = W_2W_1$, $\mathbf{b} = W_2\mathbf{b}_1 + \mathbf{b}_2$로 두면 $W\mathbf{x} + \mathbf{b}$이므로 층 하나짜리 선형 모델과 같고, 결정 경계도 직선(초평면)으로 제한된다.
+   은닉층 출력은 $`\mathbf{h} = W_1\mathbf{x} + \mathbf{b}_1`$이고 출력은 $`W_2\mathbf{h} + \mathbf{b}_2 = W_2W_1\mathbf{x} + W_2\mathbf{b}_1 + \mathbf{b}_2`$이다. $W = W_2W_1$, $`\mathbf{b} = W_2\mathbf{b}_1 + \mathbf{b}_2`$로 두면 $W\mathbf{x} + \mathbf{b}$이므로 층 하나짜리 선형 모델과 같고, 결정 경계도 직선(초평면)으로 제한된다.
 
    </details>
 
@@ -1349,7 +1351,7 @@ $$
    <details>
    <summary>정답</summary>
 
-   순전파는 그대로이므로 $A_2 = 0.4834$이고 $\partial L/\partial A_2 = 2(0.4834 - 0) \approx 0.9669 > 0$이다. $\delta_2 = 0.9669 \times 0.2497 \approx 0.2414 > 0$이므로 $\partial L/\partial b_2 > 0$, $\partial L/\partial w_2 = A_1\delta_2 \approx 0.1503 > 0$이다. $w_2 = 1.5 > 0$이므로 $\delta_1 = \sigma'(S_1)\,w_2\,\delta_2 \approx 0.0851 > 0$이고, $\partial L/\partial b_1 > 0$, $\partial L/\partial w_1 = x\delta_1 \approx 0.1702 > 0$이다. 네 기울기가 모두 양수이므로 경사 하강법은 네 매개변수를 모두 줄여 출력을 0 쪽으로 낮춘다.
+   순전파는 그대로이므로 $A_2 = 0.4834$이고 $\partial L/\partial A_2 = 2(0.4834 - 0) \approx 0.9669 > 0$이다. $\delta_2 = 0.9669 \times 0.2497 \approx 0.2414 > 0$이므로 $\partial L/\partial b_2 > 0$, $\partial L/\partial w_2 = A_1\delta_2 \approx 0.1503 > 0$이다. $w_2 = 1.5 > 0$이므로 $`\delta_1 = \sigma'(S_1)\,w_2\,\delta_2 \approx 0.0851 > 0`$이고, $\partial L/\partial b_1 > 0$, $\partial L/\partial w_1 = x\delta_1 \approx 0.1702 > 0$이다. 네 기울기가 모두 양수이므로 경사 하강법은 네 매개변수를 모두 줄여 출력을 0 쪽으로 낮춘다.
 
    </details>
 
@@ -1358,7 +1360,7 @@ $$
     <details>
     <summary>정답</summary>
 
-    갱신 식은 $w_{k+1} = (1 - 2 \times 0.75)w_k = -0.5\,w_k$이므로 $w$는 $-0.5$, $0.25$, $-0.125$, $0.0625$이다. 부호가 바뀌며 최솟값을 오가지만 $|1 - 2\alpha| = 0.5 < 1$이므로 0으로 수렴한다.
+    갱신 식은 $`w_{k+1} = (1 - 2 \times 0.75)w_k = -0.5\,w_k`$이므로 $w$는 $-0.5$, $0.25$, $-0.125$, $0.0625$이다. 부호가 바뀌며 최솟값을 오가지만 $|1 - 2\alpha| = 0.5 < 1$이므로 0으로 수렴한다.
 
     </details>
 

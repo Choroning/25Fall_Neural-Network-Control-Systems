@@ -75,21 +75,21 @@ Coursework/HW02_Laplace-Transforms-and-System-Modeling/
 
 The **Laplace transform** of a function $f(t)$ defined for $t \ge 0$ is the function of the complex variable $s = \sigma + j\omega$
 
-$$
+```math
 F(s) = \mathcal{L}\lbrace f(t)\rbrace= \int_0^\infty f(t)\,e^{-st}\,dt
-$$
+```
 
 Time functions are written in lowercase and their transforms in uppercase. The integral converges when $f(t)$ does not grow exponentially too fast and $\operatorname{Re}(s)$ is large enough. For example, if $f(t) = e^{-at}$,
 
-$$
+```math
 \mathcal{L}\lbrace e^{-at}\rbrace= \int_0^\infty e^{-(s+a)t}\,dt = \left[\frac{-e^{-(s+a)t}}{s+a}\right]_0^\infty = \frac{1}{s+a}, \qquad \operatorname{Re}(s) > -a
-$$
+```
 
 The basic transform pairs obtained by computations like this one are in Table 2, and every computation in this assignment is built from Table 2 and the properties in Section 2.2. The transform uses only the values for $t \ge 0$, so a time function obtained by an inverse transform also gives the values for $t \ge 0$.
 
 | $f(t)$, $t \ge 0$ | $F(s)$ |
 |:-----|:-----|
-| $1$ (unit step function $u_s(t)$) | $\dfrac{1}{s}$ |
+| $1$ (unit step function $`u_s(t)`$) | $\dfrac{1}{s}$ |
 | $t$ | $\dfrac{1}{s^2}$ |
 | $e^{-at}$ | $\dfrac{1}{s+a}$ |
 | $te^{-at}$ | $\dfrac{1}{(s+a)^2}$ |
@@ -115,7 +115,7 @@ The basic transform pairs obtained by computations like this one are in Table 2,
 
 The frequency shift follows from the definition because $e^{-at}e^{-st} = e^{-(s+a)t}$, which is the same as putting $s + a$ in place of $s$. The derivative properties turn differentiation into multiplication by $s$, so they turn a differential equation into an algebraic equation, with the advantage that the initial conditions enter the equation automatically.
 
-> **[Calculus]** The first-derivative property is obtained by integrating the definition by parts. In $\int_0^\infty \dot{f}(t)e^{-st}dt = \big[f(t)e^{-st}\big]_0^\infty + s\int_0^\infty f(t)e^{-st}dt$, if $f(t)e^{-st} \to 0$ as $t \to \infty$, the right side is $-f(0) + sF(s)$, and the second-derivative property applies this once more to $\dot{f}$.
+> **[Calculus]** The first-derivative property is obtained by integrating the definition by parts. In $`\int_0^\infty \dot{f}(t)e^{-st}dt = \big[f(t)e^{-st}\big]_0^\infty + s\int_0^\infty f(t)e^{-st}dt`$, if $f(t)e^{-st} \to 0$ as $t \to \infty$, the right side is $-f(0) + sF(s)$, and the second-derivative property applies this once more to $\dot{f}$.
 
 ---
 
@@ -125,29 +125,29 @@ The frequency shift follows from the definition because $e^{-at}e^{-st} = e^{-(s
 
 **1.1) $2e^{-2t} + 3e^{-3t}$.** By linearity, each term is transformed with $e^{-at}$ in Table 2. Over a common denominator, the numerator is $2(s+3) + 3(s+2) = 5s + 12$.
 
-$$
+```math
 \mathcal{L}\lbrace2e^{-2t} + 3e^{-3t}\rbrace= \frac{2}{s+2} + \frac{3}{s+3} = \frac{5s+12}{(s+2)(s+3)}
-$$
+```
 
-**1.2) $te^{-5t}$.** Two methods give the same result. The frequency shift replaces $s$ with $s + 5$ in $\mathcal{L}\lbrace t\rbrace= 1/s^2$, and the multiplication-by-$t$ property differentiates $\mathcal{L}\lbrace e^{-5t}\rbrace= 1/(s+5)$ and flips the sign.
+**1.2) $te^{-5t}$.** Two methods give the same result. The frequency shift replaces $s$ with $s + 5$ in $\mathcal{L}\lbrace t\rbrace= 1/s^2$, and the multiplication-by-$`t`$ property differentiates $\mathcal{L}\lbrace e^{-5t}\rbrace= 1/(s+5)$ and flips the sign.
 
-$$
+```math
 \mathcal{L}\lbrace te^{-5t}\rbrace= \frac{1}{s^2}\bigg\vert_{s \to s+5} = \frac{1}{(s+5)^2}, \qquad -\frac{d}{ds}\left(\frac{1}{s+5}\right) = \frac{1}{(s+5)^2}
-$$
+```
 
 **1.3) $\sin t + \cos 3t$.** The transforms of the sine with $\omega = 1$ and the cosine with $\omega = 3$ are added.
 
-$$
+```math
 \mathcal{L}\lbrace\sin t + \cos 3t\rbrace= \frac{1}{s^2+1} + \frac{s}{s^2+9} = \frac{s^3 + s^2 + s + 9}{(s^2+1)(s^2+9)}
-$$
+```
 
 The numerator over the common denominator is $(s^2 + 9) + s(s^2 + 1) = s^3 + s^2 + s + 9$. The form with the two terms kept apart is easier to invert.
 
 **1.4) $e^{-2t}\sin 2t$.** The frequency shift is applied to $\mathcal{L}\lbrace\sin 2t\rbrace= 2/(s^2+4)$, replacing $s$ with $s + 2$.
 
-$$
+```math
 \mathcal{L}\lbrace e^{-2t}\sin 2t\rbrace= \frac{2}{(s+2)^2+4} = \frac{2}{s^2+4s+8}
-$$
+```
 
 The roots of the denominator are $-2 \pm j2$; the real part $-2$ gives the decaying exponential $e^{-2t}$, and the imaginary part $2$ gives the angular frequency of the oscillation. That the pole locations determine the shape of the terms in the time response (how fast they decay and at what angular frequency they oscillate) is the basis of the response analysis in Weeks 7 and 9. The size of each term is set by the coefficients of the partial fraction expansion.
 
@@ -169,61 +169,61 @@ A rational function $F(s) = N(s)/D(s)$ whose numerator has lower degree than its
 
 **2.1) $\dfrac{1}{s(s+3)(s+4)}$.** The poles $0$, $-3$, $-4$ are distinct, so each coefficient is found directly.
 
-$$
+```math
 \frac{1}{s(s+3)(s+4)} = \frac{K_1}{s} + \frac{K_2}{s+3} + \frac{K_3}{s+4}, \qquad K_1 = \frac{1}{(3)(4)} = \frac{1}{12}, \quad K_2 = \frac{1}{(-3)(1)} = -\frac{1}{3}, \quad K_3 = \frac{1}{(-4)(-1)} = \frac{1}{4}
-$$
+```
 
-$$
+```math
 f(t) = \frac{1}{12} - \frac{1}{3}e^{-3t} + \frac{1}{4}e^{-4t}, \quad t \ge 0
-$$
+```
 
 $K_2$ is the value at $s = -3$ of $1/[s(s+4)]$, what remains of $F(s)$ after covering $(s+3)$. As a check, $f(0) = 1/12 - 4/12 + 3/12 = 0$, and $f(t) \to 1/12$ as $t \to \infty$ agrees with the final value theorem $\lim_{s\to 0} sF(s) = 1/12$.
 
 **2.2) $\dfrac{10}{(s+1)^2(s+3)}$.** $-1$ is a pole repeated twice.
 
-$$
+```math
 \frac{10}{(s+1)^2(s+3)} = \frac{K_1}{(s+1)^2} + \frac{K_2}{s+1} + \frac{K_3}{s+3}
-$$
+```
 
-$$
+```math
 K_1 = \frac{10}{s+3}\bigg\vert_{s=-1} = 5, \qquad K_2 = \frac{d}{ds}\left(\frac{10}{s+3}\right)\bigg\vert_{s=-1} = -\frac{10}{(s+3)^2}\bigg\vert_{s=-1} = -\frac{5}{2}, \qquad K_3 = \frac{10}{(s+1)^2}\bigg\vert_{s=-3} = \frac{5}{2}
-$$
+```
 
-$$
+```math
 f(t) = 5te^{-t} - \frac{5}{2}e^{-t} + \frac{5}{2}e^{-3t}, \quad t \ge 0
-$$
+```
 
 That a repeated pole produces a $te^{-t}$ term is the same phenomenon as the repeated characteristic root in HW1.
 
 **2.3) $\dfrac{1}{s^2(s+2)}$.** $0$ is a pole repeated twice. Since $s^2F(s) = 1/(s+2)$,
 
-$$
+```math
 K_1 = \frac{1}{s+2}\bigg\vert_{s=0} = \frac{1}{2}, \qquad K_2 = \frac{d}{ds}\left(\frac{1}{s+2}\right)\bigg\vert_{s=0} = -\frac{1}{4}, \qquad K_3 = \frac{1}{s^2}\bigg\vert_{s=-2} = \frac{1}{4}
-$$
+```
 
-$$
+```math
 \frac{1}{s^2(s+2)} = \frac{1/2}{s^2} - \frac{1/4}{s} + \frac{1/4}{s+2} \quad\Longrightarrow\quad f(t) = \frac{1}{2}t - \frac{1}{4} + \frac{1}{4}e^{-2t}, \quad t \ge 0
-$$
+```
 
 The $1/s^2$ term produces a term that grows in proportion to $t$, so $f(t)$ does not converge to a constant. This is because $F(s)$ has a double pole at the origin, so $sF(s)$ still has a pole at the origin and violates the condition of the final value theorem (all poles of $sF(s)$ in the left half-plane).
 
 **2.4) $\dfrac{2}{s(s^2+s+2)}$.** The discriminant of $s^2 + s + 2$ is $1 - 8 = -7 < 0$, so the poles are complex conjugates. Setting $K_1/s + (Bs + C)/(s^2+s+2)$ gives $K_1 = 2/(s^2+s+2)\big\vert_{s=0} = 1$. Multiplying both sides by the denominator gives
 
-$$
+```math
 2 = (s^2 + s + 2) + (Bs + C)s = (1 + B)s^2 + (1 + C)s + 2
-$$
+```
 
 and comparing coefficients gives $B = -1$ and $C = -1$. Completing the square gives $s^2 + s + 2 = (s + \frac{1}{2})^2 + \frac{7}{4}$, so $\omega = \frac{\sqrt{7}}{2}$, and the numerator $s + 1$ is split as $(s + \frac{1}{2}) + \frac{1}{2}$.
 
-$$
+```math
 F(s) = \frac{1}{s} - \frac{s + \frac{1}{2}}{(s + \frac{1}{2})^2 + \left(\frac{\sqrt{7}}{2}\right)^2} - \frac{1}{\sqrt{7}}\cdot\frac{\frac{\sqrt{7}}{2}}{(s + \frac{1}{2})^2 + \left(\frac{\sqrt{7}}{2}\right)^2}
-$$
+```
 
 The last term writes $\frac{1}{2} = \frac{1}{\sqrt{7}}\cdot\frac{\sqrt{7}}{2}$ to create the numerator $\omega = \sqrt{7}/2$ of the sine term. Converting back with Table 2 gives
 
-$$
+```math
 f(t) = 1 - e^{-t/2}\cos\frac{\sqrt{7}}{2}t - \frac{1}{\sqrt{7}}e^{-t/2}\sin\frac{\sqrt{7}}{2}t, \quad t \ge 0
-$$
+```
 
 $f(0) = 1 - 1 = 0$, and $f(t) \to 1$ as $t \to \infty$, which agrees with the final value theorem $\lim_{s\to 0} sF(s) = 2/2 = 1$.
 
@@ -237,57 +237,57 @@ The procedure is the same for all four. (1) Transform both sides with the deriva
 
 **3.1) $\ddot{y} + 9y = 0$, $y(0) = 1$, $\dot{y}(0) = 0$.**
 
-$$
+```math
 s^2Y(s) - s\cdot 1 - 0 + 9Y(s) = 0 \quad\Longrightarrow\quad Y(s) = \frac{s}{s^2 + 9} = \frac{s}{s^2 + 3^2} \quad\Longrightarrow\quad y(t) = \cos 3t
-$$
+```
 
 The poles $\pm j3$ lie on the imaginary axis, so the response keeps oscillating with amplitude 1 without decaying.
 
 **3.2) $\ddot{y} + 5\dot{y} + 4y = e^{-3t}$, $y(0) = 1$, $\dot{y}(0) = 0$.** The transform of the left side is $s^2Y - s + 5(sY - 1) + 4Y = (s^2 + 5s + 4)Y - (s + 5)$.
 
-$$
+```math
 (s^2 + 5s + 4)Y(s) = s + 5 + \frac{1}{s+3} = \frac{(s+5)(s+3) + 1}{s+3} = \frac{s^2 + 8s + 16}{s+3} = \frac{(s+4)^2}{s+3}
-$$
+```
 
 Since $s^2 + 5s + 4 = (s+1)(s+4)$, one factor $(s + 4)$ cancels.
 
-$$
+```math
 Y(s) = \frac{(s+4)^2}{(s+1)(s+4)(s+3)} = \frac{s+4}{(s+1)(s+3)} = \frac{3/2}{s+1} - \frac{1/2}{s+3}
-$$
+```
 
 The coefficients are $(s+4)/(s+3)\big\vert_{s=-1} = 3/2$ and $(s+4)/(s+1)\big\vert_{s=-3} = -1/2$.
 
-$$
+```math
 y(t) = \frac{3}{2}e^{-t} - \frac{1}{2}e^{-3t}, \quad t \ge 0
-$$
+```
 
 As a check, $y(0) = 1$, $\dot{y}(0) = -3/2 + 3/2 = 0$, and in $\ddot{y} + 5\dot{y} + 4y$ the coefficient of $e^{-t}$ is $\frac{3}{2} - \frac{15}{2} + 6 = 0$ and that of $e^{-3t}$ is $-\frac{9}{2} + \frac{15}{2} - 2 = 1$. The $e^{-4t}$ term belonging to the characteristic root $-4$ is absent because its coefficient becomes 0 for this combination of initial conditions and input, which appears in the expression as the cancellation.
 
 **3.3) $\ddot{y} + 2\dot{y} + 2y = u_s(t)$, $y(0) = 0$, $\dot{y}(0) = 0$.**
 
-$$
+```math
 (s^2 + 2s + 2)Y(s) = \frac{1}{s} \quad\Longrightarrow\quad Y(s) = \frac{1}{s(s^2 + 2s + 2)}
-$$
+```
 
 The coefficient of $K_1/s$ is $1/2$. In $1 = \frac{1}{2}(s^2 + 2s + 2) + (Bs + C)s$, the $s^2$ coefficient gives $\frac{1}{2} + B = 0$ and the $s$ coefficient gives $1 + C = 0$, so $B = -\frac{1}{2}$ and $C = -1$. The denominator is completed to $(s+1)^2 + 1$, and the numerator $s + 2$ is split as $(s + 1) + 1$.
 
-$$
+```math
 Y(s) = \frac{1/2}{s} - \frac{1}{2}\cdot\frac{(s+1) + 1}{(s+1)^2 + 1} \quad\Longrightarrow\quad y(t) = \frac{1}{2} - \frac{1}{2}e^{-t}(\cos t + \sin t), \quad t \ge 0
-$$
+```
 
 The differential equation is the same as in HW1 Problem 5 (2) with zero initial conditions, and this solution is the **unit step response** of that system. The final value $1/2$ agrees with the final value theorem $\lim_{s\to 0} sY(s) = 1/2$.
 
 **3.4) $\ddot{y} + 4y = u_s(t)$, $y(0) = 1$, $\dot{y}(0) = 0$.**
 
-$$
+```math
 s^2Y(s) - s + 4Y(s) = \frac{1}{s} \quad\Longrightarrow\quad Y(s) = \frac{s + \frac{1}{s}}{s^2 + 4} = \frac{s^2 + 1}{s(s^2 + 4)}
-$$
+```
 
 $K_1 = (s^2+1)/(s^2+4)\big\vert_{s=0} = 1/4$, and from $s^2 + 1 = \frac{1}{4}(s^2 + 4) + (Bs + C)s$, $B = 3/4$ and $C = 0$.
 
-$$
+```math
 Y(s) = \frac{1/4}{s} + \frac{3}{4}\cdot\frac{s}{s^2 + 2^2} \quad\Longrightarrow\quad y(t) = \frac{1}{4} + \frac{3}{4}\cos 2t, \quad t \ge 0
-$$
+```
 
 $y(0) = 1/4 + 3/4 = 1$. The poles $\pm j2$ lie on the imaginary axis, so the response keeps oscillating about $1/4$ without converging, and the final value theorem cannot be applied.
 
@@ -308,7 +308,7 @@ In the system of Figure 2, a spring $K$ fixed to the wall, a damper $B$ between 
 | Element | Translational Motion | Rotational Motion |
 |:-----|:-----|:-----|
 | Inertia | Mass $M$: $f = M\ddot{y}$ | Moment of inertia $J$: $\tau = J\ddot{\theta}$ |
-| Damper (viscous friction) | $f = B(\dot{y}_a - \dot{y}_b)$, proportional to the relative velocity of the two ends | $\tau = B(\dot{\theta}_a - \dot{\theta}_b)$ |
+| Damper (viscous friction) | $`f = B(\dot{y}_a - \dot{y}_b)`$, proportional to the relative velocity of the two ends | $`\tau = B(\dot{\theta}_a - \dot{\theta}_b)`$ |
 | Spring | $f = K(y_a - y_b)$, proportional to the relative displacement of the two ends | $\tau = K(\theta_a - \theta_b)$ |
 
 *Table 4. Forces and torques produced by mechanical elements*
@@ -317,17 +317,17 @@ The equations of motion are obtained by writing **Newton's second law** $M\ddot{
 
 ### 6.2 Equations of Motion
 
-**Mass $M$.** The external force $f$ acts to the right, and when the mass moves right faster than the junction ($\dot{y}_1 > \dot{y}_2$), the damper stretches and pulls the mass to the left. Therefore
+**Mass $M$.** The external force $f$ acts to the right, and when the mass moves right faster than the junction ($`\dot{y}_1 > \dot{y}_2`$), the damper stretches and pulls the mass to the left. Therefore
 
-$$
+```math
 M\frac{d^2y_1}{dt^2} = f - B\left(\frac{dy_1}{dt} - \frac{dy_2}{dt}\right)
-$$
+```
 
-**Junction $y_2$.** The same damper pulls the junction to the right with the force $B(\dot{y}_1 - \dot{y}_2)$, and the spring pulls the junction to the left with the force $Ky_2$, proportional to its stretch $y_2$. The junction is massless, so the two forces are equal.
+**Junction $y_2$.** The same damper pulls the junction to the right with the force $`B(\dot{y}_1 - \dot{y}_2)`$, and the spring pulls the junction to the left with the force $Ky_2$, proportional to its stretch $y_2$. The junction is massless, so the two forces are equal.
 
-$$
+```math
 B\left(\frac{dy_1}{dt} - \frac{dy_2}{dt}\right) = Ky_2
-$$
+```
 
 This equation means that a spring and a damper connected in series transmit forces of the same magnitude.
 
@@ -335,23 +335,23 @@ This equation means that a spring and a damper connected in series transmit forc
 
 With all initial conditions set to 0, the two equations are Laplace transformed.
 
-$$
+```math
 Ms^2Y_1(s) = F(s) - Bs\big(Y_1(s) - Y_2(s)\big), \qquad Bs\big(Y_1(s) - Y_2(s)\big) = KY_2(s)
-$$
+```
 
 Solving the second equation for $Y_2$ gives $Y_2(s) = \dfrac{Bs}{Bs + K}Y_1(s)$. Substituting it, the damper force becomes
 
-$$
+```math
 Bs\big(Y_1 - Y_2\big) = Bs\left(1 - \frac{Bs}{Bs + K}\right)Y_1 = \frac{BKs}{Bs + K}Y_1
-$$
+```
 
 and the first equation becomes $\left(Ms^2 + \dfrac{BKs}{Bs + K}\right)Y_1(s) = F(s)$. Clearing the denominator gives the transfer function.
 
-$$
+```math
 \frac{Y_1(s)}{F(s)} = \frac{Bs + K}{Ms^2(Bs + K) + BKs} = \frac{Bs + K}{MBs^3 + MKs^2 + BKs} = \frac{Bs + K}{s\,(MBs^2 + MKs + BK)}
-$$
+```
 
-Multiplying both sides by the denominator of the transfer function gives $(MBs^3 + MKs^2 + BKs)Y_1(s) = (Bs + K)F(s)$, and turning $s$ back into time differentiation gives a single third-order differential equation in which $y_2$ is eliminated from the two equations of motion, $MB\dddot{y}_1 + MK\ddot{y}_1 + BK\dot{y}_1 = B\dot{f} + Kf$. This equation is also an equation of motion of the mass. Two limits confirm the result. As $B \to \infty$, the damper becomes rigid like a rod, the mass is attached directly to the spring, and the transfer function becomes $1/(Ms^2 + K)$. As $K \to \infty$, the spring becomes rigid, the damper is attached directly to the wall, and the transfer function becomes $1/[s(Ms + B)]$. The pole at the origin, $s = 0$, means that under a constant force the damper keeps stretching without end, so the displacement of the mass grows without bound.
+Multiplying both sides by the denominator of the transfer function gives $(MBs^3 + MKs^2 + BKs)Y_1(s) = (Bs + K)F(s)$, and turning $s$ back into time differentiation gives a single third-order differential equation in which $y_2$ is eliminated from the two equations of motion, $`MB\dddot{y}_1 + MK\ddot{y}_1 + BK\dot{y}_1 = B\dot{f} + Kf`$. This equation is also an equation of motion of the mass. Two limits confirm the result. As $B \to \infty$, the damper becomes rigid like a rod, the mass is attached directly to the spring, and the transfer function becomes $1/(Ms^2 + K)$. As $K \to \infty$, the spring becomes rigid, the damper is attached directly to the wall, and the transfer function becomes $1/[s(Ms + B)]$. The pole at the origin, $s = 0$, means that under a constant force the damper keeps stretching without end, so the displacement of the mass grows without bound.
 
 ---
 
@@ -369,25 +369,25 @@ In Figure 3, the input torque $\tau$ turns the shaft of the inertia $J_1$, and t
 
 Two meshing gears turn through the same arc length at the contact point, so $r_1\theta_1 = r_2\theta_2$, and since the number of teeth is proportional to the radius, the following holds.
 
-$$
+```math
 N_1\theta_1 = N_2\theta_2 \quad\Longrightarrow\quad \theta_2 = \frac{N_1}{N_2}\theta_1
-$$
+```
 
-An ideal gear without losses has the same power on both shafts, $\tau_1\dot{\theta}_1 = \tau_2\dot{\theta}_2$, so the torque ratio is the reciprocal of the angle ratio.
+An ideal gear without losses has the same power on both shafts, $`\tau_1\dot{\theta}_1 = \tau_2\dot{\theta}_2`$, so the torque ratio is the reciprocal of the angle ratio.
 
-$$
+```math
 \frac{\tau_2}{\tau_1} = \frac{\theta_1}{\theta_2} = \frac{N_2}{N_1}
-$$
+```
 
-Reducing speed with a larger gear ($N_2 > N_1$) scales the angle down by $N_1/N_2$ and the torque up by $N_2/N_1$.
+Reducing speed with a larger gear ($`N_2 > N_1`$) scales the angle down by $N_1/N_2$ and the torque up by $N_2/N_1$.
 
 ### 7.2 Equations of Motion
 
 The input torque $\tau$ and the opposing reaction torque $\tau_1$ act on the $J_1$ shaft, and on the $J_2$ shaft the torque $\tau_2$ from the gears balances the torques of the inertia, the damper, and the spring (rotational motion in Table 4).
 
-$$
+```math
 J_1\frac{d^2\theta_1}{dt^2} = \tau - \tau_1, \qquad \tau_2 = J_2\frac{d^2\theta_2}{dt^2} + B\frac{d\theta_2}{dt} + K\theta_2
-$$
+```
 
 These two equations together with the gear relations of Section 7.1, $\tau_2 = (N_2/N_1)\tau_1$ and $\theta_2 = (N_1/N_2)\theta_1$, are the equations of motion of the system.
 
@@ -395,21 +395,21 @@ These two equations together with the gear relations of Section 7.1, $\tau_2 = (
 
 $\tau_1$ and $\theta_1$ are eliminated. From the gear relations, $\tau_1 = (N_1/N_2)\tau_2$ and $\theta_1 = (N_2/N_1)\theta_2$, so the first equation becomes
 
-$$
+```math
 \tau = J_1\frac{N_2}{N_1}\ddot{\theta}_2 + \frac{N_1}{N_2}\left(J_2\ddot{\theta}_2 + B\dot{\theta}_2 + K\theta_2\right)
-$$
+```
 
 Multiplying both sides by $N_2/N_1$ gives
 
-$$
+```math
 \frac{N_2}{N_1}\tau = \left[J_2 + \left(\frac{N_2}{N_1}\right)^2J_1\right]\ddot{\theta}_2 + B\dot{\theta}_2 + K\theta_2
-$$
+```
 
 and the Laplace transform with zero initial conditions gives the transfer function.
 
-$$
+```math
 \frac{\Theta_2(s)}{T(s)} = \frac{N_2/N_1}{\left[J_2 + \left(\frac{N_2}{N_1}\right)^2J_1\right]s^2 + Bs + K} = \frac{N_1N_2}{(N_1^2J_2 + N_2^2J_1)s^2 + N_1^2Bs + N_1^2K}
-$$
+```
 
 The second form multiplies the numerator and denominator by $N_1^2$. The expression shows the principle of **reflected inertia**: moving $J_1$ to the $J_2$ shaft multiplies it by $(N_2/N_1)^2$. Conversely, moving the load to the $J_1$ shaft and writing the equation in $\theta_1$ multiplies $J_2$, $B$, and $K$ by $(N_1/N_2)^2$, giving the denominator $\big[J_1 + (\tfrac{N_1}{N_2})^2J_2\big]s^2 + (\tfrac{N_1}{N_2})^2Bs + (\tfrac{N_1}{N_2})^2K$, and multiplying by $\Theta_2 = (N_1/N_2)\Theta_1$ gives the same transfer function. As a check, $N_1 = N_2$ is the same as putting both inertias on one shaft, giving $1/[(J_1 + J_2)s^2 + Bs + K]$.
 
@@ -438,17 +438,17 @@ flowchart LR
 
 Let $E(s)$ be the output of $\Sigma_1$. Then the output of $G_1$ is $G_1E$, and the signals are as follows (with $(s)$ omitted from here on).
 
-$$
+```math
 Y = G_2G_4(G_1E) + G_5(G_1E) = G_1(G_2G_4 + G_5)E, \qquad E = R - G_3G_2G_4(G_1E)
-$$
+```
 
 Solving the second equation for $E$ gives $E = \dfrac{R}{1 + G_1G_2G_3G_4}$, and substituting it into the first gives the transfer function.
 
-$$
+```math
 \frac{Y(s)}{R(s)} = \frac{G_1(G_2G_4 + G_5)}{1 + G_1G_2G_3G_4} = \frac{G_1G_2G_4 + G_1G_5}{1 + G_1G_2G_3G_4}
-$$
+```
 
-From the viewpoint of block diagram reduction, the $G_5$ path starts inside the feedback loop (after $G_1$) but ends outside the feedback takeoff point, so the $G_5$ signal is not fed back and is only added to the output. Therefore only the loop gain $G_1G_2G_3G_4$ appears in the denominator, and the numerator is the sum of the products along the two paths from input to output, $G_1G_2G_4$ and $G_1G_5$. Mason's gain formula from Week 6 gives the same result. The forward paths are $P_1 = G_1G_2G_4$ and $P_2 = G_1G_5$, and there is one loop $L_1 = -G_1G_2G_3G_4$, so $\Delta = 1 + G_1G_2G_3G_4$, and since both paths share $G_1$ with the loop, $\Delta_1 = \Delta_2 = 1$. Therefore $Y/R = (P_1 + P_2)/\Delta$, the same as above.
+From the viewpoint of block diagram reduction, the $G_5$ path starts inside the feedback loop (after $`G_1`$) but ends outside the feedback takeoff point, so the $G_5$ signal is not fed back and is only added to the output. Therefore only the loop gain $G_1G_2G_3G_4$ appears in the denominator, and the numerator is the sum of the products along the two paths from input to output, $G_1G_2G_4$ and $G_1G_5$. Mason's gain formula from Week 6 gives the same result. The forward paths are $P_1 = G_1G_2G_4$ and $P_2 = G_1G_5$, and there is one loop $L_1 = -G_1G_2G_3G_4$, so $\Delta = 1 + G_1G_2G_3G_4$, and since both paths share $G_1$ with the loop, $\Delta_1 = \Delta_2 = 1$. Therefore $Y/R = (P_1 + P_2)/\Delta$, the same as above.
 
 ---
 
@@ -458,7 +458,7 @@ From the viewpoint of block diagram reduction, the $G_5$ path starts inside the 
 
 | Concept | Key Summary |
 |:-----|:-----|
-| Laplace transform | $F(s) = \int_0^\infty f(t)e^{-st}dt$, and most functions are transformed with the pairs of Table 2 and linearity, the frequency shift, and the multiplication-by-$t$ property. |
+| Laplace transform | $F(s) = \int_0^\infty f(t)e^{-st}dt$, and most functions are transformed with the pairs of Table 2 and linearity, the frequency shift, and the multiplication-by-$`t`$ property. |
 | Partial fraction expansion | Distinct poles are handled with $(s-p)F(s)\vert_{s=p}$, repeated poles with differentiation, and complex poles by completing the square and splitting into sine and cosine terms before inverting. |
 | Poles and responses | Real poles produce exponentials, repeated poles $te^{pt}$, complex poles damped oscillations, poles on the imaginary axis sustained oscillations, and repeated poles at the origin growing terms. |
 | Solving differential equations | The derivative properties produce an algebraic equation that includes the initial conditions, $Y(s)$ is found, and it is inverted by partial fractions. |
@@ -487,7 +487,7 @@ From the viewpoint of block diagram reduction, the $G_5$ path starts inside the 
    <details>
    <summary>Answer</summary>
 
-   The coefficients are $(s+3)/(s+2)\vert_{s=-1} = 2$ and $(s+3)/(s+1)\vert_{s=-2} = -1$, so $F(s) = 2/(s+1) - 1/(s+2)$ and $f(t) = 2e^{-t} - e^{-2t}$ ($t \ge 0$).
+   The coefficients are $(s+3)/(s+2)\vert_{s=-1} = 2$ and $(s+3)/(s+1)\vert_{s=-2} = -1$, so $F(s) = 2/(s+1) - 1/(s+2)$ and $f(t) = 2e^{-t} - e^{-2t}$ ($`t \ge 0`$).
 
    </details>
 
@@ -505,7 +505,7 @@ From the viewpoint of block diagram reduction, the $G_5$ path starts inside the 
    <details>
    <summary>Answer</summary>
 
-   With $y_2$ the junction displacement, $B\dot{y}_2 = K(y_1 - y_2)$ and $M\ddot{y}_1 = f - K(y_1 - y_2)$. The first equation gives $Y_2 = KY_1/(Bs + K)$, so the spring force on the mass is $K(Y_1 - Y_2) = \frac{BKs}{Bs + K}Y_1$, the same as the damper force in Section 6.3, and the transfer function is also the same, $(Bs + K)/[s(MBs^2 + MKs + BK)]$. Two elements connected in series transmit the same force, so the force on the mass does not depend on their order, and only the expression for the junction displacement changes.
+   With $y_2$ the junction displacement, $`B\dot{y}_2 = K(y_1 - y_2)`$ and $`M\ddot{y}_1 = f - K(y_1 - y_2)`$. The first equation gives $Y_2 = KY_1/(Bs + K)$, so the spring force on the mass is $K(Y_1 - Y_2) = \frac{BKs}{Bs + K}Y_1$, the same as the damper force in Section 6.3, and the transfer function is also the same, $(Bs + K)/[s(MBs^2 + MKs + BK)]$. Two elements connected in series transmit the same force, so the force on the mass does not depend on their order, and only the expression for the junction displacement changes.
 
    </details>
 

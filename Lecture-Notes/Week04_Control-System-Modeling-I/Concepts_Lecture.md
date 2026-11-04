@@ -87,19 +87,19 @@ Mechanical motion is divided into two kinds: **translational motion** and **rota
 
 *Figure 1. The motion of a rolling wheel shown as the sum of the translation of the center of mass and the rotation about the center of mass*
 
-On the left of Figure 1, every point of the wheel moves with the same velocity $\vec{v}_{CM}$ as the center of mass (CM), which is translation; in the middle, the wheel rotates about the center of mass, so the top point has velocity $+\vec{v}_{CM}$ and the bottom point $-\vec{v}_{CM}$. On the right, where the two motions are added, the top point moves at $2\vec{v}_{CM}$, while the bottom point touching the ground is at rest, but only for an instant, because the two velocities cancel. In this way even a complex motion can be modeled by splitting it into translation and rotation. This section covers translation, and Section 2 covers rotation.
+On the left of Figure 1, every point of the wheel moves with the same velocity $`\vec{v}_{CM}`$ as the center of mass (CM), which is translation; in the middle, the wheel rotates about the center of mass, so the top point has velocity $`+\vec{v}_{CM}`$ and the bottom point $`-\vec{v}_{CM}`$. On the right, where the two motions are added, the top point moves at $`2\vec{v}_{CM}`$, while the bottom point touching the ground is at rest, but only for an instant, because the two velocities cancel. In this way even a complex motion can be modeled by splitting it into translation and rotation. This section covers translation, and Section 2 covers rotation.
 
 ### 1.4 Laws of Motion for Translational Systems
 
 In translational motion, force is proportional to acceleration. The constant of proportionality is the mass.
 
-$$
+```math
 f = ma
-$$
+```
 
 | Quantity | Symbol | Unit |
 |:-----|:-----|:-----|
-| Force | $f$ | N (newton), $1\,\text{N} = 1\,\text{kg}\cdot\text{m/s}^2$ |
+| Force | $f$ | N (newton), $`1\,\text{N} = 1\,\text{kg}\cdot\text{m/s}^2`$ |
 | Mass | $M$ or $m$ | kg |
 | Displacement | $y$ | m |
 | Velocity | $\dfrac{dy}{dt}$ | m/s |
@@ -107,21 +107,21 @@ $$
 
 *Table 2. Quantities and units of translational motion*
 
-1 N is the force that accelerates a body of mass 1 kg at $1\,\text{m/s}^2$. A mechanical system in translational motion consists of three elements: **mass, spring, and friction**. Sections 1.5 through 1.7 cover the force each element produces in turn.
+1 N is the force that accelerates a body of mass 1 kg at $`1\,\text{m/s}^2`$. A mechanical system in translational motion consists of three elements: **mass, spring, and friction**. Sections 1.5 through 1.7 cover the force each element produces in turn.
 
 ### 1.5 Mass
 
-The force a body experiences in the Earth's gravitational field is its **weight**. The **mass** of a body is its weight divided by the gravitational acceleration $g = 9.8\,\text{m/s}^2$. A body that experiences a force of 9.8 N in the gravitational field therefore has a mass of 1 kg. Note that weight is a force, not a mass, so its unit is N. The everyday phrase "a weight of 1 kg" means, strictly, 1 kgf (kilogram-force), which is the following.
+The force a body experiences in the Earth's gravitational field is its **weight**. The **mass** of a body is its weight divided by the gravitational acceleration $`g = 9.8\,\text{m/s}^2`$. A body that experiences a force of 9.8 N in the gravitational field therefore has a mass of 1 kg. Note that weight is a force, not a mass, so its unit is N. The everyday phrase "a weight of 1 kg" means, strictly, 1 kgf (kilogram-force), which is the following.
 
-$$
+```math
 1\,\text{kgf} = 1\,\text{kg} \times 9.8\,\text{m/s}^2 \approx 9.8\,\text{N}
-$$
+```
 
 The equation of motion of a body of mass $M$ acted on by a force $f$ is Newton's second law with the acceleration written as the second derivative of the displacement $y$.
 
-$$
+```math
 f = M\frac{d^2y}{dt^2} = Ma
-$$
+```
 
 ![Figure 2. A mass M that moves by the displacement y under a force f](../../images/Week04_4-1_p10.png)
 
@@ -129,23 +129,23 @@ $$
 
 As in Figure 2, arrows mark the positive directions of the displacement $y$ and the force $f$. Fixing the directions first makes the signs in the equation of motion consistent.
 
-**Example 1.** A body of mass 8 kg moves upward with an acceleration of $3.5\,\text{m/s}^2$. With $g = 9.8\,\text{m/s}^2$, find the force applied to the body.
+**Example 1.** A body of mass 8 kg moves upward with an acceleration of $`3.5\,\text{m/s}^2`$. With $`g = 9.8\,\text{m/s}^2`$, find the force applied to the body.
 
 Take upward as positive. The body is acted on by an upward pulling force $F$ and the downward gravitational force $Mg$, so the net force is $F - Mg$, and by Newton's second law it equals $Ma$.
 
-$$
+```math
 F - Mg = Ma \quad \Rightarrow \quad F = M(g + a) = 8 \times (9.8 + 3.5) = 8 \times 13.3 = 106.4\,\text{N}
-$$
+```
 
-The net force needed to accelerate the body is $Ma = 8 \times 3.5 = 28\,\text{N}$; adding the force that overcomes gravity, $Mg = 8 \times 9.8 = 78.4\,\text{N}$, gives the required upward force of 106.4 N.
+The net force needed to accelerate the body is $`Ma = 8 \times 3.5 = 28\,\text{N}`$; adding the force that overcomes gravity, $`Mg = 8 \times 9.8 = 78.4\,\text{N}`$, gives the required upward force of 106.4 N.
 
 ### 1.6 Spring
 
 The property of deforming under a force and returning to the original state when the force is removed is called **elasticity**, and a mechanical element with elasticity is a **spring**. The force applied to a spring is proportional to how far the spring stretches (Hooke's law), and the constant of proportionality $K$ is the **spring constant**. Its unit is N/m, and a larger spring constant means a hard spring that stretches less under the same force.
 
-$$
+```math
 f = Ky
-$$
+```
 
 ![Figure 3. A spring with spring constant K whose one end is fixed to a wall](../../images/Week04_4-1_p12.png)
 
@@ -153,7 +153,7 @@ $$
 
 In Figure 3, stretching the spring by $y$ with the force $f$ takes a force $f = Ky$. Conversely, a spring stretched by $y$ produces a restoring force $Ky$ opposite to the stretch. Equations of motion use this restoring force.
 
-**Example 2.** A body of mass 400 g hangs at rest from a spring with spring constant 14 N/m. Find how far the spring stretches (the displacement). $g = 9.8\,\text{m/s}^2$.
+**Example 2.** A body of mass 400 g hangs at rest from a spring with spring constant 14 N/m. Find how far the spring stretches (the displacement). $`g = 9.8\,\text{m/s}^2`$.
 
 ![Figure 4. A body of mass 400 g hanging from a spring](../../images/Week04_4-1_p13.png)
 
@@ -161,9 +161,9 @@ In Figure 3, stretching the spring by $y$ with the force $f$ takes a force $f = 
 
 In kilograms the mass is 0.4 kg. The body is at rest, so its acceleration is 0, and the restoring force $Ky$ of the spring equals the weight $Mg$.
 
-$$
+```math
 Ky = Mg \quad \Rightarrow \quad y = \frac{Mg}{K} = \frac{0.4 \times 9.8}{14} = \frac{3.92}{14} = 0.28\,\text{m}
-$$
+```
 
 The spring stretches 28 cm.
 
@@ -173,9 +173,9 @@ The spring stretches 28 cm.
 
 An element whose friction force is proportional to the speed of the body is called **linear friction** or viscous friction, and its constant of proportionality $B$ is the linear friction coefficient or **damping coefficient**. Its unit is $\text{N}\cdot\text{s/m}$. In mechanical drawings, linear friction is drawn as a **damper**, shaped like a piston inside an oil-filled cylinder.
 
-$$
+```math
 f = B\frac{dy}{dt}
-$$
+```
 
 ![Figure 5. A damper with damping coefficient B and its force relation](../../images/Week04_4-1_p14.png)
 
@@ -187,9 +187,9 @@ The difference between the two elements is that the spring force is proportional
 
 Besides linear friction, mechanical motion also involves **nonlinear friction**, in which the relation between velocity and force is nonlinear. A typical example is **Coulomb friction**. The Coulomb friction force always has the same magnitude $F_c$ regardless of the speed, and only its direction changes with the direction of the velocity. Friction between dry sliding surfaces is close to this.
 
-$$
+```math
 f = \begin{cases} F_c, & \dot{y} > 0 \\ -F_c, & \dot{y} < 0 \end{cases}
-$$
+```
 
 $\dot{y}$ is shorthand for $\frac{dy}{dt}$.
 
@@ -221,9 +221,9 @@ Modeling proceeds in this order. First, find every force acting on the body (a d
 
 The sum of the forces on the body is proportional to its acceleration, which gives the following.
 
-$$
+```math
 M\frac{d^2y}{dt^2} = f - Ky - B\frac{dy}{dt} \quad \Rightarrow \quad M\frac{d^2y}{dt^2} + B\frac{dy}{dt} + Ky = f
-$$
+```
 
 The equation of motion of this system is a second-order differential equation. To express the system simply as a relation between input and output, we use the transfer function.
 
@@ -231,9 +231,9 @@ The equation of motion of this system is a second-order differential equation. T
 
 Setting the initial conditions to 0 and taking the Laplace transform of both sides turns $\frac{d}{dt}$ into multiplication by $s$, by the differentiation property of Week 3.
 
-$$
+```math
 (Ms^2 + Bs + K)\,Y(s) = F(s) \quad \Rightarrow \quad \frac{Y(s)}{F(s)} = \frac{1}{Ms^2 + Bs + K}
-$$
+```
 
 > **Key Point:** The mass produces a force proportional to acceleration, the damper one proportional to velocity, and the spring one proportional to displacement, so the equation of motion of the mass-spring-damper system contains one each of the second, first, and zeroth derivatives of $y$.
 
@@ -249,39 +249,39 @@ There are two masses, so one equation of motion is set up for each. The sum of t
 
 **Mass $M_1$:** The external force $f$ acts to the right, and the restoring force of the spring $K(y_1 - y_2)$ acts to the left.
 
-$$
+```math
 M_1\frac{d^2y_1}{dt^2} = f - K(y_1 - y_2)
-$$
+```
 
 **Mass $M_2$:** By Newton's third law, the same spring pulls $M_2$ to the right with the force $K(y_1 - y_2)$, and the damper produces the force $B\frac{dy_2}{dt}$ opposite to the motion.
 
-$$
+```math
 M_2\frac{d^2y_2}{dt^2} = K(y_1 - y_2) - B\frac{dy_2}{dt}
-$$
+```
 
 Rearranging gives two second-order differential equations, that is, a system of simultaneous second-order differential equations.
 
-$$
+```math
 M_1\frac{d^2y_1}{dt^2} + K(y_1 - y_2) = f, \qquad M_2\frac{d^2y_2}{dt^2} + B\frac{dy_2}{dt} + K(y_2 - y_1) = 0
-$$
+```
 
 Setting the initial conditions to 0 and taking the Laplace transform gives a system of algebraic equations, which can be written with the matrices of Week 3.
 
-$$
+```math
 \begin{bmatrix} M_1s^2 + K & -K \\ -K & M_2s^2 + Bs + K \end{bmatrix} \begin{bmatrix} Y_1(s) \\ Y_2(s) \end{bmatrix} = \begin{bmatrix} F(s) \\ 0 \end{bmatrix}
-$$
+```
 
 Let $\Delta(s)$ be the determinant of the coefficient matrix.
 
-$$
+```math
 \Delta(s) = (M_1s^2 + K)(M_2s^2 + Bs + K) - K^2 = M_1M_2s^4 + M_1Bs^3 + (M_1 + M_2)Ks^2 + BKs
-$$
+```
 
 Solving with the $2 \times 2$ inverse formula (Week 3) gives the two transfer functions.
 
-$$
+```math
 \begin{bmatrix} Y_1(s) \\ Y_2(s) \end{bmatrix} = \frac{1}{\Delta(s)}\begin{bmatrix} M_2s^2 + Bs + K & K \\ K & M_1s^2 + K \end{bmatrix} \begin{bmatrix} F(s) \\ 0 \end{bmatrix} \quad \Rightarrow \quad \frac{Y_1(s)}{F(s)} = \frac{M_2s^2 + Bs + K}{\Delta(s)}, \qquad \frac{Y_2(s)}{F(s)} = \frac{K}{\Delta(s)}
-$$
+```
 
 $\Delta(s)$ has $s$ as a factor, so there is a pole at $s = 0$. The reason is that the system is not attached to the wall by a spring: under a constant force the damper keeps extending, and the whole system keeps moving at the constant velocity $f/B$. For small $s$, $\Delta(s) \approx BKs$, so $\frac{Y_2(s)}{F(s)} \approx \frac{1}{Bs}$, which confirms that the velocity, not the displacement, settles at the constant value $f/B$.
 
@@ -297,9 +297,9 @@ This section covers the modeling of mechanical systems that turn about an axis. 
 
 Newton's laws of motion apply to rotation just as they do to translation. The difference is that **torque** replaces force, the **moment of inertia** replaces mass, and **angular acceleration** replaces acceleration. Torque is the turning effect of a force; its magnitude is the magnitude of the force times the perpendicular distance from the axis of rotation to the line of action of the force. Torque is proportional to angular acceleration.
 
-$$
+```math
 \tau = J\alpha = J\frac{d^2\theta}{dt^2}
-$$
+```
 
 | Translational motion | Unit | Rotational motion | Unit |
 |:-----|:-----|:-----|:-----|
@@ -320,37 +320,37 @@ The **moment of inertia** measures how strongly a body resists changes in its ro
 
 As the simplest case, consider a body of mass $M$ fixed to one end of a massless rod so that it turns at distance $R$ from the axis. The moment of inertia is the mass times the square of the distance.
 
-$$
+```math
 J = MR^2
-$$
+```
 
 ![Figure 9. A mass M at distance R from the axis of rotation and its moment of inertia](../../images/Week04_4-2_p05.png)
 
 *Figure 9. A mass M at distance R from the axis of rotation and its moment of inertia*
 
-For a body whose mass is spread out, the body is divided into small pieces and the quantities $r^2\,dm$ of all pieces are added, that is, integrated. Let us find the moment of inertia of a disk of uniform thickness and radius $R$ rotating about its center.
+For a body whose mass is spread out, the body is divided into small pieces and the quantities $`r^2\,dm`$ of all pieces are added, that is, integrated. Let us find the moment of inertia of a disk of uniform thickness and radius $R$ rotating about its center.
 
 ![Figure 10. A disk divided into small pieces of size dr in the radial direction and dθ in the angular direction](../../images/Week04_4-2_p06.png)
 
 *Figure 10. A disk divided into small pieces of size dr in the radial direction and dθ in the angular direction*
 
-Let $\rho$ be the mass per unit area of the disk. The small piece at distance $r$ from the center and angle $\theta$ is nearly a rectangle with radial length $dr$ and arc length $r\,d\theta$, so its area is $r\,dr\,d\theta$ and its mass is the following.
+Let $\rho$ be the mass per unit area of the disk. The small piece at distance $r$ from the center and angle $\theta$ is nearly a rectangle with radial length $dr$ and arc length $`r\,d\theta`$, so its area is $`r\,dr\,d\theta`$ and its mass is the following.
 
-$$
+```math
 dm = \rho\,r\,dr\,d\theta
-$$
+```
 
-This small rectangle lies at distance $r$ from the axis, so its moment of inertia is $dJ = r^2\,dm = \rho\,r^3\,dr\,d\theta$. Integrate over the whole disk, $r$ from 0 to $R$ and $\theta$ from 0 to $2\pi$.
+This small rectangle lies at distance $r$ from the axis, so its moment of inertia is $`dJ = r^2\,dm = \rho\,r^3\,dr\,d\theta`$. Integrate over the whole disk, $r$ from 0 to $R$ and $\theta$ from 0 to $2\pi$.
 
-$$
+```math
 J = \int_0^{2\pi}\int_0^R \rho\,r^3\,dr\,d\theta = \rho \cdot \frac{R^4}{4} \cdot 2\pi = \frac{\pi\rho R^4}{2}
-$$
+```
 
 The total mass of the disk is $M = \rho \times (\text{area}) = \rho\pi R^2$, so $\pi\rho R^4 = (\rho\pi R^2)R^2 = MR^2$.
 
-$$
+```math
 J = \frac{1}{2}MR^2
-$$
+```
 
 > **Key Point:** For the same mass and radius, $J = MR^2$ if all the mass is on the rim, and half of that, $\frac{1}{2}MR^2$, if it is spread evenly as in a disk. Mass closer to the axis contributes less to the moment of inertia.
 
@@ -358,9 +358,9 @@ $$
 
 A mechanical element that twists under a torque and returns to its original state when the torque is removed is a **torsional spring**. Torque is proportional to the twist angle, and the constant of proportionality $K$ is the (torsional) spring constant, with unit $\text{N}\cdot\text{m/rad}$. The twisting of a long shaft is also modeled as a torsional spring.
 
-$$
+```math
 \tau = K\theta
-$$
+```
 
 ![Figure 11. A torsional spring fixed to a wall and the relation between torque and angle](../../images/Week04_4-2_p08.png)
 
@@ -370,9 +370,9 @@ $$
 
 **Rotational friction** is an element that produces a torque opposing the motion of a rotating body, and this torque is the rotational friction torque. The friction torque acts opposite to the direction of rotation, and its magnitude is generally related to the rotational speed. An element whose friction torque is proportional to the rotational speed is called **linear rotational friction**, and its constant of proportionality $B$ is the linear rotational friction coefficient or damping coefficient, with unit $\text{N}\cdot\text{m}\cdot\text{s/rad}$. Friction from the lubricant in a bearing is a typical example.
 
-$$
+```math
 \tau = B\frac{d\theta}{dt}
-$$
+```
 
 ![Figure 12. A rotational damper and the relation between torque and angular velocity](../../images/Week04_4-2_p09.png)
 
@@ -380,9 +380,9 @@ $$
 
 As in translation, rotation also has nonlinear friction. The rotational Coulomb friction torque has a constant magnitude $F_c$ regardless of the rotational speed, and only its sign changes with the direction of rotation. Its graph of torque versus angular velocity is Figure 6 with $f$ replaced by $\tau$ and $\frac{dy}{dt}$ by $\frac{d\theta}{dt}$.
 
-$$
+```math
 \tau = \begin{cases} F_c, & \dot{\theta} > 0 \\ -F_c, & \dot{\theta} < 0 \end{cases}
-$$
+```
 
 ### 2.5 Rotational Equation of Motion
 
@@ -394,15 +394,15 @@ $$
 
 As on the right of Figure 13, find every torque acting on the body. The external torque $\tau$ acts in the direction of rotation, and the spring torque $K\theta$ and the friction torque $B\frac{d\theta}{dt}$ act in the opposite direction. The sum of the torques on the body is proportional to its angular acceleration, which gives the following.
 
-$$
+```math
 J\frac{d^2\theta}{dt^2} = \tau - K\theta - B\frac{d\theta}{dt} \quad \Rightarrow \quad J\frac{d^2\theta}{dt^2} + B\frac{d\theta}{dt} + K\theta = \tau
-$$
+```
 
 Setting the initial conditions to 0 and taking the Laplace transform gives the transfer function, where $T(s)$ is the transform of $\tau(t)$.
 
-$$
+```math
 \frac{\Theta(s)}{T(s)} = \frac{1}{Js^2 + Bs + K}
-$$
+```
 
 This has the same form as $\frac{Y(s)}{F(s)} = \frac{1}{Ms^2 + Bs + K}$ of Section 1.9 with $M$ replaced by $J$.
 
@@ -416,31 +416,31 @@ Mechanical devices with rotational motion often use **gears** to amplify torque.
 
 **Teeth and radius.** Since the teeth have the same size, the number of teeth of a gear is assumed to be proportional to its radius.
 
-$$
+```math
 \frac{R_2}{R_1} = \frac{N_2}{N_1}
-$$
+```
 
 **Angle relation.** In an ideal gear, the two meshing wheels do not slip at the contact point, so the arc lengths traveled by the two wheels (radius times rotation angle) are always equal.
 
-$$
+```math
 R_1\theta_1 = R_2\theta_2 \quad \Rightarrow \quad \theta_2 = \frac{R_1}{R_2}\theta_1 = \frac{N_1}{N_2}\theta_1
-$$
+```
 
 Differentiating with respect to time gives the angular velocity relation.
 
-$$
+```math
 \dot{\theta}_2 = \frac{N_1}{N_2}\dot{\theta}_1
-$$
+```
 
 $N_1/N_2$ is called the **gear ratio**. Some texts call the reciprocal $N_2/N_1$ the gear ratio instead, so it is necessary to check which one is meant. If $N_1/N_2$ is less than 1, that is, if a small gear drives a large gear, the output shaft turns more slowly than the input shaft, and the gear is called a **reduction gear**.
 
 **Torque relation.** Because the gear is ideal, the mechanical energy of one wheel is transferred to the other without any loss. The energy, or work, of rotation is torque times rotation angle, so the condition that input and output energy are equal gives the torque relation.
 
-$$
+```math
 \tau_1\theta_1 = \tau_2\theta_2 \quad \Rightarrow \quad \tau_2 = \frac{\theta_1}{\theta_2}\tau_1 = \frac{N_2}{N_1}\tau_1
-$$
+```
 
-The second equality uses the angle relation $\frac{\theta_1}{\theta_2} = \frac{N_2}{N_1}$. A reduction gear ($N_2 > N_1$) scales the rotation angle and speed down by $\frac{N_1}{N_2}$ and scales the torque up by $\frac{N_2}{N_1}$. It is the same principle as riding a bicycle uphill in a low gear: the pedals turn many times, but each push takes little force.
+The second equality uses the angle relation $\frac{\theta_1}{\theta_2} = \frac{N_2}{N_1}$. A reduction gear ($`N_2 > N_1`$) scales the rotation angle and speed down by $\frac{N_1}{N_2}$ and scales the torque up by $\frac{N_2}{N_1}$. It is the same principle as riding a bicycle uphill in a low gear: the pedals turn many times, but each push takes little force.
 
 > **Caution:** Angles change by the teeth ratio $\frac{N_1}{N_2}$, and torques by its reciprocal $\frac{N_2}{N_1}$. To avoid confusing the two ratios, derive them again from the principle that the energy $\tau\theta$ is conserved.
 
@@ -454,15 +454,15 @@ Analyzing gear systems first requires understanding the torque that two connecte
 
 $\tau_2$ is the **reaction torque** exerted on the body with inertia $J_1$ because of the rotation of the body with inertia $J_2$. When $J_1$ applies the torque $\tau_2$ through the shaft to turn $J_2$, by Newton's third law $J_2$ returns a torque of equal magnitude and opposite direction to $J_1$. Applying the law of motion to each body gives the following.
 
-$$
+```math
 J_1\ddot{\theta} = \tau - \tau_2, \qquad J_2\ddot{\theta} = \tau_2
-$$
+```
 
 Adding the two equations cancels the reaction torque.
 
-$$
+```math
 (J_1 + J_2)\ddot{\theta} = \tau
-$$
+```
 
 Two inertias that rotate together move like a single body with moment of inertia $J_1 + J_2$.
 
@@ -476,25 +476,25 @@ Now assume that two rotating bodies are connected by an ideal gear and that a to
 
 The gear on the output shaft applies the torque $\tau_2$ to turn $J_2$, and the reaction torque $\tau_2$ transmitted back through the gear to the input shaft has the value $\tau_1$. The torque acting on the body with inertia $J_1$ is therefore the external torque $\tau$ minus the reaction torque $\tau_1$.
 
-$$
+```math
 J_1\ddot{\theta}_1 = \tau - \tau_1, \qquad J_2\ddot{\theta}_2 = \tau_2
-$$
+```
 
 Use the gear relations $\tau_1 = \frac{N_1}{N_2}\tau_2$ and $\theta_2 = \frac{N_1}{N_2}\theta_1$ of Section 2.6 to express $\tau_1$ in terms of $\theta_1$.
 
-$$
+```math
 \tau_1 = \frac{N_1}{N_2}\tau_2 = \frac{N_1}{N_2}J_2\ddot{\theta}_2 = \frac{N_1}{N_2}J_2\left( \frac{N_1}{N_2}\ddot{\theta}_1 \right) = \left( \frac{N_1}{N_2} \right)^2 J_2\ddot{\theta}_1
-$$
+```
 
 Substituting into the first equation gives the equation of motion and the transfer function seen from the input shaft.
 
-$$
+```math
 \left[ J_1 + \left( \frac{N_1}{N_2} \right)^2 J_2 \right]\ddot{\theta}_1 = \tau \quad \Rightarrow \quad \frac{\Theta_1(s)}{T(s)} = \frac{1}{\left[ J_1 + (N_1/N_2)^2 J_2 \right]s^2}
-$$
+```
 
 > **Key Point:** Seen from the input shaft, the inertia $J_2$ beyond the gear appears multiplied by $\left( \frac{N_1}{N_2} \right)^2$. This is called the **reflected inertia**. The gear ratio multiplies once for the angle and once for the torque, so it appears squared. Rotational friction and torsional springs are reflected by the square of the teeth ratio in the same way [1].
 
-Conversely, seen from the output shaft, $J_1$ is reflected by $\left( \frac{N_2}{N_1} \right)^2$, giving $\left[ \left( \frac{N_2}{N_1} \right)^2 J_1 + J_2 \right]\ddot{\theta}_2 = \frac{N_2}{N_1}\tau$. Substituting $\theta_2 = \frac{N_1}{N_2}\theta_1$ into this equation recovers the equation above. As a check, $N_1 = N_2$ gives $(J_1 + J_2)\ddot{\theta} = \tau$ of Section 2.7.
+Conversely, seen from the output shaft, $J_1$ is reflected by $\left( \frac{N_2}{N_1} \right)^2$, giving $`\left[ \left( \frac{N_2}{N_1} \right)^2 J_1 + J_2 \right]\ddot{\theta}_2 = \frac{N_2}{N_1}\tau`$. Substituting $\theta_2 = \frac{N_1}{N_2}\theta_1$ into this equation recovers the equation above. As a check, $N_1 = N_2$ gives $(J_1 + J_2)\ddot{\theta} = \tau$ of Section 2.7.
 
 ---
 
@@ -510,9 +510,9 @@ Modeling electric circuits starts from **Kirchhoff's voltage law (KVL)**. KVL st
 
 A **capacitor** is an element that stores charge. The charge $q$ stored in a capacitor is proportional to the voltage $y$ across it, and the constant of proportionality $C$ is the capacitance (unit F, farad). Current is the rate of change of charge, so differentiating both sides gives the relation between the current and voltage of the capacitor.
 
-$$
+```math
 q = Cy, \qquad i = \frac{dq}{dt} = C\frac{dy}{dt}
-$$
+```
 
 ![Figure 17. An RC circuit with input voltage u and capacitor voltage y](../../images/Week04_4-3_p04.png)
 
@@ -520,15 +520,15 @@ $$
 
 Applying KVL to the circuit of Figure 17, the input voltage $u$ equals the voltage across the resistor, $Ri$ (Ohm's law), plus the voltage across the capacitor, $y$. Substitute $i = C\frac{dy}{dt}$.
 
-$$
+```math
 Ri + y = RC\frac{dy}{dt} + y = u
-$$
+```
 
 The RC circuit is described by a first-order differential equation. Setting the initial conditions to 0 and taking the Laplace transform gives the following transfer function.
 
-$$
+```math
 (RCs + 1)\,Y(s) = U(s) \quad \Rightarrow \quad \frac{Y(s)}{U(s)} = \frac{1}{RCs + 1}
-$$
+```
 
 The product $RC$ has the unit of time and is the **time constant** that sets how fast the response changes. The response of first-order systems and the time constant are covered in detail in Week 7.
 
@@ -536,9 +536,9 @@ The product $RC$ has the unit of time and is the **time constant** that sets how
 
 An **inductor** is an element that opposes changes in current; the voltage $v_L$ across it is proportional to the rate of change of the current. The constant of proportionality $L$ is the inductance (unit H, henry).
 
-$$
+```math
 v_L = L\frac{di}{dt}
-$$
+```
 
 ![Figure 18. An RL circuit with input voltage u and resistor voltage y](../../images/Week04_4-3_p05.png)
 
@@ -546,15 +546,15 @@ $$
 
 In the circuit of Figure 18, the output is the voltage across the resistor, $y = Ri$. Applying KVL, the input voltage equals the inductor voltage plus the voltage across the resistor.
 
-$$
+```math
 v_L + Ri = L\frac{di}{dt} + Ri = u, \qquad y = Ri
-$$
+```
 
 Substituting $i = \frac{y}{R}$ gives an equation in the output $y$.
 
-$$
+```math
 \frac{L}{R}\frac{dy}{dt} + y = u \quad \Rightarrow \quad \frac{Y(s)}{U(s)} = \frac{1}{(L/R)s + 1}
-$$
+```
 
 The RL circuit is also a first-order system, with time constant $\frac{L}{R}$.
 
@@ -566,15 +566,15 @@ The RL circuit is also a first-order system, with time constant $\frac{L}{R}$.
 
 Applying KVL to the circuit of Figure 19, the input voltage equals the sum of the resistor voltage, the inductor voltage, and the voltage across the capacitor. The output is the capacitor voltage $y$.
 
-$$
+```math
 L\frac{di}{dt} + Ri + y = u, \qquad i = C\frac{dy}{dt}
-$$
+```
 
 Substituting the second equation into the first gives $\frac{di}{dt} = C\frac{d^2y}{dt^2}$, and hence a second-order differential equation.
 
-$$
+```math
 LC\frac{d^2y}{dt^2} + RC\frac{dy}{dt} + y = u \quad \Rightarrow \quad \frac{Y(s)}{U(s)} = \frac{1}{LCs^2 + RCs + 1}
-$$
+```
 
 > **Key Point:** The RLC equation $LC\ddot{y} + RC\dot{y} + y = u$ has the same form as the mass-spring-damper equation $M\ddot{y} + B\dot{y} + Ky = f$ of Section 1.9. Physically quite different systems are described by differential equations of the same form, so one method of analysis (such as the second-order system response of Week 7) serves every field. Table 6 in the Concept Applications section summarizes this correspondence.
 
@@ -584,17 +584,17 @@ Modeling a motor, which converts electrical energy into mechanical energy, requi
 
 **Electromagnetic force.** A conductor carrying a current in a magnetic field experiences a force, called the **electromagnetic force**. Its magnitude is proportional to the strength of the magnetic field and to the current in the conductor, and for a wire perpendicular to the field it is the following.
 
-$$
+```math
 F = BIl\ [\text{N}]
-$$
+```
 
 $B$ is the magnetic flux density (unit T, tesla), $I$ is the current, and $l$ is the length of the wire inside the magnetic field. The direction of the force is given by **Fleming's left-hand rule**: with the thumb, index finger, and middle finger of the left hand held at right angles, point the index finger along the magnetic field (from the N pole to the S pole) and the middle finger along the current; the thumb then points along the force.
 
 **Electromotive force.** Moving a conductor in a magnetic field produces an **electromotive force (emf)** in the conductor, and its magnitude is proportional to the speed at which the conductor moves. This is a case of **Faraday's law**, which states that when the magnetic flux $\Phi$ through a circuit changes, an emf equal to its rate of change is produced.
 
-$$
+```math
 \varepsilon = -\frac{d\Phi}{dt}, \qquad \Phi = BS
-$$
+```
 
 $S$ is the area of the circuit through which the field passes, and $\Phi = BS$ holds when the field is uniform and perpendicular to the surface. The minus sign means that the induced current flows in the direction that opposes the change of flux (Lenz's law). When a wire of length $l$ moves perpendicular to the field at speed $v$, the area of the circuit changes by $lv$ per second, so the emf has magnitude $Blv$, proportional to the speed [2].
 
@@ -625,17 +625,17 @@ The most important parts of a DC servo motor are the magnets that create the mag
 
 **Torque constant.** In a cross-section of the motor, the armature wound with coils sits between the N and S poles of the stator, and the electromagnetic force on the coil current in the field turns the armature at the angular velocity $\omega$. The torque produced by the motor is proportional to the current in the armature (the electromagnetic force), and the constant of proportionality $K_t$ is the **torque constant**.
 
-$$
+```math
 \tau = K_t i_a
-$$
+```
 
 **Back-emf constant.** The emf produced by the rotation of the motor is called the **back emf (back electromotive force)**. It arises because the armature coil turns in the magnetic field, and its magnitude is proportional to the rotational speed of the motor. The constant of proportionality $K_b$ is the **back-emf constant**.
 
-$$
+```math
 e_b = K_b\frac{d\theta}{dt} = K_b\omega
-$$
+```
 
-> **Note:** In SI units, $K_t$ and $K_b$ have the same value. The electrical power absorbed by the back emf, $e_bi_a = K_b\omega i_a$, must equal the mechanical power produced by the motor, $\tau\omega = K_ti_a\omega$ (conservation of energy), so $K_t\,[\text{N}\cdot\text{m/A}] = K_b\,[\text{V}\cdot\text{s/rad}]$ [3].
+> **Note:** In SI units, $K_t$ and $K_b$ have the same value. The electrical power absorbed by the back emf, $e_bi_a = K_b\omega i_a$, must equal the mechanical power produced by the motor, $\tau\omega = K_ti_a\omega$ (conservation of energy), so $`K_t\,[\text{N}\cdot\text{m/A}] = K_b\,[\text{V}\cdot\text{s/rad}]`$ [3].
 
 ![Figure 21. Model of the armature circuit and the rotating part of a DC servo motor](../../images/Week04_4-3_p10.png)
 
@@ -645,35 +645,35 @@ In the model of Figure 21, $e_a$ is the voltage applied to the armature, $R_a$ a
 
 **Electrical equation.** Applying KVL to the armature circuit, the voltage applied to the armature equals the sum of the resistor voltage, the inductance voltage, and the back emf.
 
-$$
+```math
 e_a = R_ai_a + L_a\frac{di_a}{dt} + e_b = R_ai_a + L_a\frac{di_a}{dt} + K_b\frac{d\theta}{dt}
-$$
+```
 
 **Mechanical equation.** The torque produced by the servo motor turns the armature, so setting up the equation of motion as in Section 2.5 gives the following. Without a load, the torque goes only into the inertia of the armature and the rotational friction.
 
-$$
+```math
 \tau = K_ti_a = J_a\frac{d^2\theta}{dt^2} + B\frac{d\theta}{dt}
-$$
+```
 
 The two equations are coupled through the current $i_a$ and the angle $\theta$. The current produces torque and causes rotation, and the rotation produces a back emf that reduces the current.
 
 **Transfer function.** Set the initial conditions to 0 and take the Laplace transform of both equations.
 
-$$
+```math
 E_a(s) = (L_as + R_a)\,I_a(s) + K_bs\,\Theta(s), \qquad K_tI_a(s) = (J_as^2 + Bs)\,\Theta(s)
-$$
+```
 
-From the second equation, $I_a(s) = \frac{(J_as^2 + Bs)\,\Theta(s)}{K_t} = \frac{s(J_as + B)\,\Theta(s)}{K_t}$; substituting into the first gives the following.
+From the second equation, $`I_a(s) = \frac{(J_as^2 + Bs)\,\Theta(s)}{K_t} = \frac{s(J_as + B)\,\Theta(s)}{K_t}`$; substituting into the first gives the following.
 
-$$
+```math
 E_a(s) = \left[ \frac{(L_as + R_a)(J_as + B)s}{K_t} + K_bs \right]\Theta(s) = \frac{s\left[ (L_as + R_a)(J_as + B) + K_tK_b \right]}{K_t}\,\Theta(s)
-$$
+```
 
-The transfer functions from the input voltage to the rotation angle and to the angular velocity ($\Omega(s) = s\Theta(s)$) are therefore as follows.
+The transfer functions from the input voltage to the rotation angle and to the angular velocity ($`\Omega(s) = s\Theta(s)`$) are therefore as follows.
 
-$$
+```math
 \frac{\Theta(s)}{E_a(s)} = \frac{K_t}{s\left[ (L_as + R_a)(J_as + B) + K_tK_b \right]}, \qquad \frac{\Omega(s)}{E_a(s)} = \frac{K_t}{(L_as + R_a)(J_as + B) + K_tK_b}
-$$
+```
 
 Drawn as a block diagram, these relations look like Figure 22. Block diagrams are covered in detail in Week 5; here the diagram shows in what order the signals are transformed.
 
@@ -691,29 +691,29 @@ flowchart LR
 
 *Figure 22. Block diagram of a DC servo motor*
 
-In Figure 22, the back emf forms a feedback path that subtracts a voltage proportional to the angular velocity from the input voltage. Even without an external controller, the motor has this internal feedback, so under a constant voltage it reaches a constant speed at which the back emf plus the resistive drop $R_ai_a$ equals the input voltage. The current $i_a$ at that speed supplies the viscous friction torque $B\omega$, and the back emf equals the input voltage only when there is no friction ($B = 0$).
+In Figure 22, the back emf forms a feedback path that subtracts a voltage proportional to the angular velocity from the input voltage. Even without an external controller, the motor has this internal feedback, so under a constant voltage it reaches a constant speed at which the back emf plus the resistive drop $R_ai_a$ equals the input voltage. The current $i_a$ at that speed supplies the viscous friction torque $B\omega$, and the back emf equals the input voltage only when there is no friction ($`B = 0`$).
 
 **Approximation neglecting the armature inductance.** The armature inductance $L_a$ is usually very small, so the electrical circuit responds much faster than the mechanical part. Setting $L_a \approx 0$ makes the angular velocity transfer function first-order [1].
 
-$$
+```math
 \frac{\Omega(s)}{E_a(s)} \approx \frac{K_t}{R_a(J_as + B) + K_tK_b} = \frac{K_m}{T_ms + 1}, \qquad K_m = \frac{K_t}{R_aB + K_tK_b}, \quad T_m = \frac{R_aJ_a}{R_aB + K_tK_b}
-$$
+```
 
 $K_m$ is the motor gain, the steady-state angular velocity per volt, and $T_m$ is the mechanical time constant.
 
-**Numerical example.** Consider a motor with $R_a = 2\,\Omega$, $L_a = 0.01\,\text{H}$, $J_a = 0.02\,\text{kg}\cdot\text{m}^2$, $B = 0.05\,\text{N}\cdot\text{m}\cdot\text{s/rad}$, and $K_t = K_b = 0.5$. Expanding the denominator gives the following.
+**Numerical example.** Consider a motor with $`R_a = 2\,\Omega`$, $`L_a = 0.01\,\text{H}`$, $`J_a = 0.02\,\text{kg}\cdot\text{m}^2`$, $`B = 0.05\,\text{N}\cdot\text{m}\cdot\text{s/rad}`$, and $K_t = K_b = 0.5$. Expanding the denominator gives the following.
 
-$$
+```math
 (0.01s + 2)(0.02s + 0.05) + 0.5 \times 0.5 = 0.0002s^2 + 0.0405s + 0.35 \quad \Rightarrow \quad \frac{\Omega(s)}{E_a(s)} = \frac{0.5}{0.0002s^2 + 0.0405s + 0.35}
-$$
+```
 
-The roots of the denominator, that is, the poles, are $s \approx -9.05$ and $s \approx -193.45$. The smaller one, $-9.05$, represents the slow response of the mechanical part, and the larger one, $-193.45$, the fast response of the electrical circuit. In the approximation, $K_m = \frac{0.5}{2 \times 0.05 + 0.25} = \frac{0.5}{0.35} \approx 1.43\,\text{rad/s}$ (per volt) and $T_m = \frac{2 \times 0.02}{0.35} \approx 0.114\,\text{s}$, and the pole $-\frac{1}{T_m} = -8.75$ is close to the slow pole $-9.05$ of the exact model. Figure 23 shows the angular velocity response to a unit step voltage (1 V).
+The roots of the denominator, that is, the poles, are $s \approx -9.05$ and $s \approx -193.45$. The smaller one, $-9.05$, represents the slow response of the mechanical part, and the larger one, $-193.45$, the fast response of the electrical circuit. In the approximation, $`K_m = \frac{0.5}{2 \times 0.05 + 0.25} = \frac{0.5}{0.35} \approx 1.43\,\text{rad/s}`$ (per volt) and $`T_m = \frac{2 \times 0.02}{0.35} \approx 0.114\,\text{s}`$, and the pole $-\frac{1}{T_m} = -8.75$ is close to the slow pole $-9.05$ of the exact model. Figure 23 shows the angular velocity response to a unit step voltage (1 V).
 
 ![Figure 23. Angular velocity response of a DC servo motor to a unit step voltage: the model with armature inductance and the approximation without it](../../images/Week04_DC-Motor-Step-Response.png)
 
 *Figure 23. Angular velocity response of a DC servo motor to a unit step voltage: the model with armature inductance and the approximation without it*
 
-Apart from a very short initial interval, the two curves nearly coincide, and both converge to the steady-state angular velocity given by the final value theorem (Week 3), $\lim_{s\to 0} s \cdot \frac{1}{s} \cdot \frac{0.5}{0.35} \approx 1.43\,\text{rad/s}$.
+Apart from a very short initial interval, the two curves nearly coincide, and both converge to the steady-state angular velocity given by the final value theorem (Week 3), $`\lim_{s\to 0} s \cdot \frac{1}{s} \cdot \frac{0.5}{0.35} \approx 1.43\,\text{rad/s}`$.
 
 ### 3.7 Robot Modeling
 
@@ -731,51 +731,51 @@ Industrial robots are generally driven by servo motors fitted with reduction gea
 
 **Motor circuit.** Apply KVL to the motor circuit. It is the same as in Section 3.6, and the back emf is proportional to the angular velocity of the motor shaft, $\frac{d\theta_1}{dt}$.
 
-$$
+```math
 e_a = R_ai_a + L_a\frac{di_a}{dt} + e_b = R_ai_a + L_a\frac{di_a}{dt} + K_b\frac{d\theta_1}{dt}
-$$
+```
 
 **Motor shaft.** The shaft of the servo motor is acted on by the reaction torque $\tau_1$ transmitted through the gear, and this torque is opposite in direction to the torque $\tau$ produced by the motor. The equation of motion for the servo motor armature is therefore the following.
 
-$$
+```math
 \tau - \tau_1 = K_ti_a - \tau_1 = J_1\frac{d^2\theta_1}{dt^2} + B_1\frac{d\theta_1}{dt}
-$$
+```
 
 **Robot link.** The torque $\tau_2$ that the gear on the output shaft applies to the link goes into overcoming the inertia and rotational friction of the link. $\tau_2$ is at the same time the magnitude of the reaction torque that the link returns to the gear.
 
-$$
+```math
 \tau_2 = J_2\frac{d^2\theta_2}{dt^2} + B_2\frac{d\theta_2}{dt}
-$$
+```
 
 **Gear relations.** From Section 2.6, the torques and angles of the gear are linked by the gear ratio.
 
-$$
+```math
 \tau_1 = \frac{N_1}{N_2}\tau_2, \qquad \theta_2 = \frac{N_1}{N_2}\theta_1
-$$
+```
 
 **Combining.** Move $\tau_1$ in the motor shaft equation to the right-hand side, and substitute the gear relations and the link equation in turn.
 
-$$
+```math
 \tau = K_ti_a = J_1\frac{d^2\theta_1}{dt^2} + B_1\frac{d\theta_1}{dt} + \tau_1 = J_1\frac{d^2\theta_1}{dt^2} + B_1\frac{d\theta_1}{dt} + \frac{N_1}{N_2}\tau_2
-$$
+```
 
-$$
+```math
 = J_1\frac{d^2\theta_1}{dt^2} + B_1\frac{d\theta_1}{dt} + \frac{N_1}{N_2}\left[ J_2\frac{d^2\theta_2}{dt^2} + B_2\frac{d\theta_2}{dt} \right] = \left[ J_1 + \left( \frac{N_1}{N_2} \right)^2 J_2 \right]\frac{d^2\theta_1}{dt^2} + \left[ B_1 + \left( \frac{N_1}{N_2} \right)^2 B_2 \right]\frac{d\theta_1}{dt}
-$$
+```
 
 The last equality substitutes the derivatives of $\theta_2 = \frac{N_1}{N_2}\theta_1$, namely $\frac{d\theta_2}{dt} = \frac{N_1}{N_2}\frac{d\theta_1}{dt}$ and $\frac{d^2\theta_2}{dt^2} = \frac{N_1}{N_2}\frac{d^2\theta_1}{dt^2}$, and groups equal derivatives. Define the equivalent inertia and equivalent friction seen from the motor shaft as follows.
 
-$$
+```math
 J_{eq} = J_1 + \left( \frac{N_1}{N_2} \right)^2 J_2, \qquad B_{eq} = B_1 + \left( \frac{N_1}{N_2} \right)^2 B_2
-$$
+```
 
 The model of one robot axis is then the DC servo motor model of Section 3.6 with $J_a$ replaced by $J_{eq}$ and $B$ by $B_{eq}$. The transfer functions are as follows, and the link angle is $\Theta_2(s) = \frac{N_1}{N_2}\Theta_1(s)$.
 
-$$
+```math
 \frac{\Theta_1(s)}{E_a(s)} = \frac{K_t}{s\left[ (L_as + R_a)(J_{eq}s + B_{eq}) + K_tK_b \right]}, \qquad \frac{\Theta_2(s)}{E_a(s)} = \frac{N_1}{N_2} \cdot \frac{\Theta_1(s)}{E_a(s)}
-$$
+```
 
-> **Key Point:** The robot link has a larger moment of inertia than the motor, but the link inertia is multiplied by the square of the gear ratio, so if the gear ratio $\frac{N_1}{N_2}$ is less than 1, the influence of the link inertia on the motor is not large. For example, with motor shaft inertia $J_1 = 0.001\,\text{kg}\cdot\text{m}^2$, link inertia $J_2 = 5\,\text{kg}\cdot\text{m}^2$, and gear ratio $\frac{1}{100}$, the reflected inertia is $\left( \frac{1}{100} \right)^2 \times 5 = 0.0005\,\text{kg}\cdot\text{m}^2$ and $J_{eq} = 0.0015\,\text{kg}\cdot\text{m}^2$. Connecting the motor directly to the link without a gear would make the motor turn $5.001\,\text{kg}\cdot\text{m}^2$, more than 3000 times as much. In exchange, the link turns 100 times more slowly than the motor and receives 100 times the torque.
+> **Key Point:** The robot link has a larger moment of inertia than the motor, but the link inertia is multiplied by the square of the gear ratio, so if the gear ratio $\frac{N_1}{N_2}$ is less than 1, the influence of the link inertia on the motor is not large. For example, with motor shaft inertia $`J_1 = 0.001\,\text{kg}\cdot\text{m}^2`$, link inertia $`J_2 = 5\,\text{kg}\cdot\text{m}^2`$, and gear ratio $\frac{1}{100}$, the reflected inertia is $`\left( \frac{1}{100} \right)^2 \times 5 = 0.0005\,\text{kg}\cdot\text{m}^2`$ and $`J_{eq} = 0.0015\,\text{kg}\cdot\text{m}^2`$. Connecting the motor directly to the link without a gear would make the motor turn $`5.001\,\text{kg}\cdot\text{m}^2`$, more than 3000 times as much. In exchange, the link turns 100 times more slowly than the motor and receives 100 times the torque.
 
 ---
 
@@ -803,9 +803,9 @@ The elements of translational motion, rotational motion, and electric circuits c
 |:-----|:------------|
 | The unit of weight is kg. | **F.** Weight is a force, so its unit is N; a body of mass 1 kg weighs 1 kgf, about 9.8 N. |
 | The Coulomb friction force is proportional to velocity. | **F.** The Coulomb friction force is constant regardless of the magnitude of the velocity, and only its sign changes with the direction of the velocity. |
-| In an ideal reduction gear ($N_1 < N_2$), the output shaft torque is larger than the input shaft torque. | **T.** $\tau_2 = \frac{N_2}{N_1}\tau_1$ with $\frac{N_2}{N_1} > 1$. |
+| In an ideal reduction gear ($`N_1 < N_2`$), the output shaft torque is larger than the input shaft torque. | **T.** $\tau_2 = \frac{N_2}{N_1}\tau_1$ with $\frac{N_2}{N_1} > 1$. |
 | An inertia beyond a gear is reflected to the input shaft in proportion to the teeth ratio. | **F.** The gear ratio multiplies once for the angle and once for the torque, so the reflection is proportional to the square $\left( \frac{N_1}{N_2} \right)^2$. |
-| The back emf is proportional to the armature current. | **F.** The back emf is proportional to the rotational speed ($e_b = K_b\omega$); the torque is what is proportional to the current. |
+| The back emf is proportional to the armature current. | **F.** The back emf is proportional to the rotational speed ($`e_b = K_b\omega`$); the torque is what is proportional to the current. |
 | The RLC circuit and the mass-spring-damper system are described by second-order differential equations of the same form. | **T.** As in Table 6, $L$, $R$, and $\frac{1}{C}$ correspond to $M$, $B$, and $K$. |
 | The transfer functions of the two-mass system of Section 1.10 have a pole at $s = 0$. | **T.** The system is not fixed to the wall by a spring and keeps moving at a constant velocity under a constant force, so $\Delta(s)$ has $s$ as a factor. |
 
@@ -818,18 +818,18 @@ The elements of translational motion, rotational motion, and electric circuits c
 | Concept | Key Summary |
 |:--------|:------------|
 | Dynamic system, modeling, model | A dynamic system is one whose characteristics can be described by differential equations; finding those equations is modeling, and the resulting equations are the model. |
-| Newton's laws of motion | The three laws of inertia, acceleration ($f = ma$), and action-reaction are the basis of modeling mechanical systems. |
+| Newton's laws of motion | The three laws of inertia, acceleration ($`f = ma`$), and action-reaction are the basis of modeling mechanical systems. |
 | Three elements of translation | A mass produces the force $f = M\ddot{y}$, a spring $f = Ky$, and linear friction (a damper) $f = B\dot{y}$. |
 | Nonlinear friction | Coulomb friction produces a force of constant magnitude $F_c$ independent of speed and cannot be analyzed with linear system theory. |
 | Mass-spring-damper system | $M\ddot{y} + B\dot{y} + Ky = f$, with transfer function $\frac{1}{Ms^2 + Bs + K}$. |
 | Two-mass system | Simultaneous second-order differential equations with one equation of motion per mass, solved with matrices in the $s$-domain to obtain the transfer functions. |
-| Law of rotational motion | $\tau = J\alpha$, with the moment of inertia, the torsional spring ($\tau = K\theta$), and rotational friction ($\tau = B\dot{\theta}$) as the three elements. |
+| Law of rotational motion | $\tau = J\alpha$, with the moment of inertia, the torsional spring ($`\tau = K\theta`$), and rotational friction ($`\tau = B\dot{\theta}`$) as the three elements. |
 | Moment of inertia | $MR^2$ for a point mass and, by integration, $\frac{1}{2}MR^2$ for a uniform disk. |
 | Gears | $\theta_2 = \frac{N_1}{N_2}\theta_1$ and $\tau_2 = \frac{N_2}{N_1}\tau_1$; a reduction gear lowers speed and raises torque. |
 | Reflected inertia | Inertia and friction beyond a gear appear multiplied by $\left( \frac{N_1}{N_2} \right)^2$ at the input shaft. |
 | RC, RL, and RLC circuits | KVL gives first-order equations for RC and RL and a second-order equation for RLC, whose transfer function is $\frac{1}{LCs^2 + RCs + 1}$. |
 | Electromagnetic force and emf | A conductor carrying current experiences the force $F = BIl$, and a moving conductor develops an emf proportional to its speed. |
-| DC servo motor | $\tau = K_ti_a$, $e_b = K_b\omega$, $e_a = R_ai_a + L_a\dot{i}_a + e_b$, and $K_ti_a = J_a\ddot{\theta} + B\dot{\theta}$; with $L_a \approx 0$ the angular velocity becomes a first-order system. |
+| DC servo motor | $\tau = K_ti_a$, $e_b = K_b\omega$, $`e_a = R_ai_a + L_a\dot{i}_a + e_b`$, and $K_ti_a = J_a\ddot{\theta} + B\dot{\theta}$; with $L_a \approx 0$ the angular velocity becomes a first-order system. |
 | Model of one robot axis | Because of the reduction gear, it equals the motor model with $J_{eq} = J_1 + (N_1/N_2)^2J_2$ and $B_{eq} = B_1 + (N_1/N_2)^2B_2$. |
 
 ---
@@ -838,21 +838,21 @@ The elements of translational motion, rotational motion, and electric circuits c
 
 ## Self-Check Questions
 
-1. **Weight and mass:** What is the mass of a body that weighs 49 N? Express this weight in kgf. ($g = 9.8\,\text{m/s}^2$)
+1. **Weight and mass:** What is the mass of a body that weighs 49 N? Express this weight in kgf. ($`g = 9.8\,\text{m/s}^2`$)
 
    <details>
    <summary>Answer</summary>
 
-   Mass is weight divided by the gravitational acceleration, so it is $\frac{49}{9.8} = 5\,\text{kg}$. It is the weight of a body of mass 5 kg, so it is 5 kgf.
+   Mass is weight divided by the gravitational acceleration, so it is $`\frac{49}{9.8} = 5\,\text{kg}`$. It is the weight of a body of mass 5 kg, so it is 5 kgf.
 
    </details>
 
-2. **Newton's second law:** What upward force must be applied to accelerate a body of mass 2 kg upward at $1.2\,\text{m/s}^2$? ($g = 9.8\,\text{m/s}^2$)
+2. **Newton's second law:** What upward force must be applied to accelerate a body of mass 2 kg upward at $`1.2\,\text{m/s}^2`$? ($`g = 9.8\,\text{m/s}^2`$)
 
    <details>
    <summary>Answer</summary>
 
-   With upward positive, $F - Mg = Ma$, so $F = M(g + a) = 2 \times (9.8 + 1.2) = 22\,\text{N}$.
+   With upward positive, $F - Mg = Ma$, so $`F = M(g + a) = 2 \times (9.8 + 1.2) = 22\,\text{N}`$.
 
    </details>
 
@@ -861,7 +861,7 @@ The elements of translational motion, rotational motion, and electric circuits c
    <details>
    <summary>Answer</summary>
 
-   At rest, $Ky = Mg$, so $y = \frac{1 \times 9.8}{200} = 0.049\,\text{m}$, that is, 4.9 cm.
+   At rest, $Ky = Mg$, so $`y = \frac{1 \times 9.8}{200} = 0.049\,\text{m}`$, that is, 4.9 cm.
 
    </details>
 
@@ -879,34 +879,34 @@ The elements of translational motion, rotational motion, and electric circuits c
    <details>
    <summary>Answer</summary>
 
-   For the disk, $J = \frac{1}{2}MR^2 = \frac{1}{2} \times 2 \times 0.01 = 0.01\,\text{kg}\cdot\text{m}^2$. With all the mass on the rim, $J = MR^2 = 0.02\,\text{kg}\cdot\text{m}^2$, twice as much.
+   For the disk, $`J = \frac{1}{2}MR^2 = \frac{1}{2} \times 2 \times 0.01 = 0.01\,\text{kg}\cdot\text{m}^2`$. With all the mass on the rim, $`J = MR^2 = 0.02\,\text{kg}\cdot\text{m}^2`$, twice as much.
 
    </details>
 
-6. **Gears:** In an ideal gear with $N_1 = 20$ and $N_2 = 60$ teeth, the input shaft turns $90^\circ$ with an input torque of $3\,\text{N}\cdot\text{m}$. Find the rotation angle and the torque of the output shaft.
+6. **Gears:** In an ideal gear with $N_1 = 20$ and $N_2 = 60$ teeth, the input shaft turns $90^\circ$ with an input torque of $`3\,\text{N}\cdot\text{m}`$. Find the rotation angle and the torque of the output shaft.
 
    <details>
    <summary>Answer</summary>
 
-   $\theta_2 = \frac{N_1}{N_2}\theta_1 = \frac{20}{60} \times 90^\circ = 30^\circ$ and $\tau_2 = \frac{N_2}{N_1}\tau_1 = 3 \times 3 = 9\,\text{N}\cdot\text{m}$. The work is conserved: $\tau_1\theta_1 = \tau_2\theta_2$.
+   $\theta_2 = \frac{N_1}{N_2}\theta_1 = \frac{20}{60} \times 90^\circ = 30^\circ$ and $`\tau_2 = \frac{N_2}{N_1}\tau_1 = 3 \times 3 = 9\,\text{N}\cdot\text{m}`$. The work is conserved: $\tau_1\theta_1 = \tau_2\theta_2$.
 
    </details>
 
-7. **Reflected inertia:** With motor shaft inertia $J_1 = 0.002\,\text{kg}\cdot\text{m}^2$, load inertia $J_2 = 0.9\,\text{kg}\cdot\text{m}^2$, and gear ratio $\frac{N_1}{N_2} = \frac{1}{30}$, find the equivalent inertia seen from the motor shaft.
+7. **Reflected inertia:** With motor shaft inertia $`J_1 = 0.002\,\text{kg}\cdot\text{m}^2`$, load inertia $`J_2 = 0.9\,\text{kg}\cdot\text{m}^2`$, and gear ratio $\frac{N_1}{N_2} = \frac{1}{30}$, find the equivalent inertia seen from the motor shaft.
 
    <details>
    <summary>Answer</summary>
 
-   The reflected inertia is $\left( \frac{1}{30} \right)^2 \times 0.9 = \frac{0.9}{900} = 0.001\,\text{kg}\cdot\text{m}^2$, so $J_{eq} = 0.002 + 0.001 = 0.003\,\text{kg}\cdot\text{m}^2$.
+   The reflected inertia is $`\left( \frac{1}{30} \right)^2 \times 0.9 = \frac{0.9}{900} = 0.001\,\text{kg}\cdot\text{m}^2`$, so $`J_{eq} = 0.002 + 0.001 = 0.003\,\text{kg}\cdot\text{m}^2`$.
 
    </details>
 
-8. **RC circuit:** Find the transfer function and the time constant of an RC circuit with $R = 10\,\text{k}\Omega$ and $C = 100\,\mu\text{F}$.
+8. **RC circuit:** Find the transfer function and the time constant of an RC circuit with $`R = 10\,\text{k}\Omega`$ and $`C = 100\,\mu\text{F}`$.
 
    <details>
    <summary>Answer</summary>
 
-   $RC = 10^4 \times 10^{-4} = 1\,\text{s}$, so the transfer function is $\frac{1}{s + 1}$ and the time constant is 1 s.
+   $`RC = 10^4 \times 10^{-4} = 1\,\text{s}`$, so the transfer function is $\frac{1}{s + 1}$ and the time constant is 1 s.
 
    </details>
 
@@ -924,7 +924,7 @@ The elements of translational motion, rotational motion, and electric circuits c
     <details>
     <summary>Answer</summary>
 
-    In $\frac{\Omega(s)}{E_a(s)} \approx \frac{K_m}{T_ms + 1}$, $K_m = \frac{0.5}{0.35} \approx 1.43$. The final value theorem gives $\lim_{s\to 0} s \cdot \frac{10}{s} \cdot \frac{K_m}{T_ms + 1} = 10K_m \approx 14.3\,\text{rad/s}$. The DC gain of the exact model is also $\frac{0.5}{0.35}$, so the result is the same.
+    In $\frac{\Omega(s)}{E_a(s)} \approx \frac{K_m}{T_ms + 1}$, $K_m = \frac{0.5}{0.35} \approx 1.43$. The final value theorem gives $`\lim_{s\to 0} s \cdot \frac{10}{s} \cdot \frac{K_m}{T_ms + 1} = 10K_m \approx 14.3\,\text{rad/s}`$. The DC gain of the exact model is also $\frac{0.5}{0.35}$, so the result is the same.
 
     </details>
 
@@ -933,7 +933,7 @@ The elements of translational motion, rotational motion, and electric circuits c
     <details>
     <summary>Answer</summary>
 
-    The whole system is connected to the wall only by a damper, without a spring, so there is no restoring force that pulls the position back against a constant force. For small $s$, $\Delta(s) \approx BKs$, so $\frac{Y_2(s)}{F(s)} \approx \frac{1}{Bs}$, and applying the final value theorem to the velocity $sY_2(s)$ gives $\lim_{s\to 0} s \cdot s \cdot \frac{f}{s} \cdot \frac{K}{\Delta(s)} = \frac{f}{B}$. It is the speed at which, in the steady state, the damper force $B\dot{y}_2$ equals the external force $f$.
+    The whole system is connected to the wall only by a damper, without a spring, so there is no restoring force that pulls the position back against a constant force. For small $s$, $\Delta(s) \approx BKs$, so $\frac{Y_2(s)}{F(s)} \approx \frac{1}{Bs}$, and applying the final value theorem to the velocity $sY_2(s)$ gives $\lim_{s\to 0} s \cdot s \cdot \frac{f}{s} \cdot \frac{K}{\Delta(s)} = \frac{f}{B}$. It is the speed at which, in the steady state, the damper force $`B\dot{y}_2`$ equals the external force $f$.
 
     </details>
 

@@ -90,9 +90,9 @@ flowchart LR
 
 If the output of the summing point is $E_a = R - HY$, then $Y = DGE_a$, so $Y = DG(R - HY)$, and solving for $Y$ gives the **closed-loop transfer function**.
 
-$$
+```math
 T(s) = \frac{Y(s)}{R(s)} = \frac{D(s)G(s)}{1 + D(s)G(s)H(s)}
-$$
+```
 
 Setting the denominator to 0, $1 + D(s)G(s)H(s) = 0$, gives the **characteristic equation** of the closed-loop system, whose roots are the closed-loop poles. These poles determine the shape and stability of the closed-loop response.
 
@@ -100,9 +100,9 @@ Setting the denominator to 0, $1 + D(s)G(s)H(s) = 0$, gives the **characteristic
 
 A closed-loop transfer function with a second-order denominator is compared with the following **standard second-order form**.
 
-$$
+```math
 T(s) = \frac{\omega_n^2}{s^2 + 2\zeta\omega_n s + \omega_n^2}, \qquad s = -\zeta\omega_n \pm \omega_n\sqrt{\zeta^2 - 1}
-$$
+```
 
 $\omega_n$ is called the **natural frequency** and $\zeta$ the **damping ratio**. In the pole formula, the sign under the square root is set by whether $\zeta$ is larger or smaller than 1, so the response falls into the four types of Table 2.
 
@@ -127,17 +127,17 @@ With unity feedback and $K = 1$, $T = G/(1 + G)$. Multiplying the numerator and 
 
 **1.1) $G(s) = \dfrac{1}{s(s+2)}$.**
 
-$$
+```math
 T(s) = \frac{1}{s^2 + 2s + 1}, \qquad \omega_n^2 = 1 \;\Rightarrow\; \omega_n = 1, \qquad 2\zeta\omega_n = 2 \;\Rightarrow\; \zeta = 1
-$$
+```
 
 Since $\zeta = 1$, the system is **critically damped**. The poles are the repeated root $-1$ of $s^2 + 2s + 1 = (s+1)^2$.
 
 **1.2) $G(s) = \dfrac{1}{s(s+1.4)}$.**
 
-$$
+```math
 T(s) = \frac{1}{s^2 + 1.4s + 1}, \qquad \omega_n = 1, \qquad 2\zeta\omega_n = 1.4 \;\Rightarrow\; \zeta = 0.7
-$$
+```
 
 Since $0 < \zeta < 1$, the system is **underdamped**. The poles are $-0.7 \pm j\sqrt{1 - 0.49} = -0.7 \pm j0.714$, and the maximum overshoot is $e^{-0.7\pi/\sqrt{0.51}} \approx 0.046$, about 4.6%, occurring at $t_p = \pi/\sqrt{0.51} \approx 4.40$. The two systems differ only in the plant pole location, $-2$ versus $-1.4$, but in 1.2), where the pole has moved closer to the origin and the damping has decreased, the response slightly exceeds the target (Figure 3).
 
@@ -153,15 +153,15 @@ Since $0 < \zeta < 1$, the system is **underdamped**. The poles are $-0.7 \pm j\
 
 The controller $D(s) = K_1 + K_2s$ is a **PD controller** (proportional-derivative controller) that adds a term proportional to the error and a term proportional to the rate of change of the error (Week 11). $G(s) = 1/[s(10s+1)]$ is substituted into the characteristic equation $1 + D(s)G(s) = 0$, and both sides are multiplied by the denominator $s(10s + 1)$.
 
-$$
+```math
 s(10s + 1) + K_1 + K_2s = 0 \quad\Longrightarrow\quad 10s^2 + (1 + K_2)s + K_1 = 0 \quad\Longrightarrow\quad s^2 + \frac{1 + K_2}{10}s + \frac{K_1}{10} = 0
-$$
+```
 
-The desired poles are the roots of the standard-form denominator with $\omega_n = 5\pi$ and $\zeta = 1/\sqrt{2}$, $s^2 + 2\zeta\omega_ns + \omega_n^2 = s^2 + 2\cdot\frac{1}{\sqrt{2}}\cdot 5\pi\, s + 25\pi^2 = s^2 + 5\sqrt{2}\pi s + 25\pi^2$. The coefficients of the two expressions are set equal.
+The desired poles are the roots of the standard-form denominator with $\omega_n = 5\pi$ and $\zeta = 1/\sqrt{2}$, $`s^2 + 2\zeta\omega_ns + \omega_n^2 = s^2 + 2\cdot\frac{1}{\sqrt{2}}\cdot 5\pi\, s + 25\pi^2 = s^2 + 5\sqrt{2}\pi s + 25\pi^2`$. The coefficients of the two expressions are set equal.
 
-$$
+```math
 \frac{K_1}{10} = 25\pi^2 \;\Longrightarrow\; K_1 = 250\pi^2 \approx 2467.4, \qquad \frac{1 + K_2}{10} = 5\sqrt{2}\pi \;\Longrightarrow\; K_2 = 50\sqrt{2}\pi - 1 \approx 221.1
-$$
+```
 
 $K_1$ sets the natural frequency and $K_2$ the damping. With the plant alone, the coefficient of $s$ is fixed at 1, but the derivative gain $K_2$ raises that coefficient and increases the damping as much as desired. The closed-loop poles are then $-\zeta\omega_n \pm j\omega_n\sqrt{1 - \zeta^2} = -11.11 \pm j11.11$.
 
@@ -177,17 +177,17 @@ A system whose output is always bounded for every bounded input is called **BIBO
 
 **3.1) $s^3 + 2s^2 + 2s + 1 = 0$.** Substituting $s = -1$ gives $-1 + 2 - 2 + 1 = 0$, so $(s + 1)$ is a factor. Dividing gives $s^3 + 2s^2 + 2s + 1 = (s + 1)(s^2 + s + 1)$, and the roots of the quadratic factor come from the quadratic formula.
 
-$$
+```math
 s = -1, \qquad s = \frac{-1 \pm \sqrt{1 - 4}}{2} = -\frac{1}{2} \pm j\frac{\sqrt{3}}{2}
-$$
+```
 
 The real parts $-1$, $-1/2$, and $-1/2$ of the three poles are all negative, so the system is **stable**.
 
 **3.2) $s^3 + 1 = 0$.** The sum-of-cubes formula $a^3 + b^3 = (a + b)(a^2 - ab + b^2)$ factors it.
 
-$$
+```math
 s^3 + 1 = (s + 1)(s^2 - s + 1) = 0 \quad\Longrightarrow\quad s = -1, \qquad s = \frac{1 \pm \sqrt{1 - 4}}{2} = \frac{1}{2} \pm j\frac{\sqrt{3}}{2}
-$$
+```
 
 The complex conjugate poles $\frac{1}{2} \pm j\frac{\sqrt{3}}{2}$ have a positive real part, so the system is **unstable**, and its response contains an oscillation that grows like $e^{t/2}$. This characteristic equation has zero coefficients for $s^2$ and $s$, so it fails the necessary condition of Section 6.1 (all coefficients nonzero and of the same sign), and one can tell it is not stable even before finding the roots.
 
@@ -202,7 +202,7 @@ The complex conjugate poles $\frac{1}{2} \pm j\frac{\sqrt{3}}{2}$ have a positiv
 The roots of high-order characteristic equations are hard to find directly. The **Routh-Hurwitz criterion** tells the number of roots in the right half-plane (the region with positive real part) from the coefficients alone, without finding the roots. For the characteristic equation $a_ns^n + a_{n-1}s^{n-1} + \cdots + a_1s + a_0 = 0$, the Routh array is built in the following steps.
 
 1. Write $a_n, a_{n-2}, a_{n-4}, \ldots$ in the first row (the $s^n$ row) and $a_{n-1}, a_{n-3}, a_{n-5}, \ldots$ in the second row (the $s^{n-1}$ row). Missing coefficients are set to 0.
-2. From the third row on, compute from the two rows directly above. If those two rows are $(x_1, x_2, x_3, \ldots)$ and $(y_1, y_2, y_3, \ldots)$, the $k$th value of the new row is $(y_1x_{k+1} - x_1y_{k+1})/y_1$.
+2. From the third row on, compute from the two rows directly above. If those two rows are $(x_1, x_2, x_3, \ldots)$ and $(y_1, y_2, y_3, \ldots)$, the $`k`$th value of the new row is $(y_1x_{k+1} - x_1y_{k+1})/y_1$.
 3. After computing down to the $s^0$ row, count the sign changes in the first column. This count is the number of right-half-plane roots, and if the first column has a single sign, the system is stable. The special cases in which a 0 appears in the first column or an entire row becomes 0 are treated in Week 9, and an example of an entire zero row is $K = 8$ in Section 7.
 
 There is also a necessary condition: for all roots to lie in the left half-plane, all coefficients must be nonzero and of the same sign. For polynomials of degree 2 or lower this condition is also sufficient, but for degree 3 and higher it is not, so the Routh array is needed.
@@ -280,23 +280,23 @@ For the first column to be all positive, $8 - K > 0$ and $1 + K > 0$, so the sta
 
 The **steady-state error** is the value approached by the difference between the reference input and the output, $e(t) = r(t) - y(t)$, after the transient response has died out. If the closed-loop system is stable, the final value theorem gives it directly in the $s$ domain.
 
-$$
+```math
 e_{ss} = \lim_{t\to\infty} e(t) = \lim_{s\to 0} sE(s), \qquad E(s) = R(s) - Y(s) = \big[1 - T(s)\big]R(s)
-$$
+```
 
-The test inputs are the unit step $r = 1$ ($R = 1/s$), the unit ramp $r = t$ ($R = 1/s^2$), and the unit parabola $r = t^2/2$ ($R = 1/s^3$) (Week 7). With unity feedback ($H = 1$), $1 - T = 1/(1 + DG)$, so $E(s) = R(s)/[1 + D(s)G(s)]$.
+The test inputs are the unit step $r = 1$ ($`R = 1/s`$), the unit ramp $r = t$ ($`R = 1/s^2`$), and the unit parabola $r = t^2/2$ ($`R = 1/s^3`$) (Week 7). With unity feedback ($`H = 1`$), $1 - T = 1/(1 + DG)$, so $E(s) = R(s)/[1 + D(s)G(s)]$.
 
 ### 8.2 System Type and Error Constants
 
 In a unity feedback system, the number $N$ of poles at the origin of the open-loop transfer function $D(s)G(s)$ is called the **system type**. That is, if $D(s)G(s) = K_0\dfrac{(\cdots)}{s^N(\cdots)}$, the system is of type $N$. The errors for the three test inputs are expressed with the following **error constants**.
 
-$$
+```math
 K_p = \lim_{s\to 0} D(s)G(s), \qquad K_v = \lim_{s\to 0} sD(s)G(s), \qquad K_a = \lim_{s\to 0} s^2D(s)G(s)
-$$
+```
 
-$$
+```math
 e_{ss,\text{step}} = \frac{1}{1 + K_p}, \qquad e_{ss,\text{ramp}} = \frac{1}{K_v}, \qquad e_{ss,\text{parabola}} = \frac{1}{K_a}
-$$
+```
 
 For example, for a ramp input $e_{ss} = \lim_{s\to 0} s\cdot\frac{1}{s^2}\cdot\frac{1}{1 + DG} = \lim_{s\to 0}\frac{1}{s + sDG} = \frac{1}{K_v}$. Each additional pole at the origin lets the system follow inputs of one higher order without error.
 
@@ -320,25 +320,25 @@ In all three problems the closed-loop characteristic polynomials, $s^2 + 2s + 4$
 
 **Problem 6) $G(s) = \dfrac{4}{s(s+2)}$.** There is one pole at the origin, so the system is **type 1**.
 
-$$
+```math
 K_p = \lim_{s\to 0}\frac{4}{s(s+2)} = \infty, \qquad K_v = \lim_{s\to 0}\frac{4s}{s(s+2)} = 2, \qquad K_a = \lim_{s\to 0}\frac{4s^2}{s(s+2)} = 0
-$$
+```
 
 Therefore the error is $1/(1 + \infty) = 0$ for a unit step input, $1/K_v = 1/2$ for a unit ramp input, and $1/K_a = \infty$ for a unit parabolic input. Computing the ramp case directly, $E/R = 1/(1 + G) = s(s+2)/(s^2 + 2s + 4)$, so $e_{ss} = \lim_{s\to 0} s\cdot\frac{1}{s^2}\cdot\frac{s(s+2)}{s^2 + 2s + 4} = \frac{2}{4} = \frac{1}{2}$, the same. The output follows the ramp with the same slope but lags behind by $1/2$.
 
 **Problem 7) $G(s) = \dfrac{4}{s^2 + 2s + 2}$, $K = 1$.** The denominator $s^2 + 2s + 2$ is not 0 at $s = 0$, so there is no pole at the origin and the system is **type 0**.
 
-$$
+```math
 K_p = \lim_{s\to 0}\frac{4}{s^2 + 2s + 2} = 2, \qquad e_{ss,\text{step}} = \frac{1}{1 + K_p} = \frac{1}{3}
-$$
+```
 
 The output settles at $1 - 1/3 = 2/3$ rather than $1$. This equals the DC gain of the closed loop, $T(0) = 4/(2 + 4) = 2/3$. In a type 0 system, raising the gain $K$ increases $K_p$ and reduces the error, but never to 0.
 
 **Problem 8) $G(s) = \dfrac{4}{s^2 + s} = \dfrac{4}{s(s+1)}$, $K = 1$.** There is one pole at the origin, so the system is **type 1**.
 
-$$
+```math
 K_v = \lim_{s\to 0} s\cdot\frac{4}{s(s+1)} = 4, \qquad e_{ss,\text{ramp}} = \frac{1}{K_v} = \frac{1}{4}
-$$
+```
 
 ---
 
@@ -348,21 +348,21 @@ $$
 
 Since $H(s) = s + 1 \ne 1$, the type is determined with $E = R - Y$, following the definition in Section 8.2. First, the closed-loop transfer function is found.
 
-$$
+```math
 T(s) = \frac{DG}{1 + DGH} = \frac{\frac{4}{s^2 + s}}{1 + \frac{4(s+1)}{s^2 + s}} = \frac{4}{s^2 + s + 4s + 4} = \frac{4}{s^2 + 5s + 4} = \frac{4}{(s+1)(s+4)}
-$$
+```
 
 The poles $-1$ and $-4$ both lie in the left half-plane, so the system is stable. The transfer function of the error is
 
-$$
+```math
 \frac{E(s)}{R(s)} = 1 - T(s) = \frac{s^2 + 5s + 4 - 4}{s^2 + 5s + 4} = \frac{s(s + 5)}{(s+1)(s+4)}
-$$
+```
 
 and the final value theorem is applied to each test input.
 
-$$
+```math
 \text{step: } \lim_{s\to 0} s\cdot\frac{1}{s}\cdot\frac{s(s+5)}{(s+1)(s+4)} = 0, \qquad \text{ramp: } \lim_{s\to 0} s\cdot\frac{1}{s^2}\cdot\frac{s(s+5)}{(s+1)(s+4)} = \frac{5}{4}, \qquad \text{parabola: } \infty
-$$
+```
 
 The unit ramp input is the first to give a nonzero finite error, $5/4$, so the system is **type 1**.
 
@@ -377,7 +377,7 @@ The unit ramp input is the first to give a nonzero finite error, $5/4$, so the s
 | Concept | Key Summary |
 |:-----|:-----|
 | Closed-loop transfer function | $T = DG/(1 + DGH)$, and the roots of the characteristic equation $1 + DGH = 0$ are the closed-loop poles. |
-| Damping types | Compared with the standard form $s^2 + 2\zeta\omega_ns + \omega_n^2$, $\zeta > 1$ is overdamped, $\zeta = 1$ critically damped, and $0 < \zeta < 1$ underdamped; Problem 1 gives critically damped and underdamped ($\zeta = 0.7$). |
+| Damping types | Compared with the standard form $s^2 + 2\zeta\omega_ns + \omega_n^2$, $\zeta > 1$ is overdamped, $\zeta = 1$ critically damped, and $0 < \zeta < 1$ underdamped; Problem 1 gives critically damped and underdamped ($`\zeta = 0.7`$). |
 | PD gain design | Matching the coefficients of the characteristic equation $s^2 + \frac{1+K_2}{10}s + \frac{K_1}{10}$ with the standard form gives $K_1 = 250\pi^2$ and $K_2 = 50\sqrt{2}\pi - 1$, and the zero created by the PD controller increases the overshoot. |
 | BIBO stability | A system is stable if all poles have negative real parts and unstable if any pole has a positive real part, and missing coefficients or mixed signs show it is not stable without finding the roots. |
 | Routh-Hurwitz criterion | The number of sign changes in the first column of the Routh array is the number of right-half-plane roots: 2 for 4.1) and 0 for 4.2). |
@@ -401,7 +401,7 @@ The unit ramp input is the first to give a nonzero finite error, $5/4$, so the s
 
    </details>
 
-2. **Changing the design specification:** In Problem 2, if the damping ratio is kept and only the natural frequency is doubled ($10\pi$), what happens to $K_1$ and $K_2$?
+2. **Changing the design specification:** In Problem 2, if the damping ratio is kept and only the natural frequency is doubled ($`10\pi`$), what happens to $K_1$ and $K_2$?
 
    <details>
    <summary>Answer</summary>
