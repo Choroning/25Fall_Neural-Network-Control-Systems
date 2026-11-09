@@ -2,7 +2,7 @@
 
 [Repository Guide](../../README.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **Last Updated:** 2026-11-04
+> **Last Updated:** 2026-11-10
 
 > **Learning Objectives:**
 > 1. Explain the nodes, branches, and gains of a signal flow graph, and convert a block diagram into a signal flow graph
@@ -56,7 +56,7 @@ Week 5 covers reducing block diagrams by moving their summing points and takeoff
 
 A **signal flow graph** is another representation of a block diagram. It carries the same information as a block diagram, but the picture is more compact and Mason's gain formula of Section 1.5 applies to it, so it is simpler and more convenient than a block diagram for complex systems. A signal flow graph consists of the following three elements.
 
-> **Definition:** The elements of a signal flow graph are as follows.
+> **Definition:** **Elements of a signal flow graph.** They are as follows.
 >
 > - **Node:** A point that represents a signal variable in the control system. A node also acts as a summing point: the value of a node is the sum of the signals of all branches entering it.
 > - **Branch:** A line connecting two nodes that represents a transfer function. It carries an arrow showing its direction, and it multiplies the signal of its starting node by its gain and sends the result to its ending node.
@@ -150,7 +150,7 @@ flowchart LR
 
 Mason's gain formula requires the following terms.
 
-> **Definition:**
+> **Definition:** **Signal flow graph paths and loops.**
 >
 > - **Path:** The set of branches that must be traversed in sequence, following the branch arrows, to travel from one node of a signal flow graph to another node. No node may be passed more than once between the starting node and the ending node.
 > - **Forward path:** A path that starts at the input node and ends at the output node.
