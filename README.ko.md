@@ -3,7 +3,7 @@
 ![Last Commit](https://img.shields.io/github/last-commit/Choroning/25Fall_Neural-Network-Control-Systems)
 ![Languages](https://img.shields.io/github/languages/top/Choroning/25Fall_Neural-Network-Control-Systems)
 
-이 레포지토리는 인공신경망제어시스템 과목의 이중 언어 강의 노트와 수업 결과물을 정리한 아카이브입니다.
+이 레포지토리는 인공신경망제어시스템 과목의 강의 노트와 수업 결과물을 정리한 아카이브입니다.
 
 *작성자: 박철원 (고려대학교(세종), 컴퓨터소프트웨어학과) - 2025년 기준 2학년*
 <br><br>
@@ -26,8 +26,8 @@
 - `Coursework/`에는 과제별 배포 원본, 제출한 풀이, 문제마다 개념과 풀이 과정을 설명한 과제 해설이 있습니다.
 - 모든 강의 노트와 해설 문서는 영어(`.md`)와 한국어(`.ko.md`) 파일이 짝을 이룹니다.
 
-> **🤖 AI 에이전트 활용**
-> [Claude Code](https://claude.ai/download)를 강의 노트와 과제 해설의 정리와 번역에 활용했습니다.
+> **🤖 생성형 AI 도구 사용**
+> 이 레포지토리는 문서화에 [Claude Code](https://claude.ai/download)를 사용합니다.
 
 <br><a name="course-information"></a>
 ## 📚 강의 정보
