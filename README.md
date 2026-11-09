@@ -3,7 +3,7 @@
 ![Last Commit](https://img.shields.io/github/last-commit/Choroning/25Fall_Neural-Network-Control-Systems)
 ![Languages](https://img.shields.io/github/languages/top/Choroning/25Fall_Neural-Network-Control-Systems)
 
-This repository archives bilingual lecture notes and coursework for the Neural Network Control Systems course.
+This repository archives lecture notes and coursework for the Neural Network Control Systems course.
 
 *Author: Cheolwon Park (Korea University Sejong, CSE) - Year 2 (Sophomore) as of 2025*
 <br><br>
@@ -26,8 +26,8 @@ This repository archives bilingual lecture notes and coursework for the Neural N
 - `Coursework/` holds each assignment's distributed handout, the submitted solution, and an assignment explanation that covers the concepts and the solution steps of every problem.
 - Every lecture note and explanation document comes as an English (`.md`) and Korean (`.ko.md`) pair.
 
-> **🤖 AI Agent Usage**
-> [Claude Code](https://claude.ai/download) was used to organize and translate the lecture notes and assignment explanations.
+> **🤖 Use of Generative AI Tools**
+> This repository uses [Claude Code](https://claude.ai/download) for documentation.
 
 <br><a name="course-information"></a>
 ## 📚 Course Information
