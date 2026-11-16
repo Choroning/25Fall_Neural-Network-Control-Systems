@@ -2,7 +2,7 @@
 
 [Repository Guide](../../README.md) | [English](Assignment-Explanation.md) | [한국어](Assignment-Explanation.ko.md)
 
-> **Last Updated:** 2026-11-04
+> **Last Updated:** 2026-11-16
 
 > **Learning Objectives:**
 > 1. Find the Laplace transforms of exponential functions, trigonometric functions, and their products with a transform table and the properties of the Laplace transform
@@ -42,14 +42,17 @@
 
 ## 1. Assignment Layout
 
-This assignment covers the Laplace transform and its inverse and solving differential equations with the Laplace transform (Week 3), modeling of mechanical systems (Week 4), and transfer functions and block diagrams (Week 5). The first three problems practice the computational tools that turn differential equations in the time domain into algebraic expressions in the $s$ domain, and the last three problems use these tools to describe physical systems by transfer functions.
+> **Try It First:** This document contains the answers and solutions. Solve the problems in the [assignment handout](Original/Assignment.md) yourself before reading on.
+
+This assignment covers the Laplace transform and its inverse and solving differential equations with the Laplace transform (Week 3), modeling of mechanical systems (Week 4), and transfer functions and block diagrams (Week 5). The first three problems practice the computational tools that turn differential equations in the time domain into algebraic expressions in the $s$ domain, and the last three problems use these tools to describe physical systems by transfer functions. The original problems and figures are in the [assignment handout](Original/Assignment.md).
 
 ```text
 Coursework/HW02_Laplace-Transforms-and-System-Modeling/
-├── Original/
-│   └── hw2.pdf                    # assignment handout
-└── Solution/
-    └── Assignment-Report.pdf      # submitted solution (handwritten on the handout)
+├── Assignment-Explanation.ko.md   # assignment explanation (Korean)
+├── Assignment-Explanation.md      # assignment explanation (English)
+└── Original/
+    ├── Assignment.ko.md           # assignment handout (Korean)
+    └── Assignment.md              # assignment handout (English)
 ```
 
 *Figure 1. Directory layout of HW2*
@@ -58,7 +61,7 @@ Coursework/HW02_Laplace-Transforms-and-System-Modeling/
 |:-----|:-----|:-----|
 | 1 | Find the Laplace transforms of $2e^{-2t} + 3e^{-3t}$, $te^{-5t}$, $\sin t + \cos 3t$, and $e^{-2t}\sin 2t$ | Section 3 |
 | 2 | Find the inverse Laplace transforms of $\frac{1}{s(s+3)(s+4)}$, $\frac{10}{(s+1)^2(s+3)}$, $\frac{1}{s^2(s+2)}$, and $\frac{2}{s(s^2+s+2)}$ | Section 4 |
-| 3 | Solve four second-order differential equations with given initial conditions by the Laplace transform | Section 5 |
+| 3 | Solve by the Laplace transform 3.1) $\ddot{y} + 9y = 0$, $y(0) = 1$, 3.2) $\ddot{y} + 5\dot{y} + 4y = e^{-3t}$, $y(0) = 1$, 3.3) $\ddot{y} + 2\dot{y} + 2y = u_s(t)$, $y(0) = 0$, and 3.4) $\ddot{y} + 4y = u_s(t)$, $y(0) = 1$. All four have $\dot{y}(0) = 0$ | Section 5 |
 | 4 | Find the equations of motion and the transfer function $Y_1(s)/F(s)$ of a translational system in which a spring, a damper, and a mass are connected in series | Section 6 |
 | 5 | Find the equations of motion and the transfer function $\Theta_2(s)/T(s)$ of a system of two rotational inertias coupled by gears, with a spring and a damper | Section 7 |
 | 6 | Find the transfer function $Y(s)/R(s)$ of a block diagram with a feedback loop and a parallel path | Section 8 |
@@ -79,10 +82,10 @@ The **Laplace transform** of a function $f(t)$ defined for $t \ge 0$ is the func
 F(s) = \mathcal{L}\lbrace f(t)\rbrace= \int_0^\infty f(t)\,e^{-st}\,dt
 ```
 
-Time functions are written in lowercase and their transforms in uppercase. The integral converges when $f(t)$ does not grow exponentially too fast and $\operatorname{Re}(s)$ is large enough. For example, if $f(t) = e^{-at}$,
+Time functions are written in lowercase and their transforms in uppercase. The integral converges when $f(t)$ does not grow exponentially too fast and $\mathrm{Re}(s)$ is large enough. For example, if $f(t) = e^{-at}$,
 
 ```math
-\mathcal{L}\lbrace e^{-at}\rbrace= \int_0^\infty e^{-(s+a)t}\,dt = \left[\frac{-e^{-(s+a)t}}{s+a}\right]_0^\infty = \frac{1}{s+a}, \qquad \operatorname{Re}(s) > -a
+\mathcal{L}\lbrace e^{-at}\rbrace= \int_0^\infty e^{-(s+a)t}\,dt = \left[\frac{-e^{-(s+a)t}}{s+a}\right]_0^\infty = \frac{1}{s+a}, \qquad \mathrm{Re}(s) > -a
 ```
 
 The basic transform pairs obtained by computations like this one are in Table 2, and every computation in this assignment is built from Table 2 and the properties in Section 2.2. The transform uses only the values for $t \ge 0$, so a time function obtained by an inverse transform also gives the values for $t \ge 0$.
@@ -133,6 +136,12 @@ The frequency shift follows from the definition because $e^{-at}e^{-st} = e^{-(s
 
 ```math
 \mathcal{L}\lbrace te^{-5t}\rbrace= \frac{1}{s^2}\bigg\vert_{s \to s+5} = \frac{1}{(s+5)^2}, \qquad -\frac{d}{ds}\left(\frac{1}{s+5}\right) = \frac{1}{(s+5)^2}
+```
+
+The submitted solution computed 1.1) and 1.2) directly from the integral of the definition. 1.2) uses integration by parts once, as follows, and the boundary term is 0 for $\mathrm{Re}(s) > -5$.
+
+```math
+\int_0^\infty te^{-(s+5)t}\,dt = \left[-\frac{t}{s+5}e^{-(s+5)t}\right]_0^\infty + \frac{1}{s+5}\int_0^\infty e^{-(s+5)t}\,dt = 0 + \frac{1}{s+5}\cdot\frac{1}{s+5} = \frac{1}{(s+5)^2}
 ```
 
 **1.3) $\sin t + \cos 3t$.** The transforms of the sine with $\omega = 1$ and the cosine with $\omega = 3$ are added.
@@ -193,7 +202,7 @@ K_1 = \frac{10}{s+3}\bigg\vert_{s=-1} = 5, \qquad K_2 = \frac{d}{ds}\left(\frac{
 f(t) = 5te^{-t} - \frac{5}{2}e^{-t} + \frac{5}{2}e^{-3t}, \quad t \ge 0
 ```
 
-That a repeated pole produces a $te^{-t}$ term is the same phenomenon as the repeated characteristic root in HW1.
+That a repeated pole produces a $te^{-t}$ term is the same phenomenon as the repeated characteristic root in HW1. The submitted solution found $K_2$ without differentiation by substituting $s = 0$ into both sides, which gives $\frac{10}{3} = K_1 + K_2 + \frac{K_3}{3} = 5 + K_2 + \frac{5}{6}$ and $K_2 = -\frac{5}{2}$. Once the other coefficients are known, any single value of $s$ that is not a pole fixes the remaining coefficient.
 
 **2.3) $\dfrac{1}{s^2(s+2)}$.** $0$ is a pole repeated twice. Since $s^2F(s) = 1/(s+2)$,
 
@@ -233,7 +242,7 @@ $f(0) = 1 - 1 = 0$, and $f(t) \to 1$ as $t \to \infty$, which agrees with the fi
 
 ## 5. Problem 3: Solving Differential Equations with the Laplace Transform
 
-The procedure is the same for all four. (1) Transform both sides with the derivative properties of Table 3, inserting the initial conditions, (2) solve algebraically for $Y(s)$, and (3) invert by partial fraction expansion. The handout's $y^{(1)} = 0$ means the initial value of the first derivative, $\dot{y}(0) = 0$. $u_s(t)$ is the unit step function, whose transform is $1/s$.
+The procedure is the same for all four. (1) Transform both sides with the derivative properties of Table 3, inserting the initial conditions, (2) solve algebraically for $Y(s)$, and (3) invert by partial fraction expansion. The $y^{(1)} = 0$ in the [assignment handout](Original/Assignment.md) means the initial value of the first derivative, $\dot{y}(0) = 0$. $u_s(t)$ is the unit step function, whose transform is $1/s$.
 
 **3.1) $\ddot{y} + 9y = 0$, $y(0) = 1$, $\dot{y}(0) = 0$.**
 
@@ -363,7 +372,7 @@ Multiplying both sides by the denominator of the transfer function gives $(MBs^3
 
 *Figure 3. Two rotational inertias coupled by gears, with a spring and a damper*
 
-In Figure 3, the input torque $\tau$ turns the shaft of the inertia $J_1$, and the gear on this shaft ($N_1$ teeth) meshes with the gear on the other shaft ($N_2$ teeth) to turn the inertia $J_2$. The shaft of $J_2$ is connected to the wall through a torsional spring $K$ and a rotational damper $B$. The handout defines $\tau_2$ as the reaction torque produced by the rotation of $J_2$ and $\tau_1$ as the reaction torque transmitted through the gears. That is, $\tau_1$ is the load torque that the gears return to the $J_1$ shaft, and $\tau_2$ is the torque with which the gears turn the $J_2$ shaft.
+In Figure 3, the input torque $\tau$ turns the shaft of the inertia $J_1$, and the gear on this shaft ($N_1$ teeth) meshes with the gear on the other shaft ($N_2$ teeth) to turn the inertia $J_2$. The shaft of $J_2$ is connected to the wall through a torsional spring $K$ and a rotational damper $B$. The [assignment handout](Original/Assignment.md) defines $\tau_2$ as the reaction torque produced by the rotation of $J_2$ and $\tau_1$ as the reaction torque transmitted through the gears. That is, $\tau_1$ is the load torque that the gears return to the $J_1$ shaft, and $\tau_2$ is the torque with which the gears turn the $J_2$ shaft.
 
 ### 7.1 Gear Relations
 
@@ -411,7 +420,7 @@ and the Laplace transform with zero initial conditions gives the transfer functi
 \frac{\Theta_2(s)}{T(s)} = \frac{N_2/N_1}{\left[J_2 + \left(\frac{N_2}{N_1}\right)^2J_1\right]s^2 + Bs + K} = \frac{N_1N_2}{(N_1^2J_2 + N_2^2J_1)s^2 + N_1^2Bs + N_1^2K}
 ```
 
-The second form multiplies the numerator and denominator by $N_1^2$. The expression shows the principle of **reflected inertia**: moving $J_1$ to the $J_2$ shaft multiplies it by $(N_2/N_1)^2$. Conversely, moving the load to the $J_1$ shaft and writing the equation in $\theta_1$ multiplies $J_2$, $B$, and $K$ by $(N_1/N_2)^2$, giving the denominator $\big[J_1 + (\tfrac{N_1}{N_2})^2J_2\big]s^2 + (\tfrac{N_1}{N_2})^2Bs + (\tfrac{N_1}{N_2})^2K$, and multiplying by $\Theta_2 = (N_1/N_2)\Theta_1$ gives the same transfer function. As a check, $N_1 = N_2$ is the same as putting both inertias on one shaft, giving $1/[(J_1 + J_2)s^2 + Bs + K]$.
+The second form multiplies the numerator and denominator by $N_1^2$. The expression shows the principle of **reflected inertia**: moving $J_1$ to the $J_2$ shaft multiplies it by $(N_2/N_1)^2$. Conversely, moving the load to the $J_1$ shaft and writing the equation in $\theta_1$ multiplies $J_2$, $B$, and $K$ by $(N_1/N_2)^2$, giving the denominator $\big[J_1 + (\tfrac{N_1}{N_2})^2J_2\big]s^2 + (\tfrac{N_1}{N_2})^2Bs + (\tfrac{N_1}{N_2})^2K$, and multiplying by $\Theta_2 = (N_1/N_2)\Theta_1$ gives the same transfer function. As a check, $N_1 = N_2$ is the same as putting both inertias on one shaft, giving $1/[(J_1 + J_2)s^2 + Bs + K]$. The submitted solution set $n = N_1/N_2$ and wrote as the equation of motion the form obtained by multiplying both sides of the equation above by $n^2$, $(J_1 + n^2J_2)\ddot{\theta}_2 + n^2B\dot{\theta}_2 + n^2K\theta_2 = n\tau$, and as the transfer function $n/[(J_1 + n^2J_2)s^2 + n^2Bs + n^2K]$, which equals the result above after multiplying the numerator and denominator by $N_2^2$.
 
 ---
 
@@ -423,15 +432,15 @@ A **block diagram** shows transfer functions as boxes and signals as arrows. The
 
 ```mermaid
 flowchart LR
-    R["R(s)"] -->|"+"| S1(("Σ1"))
+    R["R(s)"] -->|"#43;"| S1(("Σ1"))
     S1 --> G1["G1(s)"]
     G1 --> G2["G2(s)"] --> G4["G4(s)"]
     G1 --> G5["G5(s)"]
-    G4 -->|"+"| S2(("Σ2"))
-    G5 -->|"+"| S2
+    G4 -->|"#43;"| S2(("Σ2"))
+    G5 -->|"#43;"| S2
     S2 --> Y["Y(s)"]
     G4 --> G3["G3(s)"]
-    G3 -->|"-"| S1
+    G3 -->|"#45;"| S1
 ```
 
 *Figure 4. Block diagram of Problem 6*

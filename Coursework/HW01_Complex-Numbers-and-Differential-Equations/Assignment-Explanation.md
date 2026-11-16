@@ -2,7 +2,7 @@
 
 [Repository Guide](../../README.md) | [English](Assignment-Explanation.md) | [한국어](Assignment-Explanation.ko.md)
 
-> **Last Updated:** 2026-11-04
+> **Last Updated:** 2026-11-16
 
 > **Learning Objectives:**
 > 1. Convert complex numbers between polar form and Cartesian form, and find the argument that matches the quadrant in which a complex number lies
@@ -38,14 +38,17 @@
 
 ## 1. Assignment Layout
 
-This assignment practices the two forms of complex numbers and their arithmetic, and the solution of linear differential equations with constant coefficients, which corresponds to complex numbers and differential equations in Week 2. In the analysis of control systems, complex numbers describe the poles and the frequency response of transfer functions, and differential equations describe the dynamic behavior of systems, so both topics are the foundation for the Laplace transform and transfer functions from Week 3 on.
+> **Try It First:** This document contains the answers and solutions. Solve the problems in the [assignment handout](Original/Assignment.md) yourself before reading on.
+
+This assignment practices the two forms of complex numbers and their arithmetic, and the solution of linear differential equations with constant coefficients, which corresponds to complex numbers and differential equations in Week 2. In the analysis of control systems, complex numbers describe the poles and the frequency response of transfer functions, and differential equations describe the dynamic behavior of systems, so both topics are the foundation for the Laplace transform and transfer functions from Week 3 on. The original problems are in the [assignment handout](Original/Assignment.md).
 
 ```text
 Coursework/HW01_Complex-Numbers-and-Differential-Equations/
-├── Original/
-│   └── hw1.pdf                    # assignment handout
-└── Solution/
-    └── Assignment-Report.pdf      # submitted solution (handwritten on the handout)
+├── Assignment-Explanation.ko.md   # assignment explanation (Korean)
+├── Assignment-Explanation.md      # assignment explanation (English)
+└── Original/
+    ├── Assignment.ko.md           # assignment handout (Korean)
+    └── Assignment.md              # assignment handout (English)
 ```
 
 *Figure 1. Directory layout of HW1*
@@ -68,7 +71,7 @@ Coursework/HW01_Complex-Numbers-and-Differential-Equations/
 
 ### 2.1 Complex Numbers and the Complex Plane
 
-A **complex number** is a number written as $S = a + jb$ with two real numbers $a$, $b$ and the **imaginary unit** $j$ ($`j^2 = -1`$). $a$ is called the **real part** $\operatorname{Re}(S)$, and $b$ the **imaginary part** $\operatorname{Im}(S)$. Mathematics writes the imaginary unit as $i$, but electrical and control engineering use $j$ because $i$ denotes current, and this document follows the assignment handout in using $j$.
+A **complex number** is a number written as $S = a + jb$ with two real numbers $a$, $b$ and the **imaginary unit** $j$ ($`j^2 = -1`$). $a$ is called the **real part** $\mathrm{Re}(S)$, and $b$ the **imaginary part** $\mathrm{Im}(S)$. Mathematics writes the imaginary unit as $i$, but electrical and control engineering use $j$ because $i$ denotes current, and this document follows the [assignment handout](Original/Assignment.md) in using $j$.
 
 The plane whose horizontal axis is the real part and whose vertical axis is the imaginary part is called the **complex plane**. A complex number $a + jb$ is shown as the point $(a, b)$ in this plane, or as the vector from the origin to that point. Seen as vectors, addition and subtraction of complex numbers are the same as addition and subtraction of vectors (Section 5).
 
@@ -166,7 +169,7 @@ The same number may also be written $\sqrt{2}\angle 225^\circ$. Using $45^\circ$
 r = \sqrt{0^2 + (-1)^2} = 1, \qquad \theta = -90^\circ \quad\Longrightarrow\quad -j = 1\angle(-90^\circ)
 ```
 
-$1\angle 270^\circ$ is the same number. Converting the results back with the method of Section 3 checks them. For example, $2\angle(-30^\circ) = 2\cos 30^\circ - j2\sin 30^\circ = \sqrt{3} - j$.
+$1\angle 270^\circ$ is the same number. Converting the results back with the method of Section 3 checks them. For example, $2\angle(-30^\circ) = 2\cos 30^\circ - j2\sin 30^\circ = \sqrt{3} - j$. The submitted solution solved $r\cos\theta = a$ and $r\sin\theta = b$ together, found the magnitude from $r^2 = a^2 + b^2$, fixed the quadrant from the signs of $\cos\theta$ and $\sin\theta$ to find the argument, and wrote the three answers as $2\angle(-30^\circ)$, $\sqrt{2}\angle 225^\circ$, and $1\angle 270^\circ$.
 
 ---
 

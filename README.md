@@ -23,7 +23,7 @@ This repository archives lecture notes and coursework for the Neural Network Con
 ## 📝 About This Repository
 
 - `Lecture-Notes/` holds weekly lecture notes (`Week01`, `Week02`, and so on), each covering the three lectures of that week.
-- `Coursework/` holds each assignment's distributed handout, the submitted solution, and an assignment explanation that covers the concepts and the solution steps of every problem.
+- `Coursework/` holds, for each assignment, a handout that transcribes the problems and an assignment explanation that covers the concepts and the solution steps of every problem.
 - Every lecture note and explanation document comes as an English (`.md`) and Korean (`.ko.md`) pair.
 
 > **🤖 Use of Generative AI Tools**

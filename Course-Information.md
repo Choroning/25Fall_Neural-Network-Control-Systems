@@ -2,7 +2,7 @@
 
 [Repository Guide](README.md) | [English](Course-Information.md) | [한국어](Course-Information.ko.md)
 
-> **Last Updated:** 2026-11-04
+> **Last Updated:** 2026-11-16
 
 ## Table of Contents
 
@@ -67,7 +67,7 @@
 
 - Assessment scores are disclosed.
 - **Assessment Plan:** The midterm and final exams assess academic achievement, the assignments assess the understanding of the course, and attendance and participation scores reflect engagement and learning attitude.
-- **Assignments:** There were four assignments in total, and their handouts, solutions, and explanations are in [`Coursework`](Coursework/README.md).
+- **Assignments:** There were four assignments in total, and their handouts and explanations are in [`Coursework`](Coursework/README.md).
   - HW#1 covers the conversion between forms of complex numbers and complex arithmetic, and the solution of first-order and second-order differential equations, and was due on 2025-09-26 (Fri).
   - HW#2 covers the Laplace transform and its inverse, solving differential equations with the Laplace transform, the equations of motion and transfer functions of mechanical systems, and the transfer function of a block diagram, and was due on 2025-10-14 (Tue).
   - HW#3 covers the damping type and gain design of second-order systems, poles and stability, the Routh-Hurwitz criterion, and system type and steady-state error, and was due on 2025-11-14 (Fri).

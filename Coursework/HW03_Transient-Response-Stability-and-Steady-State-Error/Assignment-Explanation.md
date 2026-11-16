@@ -2,14 +2,14 @@
 
 [Repository Guide](../../README.md) | [English](Assignment-Explanation.md) | [한국어](Assignment-Explanation.ko.md)
 
-> **Last Updated:** 2026-11-04
+> **Last Updated:** 2026-11-16
 
 > **Learning Objectives:**
 > 1. Find the damping ratio and natural frequency by comparing a closed-loop characteristic equation with the standard second-order form, and determine the damping type
 > 2. Choose the two gains of a PD controller so that a desired damping ratio and natural frequency are met
 > 3. Judge stability from the roots of the characteristic equation, and find the number of right-half-plane roots and the range of stable gains with the Routh-Hurwitz criterion
 > 4. Compute the steady-state errors for step, ramp, and parabolic inputs from the system type and the error constants
-> 5. Determine the type of a system with a transfer function in the feedback path from the definition of the error
+> 5. Determine the type of a system with a transfer function in the feedback path
 
 ---
 
@@ -40,14 +40,17 @@
 
 ## 1. Assignment Layout
 
-This assignment covers the transient response of second-order systems (Week 7), response speed, pole locations, stability, and the Routh-Hurwitz criterion (Week 9), and steady-state performance and system type (Week 10). Every problem uses one feedback structure, changing only the transfer functions of the controller, the plant, and the feedback path.
+> **Try It First:** This document contains the answers and solutions. Solve the problems in the [assignment handout](Original/Assignment.md) yourself before reading on.
+
+This assignment covers the transient response of second-order systems (Week 7), response speed, pole locations, stability, and the Routh-Hurwitz criterion (Week 9), and steady-state performance and system type (Week 10). Every problem uses one feedback structure, changing only the transfer functions of the controller, the plant, and the feedback path. The original problems and block diagrams are in the [assignment handout](Original/Assignment.md).
 
 ```text
 Coursework/HW03_Transient-Response-Stability-and-Steady-State-Error/
-├── Original/
-│   └── hw3.pdf                    # assignment handout
-└── Solution/
-    └── Assignment-Report.pdf      # submitted solution (handwritten on the handout)
+├── Assignment-Explanation.ko.md   # assignment explanation (Korean)
+├── Assignment-Explanation.md      # assignment explanation (English)
+└── Original/
+    ├── Assignment.ko.md           # assignment handout (Korean)
+    └── Assignment.md              # assignment handout (English)
 ```
 
 *Figure 1. Directory layout of HW3*
@@ -78,12 +81,12 @@ Every block diagram in the assignment has the structure of Figure 2. The referen
 
 ```mermaid
 flowchart LR
-    R["R(s)"] -->|"+"| S(("Σ"))
+    R["R(s)"] -->|"#43;"| S(("Σ"))
     S --> D["D(s)"]
     D -->|"U(s)"| G["G(s)"]
     G --> Y["Y(s)"]
     G --> H["H(s)"]
-    H -->|"-"| S
+    H -->|"#45;"| S
 ```
 
 *Figure 2. Common feedback structure of the assignment*
@@ -364,7 +367,7 @@ and the final value theorem is applied to each test input.
 \text{step: } \lim_{s\to 0} s\cdot\frac{1}{s}\cdot\frac{s(s+5)}{(s+1)(s+4)} = 0, \qquad \text{ramp: } \lim_{s\to 0} s\cdot\frac{1}{s^2}\cdot\frac{s(s+5)}{(s+1)(s+4)} = \frac{5}{4}, \qquad \text{parabola: } \infty
 ```
 
-The unit ramp input is the first to give a nonzero finite error, $5/4$, so the system is **type 1**.
+The unit ramp input is the first to give a nonzero finite error, $5/4$, so the system is **type 1**. The submitted solution reduced the open-loop transfer function $DGH = \frac{4(s+1)}{s(s+1)}$ to $4/s$ for $s \ne -1$ and obtained type 1 from the number of poles at the origin. The answer is the same in this problem, but as the following caution box shows, when $H \ne 1$ the error constant obtained this way does not give the tracking error.
 
 > **Caution:** Looking only at the open-loop transfer function $DGH = \frac{4(s+1)}{s(s+1)} = \frac{4}{s}$ also shows one pole at the origin, so the type comes out the same in this problem, but $1/K_v = 1/4$ from Table 7 is not the error between the reference input and the output. That value is the steady-state value of the summing-point output $E_a = R - HY = R/(1 + DGH)$, while the actual tracking error $R - Y$ is $5/4$. When $H \ne 1$, the signal compared with the reference input is the output passed through $H$, not the output itself, so the type and the error must be found directly from $E = R - Y$.
 

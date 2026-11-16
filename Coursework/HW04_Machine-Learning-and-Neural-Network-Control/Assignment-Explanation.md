@@ -2,10 +2,10 @@
 
 [Repository Guide](../../README.md) | [English](Assignment-Explanation.md) | [한국어](Assignment-Explanation.ko.md)
 
-> **Last Updated:** 2026-11-04
+> **Last Updated:** 2026-11-16
 
 > **Learning Objectives:**
-> 1. Compute distances in k-nearest neighbor classification and explain why the prediction changes with $k$
+> 1. Compute the distance from the prediction point to each training sample and estimate its group by k-nearest neighbor classification
 > 2. Fit a simple linear regression model by least squares and evaluate it with the coefficient of determination and RMSE
 > 3. Compute the forward pass of a perceptron and find the gradients of the loss with respect to the weights with the chain rule
 > 4. Find the inputs that bring a discrete-time state equation to a target state by repeated substitution
@@ -43,26 +43,29 @@
 
 ## 1. Assignment Layout
 
-This assignment covers the learning methods of artificial intelligence (Week 12), artificial neural networks and their training (Week 13), and neural-network-based control (Week 14). Problems 1 and 2 are classification and regression in supervised learning, Problem 3 is the gradient computation at the heart of neural network training, Problem 4 is input design for a discrete-time system, and Problems 5 and 6 are two methods that set control inputs with a plant model built from a neural network.
+> **Try It First:** This document contains the answers and solutions. Solve the problems in the [assignment handout](Original/Assignment.md) yourself before reading on.
+
+This assignment covers the learning methods of artificial intelligence (Week 12), artificial neural networks and their training (Week 13), and neural-network-based control (Week 14). Problems 1 and 2 are classification and regression in supervised learning, Problem 3 is the gradient computation at the heart of neural network training, Problem 4 is input design for a discrete-time system, and Problems 5 and 6 are two methods that set control inputs with a plant model built from a neural network. The original problems and figures are in the [assignment handout](Original/Assignment.md), and Table 1 lists all the data that each problem gives.
 
 ```text
 Coursework/HW04_Machine-Learning-and-Neural-Network-Control/
-├── Original/
-│   └── hw4.pdf                    # assignment handout
-└── Solution/
-    └── Assignment-Report.pdf      # submitted solution (handwritten on the handout)
+├── Assignment-Explanation.ko.md   # assignment explanation (Korean)
+├── Assignment-Explanation.md      # assignment explanation (English)
+└── Original/
+    ├── Assignment.ko.md           # assignment handout (Korean)
+    └── Assignment.md              # assignment handout (English)
 ```
 
 *Figure 1. Directory layout of HW4*
 
 | Problem | Content | This Document |
 |:-----|:-----|:-----|
-| 1 | Given samples of two groups, estimate the group of the prediction point $(2.5, 1)$ with 1-NN, 3-NN, and 5-NN | Section 2 |
-| 2 | Fit a linear regression to the samples $(0, 0)$, $(1, 3)$, $(2, 4)$ and find the prediction at $x = 1/3$, $R^2$, and the RMSE on two additional samples | Section 3 |
-| 3 | For a perceptron with inputs $x_1 = 2$, $x_2 = 3$, target $y = 10$, and the ReLU activation function, find the derivative of ReLU and $\partial L/\partial w_0$, $\partial L/\partial w_1$, $\partial L/\partial w_2$ | Section 4 |
-| 4 | For $x(k+1) = Ax(k) + Bu(k)$, find the inputs $u(k)$ and $u(k+1)$ that bring $x(k) = [1, 1]^T$ to $x(k+2) = [2, 2]^T$ | Section 5 |
-| 5 | With the neural network model $\hat{y}(k+1) = \big(y(k) + 2u(k)\big)^2$ and neural network predictive control with $\rho = 0$, find $u(0)$ and $u(1)$ that produce $y_r(1) = 4$ and $y_r(2) = 9$ | Section 6 |
-| 6 | With the neural network model $\hat{y}(k+1) = y(k)\big(1 + u(k)\big) + u(k-1)\big(2 + u(k)\big)$ and NARMA-L2 control, find $u(1)$ and $u(2)$ that produce $y_r(2) = 5$ and $y_r(3) = 13$ | Section 7 |
+| 1 | Given the Group A samples $(1, 1)$, $(1, 3)$, $(1, 5)$, $(3, 3)$, $(3, 5)$ and the Group B samples $(3, 1)$, $(5, 1)$, $(5, 3)$, $(5, 5)$, estimate the group of the prediction point $(2.5, 1)$ with 1-NN, 3-NN, and 5-NN | Section 2 |
+| 2 | Fit a linear regression to the samples $(0, 0)$, $(1, 3)$, $(2, 4)$, find the prediction at $x = 1/3$ and $R^2$, and find the RMSE on the two additional samples $(-1/3, 0)$, $(1/3, 4/3)$ | Section 3 |
+| 3 | For a perceptron that multiplies a constant input 1 and two inputs $x_1 = 2$, $x_2 = 3$ by the weights $w_0 = 1$, $w_1 = 1$, $w_2 = 2$, adds them, and passes the sum through the ReLU activation function $g$ to produce the output $A$, find the derivative of ReLU and $\partial L/\partial w_0$, $\partial L/\partial w_1$, $\partial L/\partial w_2$ for the target $y = 10$ and the loss $L = (A - y)^2$ | Section 4 |
+| 4 | For $x(k+1) = Ax(k) + Bu(k)$, where the rows of $A$ are $[1, 2]$ and $[2, 1]$ and $B = [2, 1]^T$, find the inputs $u(k)$ and $u(k+1)$ that bring $x(k) = [1, 1]^T$ to $x(k+2) = [2, 2]^T$ | Section 5 |
+| 5 | With the neural network model $\hat{y}(k+1) = \big(y(k) + 2u(k)\big)^2$ and neural network predictive control with $\rho = 0$, find $u(0)$ and $u(1)$ that produce $y_r(1) = 4$ and $y_r(2) = 9$ from the current response $y(0) = 1$ | Section 6 |
+| 6 | With the neural network model $\hat{y}(k+1) = y(k)\big(1 + u(k)\big) + u(k-1)\big(2 + u(k)\big)$ and NARMA-L2 control, find $u(1)$ and $u(2)$ that produce $y_r(2) = 5$ and $y_r(3) = 13$ from the current response $y(1) = 1$ and the previous input $u(0) = 1$ | Section 7 |
 
 *Table 1. Problems of HW4 and the sections of this document that cover them*
 
@@ -154,7 +157,7 @@ R^2 = 1 - \frac{\text{SSE}}{\text{SST}}
 \text{SSE} = \frac{1}{9} + \frac{4}{9} + \frac{1}{9} = \frac{2}{3}, \qquad \text{SST} = \frac{49}{9} + \frac{4}{9} + \frac{25}{9} = \frac{26}{3}, \qquad R^2 = 1 - \frac{2/3}{26/3} = 1 - \frac{1}{13} = \frac{12}{13} \approx 0.923
 ```
 
-The model explains about 92.3% of the output variation. In simple linear regression with an intercept, $R^2$ equals the square of the correlation coefficient $r$ between $x$ and $y$, and for this data $r = \sqrt{12/13} \approx 0.961$. The R value of Week 12 is the correlation coefficient between the predictions and the targets; in simple linear regression the prediction $\hat{y}$ is a linear function of $x$, and the slope is positive for this data, so that value also equals $r$, and the closer it is to 1, the better the predictions match the targets.
+The model explains about 92.3% of the output variation. In simple linear regression with an intercept, $R^2$ equals the square of the correlation coefficient $r$ between $x$ and $y$, and for this data $r = \sqrt{12/13} \approx 0.961$. The R value of Week 12 is the correlation coefficient between the predictions and the targets; in simple linear regression the prediction $\hat{y}$ is a linear function of $x$, and the slope is positive for this data, so that value also equals $r$, and the closer it is to 1, the better the predictions match the targets. The submitted solution used the regression sum of squares $\text{SSR} = \sum(\hat{y}_i - \bar{y})^2 = (-2)^2 + 0^2 + 2^2 = 8$ and found $R^2 = \text{SSR}/\text{SST} = 8/(26/3) = 12/13$. In least squares regression with an intercept, $\text{SST} = \text{SSR} + \text{SSE}$ ($`26/3 = 8 + 2/3`$), so the two definitions give the same value.
 
 ### 3.3 RMSE on New Samples
 
@@ -217,7 +220,7 @@ The loss is a composition of functions, $L(A(z(w)))$, so the gradient with respe
 \frac{\partial L}{\partial w_0} = (-2)(1)(1) = -2, \qquad \frac{\partial L}{\partial w_1} = (-2)(1)(2) = -4, \qquad \frac{\partial L}{\partial w_2} = (-2)(1)(3) = -6
 ```
 
-All three gradients are negative, so increasing the weights decreases the loss. This means the weighted sum must grow because the output 9 is below the target 10, and the larger the input multiplying a weight, the more that weight affects the output, so the larger its gradient. **Gradient descent** repeats $`w_i \leftarrow w_i - \eta\,\partial L/\partial w_i`$ with a learning rate $\eta$. For example, with $\eta = 0.01$ the weights become $(1.02, 1.04, 2.06)$, the weighted sum $1.02 + 2.08 + 6.18 = 9.28$, and the loss decreases to $(9.28 - 10)^2 \approx 0.518$. Extending this computation, which multiplies derivatives from the output toward the input, to several layers is the **backpropagation** of Week 13.
+All three gradients are negative, so increasing the weights decreases the loss. This means the weighted sum must grow because the output 9 is below the target 10, and the larger the input multiplying a weight, the more that weight affects the output, so the larger its gradient. **Gradient descent** repeats $`w_i \leftarrow w_i - \eta\,\partial L/\partial w_i`$ with a learning rate $\eta$. For example, with $\eta = 0.01$ the weights become $(1.02, 1.04, 2.06)$, the weighted sum $1.02 + 2.08 + 6.18 = 9.28$, and the loss decreases to $(9.28 - 10)^2 \approx 0.518$. Extending this computation, which multiplies derivatives from the output toward the input, to several layers is the **backpropagation** of Week 13. The submitted solution grouped the product of the first two factors into the error term $\delta = \frac{\partial L}{\partial A}\cdot\frac{\partial A}{\partial z} = -2$ and computed the three gradients as $\partial L/\partial w_i = \delta x_i$.
 
 ---
 
@@ -281,7 +284,7 @@ With $\rho = 0$ there is no penalty on input changes, so the inputs that make th
 \hat{y}(2) = \big(y(1) + 2u(1)\big)^2 = \big(4 + 2u(1)\big)^2 = 9 \quad\Longrightarrow\quad 4 + 2u(1) = \pm 3 \quad\Longrightarrow\quad u(1) = -\frac{1}{2} \;\text{or}\; -\frac{7}{2}
 ```
 
-$\hat{y}(2)$ is set by $y(1) = 4$ alone regardless of $u(0)$, so any pairing of the two values of $u(0)$ with the two values of $u(1)$ gives $J = 0$. Therefore, with $\rho = 0$, all four combinations $(u(0), u(1)) = (\frac{1}{2}, -\frac{1}{2})$, $(\frac{1}{2}, -\frac{7}{2})$, $(-\frac{3}{2}, -\frac{1}{2})$, $(-\frac{3}{2}, -\frac{7}{2})$ are solutions. There are several solutions because the model is quadratic in the input, so two inputs give the same output at each step. With $\rho > 0$, the penalty on input changes makes the four combinations no longer have the same $J$, and the optimal inputs are set by a trade-off between tracking error and input change. Among the four combinations, $(\frac{1}{2}, -\frac{1}{2})$ has the smallest input magnitudes and also the smallest change from $u(0)$ to $u(1)$ (the change of 1 equals that of $`(-\frac{3}{2}, -\frac{1}{2})`$), placing the least load on a real actuator, so it is the suitable choice when one combination must be picked.
+$\hat{y}(2)$ is set by $y(1) = 4$ alone regardless of $u(0)$, so any pairing of the two values of $u(0)$ with the two values of $u(1)$ gives $J = 0$. Therefore, with $\rho = 0$, all four combinations $(u(0), u(1)) = (\frac{1}{2}, -\frac{1}{2})$, $(\frac{1}{2}, -\frac{7}{2})$, $(-\frac{3}{2}, -\frac{1}{2})$, $(-\frac{3}{2}, -\frac{7}{2})$ are solutions. There are several solutions because the model is quadratic in the input, so two inputs give the same output at each step. With $\rho > 0$, the penalty on input changes makes the four combinations no longer have the same $J$, and the optimal inputs are set by a trade-off between tracking error and input change. Among the four combinations, $(\frac{1}{2}, -\frac{1}{2})$ has the smallest input magnitudes and also the smallest change from $u(0)$ to $u(1)$ (the change of 1 equals that of $`(-\frac{3}{2}, -\frac{1}{2})`$), placing the least load on a real actuator, so it is the suitable choice when one combination must be picked. The submitted solution also picked the smaller value at each step and gave $u(0) = \frac{1}{2}$ and $u(1) = -\frac{1}{2}$ as the answer.
 
 ---
 

@@ -2,7 +2,7 @@
 
 [레포지토리 안내](../../README.ko.md) | [English](Assignment-Explanation.md) | [한국어](Assignment-Explanation.ko.md)
 
-> **최종 수정일:** 2026-11-04
+> **최종 수정일:** 2026-11-16
 
 > **학습 목표:**
 > 1. 복소수를 극좌표 형식과 직각 좌표 형식 사이에서 변환하고, 복소수가 놓인 사분면에 맞는 편각을 구할 수 있다
@@ -38,14 +38,17 @@
 
 ## 1. 과제 구성
 
-복소수의 두 표현 형식과 사칙연산, 상수 계수 선형 미분방정식의 풀이를 연습하는 과제로, 2주차의 복소수와 미분방정식에 해당한다. 제어시스템의 해석에서 복소수는 전달함수의 극점과 주파수 응답을 나타내고 미분방정식은 시스템의 동적 거동을 나타내므로, 두 내용은 3주차 이후의 라플라스 변환과 전달함수의 기초가 된다.
+> **풀어 보기:** 이 문서는 정답과 풀이를 담고 있다. 먼저 [과제 안내문](Original/Assignment.ko.md)의 문제를 직접 풀어 본 뒤 읽는다.
+
+복소수의 두 표현 형식과 사칙연산, 상수 계수 선형 미분방정식의 풀이를 연습하는 과제로, 2주차의 복소수와 미분방정식에 해당한다. 제어시스템의 해석에서 복소수는 전달함수의 극점과 주파수 응답을 나타내고 미분방정식은 시스템의 동적 거동을 나타내므로, 두 내용은 3주차 이후의 라플라스 변환과 전달함수의 기초가 된다. 문제의 원문은 [과제 안내문](Original/Assignment.ko.md)에 있다.
 
 ```text
 Coursework/HW01_Complex-Numbers-and-Differential-Equations/
-├── Original/
-│   └── hw1.pdf                    # 과제 안내문
-└── Solution/
-    └── Assignment-Report.pdf      # 제출한 풀이 (안내문 위에 손으로 쓴 풀이)
+├── Assignment-Explanation.ko.md   # 과제 해설 (한국어)
+├── Assignment-Explanation.md      # 과제 해설 (영어)
+└── Original/
+    ├── Assignment.ko.md           # 과제 안내문 (한국어)
+    └── Assignment.md              # 과제 안내문 (영어)
 ```
 
 *그림 1. HW1 과제의 디렉토리 구성*
@@ -68,7 +71,7 @@ Coursework/HW01_Complex-Numbers-and-Differential-Equations/
 
 ### 2.1 복소수와 복소평면
 
-**복소수(complex number)** 는 두 실수 $a$, $b$와 **허수 단위(imaginary unit)** $j$($`j^2 = -1`$)로 $S = a + jb$처럼 쓰는 수이다. $a$를 **실수부(real part)** $\operatorname{Re}(S)$, $b$를 **허수부(imaginary part)** $\operatorname{Im}(S)$라 한다. 수학에서는 허수 단위를 $i$로 쓰지만 전기공학과 제어공학에서는 $i$가 전류를 뜻하므로 $j$를 쓰며, 이 문서도 과제 안내문을 따라 $j$를 쓴다.
+**복소수(complex number)** 는 두 실수 $a$, $b$와 **허수 단위(imaginary unit)** $j$($`j^2 = -1`$)로 $S = a + jb$처럼 쓰는 수이다. $a$를 **실수부(real part)** $\mathrm{Re}(S)$, $b$를 **허수부(imaginary part)** $\mathrm{Im}(S)$라 한다. 수학에서는 허수 단위를 $i$로 쓰지만 전기공학과 제어공학에서는 $i$가 전류를 뜻하므로 $j$를 쓰며, 이 문서도 [과제 안내문](Original/Assignment.ko.md)을 따라 $j$를 쓴다.
 
 실수부를 가로축, 허수부를 세로축으로 하는 평면을 **복소평면(complex plane)** 이라 한다. 복소수 $a + jb$는 이 평면의 점 $(a, b)$로, 또는 원점에서 그 점으로 가는 벡터로 나타낸다. 벡터로 보면 복소수의 덧셈과 뺄셈은 벡터의 덧셈과 뺄셈과 같다(5절).
 
@@ -166,7 +169,7 @@ r = \sqrt{(-1)^2 + (-1)^2} = \sqrt{2}, \qquad \theta = 45^\circ - 180^\circ = -1
 r = \sqrt{0^2 + (-1)^2} = 1, \qquad \theta = -90^\circ \quad\Longrightarrow\quad -j = 1\angle(-90^\circ)
 ```
 
-$1\angle 270^\circ$로 써도 같은 수이다. 결과를 3절의 방법으로 되돌리면 검산할 수 있다. 예를 들어 $2\angle(-30^\circ) = 2\cos 30^\circ - j2\sin 30^\circ = \sqrt{3} - j$이다.
+$1\angle 270^\circ$로 써도 같은 수이다. 결과를 3절의 방법으로 되돌리면 검산할 수 있다. 예를 들어 $2\angle(-30^\circ) = 2\cos 30^\circ - j2\sin 30^\circ = \sqrt{3} - j$이다. 제출한 풀이는 $r\cos\theta = a$와 $r\sin\theta = b$를 연립하여 $r^2 = a^2 + b^2$에서 크기를 구하고, $\cos\theta$와 $\sin\theta$의 부호로 사분면을 정해 편각을 구했으며, 세 답을 $2\angle(-30^\circ)$, $\sqrt{2}\angle 225^\circ$, $1\angle 270^\circ$로 적었다.
 
 ---
 
