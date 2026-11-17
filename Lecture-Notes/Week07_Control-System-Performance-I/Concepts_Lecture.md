@@ -2,7 +2,7 @@
 
 [Repository Guide](../../README.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **Last Updated:** 2026-11-04
+> **Last Updated:** 2026-11-17
 
 > **Learning Objectives:**
 > 1. Describe the components of a feedback control system and convert a system with a sensor in the feedback path into a unity feedback system by block diagram operations
@@ -55,13 +55,13 @@ Weeks 5 and 6 showed how to describe physical systems with transfer functions, b
 
 ```mermaid
 flowchart LR
-    R["Temperature command"] -->|"+"| S(("Σ"))
+    R["Temperature command"] -->|"#43;"| S(("Σ"))
     S --> C["Controller"]
     C --> H["Heater"]
     H --> RM["Room"]
     RM --> Y["Room temperature"]
     RM --> T["Temperature sensor"]
-    T -->|"-"| S
+    T -->|"#45;"| S
 ```
 
 *Figure 1. Block diagram of the room heating temperature control system*
@@ -77,13 +77,13 @@ The first requirement concerns **transient performance**, and the second concern
 
 ```mermaid
 flowchart LR
-    R["Angle command"] -->|"+"| S(("Σ"))
+    R["Angle command"] -->|"#43;"| S(("Σ"))
     S --> C["Flight controller"]
     C --> M["Motors"]
     M --> Q["Quadcopter"]
     Q --> Y["Angle"]
     Q --> T["Angle sensor"]
-    T -->|"-"| S
+    T -->|"#45;"| S
 ```
 
 *Figure 2. Block diagram of the quadcopter attitude control system*
@@ -100,12 +100,12 @@ A general feedback control system is described by three transfer functions as in
 
 ```mermaid
 flowchart LR
-    R["R(s)"] -->|"+"| S(("Σ"))
+    R["R(s)"] -->|"#43;"| S(("Σ"))
     S --> D["D(s)"]
     D -->|"U(s)"| G["G(s)"]
     G --> Y["Y(s)"]
     G --> H["H(s)"]
-    H -->|"-"| S
+    H -->|"#45;"| S
 ```
 
 *Figure 4. General structure of a feedback control system*
@@ -131,12 +131,12 @@ A system with $H(s) = 1$, which feeds the output back unchanged, is called a **u
 ```mermaid
 flowchart LR
     R["R(s)"] --> P["1/H(s)"]
-    P -->|"+"| S(("Σ"))
+    P -->|"#43;"| S(("Σ"))
     S --> D["D(s)"]
     D --> H["H(s)"]
     H -->|"U(s)"| G["G(s)"]
     G --> Y["Y(s)"]
-    G -->|"-"| S
+    G -->|"#45;"| S
 ```
 
 *Figure 5. Unity feedback system with the same input-output relation as Figure 4*
@@ -157,11 +157,11 @@ Consider a unity feedback system whose plant is $G(s) = 1/(s+1)$ and whose contr
 
 ```mermaid
 flowchart LR
-    R["R(s)"] -->|"+"| S(("Σ"))
+    R["R(s)"] -->|"#43;"| S(("Σ"))
     S --> K["K"]
     K -->|"U(s)"| G["1/(s+1)"]
     G --> Y["Y(s)"]
-    G -->|"-"| S
+    G -->|"#45;"| S
 ```
 
 *Figure 6. Unity feedback system made of the plant 1/(s+1) and a proportional controller*
@@ -183,7 +183,11 @@ This comparison reveals the two criteria for evaluating the performance of a con
 1. How fast the output of the control system moves to the command value: **transient performance**
 2. How close the final position is to the command value: **steady-state performance**
 
-> **Definition:** The **transient response** is the response from the moment an input is applied until the output settles near its final value, and the **steady-state response** is the response after enough time has passed for the transient components to vanish. Transient performance is judged by the speed and shape of the transient response, and steady-state performance by the **steady-state error**, the difference between the output and the command value in the steady state.
+> **Definition:** The **transient response** is the response from the moment an input is applied until the output settles near its final value.
+
+> **Definition:** The **steady-state response** is the response after enough time has passed for the transient components to vanish.
+
+> **Definition:** The **steady-state error** is the difference between the output and the command value in the steady state. Transient performance is judged by the speed and shape of the transient response, and steady-state performance by the steady-state error.
 
 ### 1.4 Test Input Signals
 
@@ -395,11 +399,11 @@ Attach a proportional controller $K$ and a speed sensor to the motor of Section 
 
 ```mermaid
 flowchart LR
-    R["R(s)"] -->|"+"| S(("Σ"))
+    R["R(s)"] -->|"#43;"| S(("Σ"))
     S --> K["K"]
     K -->|"U(s)"| G["(1/K_b)/(τ_m s + 1)"]
     G --> Y["Y(s)"]
-    G -->|"-"| S
+    G -->|"#45;"| S
 ```
 
 *Figure 12. Motor speed control system*
@@ -438,11 +442,11 @@ Consider a unity feedback system whose plant is $G(s) = \dfrac{1}{s(s+1)}$ and w
 
 ```mermaid
 flowchart LR
-    R["R(s)"] -->|"+"| S(("Σ"))
+    R["R(s)"] -->|"#43;"| S(("Σ"))
     S --> K["K"]
     K -->|"U(s)"| G["1/(s(s+1))"]
     G --> Y["Y(s)"]
-    G -->|"-"| S
+    G -->|"#45;"| S
 ```
 
 *Figure 13. Unity feedback system made of the plant 1/(s(s+1)) and a proportional controller*

@@ -2,7 +2,7 @@
 
 [Repository Guide](../../README.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **Last Updated:** 2026-11-04
+> **Last Updated:** 2026-11-17
 
 > **Learning Objectives:**
 > 1. Explain the correspondence between biological neurons and artificial neurons, and compute the output of a perceptron from the weighted sum and the activation function
@@ -208,7 +208,7 @@ After a period of stagnation, artificial neural networks drew great attention ag
 
 *Table 5. Factors behind the return of artificial neural networks*
 
-> **Definition:** **Transfer learning** carries knowledge that a neural network learned on one task over to another, related task. For example, an image recognition network trained on millions of everyday photographs can be taken and **fine-tuned** by retraining only its last few layers on a few hundred medical images. This makes neural networks usable in real applications where labeled data (data with correct answers) are scarce or expensive to obtain.
+> **Definition:** **Transfer learning** carries knowledge that a neural network learned on one task over to another, related task. For example, an image recognition network trained on millions of everyday photographs can be taken and fine-tuned by retraining only its last few layers on a few hundred medical images. This makes neural networks usable in real applications where labeled data (data with correct answers) are scarce or expensive to obtain.
 
 ### 1.8 The Perceptron
 
@@ -500,7 +500,7 @@ Here $f(\mathbf{x}^{(i)}; \boldsymbol{\theta})$ is the prediction that the netwo
 
 Reducing the loss for only one data point can make the predictions for other data worse, so training is based on the loss over all of the data.
 
-> **Definition:** The **empirical loss** is the average of the loss over the whole data set. It is also called the **objective function**, the **cost function**, or the **empirical risk**.
+> **Definition:** The **empirical loss** is the average of the loss over the whole data set. It is also called the objective function, the cost function, or the empirical risk.
 
 ```math
 J(\boldsymbol{\theta}) = \frac{1}{n}\sum_{i=1}^{n} L\bigl(f(\mathbf{x}^{(i)}; \boldsymbol{\theta}), y^{(i)}\bigr)
@@ -688,7 +688,7 @@ The principle of backpropagation is examined with the smallest example. Figure 2
 
 ```mermaid
 flowchart LR
-    X(("x")) --> P(("+"))
+    X(("x")) --> P(("#43;"))
     Y(("y")) --> P
     P -->|"q = x + y"| M(("×"))
     Z(("z")) --> M

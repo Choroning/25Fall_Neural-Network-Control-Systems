@@ -2,7 +2,7 @@
 
 [Repository Guide](../../README.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **Last Updated:** 2026-11-04
+> **Last Updated:** 2026-11-17
 
 > **Learning Objectives:**
 > 1. Explain the structure of a PID controller and the roles of its proportional, integral, and derivative terms, and give typical applications, advantages, and disadvantages
@@ -57,16 +57,16 @@
 
 ```mermaid
 flowchart LR
-    R["r(t)"] -->|"+"| S1(("Σ"))
+    R["r(t)"] -->|"#43;"| S1(("Σ"))
     S1 -->|"e(t)"| P["P: Kp e(t)"]
     S1 --> I["I: Ki ∫ e(τ) dτ"]
     S1 --> D["D: Kd de(t)/dt"]
-    P -->|"+"| S2(("Σ"))
-    I -->|"+"| S2
-    D -->|"+"| S2
+    P -->|"#43;"| S2(("Σ"))
+    I -->|"#43;"| S2
+    D -->|"#43;"| S2
     S2 -->|"u(t)"| G["Process"]
     G --> Y["y(t)"]
-    G -->|"-"| S1
+    G -->|"#45;"| S1
 ```
 
 *Figure 1. Structure of a PID control system*
@@ -191,11 +191,11 @@ The control goal is to achieve a fast **rise time**, minimal **maximum overshoot
 
 ```mermaid
 flowchart LR
-    R["r"] -->|"+"| S(("Σ"))
+    R["r"] -->|"#43;"| S(("Σ"))
     S -->|"e"| C["Controller C(s)"]
     C -->|"u"| P["Plant P(s)"]
     P --> Y["y"]
-    P -->|"-"| S
+    P -->|"#45;"| S
 ```
 
 *Figure 3. Unity feedback control structure of the mass-spring-damper system*

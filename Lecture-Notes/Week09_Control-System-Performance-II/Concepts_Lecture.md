@@ -2,7 +2,7 @@
 
 [Repository Guide](../../README.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **Last Updated:** 2026-11-04
+> **Last Updated:** 2026-11-17
 
 > **Learning Objectives:**
 > 1. Explain how the pole locations and the speed of the step response change when the natural frequency and the damping ratio change
@@ -121,11 +121,11 @@ Build a feedback system around this plant with a proportional controller $K$ as 
 
 ```mermaid
 flowchart LR
-    R["R(s)"] -->|"+"| S(("Σ"))
+    R["R(s)"] -->|"#43;"| S(("Σ"))
     S --> K["K"]
     K -->|"U(s)"| G["1/(s(Ms + B))"]
     G --> Y["Y(s)"]
-    G -->|"-"| S
+    G -->|"#45;"| S
 ```
 
 *Figure 4. Position control system for the mass-damper system*

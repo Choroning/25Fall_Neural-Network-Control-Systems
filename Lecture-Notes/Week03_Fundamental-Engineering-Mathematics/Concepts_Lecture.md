@@ -2,7 +2,7 @@
 
 [Repository Guide](../../README.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **Last Updated:** 2026-11-04
+> **Last Updated:** 2026-11-17
 
 > **Learning Objectives:**
 > 1. Explain the workflow of control system analysis that turns a differential equation into an algebraic equation with the Laplace transform
@@ -96,7 +96,11 @@ flowchart LR
 
 A simple control system can be analyzed and designed with differential equations alone. Most control systems, however, consist of several kinds of blocks connected together, such as a controller, an actuator, the controlled object, and a sensor, so treating the whole system as one differential equation becomes very complicated. Mathematical tools are introduced to make the analysis easier, and the tool used most in control systems is the Laplace transform.
 
-> **Definition:** The **Laplace transform** is an integral transform that turns a function $f(t)$ of the real variable $t$ (time) into a function $F(s)$ of the complex variable $s = \sigma + j\omega$. The world of functions of $t$ is the **time domain**, and the world of functions of $s$ is the **frequency domain** or the $s$-domain.
+> **Definition:** The **Laplace transform** is an integral transform that turns a function $f(t)$ of the real variable $t$ (time) into a function $F(s)$ of the complex variable $s = \sigma + j\omega$.
+
+> **Definition:** The world of functions of $t$ is called the **time domain**.
+
+> **Definition:** The world of functions of $s$ is called the **frequency domain** or the $s$-domain.
 
 The defining equation of the Laplace transform is as follows.
 
@@ -112,7 +116,7 @@ Because the interval of integration is infinite, the transform exists only if th
 \int_{-\infty}^{\infty} \left\lvert f(t)\,e^{-\sigma t} \right\rvert dt < \infty
 ```
 
-Whether this condition holds depends on the value of $\sigma$. The Laplace transform is therefore generally defined only when the real part of $s$ lies in a certain range, which is called the **region of convergence** [1]. For example, the transform of $e^{at}$ found in Section 1.7 exists only for $\operatorname{Re}(s) > a$. Signals in control engineering do not grow faster than an exponential function, so their transforms always exist once $\operatorname{Re}(s)$ is taken large enough.
+Whether this condition holds depends on the value of $\sigma$. The Laplace transform is therefore generally defined only when the real part of $s$ lies in a certain range, which is called the **region of convergence** [1]. For example, the transform of $e^{at}$ found in Section 1.7 exists only for $\mathrm{Re}(s) > a$. Signals in control engineering do not grow faster than an exponential function, so their transforms always exist once $\mathrm{Re}(s)$ is taken large enough.
 
 The greatest advantage of the frequency domain is that differentiation and integration in the time domain become multiplication and division by $s$ (Sections 2.4 and 2.5). In the frequency domain, a system can therefore be handled with multiplication and division alone.
 
@@ -174,7 +178,7 @@ As a definite integral it reads as follows. Every derivation from Section 1.8 on
 \int_a^b f'(t)\,g(t)\,dt = \Big[ f(t)\,g(t) \Big]_{t=a}^{t=b} - \int_a^b f(t)\,g'(t)\,dt
 ```
 
-> **[Calculus]** An improper integral with $\infty$ as a limit is defined by the limit $`\int_0^\infty g(t)\,dt = \lim_{T\to\infty}\int_0^T g(t)\,dt`$. Laplace transform computations repeatedly use two facts: when $\operatorname{Re}(s) > 0$, $e^{-st} \to 0$ as $t \to \infty$; and because an exponential decays faster than any polynomial grows, $t^n e^{-st} \to 0$ for every natural number $n$.
+> **[Calculus]** An improper integral with $\infty$ as a limit is defined by the limit $`\int_0^\infty g(t)\,dt = \lim_{T\to\infty}\int_0^T g(t)\,dt`$. Laplace transform computations repeatedly use two facts: when $\mathrm{Re}(s) > 0$, $e^{-st} \to 0$ as $t \to \infty$; and because an exponential decays faster than any polynomial grows, $t^n e^{-st} \to 0$ for every natural number $n$.
 
 ### 1.5 The Unit Step Function
 
@@ -191,10 +195,10 @@ u_s(t) = \begin{cases} 1, & t \ge 0 \\ 0, & t < 0 \end{cases}
 Since $u_s(t) = 1$ for $t \ge 0$, substituting into the definition gives the following.
 
 ```math
-\mathcal{L}\lbrace u_s(t) \rbrace= \int_0^\infty 1 \cdot e^{-st}\,dt = \left[ -\frac{1}{s}e^{-st} \right]_0^\infty = (0) - \left( -\frac{1}{s} \right) = \frac{1}{s}, \qquad \operatorname{Re}(s) > 0
+\mathcal{L}\lbrace u_s(t) \rbrace= \int_0^\infty 1 \cdot e^{-st}\,dt = \left[ -\frac{1}{s}e^{-st} \right]_0^\infty = (0) - \left( -\frac{1}{s} \right) = \frac{1}{s}, \qquad \mathrm{Re}(s) > 0
 ```
 
-An antiderivative of $e^{-st}$ is $-\frac{1}{s}e^{-st}$. At the upper limit $t \to \infty$ it is 0 because $e^{-st} \to 0$ when $\operatorname{Re}(s) > 0$, and at the lower limit $t = 0$ it is $-\frac{1}{s}$ because $e^{0} = 1$. Subtracting the lower value from the upper value gives $\frac{1}{s}$. The same computation shows that the step $Au_s(t)$ of height $A$ has the transform $\frac{A}{s}$.
+An antiderivative of $e^{-st}$ is $-\frac{1}{s}e^{-st}$. At the upper limit $t \to \infty$ it is 0 because $e^{-st} \to 0$ when $\mathrm{Re}(s) > 0$, and at the lower limit $t = 0$ it is $-\frac{1}{s}$ because $e^{0} = 1$. Subtracting the lower value from the upper value gives $\frac{1}{s}$. The same computation shows that the step $Au_s(t)$ of height $A$ has the transform $\frac{A}{s}$.
 
 ### 1.6 The Impulse Function
 
@@ -223,10 +227,10 @@ Since $\delta(t)$ is 0 everywhere except at $t = 0$, replacing $e^{-st}$ inside 
 The transform of the exponential function $e^{at}$ is computed by combining the two exponentials into one and integrating.
 
 ```math
-\mathcal{L}\lbrace e^{at} \rbrace= \int_0^\infty e^{at}e^{-st}\,dt = \int_0^\infty e^{-(s-a)t}\,dt = \left[ -\frac{1}{s-a}e^{-(s-a)t} \right]_0^\infty = \frac{1}{s-a}, \qquad \operatorname{Re}(s) > a
+\mathcal{L}\lbrace e^{at} \rbrace= \int_0^\infty e^{at}e^{-st}\,dt = \int_0^\infty e^{-(s-a)t}\,dt = \left[ -\frac{1}{s-a}e^{-(s-a)t} \right]_0^\infty = \frac{1}{s-a}, \qquad \mathrm{Re}(s) > a
 ```
 
-The first equality is the definition, and the second is the exponent rule $e^{at}e^{-st} = e^{-(s-a)t}$. The third is the integral of Section 1.5 with $s - a$ in place of $s$. For $e^{-(s-a)t} \to 0$ at the upper limit we need $\operatorname{Re}(s - a) > 0$, that is, $\operatorname{Re}(s) > a$, and then the result is $0 - \left( -\frac{1}{s-a} \right) = \frac{1}{s-a}$. With $a = 0$ we have $e^{0t} = 1$, which agrees with $\frac{1}{s}$ from Section 1.5.
+The first equality is the definition, and the second is the exponent rule $e^{at}e^{-st} = e^{-(s-a)t}$. The third is the integral of Section 1.5 with $s - a$ in place of $s$. For $e^{-(s-a)t} \to 0$ at the upper limit we need $\mathrm{Re}(s - a) > 0$, that is, $\mathrm{Re}(s) > a$, and then the result is $0 - \left( -\frac{1}{s-a} \right) = \frac{1}{s-a}$. With $a = 0$ we have $e^{0t} = 1$, which agrees with $\frac{1}{s}$ from Section 1.5.
 
 **Example.** Substitute values of $a$ into the formula $\mathcal{L}\lbrace e^{at} \rbrace= \frac{1}{s-a}$.
 
@@ -276,7 +280,7 @@ The transforms of trigonometric functions use Euler's formula $e^{j\theta} = \co
 
 The first equality is linearity (Section 2.1). The second puts the fractions over a common denominator, which is $(s-j\omega)(s+j\omega) = s^2 - (j\omega)^2 = s^2 + \omega^2$.
 
-> **Note:** The derivation of Section 1.7 holds unchanged when $a$ is complex, and the convergence condition becomes $\operatorname{Re}(s) > \operatorname{Re}(a)$. For $a = \pm j\omega$ we have $\operatorname{Re}(a) = 0$, so the transforms of sine and cosine exist for $\operatorname{Re}(s) > 0$.
+> **Note:** The derivation of Section 1.7 holds unchanged when $a$ is complex, and the convergence condition becomes $\mathrm{Re}(s) > \mathrm{Re}(a)$. For $a = \pm j\omega$ we have $\mathrm{Re}(a) = 0$, so the transforms of sine and cosine exist for $\mathrm{Re}(s) > 0$.
 
 **Example.** Substitute values of $\omega$. $200\pi t$ is a cosine of frequency $f = 100$ Hz ($`\omega = 2\pi f`$).
 
@@ -307,13 +311,13 @@ Table 3 collects the results derived so far. Instead of integrating the definiti
 | $f(t)$, $t \ge 0$ | $F(s) = \mathcal{L}\lbrace f(t) \rbrace$ | Condition of existence |
 |:-----|:-----|:-----|
 | $\delta(t)$ | $1$ | All $s$ |
-| $u_s(t)$ or $1$ | $\dfrac{1}{s}$ | $\operatorname{Re}(s) > 0$ |
-| $e^{at}$ | $\dfrac{1}{s-a}$ | $\operatorname{Re}(s) > \operatorname{Re}(a)$ |
-| $t$ | $\dfrac{1}{s^2}$ | $\operatorname{Re}(s) > 0$ |
-| $t^2$ | $\dfrac{2}{s^3}$ | $\operatorname{Re}(s) > 0$ |
-| $t^n$ | $\dfrac{n!}{s^{n+1}}$ | $\operatorname{Re}(s) > 0$ |
-| $\cos\omega t$ | $\dfrac{s}{s^2+\omega^2}$ | $\operatorname{Re}(s) > 0$ |
-| $\sin\omega t$ | $\dfrac{\omega}{s^2+\omega^2}$ | $\operatorname{Re}(s) > 0$ |
+| $u_s(t)$ or $1$ | $\dfrac{1}{s}$ | $\mathrm{Re}(s) > 0$ |
+| $e^{at}$ | $\dfrac{1}{s-a}$ | $\mathrm{Re}(s) > \mathrm{Re}(a)$ |
+| $t$ | $\dfrac{1}{s^2}$ | $\mathrm{Re}(s) > 0$ |
+| $t^2$ | $\dfrac{2}{s^3}$ | $\mathrm{Re}(s) > 0$ |
+| $t^n$ | $\dfrac{n!}{s^{n+1}}$ | $\mathrm{Re}(s) > 0$ |
+| $\cos\omega t$ | $\dfrac{s}{s^2+\omega^2}$ | $\mathrm{Re}(s) > 0$ |
+| $\sin\omega t$ | $\dfrac{\omega}{s^2+\omega^2}$ | $\mathrm{Re}(s) > 0$ |
 
 *Table 3. Basic Laplace transform pairs derived from the definition*
 
@@ -492,7 +496,7 @@ The **inverse Laplace transform** is the operation that finds the original time 
 f(t) = \mathcal{L}^{-1}\lbrace F(s) \rbrace= \frac{1}{2\pi j}\int_{\sigma-j\infty}^{\sigma+j\infty} F(s)\,e^{st}\,ds
 ```
 
-This is a complex integral along the vertical line $\operatorname{Re}(s) = \sigma$ inside the region of convergence, and it is rarely computed directly. Functions continuous for $t \ge 0$ and their transforms correspond one to one [3], so in practice $F(s)$ is split into a sum of simple fractions found in Table 3, and the time function matching each fraction is read from the table in reverse. In most cases this splitting is the partial fraction expansion of Sections 2.9 and 2.10.
+This is a complex integral along the vertical line $\mathrm{Re}(s) = \sigma$ inside the region of convergence, and it is rarely computed directly. Functions continuous for $t \ge 0$ and their transforms correspond one to one [3], so in practice $F(s)$ is split into a sum of simple fractions found in Table 3, and the time function matching each fraction is read from the table in reverse. In most cases this splitting is the partial fraction expansion of Sections 2.9 and 2.10.
 
 **Example.** Read the results of Section 2.1 in reverse.
 
@@ -908,7 +912,7 @@ As a check, in $AA^{-1}$ the entry in row 1, column 1 is $(-1)(-\frac{1}{7}) + 3
 \begin{bmatrix} 1 & 2 \\ 3 & 5 \end{bmatrix}^{-1} = \frac{1}{1 \cdot 5 - 2 \cdot 3}\begin{bmatrix} 5 & -2 \\ -3 & 1 \end{bmatrix} = \frac{1}{-1}\begin{bmatrix} 5 & -2 \\ -3 & 1 \end{bmatrix} = \begin{bmatrix} -5 & 2 \\ 3 & -1 \end{bmatrix}
 ```
 
-**The inverse of a $3 \times 3$ or larger matrix** can be found with cofactors. The transpose of the matrix whose elements are the cofactors $C_{ij}$ is called the **adjugate matrix** $\operatorname{adj}(A)$, and $A^{-1} = \frac{1}{\lvert A \rvert}\operatorname{adj}(A)$ [4]. The $2 \times 2$ formula is a special case of this equation. For example, expanding the following matrix along the first row gives $\lvert P \rvert = 1(0-24) - 2(0-20) + 3(0-5) = 1$.
+**The inverse of a $3 \times 3$ or larger matrix** can be found with cofactors. The transpose of the matrix whose elements are the cofactors $C_{ij}$ is called the **adjugate matrix** $\mathrm{adj}(A)$, and $A^{-1} = \frac{1}{\lvert A \rvert}\mathrm{adj}(A)$ [4]. The $2 \times 2$ formula is a special case of this equation. For example, expanding the following matrix along the first row gives $\lvert P \rvert = 1(0-24) - 2(0-20) + 3(0-5) = 1$.
 
 ```math
 P = \begin{bmatrix} 1 & 2 & 3 \\ 0 & 1 & 4 \\ 5 & 6 & 0 \end{bmatrix}
@@ -999,7 +1003,7 @@ For each problem below, the tool to use and the result are listed.
 | Concept | Key Summary |
 |:--------|:------------|
 | Laplace transform | Turns a time function $f(t)$ into a function of the complex variable $s$ by $F(s) = \int_0^\infty f(t)e^{-st}dt$, making differential equations algebraic. |
-| Region of convergence | The transform integral converges only when $\operatorname{Re}(s)$ exceeds some value; for example, $\operatorname{Re}(s) > a$ for $e^{at}$. |
+| Region of convergence | The transform integral converges only when $\mathrm{Re}(s)$ exceeds some value; for example, $\mathrm{Re}(s) > a$ for $e^{at}$. |
 | Basic transform pairs | $\delta \to 1$, $u_s \to \frac{1}{s}$, $e^{at} \to \frac{1}{s-a}$, $t^n \to \frac{n!}{s^{n+1}}$, $\cos\omega t \to \frac{s}{s^2+\omega^2}$, and $\sin\omega t \to \frac{\omega}{s^2+\omega^2}$. |
 | Linearity | The transform of a constant multiple or a sum is the constant multiple or sum of the transforms. |
 | Shift properties | Multiplying by $e^{-at}$ gives $F(s+a)$, and delaying by $T$ multiplies by $e^{-sT}$. |
@@ -1009,7 +1013,7 @@ For each problem below, the tool to use and the result are listed.
 | Solving differential equations | Transform, solve algebraically for $Y(s)$, expand in partial fractions, and invert; the initial conditions are included in one pass. |
 | Matrix operations | Addition is element by element for equal sizes, multiplication is $c_{ij} = \sum_k a_{ik}b_{kj}$, $AB \ne BA$, and $(AB)^T = B^TA^T$. |
 | Determinant | For $2 \times 2$ it is $a_{11}a_{22} - a_{12}a_{21}$, and for $3 \times 3$ it is found by cofactor expansion with checkerboard signs. |
-| Inverse matrix | The matrix with $AA^{-1} = I$, which exists only when $\lvert A \rvert \ne 0$, and $A^{-1} = \operatorname{adj}(A)/\lvert A \rvert$. |
+| Inverse matrix | The matrix with $AA^{-1} = I$, which exists only when $\lvert A \rvert \ne 0$, and $A^{-1} = \mathrm{adj}(A)/\lvert A \rvert$. |
 | Systems of equations | If $AX = B$, then $X = A^{-1}B$. |
 
 ---
@@ -1023,7 +1027,7 @@ For each problem below, the tool to use and the result are listed.
    <details>
    <summary>Answer</summary>
 
-   $`\int_0^\infty e^{-4t}e^{-st}dt = \int_0^\infty e^{-(s+4)t}dt = \left[ -\frac{1}{s+4}e^{-(s+4)t} \right]_0^\infty = \frac{1}{s+4}`$. For the exponential term to vanish at the upper limit we need $\operatorname{Re}(s+4) > 0$, that is, $\operatorname{Re}(s) > -4$.
+   $`\int_0^\infty e^{-4t}e^{-st}dt = \int_0^\infty e^{-(s+4)t}dt = \left[ -\frac{1}{s+4}e^{-(s+4)t} \right]_0^\infty = \frac{1}{s+4}`$. For the exponential term to vanish at the upper limit we need $\mathrm{Re}(s+4) > 0$, that is, $\mathrm{Re}(s) > -4$.
 
    </details>
 
@@ -1032,7 +1036,7 @@ For each problem below, the tool to use and the result are listed.
    <details>
    <summary>Answer</summary>
 
-   At the lower limit $t = 0$, the factor $t$ is 0. At the upper limit $t \to \infty$, when $\operatorname{Re}(s) > 0$ the factor $e^{-st}$ decays exponentially, faster than $t$ grows, so $te^{-st} \to 0$.
+   At the lower limit $t = 0$, the factor $t$ is 0. At the upper limit $t \to \infty$, when $\mathrm{Re}(s) > 0$ the factor $e^{-st}$ decays exponentially, faster than $t$ grows, so $te^{-st} \to 0$.
 
    </details>
 

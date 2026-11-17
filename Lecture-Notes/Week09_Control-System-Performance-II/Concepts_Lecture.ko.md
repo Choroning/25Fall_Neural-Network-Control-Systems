@@ -2,7 +2,7 @@
 
 [레포지토리 안내](../../README.ko.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **최종 수정일:** 2026-11-04
+> **최종 수정일:** 2026-11-17
 
 > **학습 목표:**
 > 1. 고유 진동수와 감쇠비가 바뀔 때 극점의 위치와 계단 응답의 속도가 어떻게 바뀌는지 설명할 수 있다
@@ -121,11 +121,11 @@ M\ddot{y} + B\dot{y} = f \quad\Longrightarrow\quad \frac{Y(s)}{F(s)} = \frac{1}{
 
 ```mermaid
 flowchart LR
-    R["R(s)"] -->|"+"| S(("Σ"))
+    R["R(s)"] -->|"#43;"| S(("Σ"))
     S --> K["K"]
     K -->|"U(s)"| G["1/(s(Ms + B))"]
     G --> Y["Y(s)"]
-    G -->|"-"| S
+    G -->|"#45;"| S
 ```
 
 *그림 4. 질량-댐퍼 시스템의 위치 제어시스템*

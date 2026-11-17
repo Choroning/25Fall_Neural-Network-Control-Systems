@@ -2,7 +2,7 @@
 
 [Repository Guide](../../README.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **Last Updated:** 2026-11-04
+> **Last Updated:** 2026-11-17
 
 > **Learning Objectives:**
 > 1. Define intelligence and artificial intelligence, and explain the inclusion relationship among artificial intelligence, machine learning, and deep learning and the Turing test
@@ -316,7 +316,9 @@ A typical unsupervised learning task is **clustering**, also called **segmentati
 f : \mathbb{R}^d \to \lbrace C_1, C_2, \ldots, C_K\rbrace\quad (\text{set of clusters})
 ```
 
-> **Definition:** A **cluster** is a group of mutually similar data points. Similarity is usually measured by distance in the feature space: data in the same cluster are close to each other and far from data in other clusters. The **feature space** is the space with one axis per feature, in which each sample becomes a single point.
+> **Definition:** A **cluster** is a group of mutually similar data points. Similarity is usually measured by distance in the feature space: data in the same cluster are close to each other and far from data in other clusters.
+
+> **Definition:** The **feature space** is the space with one axis per feature, in which each sample becomes a single point.
 
 ![Figure 7. Two clusters found in unlabeled data](../../images/Week12_12-2_p07.png)
 
@@ -516,10 +518,10 @@ The labels of the three nearest neighbors are banana, banana, and orange, so by 
 The **support vector machine (SVM) classifier** finds the **hyperplane** that best separates the different classes in feature space [8]. A hyperplane is a flat $(d-1)$-dimensional boundary that divides a $d$-dimensional space into two; it is a line in two dimensions and a plane in three dimensions. The linear classification function found by an SVM is:
 
 ```math
-f(x) = \operatorname{sgn}(w \cdot x + b)
+f(x) = \mathrm{sgn}(w \cdot x + b)
 ```
 
-Here $w \in \mathbb{R}^d$ is the **weight vector** perpendicular to the hyperplane, $b$ is the **bias** that sets the position of the hyperplane, $w \cdot x$ is the dot product, and $\operatorname{sgn}$ is the sign function, which outputs $+1$ for positive values and $-1$ for negative values. The hyperplane is the set of points with $w \cdot x + b = 0$, and the distance from a point $x$ to the hyperplane is $\lvert w \cdot x + b \rvert / \lVert w \rVert$.
+Here $w \in \mathbb{R}^d$ is the **weight vector** perpendicular to the hyperplane, $b$ is the **bias** that sets the position of the hyperplane, $w \cdot x$ is the dot product, and $\mathrm{sgn}$ is the sign function, which outputs $+1$ for positive values and $-1$ for negative values. The hyperplane is the set of points with $w \cdot x + b = 0$, and the distance from a point $x$ to the hyperplane is $\lvert w \cdot x + b \rvert / \lVert w \rVert$.
 
 ![Figure 15. Hyperplane, margin, and support vectors of a support vector machine](../../images/Week12_12-2_p18.png)
 
@@ -683,7 +685,7 @@ As in Figure 19, a machine learning algorithm takes the training data and finds 
 - **Classification error:** 1 if the sign of the prediction differs from the sign of the true label, and 0 if they are the same. This is also called the 0-1 loss, and the training error becomes the number of misclassified samples.
 
   ```math
-  \mathrm{loss}\big(y_i, f(x_i)\big) = \begin{cases} 1, & \operatorname{sign}(y_i) \ne \operatorname{sign}\big(f(x_i)\big) \\ 0, & \text{otherwise} \end{cases}
+  \mathrm{loss}\big(y_i, f(x_i)\big) = \begin{cases} 1, & \mathrm{sign}(y_i) \ne \mathrm{sign}\big(f(x_i)\big) \\ 0, & \text{otherwise} \end{cases}
   ```
 
 - **Least squares loss:** Squares the difference between the true value and the prediction. With this loss, the training error equals the SSE of Section 2.10.
@@ -722,7 +724,11 @@ The horizontal axis of Figure 20 is the complexity of the model (from low to hig
 - **Good models:** The region where the test error is smallest; the model captures the real structure of the data without being swayed by noise.
 - **Overfitting:** The model is so complex that it memorizes even the noise of the training data. The training error is very small, but the test error is large. Models in this region have low bias and high variance.
 
-> **Definition:** The **bias** of a model is the systematic error caused by the model making overly simple assumptions, and the **variance** is the degree to which the trained model changes when the training data change slightly. Raising the complexity reduces the bias and increases the variance, so the two must be balanced. This is called the **bias-variance tradeoff**.
+> **Definition:** The **bias** of a model is the systematic error caused by the model making overly simple assumptions.
+
+> **Definition:** The **variance** of a model is the degree to which the trained model changes when the training data change slightly.
+
+> **Definition:** Raising the complexity reduces the bias and increases the variance, so the two must be balanced; this is called the **bias-variance tradeoff**.
 
 ![Figure 21. Examples of underfitting, a good fit, and overfitting](../../images/Week12_12-3_p07.png)
 
@@ -753,7 +759,9 @@ To select and evaluate a model, the available data are divided by purpose. For e
 
 *Table 14. Roles of training, validation, and test data*
 
-> **Definition:** A model's **parameters** are values learned from the training data, such as the coefficients of linear regression or the weights of a neural network. **Hyperparameters** are values set by people before training, such as the $k$ of k-NN, the degree of polynomial regression, or the number of layers of a neural network, and they are chosen by comparing performance on the validation data.
+> **Definition:** The **parameters** of a model are values learned from the training data, such as the coefficients of linear regression or the weights of a neural network.
+
+> **Definition:** **Hyperparameters** are values set by people before training, such as the $k$ of k-NN, the degree of polynomial regression, or the number of layers of a neural network, and they are chosen by comparing performance on the validation data.
 
 For example, to choose the $k$ of k-NN, a classifier is built from the training data for each of $k = 1, 3, 5, \ldots$, and the $k$ with the smallest error on the validation data is chosen. The chosen model is then applied once to the test data to report the final performance.
 
@@ -1101,7 +1109,7 @@ The policy in Figure 31 reaches the treasure from every state in the fewest move
 | K-means clustering | Repeats setting initial centroids, assigning to the nearest centroid, and updating centroids to the means. It converges as the within-cluster sum of squares decreases, but possibly to a local minimum, and it is sensitive to outliers and the choice of $K$. |
 | Classification | Supervised learning with discrete labels. A binary classifier is $f: \mathbb{R}^d \to \lbrace-1, +1\rbrace$, and the prediction changes at the decision boundary. |
 | k-NN | Stores the training data and classifies a new point by majority vote of its $k$ nearest neighbors in Euclidean distance. Prediction is slow, and it is sensitive to feature scales and the curse of dimensionality. |
-| SVM | Among the hyperplanes of $f(x) = \operatorname{sgn}(w \cdot x + b)$, chooses the one that maximizes the margin $2/\lVert w \rVert$. The boundary is determined by the support vectors alone. |
+| SVM | Among the hyperplanes of $f(x) = \mathrm{sgn}(w \cdot x + b)$, chooses the one that maximizes the margin $2/\lVert w \rVert$. The boundary is determined by the support vectors alone. |
 | Linear regression | Finds the coefficients that minimize the sum of squared errors SSE through the normal equations. For simple linear regression, $a = \sum (x_i - \bar{x})(y_i - \bar{y}) / \sum (x_i - \bar{x})^2$ and $b = \bar{y} - a\bar{x}$. |
 | Training error and loss functions | $E^{\text{train}}(f) = \sum_i \mathrm{loss}(y_i, f(x_i))$. Examples of loss functions are the classification error (0-1 loss) and the least squares loss. |
 | Underfitting and overfitting | A model that is too simple has high bias and large errors of both kinds; a model that is too complex has high variance, with a small training error but a large test error. |

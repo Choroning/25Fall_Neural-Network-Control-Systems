@@ -2,7 +2,7 @@
 
 [레포지토리 안내](../../README.ko.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **최종 수정일:** 2026-11-04
+> **최종 수정일:** 2026-11-17
 
 > **학습 목표:**
 > 1. 라플라스 변환으로 미분방정식을 대수방정식으로 바꾸어 푸는 제어시스템 해석의 흐름을 설명할 수 있다
@@ -96,7 +96,11 @@ flowchart LR
 
 간단한 제어시스템은 미분방정식만으로도 해석하고 설계할 수 있다. 그러나 대부분의 제어시스템은 제어기, 구동기, 제어 대상, 센서처럼 여러 형태의 블록이 서로 연결되어 구성되므로, 전체를 하나의 미분방정식으로 다루면 매우 복잡해진다. 해석을 쉽게 하기 위해 수학적 도구를 도입하며, 제어시스템에서 가장 많이 쓰이는 도구가 라플라스 변환이다.
 
-> **용어 정의:** **라플라스 변환(Laplace transform)** 은 실수 변수 $t$(시간)의 함수 $f(t)$를 복소수 변수 $s = \sigma + j\omega$의 함수 $F(s)$로 바꾸는 적분 변환(integral transform)이다. $t$의 함수를 다루는 세계를 **시간 영역(time domain)**, $s$의 함수를 다루는 세계를 **주파수 영역(frequency domain)** 또는 $s$ 영역($s$-domain)이라 한다.
+> **용어 정의:** **라플라스 변환(Laplace transform)** 은 실수 변수 $t$(시간)의 함수 $f(t)$를 복소수 변수 $s = \sigma + j\omega$의 함수 $F(s)$로 바꾸는 적분 변환(integral transform)이다.
+
+> **용어 정의:** $t$의 함수를 다루는 세계를 **시간 영역(time domain)** 이라 한다.
+
+> **용어 정의:** $s$의 함수를 다루는 세계를 **주파수 영역(frequency domain)** 또는 $s$ 영역($s$-domain)이라 한다.
 
 라플라스 변환의 정의식은 다음과 같다.
 
@@ -112,7 +116,7 @@ $\sigma$는 $s$의 실수부, $\omega$는 허수부이고, $j$는 $j^2 = -1$인 
 \int_{-\infty}^{\infty} \left\lvert f(t)\,e^{-\sigma t} \right\rvert dt < \infty
 ```
 
-이 조건은 $\sigma$의 값에 따라 성립하기도 하고 성립하지 않기도 한다. 그래서 라플라스 변환은 일반적으로 $s$의 실수부가 어떤 범위에 있을 때만 정의되며, 이 범위를 **수렴 영역(region of convergence)** 이라 한다 [1]. 예를 들어 1.7절에서 구하는 $e^{at}$의 변환은 $\operatorname{Re}(s) > a$에서만 존재한다. 제어 공학에서 다루는 신호는 지수 함수보다 빠르게 커지지 않으므로, $\operatorname{Re}(s)$를 충분히 크게 잡으면 언제나 변환이 존재한다.
+이 조건은 $\sigma$의 값에 따라 성립하기도 하고 성립하지 않기도 한다. 그래서 라플라스 변환은 일반적으로 $s$의 실수부가 어떤 범위에 있을 때만 정의되며, 이 범위를 **수렴 영역(region of convergence)** 이라 한다 [1]. 예를 들어 1.7절에서 구하는 $e^{at}$의 변환은 $\mathrm{Re}(s) > a$에서만 존재한다. 제어 공학에서 다루는 신호는 지수 함수보다 빠르게 커지지 않으므로, $\mathrm{Re}(s)$를 충분히 크게 잡으면 언제나 변환이 존재한다.
 
 주파수 영역의 가장 큰 장점은 시간 영역의 미분과 적분이 $s$의 곱셈과 나눗셈으로 바뀐다는 것이다(2.4절, 2.5절). 그래서 주파수 영역에서는 곱셈과 나눗셈만으로 시스템을 다룰 수 있다.
 
@@ -174,7 +178,7 @@ F(s) = \mathcal{L}\lbrace f(t) \rbrace= \int_{0}^{\infty} f(t)\,e^{-st}\,dt
 \int_a^b f'(t)\,g(t)\,dt = \Big[ f(t)\,g(t) \Big]_{t=a}^{t=b} - \int_a^b f(t)\,g'(t)\,dt
 ```
 
-> **[미적분학]** 적분 구간에 $\infty$가 있는 이상적분(improper integral)은 극한 $`\int_0^\infty g(t)\,dt = \lim_{T\to\infty}\int_0^T g(t)\,dt`$로 정의한다. 라플라스 변환의 계산에서는 $\operatorname{Re}(s) > 0$일 때 $t \to \infty$에서 $e^{-st} \to 0$이라는 사실과, 지수 함수가 다항식보다 빠르게 줄어들어 모든 자연수 $n$에 대해 $t^n e^{-st} \to 0$이라는 사실을 반복해서 쓴다.
+> **[미적분학]** 적분 구간에 $\infty$가 있는 이상적분(improper integral)은 극한 $`\int_0^\infty g(t)\,dt = \lim_{T\to\infty}\int_0^T g(t)\,dt`$로 정의한다. 라플라스 변환의 계산에서는 $\mathrm{Re}(s) > 0$일 때 $t \to \infty$에서 $e^{-st} \to 0$이라는 사실과, 지수 함수가 다항식보다 빠르게 줄어들어 모든 자연수 $n$에 대해 $t^n e^{-st} \to 0$이라는 사실을 반복해서 쓴다.
 
 ### 1.5 단위 계단 함수
 
@@ -191,10 +195,10 @@ u_s(t) = \begin{cases} 1, & t \ge 0 \\ 0, & t < 0 \end{cases}
 정의식에 넣으면 $t \ge 0$에서 $u_s(t) = 1$이므로 다음과 같다.
 
 ```math
-\mathcal{L}\lbrace u_s(t) \rbrace= \int_0^\infty 1 \cdot e^{-st}\,dt = \left[ -\frac{1}{s}e^{-st} \right]_0^\infty = (0) - \left( -\frac{1}{s} \right) = \frac{1}{s}, \qquad \operatorname{Re}(s) > 0
+\mathcal{L}\lbrace u_s(t) \rbrace= \int_0^\infty 1 \cdot e^{-st}\,dt = \left[ -\frac{1}{s}e^{-st} \right]_0^\infty = (0) - \left( -\frac{1}{s} \right) = \frac{1}{s}, \qquad \mathrm{Re}(s) > 0
 ```
 
-$e^{-st}$의 부정적분은 $-\frac{1}{s}e^{-st}$이다. 위끝 $t \to \infty$에서는 $\operatorname{Re}(s) > 0$이면 $e^{-st} \to 0$이므로 0이고, 아래끝 $t = 0$에서는 $e^{0} = 1$이므로 $-\frac{1}{s}$이다. 위끝 값에서 아래끝 값을 빼면 $\frac{1}{s}$이다. 크기가 $A$인 계단 함수 $Au_s(t)$의 변환은 같은 계산으로 $\frac{A}{s}$이다.
+$e^{-st}$의 부정적분은 $-\frac{1}{s}e^{-st}$이다. 위끝 $t \to \infty$에서는 $\mathrm{Re}(s) > 0$이면 $e^{-st} \to 0$이므로 0이고, 아래끝 $t = 0$에서는 $e^{0} = 1$이므로 $-\frac{1}{s}$이다. 위끝 값에서 아래끝 값을 빼면 $\frac{1}{s}$이다. 크기가 $A$인 계단 함수 $Au_s(t)$의 변환은 같은 계산으로 $\frac{A}{s}$이다.
 
 ### 1.6 임펄스 함수
 
@@ -223,10 +227,10 @@ $\delta(t)$는 $t = 0$이 아닌 곳에서 0이므로, 적분 안의 $e^{-st}$�
 지수 함수 $e^{at}$의 변환은 두 지수를 하나로 합친 뒤 적분한다.
 
 ```math
-\mathcal{L}\lbrace e^{at} \rbrace= \int_0^\infty e^{at}e^{-st}\,dt = \int_0^\infty e^{-(s-a)t}\,dt = \left[ -\frac{1}{s-a}e^{-(s-a)t} \right]_0^\infty = \frac{1}{s-a}, \qquad \operatorname{Re}(s) > a
+\mathcal{L}\lbrace e^{at} \rbrace= \int_0^\infty e^{at}e^{-st}\,dt = \int_0^\infty e^{-(s-a)t}\,dt = \left[ -\frac{1}{s-a}e^{-(s-a)t} \right]_0^\infty = \frac{1}{s-a}, \qquad \mathrm{Re}(s) > a
 ```
 
-첫 번째 등호는 정의식이고, 두 번째 등호는 지수 법칙 $e^{at}e^{-st} = e^{-(s-a)t}$이다. 세 번째 등호는 1.5절과 같은 적분에서 $s$ 자리에 $s - a$가 들어간 것이다. 위끝에서 $e^{-(s-a)t} \to 0$이려면 $\operatorname{Re}(s - a) > 0$, 즉 $\operatorname{Re}(s) > a$여야 하고, 이때 결과는 $0 - \left( -\frac{1}{s-a} \right) = \frac{1}{s-a}$이다. $a = 0$이면 $e^{0t} = 1$이므로 1.5절의 $\frac{1}{s}$과 일치한다.
+첫 번째 등호는 정의식이고, 두 번째 등호는 지수 법칙 $e^{at}e^{-st} = e^{-(s-a)t}$이다. 세 번째 등호는 1.5절과 같은 적분에서 $s$ 자리에 $s - a$가 들어간 것이다. 위끝에서 $e^{-(s-a)t} \to 0$이려면 $\mathrm{Re}(s - a) > 0$, 즉 $\mathrm{Re}(s) > a$여야 하고, 이때 결과는 $0 - \left( -\frac{1}{s-a} \right) = \frac{1}{s-a}$이다. $a = 0$이면 $e^{0t} = 1$이므로 1.5절의 $\frac{1}{s}$과 일치한다.
 
 **예제.** 공식 $\mathcal{L}\lbrace e^{at} \rbrace= \frac{1}{s-a}$에 $a$의 값을 넣는다.
 
@@ -276,7 +280,7 @@ $t^2$의 변환도 같은 방법으로 구한다. 이번에는 $g(t) = t^2$, $g'
 
 첫 번째 등호는 선형성(2.1절)이다. 두 번째 등호는 통분이며, 분모는 $(s-j\omega)(s+j\omega) = s^2 - (j\omega)^2 = s^2 + \omega^2$이다.
 
-> **참고:** 1.7절의 유도는 $a$가 복소수여도 그대로 성립하며, 이때 수렴 조건은 $\operatorname{Re}(s) > \operatorname{Re}(a)$이다. $a = \pm j\omega$이면 $\operatorname{Re}(a) = 0$이므로 사인과 코사인의 변환은 $\operatorname{Re}(s) > 0$에서 존재한다.
+> **참고:** 1.7절의 유도는 $a$가 복소수여도 그대로 성립하며, 이때 수렴 조건은 $\mathrm{Re}(s) > \mathrm{Re}(a)$이다. $a = \pm j\omega$이면 $\mathrm{Re}(a) = 0$이므로 사인과 코사인의 변환은 $\mathrm{Re}(s) > 0$에서 존재한다.
 
 **예제.** $\omega$에 값을 넣는다. $200\pi t$는 진동수 $f = 100$ Hz인 코사인이다($`\omega = 2\pi f`$).
 
@@ -307,13 +311,13 @@ $e^{j\omega t}$에서 $e^{-j\omega t}$를 빼면 코사인 항이 지워지므�
 | $f(t)$, $t \ge 0$ | $F(s) = \mathcal{L}\lbrace f(t) \rbrace$ | 존재 조건 |
 |:-----|:-----|:-----|
 | $\delta(t)$ | $1$ | 모든 $s$ |
-| $u_s(t)$ 또는 $1$ | $\dfrac{1}{s}$ | $\operatorname{Re}(s) > 0$ |
-| $e^{at}$ | $\dfrac{1}{s-a}$ | $\operatorname{Re}(s) > \operatorname{Re}(a)$ |
-| $t$ | $\dfrac{1}{s^2}$ | $\operatorname{Re}(s) > 0$ |
-| $t^2$ | $\dfrac{2}{s^3}$ | $\operatorname{Re}(s) > 0$ |
-| $t^n$ | $\dfrac{n!}{s^{n+1}}$ | $\operatorname{Re}(s) > 0$ |
-| $\cos\omega t$ | $\dfrac{s}{s^2+\omega^2}$ | $\operatorname{Re}(s) > 0$ |
-| $\sin\omega t$ | $\dfrac{\omega}{s^2+\omega^2}$ | $\operatorname{Re}(s) > 0$ |
+| $u_s(t)$ 또는 $1$ | $\dfrac{1}{s}$ | $\mathrm{Re}(s) > 0$ |
+| $e^{at}$ | $\dfrac{1}{s-a}$ | $\mathrm{Re}(s) > \mathrm{Re}(a)$ |
+| $t$ | $\dfrac{1}{s^2}$ | $\mathrm{Re}(s) > 0$ |
+| $t^2$ | $\dfrac{2}{s^3}$ | $\mathrm{Re}(s) > 0$ |
+| $t^n$ | $\dfrac{n!}{s^{n+1}}$ | $\mathrm{Re}(s) > 0$ |
+| $\cos\omega t$ | $\dfrac{s}{s^2+\omega^2}$ | $\mathrm{Re}(s) > 0$ |
+| $\sin\omega t$ | $\dfrac{\omega}{s^2+\omega^2}$ | $\mathrm{Re}(s) > 0$ |
 
 *표 3. 정의식에서 유도한 기본 라플라스 변환 쌍*
 
@@ -492,7 +496,7 @@ F(s) = \frac{1}{2} \cdot \frac{1}{s} - \frac{1}{2} \cdot \frac{1}{s+2} = \frac{1
 f(t) = \mathcal{L}^{-1}\lbrace F(s) \rbrace= \frac{1}{2\pi j}\int_{\sigma-j\infty}^{\sigma+j\infty} F(s)\,e^{st}\,ds
 ```
 
-이 적분은 수렴 영역 안의 세로선 $\operatorname{Re}(s) = \sigma$를 따라가는 복소 적분이어서 직접 계산하는 일은 드물다. $t \ge 0$에서 연속인 함수와 그 변환은 일대일로 대응하므로 [3], 실제로는 $F(s)$를 표 3에 있는 간단한 분수들의 합으로 나눈 뒤 각 분수에 맞는 시간 함수를 표에서 거꾸로 읽는다. 대부분의 경우 이 나누는 작업이 2.9절과 2.10절의 부분분수 전개이다.
+이 적분은 수렴 영역 안의 세로선 $\mathrm{Re}(s) = \sigma$를 따라가는 복소 적분이어서 직접 계산하는 일은 드물다. $t \ge 0$에서 연속인 함수와 그 변환은 일대일로 대응하므로 [3], 실제로는 $F(s)$를 표 3에 있는 간단한 분수들의 합으로 나눈 뒤 각 분수에 맞는 시간 함수를 표에서 거꾸로 읽는다. 대부분의 경우 이 나누는 작업이 2.9절과 2.10절의 부분분수 전개이다.
 
 **예제.** 2.1절의 결과를 거꾸로 읽는다.
 
@@ -908,7 +912,7 @@ A^{-1} = \frac{1}{-7}\begin{bmatrix} 1 & -3 \\ -2 & -1 \end{bmatrix} = \begin{bm
 \begin{bmatrix} 1 & 2 \\ 3 & 5 \end{bmatrix}^{-1} = \frac{1}{1 \cdot 5 - 2 \cdot 3}\begin{bmatrix} 5 & -2 \\ -3 & 1 \end{bmatrix} = \frac{1}{-1}\begin{bmatrix} 5 & -2 \\ -3 & 1 \end{bmatrix} = \begin{bmatrix} -5 & 2 \\ 3 & -1 \end{bmatrix}
 ```
 
-**$3 \times 3$ 이상의 행렬의 역행렬**은 여인수로 구할 수 있다. 여인수 $C_{ij}$를 원소로 하는 행렬을 전치한 것을 **수반 행렬(adjugate matrix)** $\operatorname{adj}(A)$라 하며, $A^{-1} = \frac{1}{\lvert A \rvert}\operatorname{adj}(A)$이다 [4]. $2 \times 2$의 공식은 이 식의 특별한 경우이다. 예를 들어 다음 행렬은 첫째 행을 따라 전개하면 $\lvert P \rvert = 1(0-24) - 2(0-20) + 3(0-5) = 1$이다.
+**$3 \times 3$ 이상의 행렬의 역행렬**은 여인수로 구할 수 있다. 여인수 $C_{ij}$를 원소로 하는 행렬을 전치한 것을 **수반 행렬(adjugate matrix)** $\mathrm{adj}(A)$라 하며, $A^{-1} = \frac{1}{\lvert A \rvert}\mathrm{adj}(A)$이다 [4]. $2 \times 2$의 공식은 이 식의 특별한 경우이다. 예를 들어 다음 행렬은 첫째 행을 따라 전개하면 $\lvert P \rvert = 1(0-24) - 2(0-20) + 3(0-5) = 1$이다.
 
 ```math
 P = \begin{bmatrix} 1 & 2 & 3 \\ 0 & 1 & 4 \\ 5 & 6 & 0 \end{bmatrix}
@@ -999,7 +1003,7 @@ $A^{-1}A = I$이고 $IX = X$이기 때문이다. 행렬의 곱셈은 순서를 �
 | 개념 | 핵심 요약 |
 |:--------|:------------|
 | 라플라스 변환 | 시간 함수 $f(t)$를 $F(s) = \int_0^\infty f(t)e^{-st}dt$로 복소 변수 $s$의 함수로 바꾸며, 미분방정식을 대수방정식으로 만든다. |
-| 수렴 영역 | 변환 적분은 $\operatorname{Re}(s)$가 어떤 값보다 클 때만 수렴하며, 예를 들어 $e^{at}$는 $\operatorname{Re}(s) > a$이다. |
+| 수렴 영역 | 변환 적분은 $\mathrm{Re}(s)$가 어떤 값보다 클 때만 수렴하며, 예를 들어 $e^{at}$는 $\mathrm{Re}(s) > a$이다. |
 | 기본 변환 쌍 | $\delta \to 1$, $u_s \to \frac{1}{s}$, $e^{at} \to \frac{1}{s-a}$, $t^n \to \frac{n!}{s^{n+1}}$, $\cos\omega t \to \frac{s}{s^2+\omega^2}$, $\sin\omega t \to \frac{\omega}{s^2+\omega^2}$이다. |
 | 선형성 | 상수배와 합의 변환은 변환의 상수배와 합이다. |
 | 이동 성질 | $e^{-at}$를 곱하면 $F(s+a)$가 되고, $T$만큼 늦추면 $e^{-sT}$가 곱해진다. |
@@ -1009,7 +1013,7 @@ $A^{-1}A = I$이고 $IX = X$이기 때문이다. 행렬의 곱셈은 순서를 �
 | 미분방정식의 풀이 | 변환, $Y(s)$에 대한 대수 풀이, 부분분수 전개, 역변환의 네 단계로 초기 조건까지 한 번에 반영한다. |
 | 행렬의 연산 | 덧셈은 같은 크기에서 원소끼리, 곱셈은 $c_{ij} = \sum_k a_{ik}b_{kj}$이며 $AB \ne BA$이고 $(AB)^T = B^TA^T$이다. |
 | 행렬식 | $2 \times 2$는 $a_{11}a_{22} - a_{12}a_{21}$이고, $3 \times 3$은 바둑판 부호의 여인수 전개로 구한다. |
-| 역행렬 | $AA^{-1} = I$인 행렬로 $\lvert A \rvert \ne 0$일 때만 존재하며, $A^{-1} = \operatorname{adj}(A)/\lvert A \rvert$이다. |
+| 역행렬 | $AA^{-1} = I$인 행렬로 $\lvert A \rvert \ne 0$일 때만 존재하며, $A^{-1} = \mathrm{adj}(A)/\lvert A \rvert$이다. |
 | 연립방정식 | $AX = B$이면 $X = A^{-1}B$이다. |
 
 ---
@@ -1023,7 +1027,7 @@ $A^{-1}A = I$이고 $IX = X$이기 때문이다. 행렬의 곱셈은 순서를 �
    <details>
    <summary>정답</summary>
 
-   $`\int_0^\infty e^{-4t}e^{-st}dt = \int_0^\infty e^{-(s+4)t}dt = \left[ -\frac{1}{s+4}e^{-(s+4)t} \right]_0^\infty = \frac{1}{s+4}`$이다. 위끝에서 지수 항이 0으로 가려면 $\operatorname{Re}(s+4) > 0$, 즉 $\operatorname{Re}(s) > -4$이어야 한다.
+   $`\int_0^\infty e^{-4t}e^{-st}dt = \int_0^\infty e^{-(s+4)t}dt = \left[ -\frac{1}{s+4}e^{-(s+4)t} \right]_0^\infty = \frac{1}{s+4}`$이다. 위끝에서 지수 항이 0으로 가려면 $\mathrm{Re}(s+4) > 0$, 즉 $\mathrm{Re}(s) > -4$이어야 한다.
 
    </details>
 
@@ -1032,7 +1036,7 @@ $A^{-1}A = I$이고 $IX = X$이기 때문이다. 행렬의 곱셈은 순서를 �
    <details>
    <summary>정답</summary>
 
-   아래끝 $t = 0$에서는 곱해진 $t$가 0이므로 0이다. 위끝 $t \to \infty$에서는 $\operatorname{Re}(s) > 0$일 때 $e^{-st}$가 지수적으로 줄어들어 $t$가 커지는 속도보다 빠르므로 $te^{-st} \to 0$이다.
+   아래끝 $t = 0$에서는 곱해진 $t$가 0이므로 0이다. 위끝 $t \to \infty$에서는 $\mathrm{Re}(s) > 0$일 때 $e^{-st}$가 지수적으로 줄어들어 $t$가 커지는 속도보다 빠르므로 $te^{-st} \to 0$이다.
 
    </details>
 

@@ -2,7 +2,7 @@
 
 [레포지토리 안내](../../README.ko.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **최종 수정일:** 2026-11-04
+> **최종 수정일:** 2026-11-17
 
 > **학습 목표:**
 > 1. 전달함수를 정의하고, 선형 미분방정식에서 초기 조건을 0으로 두어 전달함수를 유도할 수 있다
@@ -513,7 +513,9 @@ s^n + a_{n-1}s^{n-1} + \cdots + a_1s + a_0 = 0
 
 ### 2.9 극점과 영점
 
-> **용어 정의:** **극점(pole)** 은 전달함수의 값을 무한대로 만드는 라플라스 변수 $s$의 값이고, **영점(zero)** 은 전달함수의 분자를 0으로 하는(전달함수의 값을 0으로 만드는) $s$의 값이다.
+> **용어 정의:** **극점(pole)** 은 전달함수의 값을 무한대로 만드는 라플라스 변수 $s$의 값이다.
+
+> **용어 정의:** **영점(zero)** 은 전달함수의 분자를 0으로 하는(전달함수의 값을 0으로 만드는) $s$의 값이다.
 
 전달함수의 값이 무한대가 되는 경우는 두 가지이다.
 
@@ -595,9 +597,9 @@ $s$ 영역에서는 출력을 입력에 전달함수를 곱한 형태 $Y(s) = G(
 
 ```mermaid
 flowchart LR
-  U1["U₁(s)"] --> G1["G₁(s)"]
-  G1 -->|"Y₁(s) = U₂(s)"| G2["G₂(s)"]
-  G2 --> Y2["Y₂(s)"]
+  U1["U1(s)"] --> G1["G1(s)"]
+  G1 -->|"Y1(s) = U2(s)"| G2["G2(s)"]
+  G2 --> Y2["Y2(s)"]
   classDef sig fill:none,stroke:none;
   class U1,Y2 sig;
 ```
@@ -618,10 +620,10 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-  U["U(s)"] -->|"U₁(s)"| G1["G₁(s)"]
-  U -->|"U₂(s)"| G2["G₂(s)"]
-  G1 -->|"Y₁(s), +"| S(("Σ"))
-  G2 -->|"Y₂(s), +"| S
+  U["U(s)"] -->|"U1(s)"| G1["G1(s)"]
+  U -->|"U2(s)"| G2["G2(s)"]
+  G1 -->|"Y1(s), +"| S(("Σ"))
+  G2 -->|"Y2(s), +"| S
   S --> Y["Y(s)"]
   classDef sig fill:none,stroke:none;
   class U,Y sig;
@@ -643,11 +645,11 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-  R["R(s)"] -->|"+"| S(("Σ"))
-  S -->|"U₁(s)"| G1["G₁(s)"]
-  G1 --> Y1["Y₁(s)"]
-  G1 -->|"U₂(s)"| G2["G₂(s)"]
-  G2 -->|"Y₂(s), −"| S
+  R["R(s)"] -->|"#43;"| S(("Σ"))
+  S -->|"U1(s)"| G1["G1(s)"]
+  G1 --> Y1["Y1(s)"]
+  G1 -->|"U2(s)"| G2["G2(s)"]
+  G2 -->|"Y2(s), −"| S
   classDef sig fill:none,stroke:none;
   class R,Y1 sig;
 ```
@@ -691,18 +693,18 @@ $Y_1$의 항을 좌변으로 모으면 $(1 + G_1G_2)Y_1 = G_1R$이므로 다음�
 flowchart LR
   subgraph B1["이동 전"]
     direction LR
-    a1["U₁(s)"] -->|"+"| as(("Σ"))
-    a2["U₂(s)"] -->|"+"| as
-    as --> ag["G₁(s)"]
-    ag --> ay["Y₁(s)"]
+    a1["U1(s)"] -->|"#43;"| as(("Σ"))
+    a2["U2(s)"] -->|"#43;"| as
+    as --> ag["G1(s)"]
+    ag --> ay["Y1(s)"]
   end
   subgraph A1["이동 후"]
     direction LR
-    b1["U₁(s)"] --> bg["G₁(s)"]
-    bg -->|"+"| bs(("Σ"))
-    b2["U₂(s)"] --> bh["G₁(s)"]
-    bh -->|"+"| bs
-    bs --> by["Y₁(s)"]
+    b1["U1(s)"] --> bg["G1(s)"]
+    bg -->|"#43;"| bs(("Σ"))
+    b2["U2(s)"] --> bh["G1(s)"]
+    bh -->|"#43;"| bs
+    bs --> by["Y1(s)"]
   end
   B1 ~~~ A1
   classDef sig fill:none,stroke:none;
@@ -717,18 +719,18 @@ flowchart LR
 flowchart LR
   subgraph B2["이동 전"]
     direction LR
-    a1["U₁(s)"] --> ag["G₁(s)"]
-    ag -->|"+"| as(("Σ"))
-    a2["U₂(s)"] -->|"+"| as
-    as --> ay["Y₁(s)"]
+    a1["U1(s)"] --> ag["G1(s)"]
+    ag -->|"#43;"| as(("Σ"))
+    a2["U2(s)"] -->|"#43;"| as
+    as --> ay["Y1(s)"]
   end
   subgraph A2["이동 후"]
     direction LR
-    b1["U₁(s)"] -->|"+"| bs(("Σ"))
-    b2["U₂(s)"] --> bh["1/G₁(s)"]
-    bh -->|"+"| bs
-    bs --> bg["G₁(s)"]
-    bg --> by["Y₁(s)"]
+    b1["U1(s)"] -->|"#43;"| bs(("Σ"))
+    b2["U2(s)"] --> bh["1/G1(s)"]
+    bh -->|"#43;"| bs
+    bs --> bg["G1(s)"]
+    bg --> by["Y1(s)"]
   end
   B2 ~~~ A2
   classDef sig fill:none,stroke:none;
@@ -743,16 +745,16 @@ flowchart LR
 flowchart LR
   subgraph B3["이동 전"]
     direction LR
-    a1["U₁(s)"] --> ag["G₁(s)"]
-    ag --> ay["Y₁(s)"]
-    a1 --> a2["Y₂(s)"]
+    a1["U1(s)"] --> ag["G1(s)"]
+    ag --> ay["Y1(s)"]
+    a1 --> a2["Y2(s)"]
   end
   subgraph A3["이동 후"]
     direction LR
-    b1["U₁(s)"] --> bg["G₁(s)"]
-    bg --> by["Y₁(s)"]
-    bg --> bh["1/G₁(s)"]
-    bh --> b2["Y₂(s)"]
+    b1["U1(s)"] --> bg["G1(s)"]
+    bg --> by["Y1(s)"]
+    bg --> bh["1/G1(s)"]
+    bh --> b2["Y2(s)"]
   end
   B3 ~~~ A3
   classDef sig fill:none,stroke:none;
@@ -767,16 +769,16 @@ flowchart LR
 flowchart LR
   subgraph B4["이동 전"]
     direction LR
-    a1["U₁(s)"] --> ag["G₁(s)"]
-    ag --> ay["Y₁(s)"]
-    ag --> a2["Y₂(s)"]
+    a1["U1(s)"] --> ag["G1(s)"]
+    ag --> ay["Y1(s)"]
+    ag --> a2["Y2(s)"]
   end
   subgraph A4["이동 후"]
     direction LR
-    b1["U₁(s)"] --> bg["G₁(s)"]
-    bg --> by["Y₁(s)"]
-    b1 --> bh["G₁(s)"]
-    bh --> b2["Y₂(s)"]
+    b1["U1(s)"] --> bg["G1(s)"]
+    bg --> by["Y1(s)"]
+    b1 --> bh["G1(s)"]
+    bh --> b2["Y2(s)"]
   end
   B4 ~~~ A4
   classDef sig fill:none,stroke:none;
@@ -804,18 +806,18 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-  R["R(s)"] -->|"+"| S1(("Σ"))
-  S1 -->|"+"| S2(("Σ"))
-  S2 --> G1["G₁(s)"]
-  G1 --> G4["G₄(s)"]
-  G1 --> G2["G₂(s)"]
-  G2 -->|"−"| S2
-  G4 --> G5["G₅(s)"]
-  G4 --> G6["G₆(s)"]
-  G4 --> G3["G₃(s)"]
-  G3 -->|"−"| S1
-  G5 -->|"+"| S3(("Σ"))
-  G6 -->|"+"| S3
+  R["R(s)"] -->|"#43;"| S1(("Σ"))
+  S1 -->|"#43;"| S2(("Σ"))
+  S2 --> G1["G1(s)"]
+  G1 --> G4["G4(s)"]
+  G1 --> G2["G2(s)"]
+  G2 -->|"#45;"| S2
+  G4 --> G5["G5(s)"]
+  G4 --> G6["G6(s)"]
+  G4 --> G3["G3(s)"]
+  G3 -->|"#45;"| S1
+  G5 -->|"#43;"| S3(("Σ"))
+  G6 -->|"#43;"| S3
   S3 --> Y["Y(s)"]
   classDef sig fill:none,stroke:none;
   class R,Y sig;
@@ -837,14 +839,14 @@ G_AG_4 = \frac{G_1G_4}{1 + G_1G_2}
 
 ```mermaid
 flowchart LR
-  R["R(s)"] -->|"+"| S1(("Σ"))
-  S1 --> GA["G₁G₄ / (1 + G₁G₂)"]
-  GA --> G5["G₅(s)"]
-  GA --> G6["G₆(s)"]
-  GA --> G3["G₃(s)"]
-  G3 -->|"−"| S1
-  G5 -->|"+"| S3(("Σ"))
-  G6 -->|"+"| S3
+  R["R(s)"] -->|"#43;"| S1(("Σ"))
+  S1 --> GA["G1G4 / (1 + G1G2)"]
+  GA --> G5["G5(s)"]
+  GA --> G6["G6(s)"]
+  GA --> G3["G3(s)"]
+  G3 -->|"#45;"| S1
+  G5 -->|"#43;"| S3(("Σ"))
+  G6 -->|"#43;"| S3
   S3 --> Y["Y(s)"]
   classDef sig fill:none,stroke:none;
   class R,Y sig;
@@ -870,8 +872,8 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-  R["R(s)"] --> T["G₁G₄ / (1 + G₁G₂ + G₁G₃G₄)"]
-  T --> P["G₅ + G₆"]
+  R["R(s)"] --> T["G1G4 / (1 + G1G2 + G1G3G4)"]
+  T --> P["G5 + G6"]
   P --> Y["Y(s)"]
   classDef sig fill:none,stroke:none;
   class R,Y sig;
@@ -887,15 +889,15 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-  R["R(s)"] -->|"+"| S1(("Σ"))
-  S1 --> G1["G₁(s)"]
-  G1 --> G2["G₂(s)"]
-  G1 --> G5["G₅(s)"]
-  G2 --> G4["G₄(s)"]
-  G2 --> G3["G₃(s)"]
-  G3 -->|"−"| S1
-  G4 -->|"+"| S2(("Σ"))
-  G5 -->|"+"| S2
+  R["R(s)"] -->|"#43;"| S1(("Σ"))
+  S1 --> G1["G1(s)"]
+  G1 --> G2["G2(s)"]
+  G1 --> G5["G5(s)"]
+  G2 --> G4["G4(s)"]
+  G2 --> G3["G3(s)"]
+  G3 -->|"#45;"| S1
+  G4 -->|"#43;"| S2(("Σ"))
+  G5 -->|"#43;"| S2
   S2 --> Y["Y(s)"]
   classDef sig fill:none,stroke:none;
   class R,Y sig;
@@ -909,15 +911,15 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-  R["R(s)"] -->|"+"| S1(("Σ"))
-  S1 --> G1["G₁(s)"]
-  G1 --> G2["G₂(s)"]
-  G2 --> G4["G₄(s)"]
-  G2 --> G52["G₅(s) / G₂(s)"]
-  G2 --> G3["G₃(s)"]
-  G3 -->|"−"| S1
-  G4 -->|"+"| S2(("Σ"))
-  G52 -->|"+"| S2
+  R["R(s)"] -->|"#43;"| S1(("Σ"))
+  S1 --> G1["G1(s)"]
+  G1 --> G2["G2(s)"]
+  G2 --> G4["G4(s)"]
+  G2 --> G52["G5(s) / G2(s)"]
+  G2 --> G3["G3(s)"]
+  G3 -->|"#45;"| S1
+  G4 -->|"#43;"| S2(("Σ"))
+  G52 -->|"#43;"| S2
   S2 --> Y["Y(s)"]
   classDef sig fill:none,stroke:none;
   class R,Y sig;
@@ -937,8 +939,8 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-  R["R(s)"] --> T["G₁G₂ / (1 + G₁G₂G₃)"]
-  T --> P["G₄ + G₅ / G₂"]
+  R["R(s)"] --> T["G1G2 / (1 + G1G2G3)"]
+  T --> P["G4 + G5 / G2"]
   P --> Y["Y(s)"]
   classDef sig fill:none,stroke:none;
   class R,Y sig;

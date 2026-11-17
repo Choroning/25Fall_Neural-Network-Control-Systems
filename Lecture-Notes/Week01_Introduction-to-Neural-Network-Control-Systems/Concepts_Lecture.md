@@ -2,7 +2,7 @@
 
 [Repository Guide](../../README.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **Last Updated:** 2026-11-04
+> **Last Updated:** 2026-11-17
 
 > **Learning Objectives:**
 > 1. Define systems and control systems, and distinguish open-loop from closed-loop control systems by the presence of feedback
@@ -288,7 +288,9 @@ Because an open-loop system has no feedback loop, it can be affected by external
 
 ### 2.5 Closed-Loop Control Systems
 
-> **Definition:** A **closed-loop control system** is a control system that uses a **feedback loop** to measure the output of the system and uses the measurement to adjust the behavior of the system. The controller compares the measured output with the desired target value, computes the **error**, and controls the system in the direction that reduces this error.
+> **Definition:** A **closed-loop control system** is a control system that uses a feedback loop to measure the output of the system and uses the measurement to adjust the behavior of the system.
+
+> **Definition:** The **error** is the difference that the controller obtains by comparing the measured output with the desired target value. The controller of a closed-loop control system controls the system in the direction that reduces this error.
 
 Its main characteristics are as follows.
 

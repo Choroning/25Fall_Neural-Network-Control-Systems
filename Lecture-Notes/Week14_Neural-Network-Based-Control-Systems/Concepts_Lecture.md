@@ -2,7 +2,7 @@
 
 [Repository Guide](../../README.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **Last Updated:** 2026-11-04
+> **Last Updated:** 2026-11-17
 
 > **Learning Objectives:**
 > 1. Explain why neural networks are used in control, and distinguish the indirect method and the direct method from the viewpoints of system identification and the controller
@@ -396,7 +396,7 @@ flowchart LR
         F --> X2["x(k+1)"]
     end
     subgraph INV["Inverse dynamics"]
-        X3["x(k)"] --> G["Inverse dynamics model F⁻¹"]
+        X3["x(k)"] --> G["Inverse dynamics model F^-1"]
         X4["x(k+1)"] --> G
         G --> U2["u(k)"]
     end

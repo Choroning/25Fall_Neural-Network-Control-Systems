@@ -2,7 +2,7 @@
 
 [Repository Guide](../../README.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **Last Updated:** 2026-11-10
+> **Last Updated:** 2026-11-17
 
 > **Learning Objectives:**
 > 1. Explain the nodes, branches, and gains of a signal flow graph, and convert a block diagram into a signal flow graph
@@ -81,8 +81,8 @@ The three basic connections of Week 5 appear as signal flow graphs as follows. T
 
 ```mermaid
 flowchart LR
-  U(("U(s)")) -->|"G₁(s)"| X(("X(s)"))
-  X -->|"G₂(s)"| Y(("Y(s)"))
+  U(("U(s)")) -->|"G1(s)"| X(("X(s)"))
+  X -->|"G2(s)"| Y(("Y(s)"))
 ```
 
 *Figure 1. Signal flow graph of series blocks*
@@ -91,8 +91,8 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-  U(("U(s)")) -->|"G₁(s)"| Y(("Y(s)"))
-  U -->|"G₂(s)"| Y
+  U(("U(s)")) -->|"G1(s)"| Y(("Y(s)"))
+  U -->|"G2(s)"| Y
 ```
 
 *Figure 2. Signal flow graph of parallel blocks*
@@ -101,9 +101,9 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-  R(("R(s)")) -->|"1"| U1(("U₁(s)"))
-  U1 -->|"G₁(s)"| Y1(("Y₁(s)"))
-  Y1 -->|"−G₂(s)"| U1
+  R(("R(s)")) -->|"1"| U1(("U1(s)"))
+  U1 -->|"G1(s)"| Y1(("Y1(s)"))
+  Y1 -->|"−G2(s)"| U1
 ```
 
 *Figure 3. Signal flow graph of feedback blocks*
@@ -121,13 +121,13 @@ A block diagram is converted into a signal flow graph in the following order.
 
 ```mermaid
 flowchart LR
-  R(("R(s)")) -->|"1"| N1(("N₁"))
-  N1 -->|"G₁(s)"| N2(("N₂"))
-  N2 -->|"−G₂(s)"| N1
-  N2 -->|"G₄(s)"| N3(("N₃"))
-  N3 -->|"−G₃(s)"| N1
-  N3 -->|"G₅(s)"| Y(("Y(s)"))
-  N3 -->|"G₆(s)"| Y
+  R(("R(s)")) -->|"1"| N1(("N1"))
+  N1 -->|"G1(s)"| N2(("N2"))
+  N2 -->|"−G2(s)"| N1
+  N2 -->|"G4(s)"| N3(("N3"))
+  N3 -->|"−G3(s)"| N1
+  N3 -->|"G5(s)"| Y(("Y(s)"))
+  N3 -->|"G6(s)"| Y
 ```
 
 *Figure 4. Signal flow graph of Example 1*
@@ -136,12 +136,12 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-  R(("R(s)")) -->|"1"| N1(("N₁"))
-  N1 -->|"G₁(s)"| N2(("N₂"))
-  N2 -->|"G₂(s)"| N3(("N₃"))
-  N3 -->|"−G₃(s)"| N1
-  N3 -->|"G₄(s)"| Y(("Y(s)"))
-  N2 -->|"G₅(s)"| Y
+  R(("R(s)")) -->|"1"| N1(("N1"))
+  N1 -->|"G1(s)"| N2(("N2"))
+  N2 -->|"G2(s)"| N3(("N3"))
+  N3 -->|"−G3(s)"| N1
+  N3 -->|"G4(s)"| Y(("Y(s)"))
+  N2 -->|"G5(s)"| Y
 ```
 
 *Figure 5. Signal flow graph of Example 2*
@@ -169,18 +169,18 @@ As an example of non-touching loops, consider the signal flow graph of Figure 6.
 
 ```mermaid
 flowchart LR
-  R(("R")) -->|"1"| N1(("N₁"))
-  N1 -->|"G₁"| N2(("N₂"))
-  N2 -->|"−G₇"| N1
-  N2 -->|"G₂"| N3(("N₃"))
-  N3 -->|"G₃"| N4(("N₄"))
-  N4 -->|"−G₈"| N3
-  N4 -->|"−G₁₀"| N1
-  N4 -->|"G₄"| N5(("N₅"))
-  N5 -->|"G₅"| N6(("N₆"))
-  N6 -->|"−G₉"| N5
-  N6 -->|"G₆"| Y(("Y"))
-  N1 -->|"G₁₁"| Y
+  R(("R")) -->|"1"| N1(("N1"))
+  N1 -->|"G1"| N2(("N2"))
+  N2 -->|"−G7"| N1
+  N2 -->|"G2"| N3(("N3"))
+  N3 -->|"G3"| N4(("N4"))
+  N4 -->|"−G8"| N3
+  N4 -->|"−G10"| N1
+  N4 -->|"G4"| N5(("N5"))
+  N5 -->|"G5"| N6(("N6"))
+  N6 -->|"−G9"| N5
+  N6 -->|"G6"| Y(("Y"))
+  N1 -->|"G11"| Y
 ```
 
 *Figure 6. Signal flow graph with non-touching loops*
@@ -265,14 +265,14 @@ Note that the signal at a node corresponding to a summing point is the summed va
 
 ```mermaid
 flowchart LR
-  R["R(s)"] -->|"+"| S1(("Σ"))
-  S1 -->|"E"| G1["G₁(s)"]
-  S1 -->|"E"| G4["G₄(s)"]
-  G1 --> G2["G₂(s)"]
-  G1 --> G3["G₃(s)"]
-  G3 -->|"−"| S1
-  G2 -->|"+"| S2(("Σ"))
-  G4 -->|"+"| S2
+  R["R(s)"] -->|"#43;"| S1(("Σ"))
+  S1 -->|"E"| G1["G1(s)"]
+  S1 -->|"E"| G4["G4(s)"]
+  G1 --> G2["G2(s)"]
+  G1 --> G3["G3(s)"]
+  G3 -->|"#45;"| S1
+  G2 -->|"#43;"| S2(("Σ"))
+  G4 -->|"#43;"| S2
   S2 --> Y["Y(s)"]
   classDef sig fill:none,stroke:none;
   class R,Y sig;
@@ -285,10 +285,10 @@ In the signal flow graph the summing point becomes node $E$, and the branch of $
 ```mermaid
 flowchart LR
   R(("R")) -->|"1"| E(("E"))
-  E -->|"G₁"| X(("X"))
-  X -->|"−G₃"| E
-  X -->|"G₂"| N(("N"))
-  E -->|"G₄"| N
+  E -->|"G1"| X(("X"))
+  X -->|"−G3"| E
+  X -->|"G2"| N(("N"))
+  E -->|"G4"| N
   N -->|"1"| Y(("Y"))
 ```
 
@@ -308,14 +308,14 @@ As an algebraic check, $E = R - G_3G_1E$ gives $E = R/(1 + G_1G_3)$ and $Y = G_2
 
 ```mermaid
 flowchart LR
-  R["R(s)"] -->|"+"| S1(("Σ"))
-  R --> G4["G₄(s)"]
-  S1 -->|"E"| G1["G₁(s)"]
-  G1 --> G2["G₂(s)"]
-  G1 --> G3["G₃(s)"]
-  G3 -->|"−"| S1
-  G2 -->|"+"| S2(("Σ"))
-  G4 -->|"+"| S2
+  R["R(s)"] -->|"#43;"| S1(("Σ"))
+  R --> G4["G4(s)"]
+  S1 -->|"E"| G1["G1(s)"]
+  G1 --> G2["G2(s)"]
+  G1 --> G3["G3(s)"]
+  G3 -->|"#45;"| S1
+  G2 -->|"#43;"| S2(("Σ"))
+  G4 -->|"#43;"| S2
   S2 --> Y["Y(s)"]
   classDef sig fill:none,stroke:none;
   class R,Y sig;
@@ -329,10 +329,10 @@ In the signal flow graph a node $A$ exists before the summing point; from $A$ a 
 flowchart LR
   R(("R")) -->|"1"| A(("A"))
   A -->|"1"| E(("E"))
-  A -->|"G₄"| N(("N"))
-  E -->|"G₁"| X(("X"))
-  X -->|"−G₃"| E
-  X -->|"G₂"| N
+  A -->|"G4"| N(("N"))
+  E -->|"G1"| X(("X"))
+  X -->|"−G3"| E
+  X -->|"G2"| N
   N -->|"1"| Y(("Y"))
 ```
 
@@ -433,11 +433,11 @@ Different systems cannot be told apart by their transfer function if the transfe
 
 ```mermaid
 flowchart LR
-  U["U(s)"] -->|"+"| S(("Σ"))
-  S -->|"ẋ₁"| I1["1/s"]
-  I1 -->|"x₁"| K2["2"]
+  U["U(s)"] -->|"#43;"| S(("Σ"))
+  S -->|"ẋ1"| I1["1/s"]
+  I1 -->|"x1"| K2["2"]
   I1 --> K3["3"]
-  K3 -->|"−"| S
+  K3 -->|"#45;"| S
   K2 --> Y["Y(s)"]
   classDef sig fill:none,stroke:none;
   class U,Y sig;
@@ -453,18 +453,18 @@ G(s) = \frac{Y(s)}{U(s)} = \frac{2}{s + 3}
 
 ```mermaid
 flowchart LR
-  U["U(s)"] -->|"+"| S1(("Σ"))
-  S1 -->|"ẋ₂"| I2["1/s"]
-  I2 -->|"x₂ = ẋ₁"| I1["1/s"]
-  I1 -->|"x₁"| K2a["2"]
+  U["U(s)"] -->|"#43;"| S1(("Σ"))
+  S1 -->|"ẋ2"| I2["1/s"]
+  I2 -->|"x2 = ẋ1"| I1["1/s"]
+  I1 -->|"x1"| K2a["2"]
   I2 --> K2b["2"]
   I2 --> K4["4"]
   I1 --> K3["3"]
-  K4 -->|"+"| S2(("Σ"))
-  K3 -->|"+"| S2
-  S2 -->|"−"| S1
-  K2a -->|"+"| S3(("Σ"))
-  K2b -->|"+"| S3
+  K4 -->|"#43;"| S2(("Σ"))
+  K3 -->|"#43;"| S2
+  S2 -->|"#45;"| S1
+  K2a -->|"#43;"| S3(("Σ"))
+  K2b -->|"#43;"| S3
   S3 --> Y["Y(s)"]
   classDef sig fill:none,stroke:none;
   class U,Y sig;
@@ -488,7 +488,11 @@ The denominator factor $(s + 1)$ cancels the numerator factor $(s + 1)$ (the pol
 
 ### 2.3 State Variables and State Variable Equations
 
-> **Definition:** The **state** of a system is the smallest set of variables whose values at a time $t_0$, together with the input for $t \ge t_0$, determine the entire behavior of the system for $t \ge t_0$. These variables are called **state variables**, and the first-order differential equations of the state variables together with the expression of the output in terms of the state variables are called the **state variable equations**.
+> **Definition:** The **state** of a system is the smallest set of variables whose values at a time $t_0$, together with the input for $t \ge t_0$, determine the entire behavior of the system for $t \ge t_0$.
+
+> **Definition:** The variables that make up the state are called **state variables**.
+
+> **Definition:** The first-order differential equations of the state variables together with the expression of the output in terms of the state variables are called the **state variable equations**.
 
 **Example of state variable equations.** Convert the differential equation of Week 5 Section 1.2 into state variable equations.
 
@@ -765,19 +769,19 @@ The block diagram is Figure 14. Three integrators are chained as $`\dot{x}_3 \to
 
 ```mermaid
 flowchart LR
-  U["U(s)"] -->|"+"| S1(("Σ"))
-  S1 -->|"ẋ₃"| I3["1/s"]
-  I3 -->|"x₃"| I2["1/s"]
-  I2 -->|"x₂"| I1["1/s"]
-  I1 -->|"x₁"| C0["1"]
+  U["U(s)"] -->|"#43;"| S1(("Σ"))
+  S1 -->|"ẋ3"| I3["1/s"]
+  I3 -->|"x3"| I2["1/s"]
+  I2 -->|"x2"| I1["1/s"]
+  I1 -->|"x1"| C0["1"]
   C0 --> Y["Y(s)"]
   I3 --> A2["2"]
   I2 --> A1["3"]
   I1 --> A0["1"]
-  A2 -->|"+"| S2(("Σ"))
-  A1 -->|"+"| S2
-  A0 -->|"+"| S2
-  S2 -->|"−"| S1
+  A2 -->|"#43;"| S2(("Σ"))
+  A1 -->|"#43;"| S2
+  A0 -->|"#43;"| S2
+  S2 -->|"#45;"| S1
   classDef sig fill:none,stroke:none;
   class U,Y sig;
 ```
@@ -814,22 +818,22 @@ The block diagram is Figure 15. Compared with Figure 14, the feedback part is th
 
 ```mermaid
 flowchart LR
-  U["U(s)"] -->|"+"| S1(("Σ"))
-  S1 -->|"ẋ₃"| I3["1/s"]
-  I3 -->|"x₃"| I2["1/s"]
-  I2 -->|"x₂"| I1["1/s"]
-  I1 -->|"x₁"| C0["4"]
+  U["U(s)"] -->|"#43;"| S1(("Σ"))
+  S1 -->|"ẋ3"| I3["1/s"]
+  I3 -->|"x3"| I2["1/s"]
+  I2 -->|"x2"| I1["1/s"]
+  I1 -->|"x1"| C0["4"]
   I2 --> C1["5"]
-  C0 -->|"+"| S3(("Σ"))
-  C1 -->|"+"| S3
+  C0 -->|"#43;"| S3(("Σ"))
+  C1 -->|"#43;"| S3
   S3 --> Y["Y(s)"]
   I3 --> A2["2"]
   I2 --> A1["3"]
   I1 --> A0["1"]
-  A2 -->|"+"| S2(("Σ"))
-  A1 -->|"+"| S2
-  A0 -->|"+"| S2
-  S2 -->|"−"| S1
+  A2 -->|"#43;"| S2(("Σ"))
+  A1 -->|"#43;"| S2
+  A0 -->|"#43;"| S2
+  S2 -->|"#45;"| S1
   classDef sig fill:none,stroke:none;
   class U,Y sig;
 ```
@@ -844,7 +848,7 @@ Conversely, given state variable equations, the transfer function can be found [
 G(s) = \frac{Y(s)}{U(s)} = C(sI - A)^{-1}B + D
 ```
 
-> **[Linear Algebra]** The inverse can be written $(sI - A)^{-1} = \dfrac{\operatorname{adj}(sI - A)}{\det(sI - A)}$ ($\operatorname{adj}$ is the adjugate matrix). Hence the denominator of the transfer function is $\det(sI - A)$, the characteristic equation is $\det(sI - A) = 0$, and its roots are the eigenvalues of $A$. Without cancellation, the poles of the transfer function equal the eigenvalues of $A$. For a $2 \times 2$ matrix, $`\begin{bmatrix} a & b \\ c & d \end{bmatrix}^{-1} = \dfrac{1}{ad - bc}\begin{bmatrix} d & -b \\ -c & a \end{bmatrix}`$ (Week 3).
+> **[Linear Algebra]** The inverse can be written $(sI - A)^{-1} = \dfrac{\mathrm{adj}(sI - A)}{\det(sI - A)}$ ($\mathrm{adj}$ is the adjugate matrix). Hence the denominator of the transfer function is $\det(sI - A)$, the characteristic equation is $\det(sI - A) = 0$, and its roots are the eigenvalues of $A$. Without cancellation, the poles of the transfer function equal the eigenvalues of $A$. For a $2 \times 2$ matrix, $`\begin{bmatrix} a & b \\ c & d \end{bmatrix}^{-1} = \dfrac{1}{ad - bc}\begin{bmatrix} d & -b \\ -c & a \end{bmatrix}`$ (Week 3).
 
 **Example: the state variable equations of Section 2.3.** Since $`A = \begin{bmatrix} 0 & 1 \\ -2 & -3 \end{bmatrix}`$, the following holds.
 

@@ -2,7 +2,7 @@
 
 [Repository Guide](../../README.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **Last Updated:** 2026-11-04
+> **Last Updated:** 2026-11-17
 
 > **Learning Objectives:**
 > 1. Explain systems, plants, and the structure of open-loop and closed-loop control systems, and represent examples of feedback control as block diagrams
@@ -80,7 +80,9 @@ flowchart LR
 
 ### 1.2 Control Systems and Plants
 
-> **Definition:** A **control system** is a system built so that people can adjust the output or the operating characteristics of some system as they wish. The system to be controlled is called the **controlled system** or the **plant**.
+> **Definition:** A **control system** is a system built so that people can adjust the output or the operating characteristics of some system as they wish.
+
+> **Definition:** The **plant** is the system to be controlled, and it is also called the controlled system.
 
 To build a control system, one must first decide which system to control and then what to control in that system. In the room temperature system, the plant is the room and the quantity to be controlled is the room temperature. Even for the same car, one may control its speed or its direction of travel, so deciding what to take as the output is the starting point of control system design.
 
@@ -93,7 +95,7 @@ flowchart LR
 
 ### 1.3 Open-Loop Control Systems
 
-> **Definition:** In an **open-loop control system**, the controller accepts a command input from outside, performs an appropriate computation, and generates a **control signal** that makes the controlled system perform the desired action, which is then fed into the controlled system.
+> **Definition:** An **open-loop control system** is a control system in which the controller accepts a command input from outside, performs an appropriate computation, and generates a control signal that makes the controlled system perform the desired action, which is then fed into the controlled system.
 
 ```mermaid
 flowchart LR
@@ -195,7 +197,9 @@ The most common way to represent a system in the time domain is to use **differe
 
 ### 1.7 Differential Equations
 
-> **Definition:** A **differential equation** is an equation that contains derivatives of one or more dependent variables with respect to one or more independent variables. A function that satisfies a differential equation is called a **solution** of that differential equation.
+> **Definition:** A **differential equation** is an equation that contains derivatives of one or more dependent variables with respect to one or more independent variables.
+
+> **Definition:** A function that satisfies a differential equation is called a **solution** of that differential equation.
 
 A differential equation is a mathematical model of a real phenomenon written as relations among several variables. A differential equation with only one independent variable, in which only ordinary derivatives appear, is called an **ordinary differential equation**, and one with two or more independent variables, in which partial derivatives appear, is called a **partial differential equation**. Control systems mainly use ordinary differential equations with time $t$ as the independent variable.
 
@@ -308,7 +312,11 @@ The definition and properties of the Laplace transform are covered in Week 3. Be
 
 ### 2.1 Imaginary and Complex Numbers
 
-> **Definition:** A **complex number** is a number made of a real number and an imaginary number. A number whose square is less than 0 is called an **imaginary number**, and the number whose square is $-1$ is called the **imaginary unit** $i$.
+> **Definition:** A **complex number** is a number made of a real number and an imaginary number.
+
+> **Definition:** A number whose square is less than 0 is called an **imaginary number**.
+
+> **Definition:** The number whose square is $-1$ is called the **imaginary unit** $i$.
 
 ```math
 i^2 = -1 \quad \Rightarrow \quad i = \sqrt{-1}

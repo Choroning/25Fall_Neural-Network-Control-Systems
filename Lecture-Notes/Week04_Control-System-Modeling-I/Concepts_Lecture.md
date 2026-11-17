@@ -2,7 +2,7 @@
 
 [Repository Guide](../../README.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **Last Updated:** 2026-11-04
+> **Last Updated:** 2026-11-17
 
 > **Learning Objectives:**
 > 1. Explain what a dynamic system, modeling, and a model are, and why Newton's laws of motion are the starting point for modeling mechanical systems
@@ -61,7 +61,11 @@ Solving differential equations with the Laplace transform is the subject of Week
 
 To control a system, one must first express mathematically how the system responds to its input. The characteristics of the controlled object can be described by differential equations, and the following three terms name this process.
 
-> **Definition:** A **dynamic system** is a system whose characteristics can be described by differential equations. Systems whose present output depends not only on the present input but also on the past state (for example, a velocity or a stored charge) belong here. **Modeling** is the process of finding the mathematical equations that describe the characteristics of a control system, and a **model** is the resulting set of equations that describes the characteristics of the controlled object.
+> **Definition:** A **dynamic system** is a system whose characteristics can be described by differential equations. Systems whose present output depends not only on the present input but also on the past state (for example, a velocity or a stored charge) belong here.
+
+> **Definition:** **Modeling** is the process of finding the mathematical equations that describe the characteristics of a control system.
+
+> **Definition:** A **model** is the set of equations obtained by modeling that describes the characteristics of the controlled object.
 
 Modeling starts from physical laws. For mechanical systems the starting point is Newton's laws of motion (Section 1.2), and for electric circuits it is Kirchhoff's voltage law (Section 3). Converting the resulting differential equations into $s$-domain equations with the Laplace transform of Week 3 lets the system be handled with the transfer functions and block diagrams of Week 5.
 
@@ -602,7 +606,9 @@ $S$ is the area of the circuit through which the field passes, and $\Phi = BS$ h
 
 ### 3.5 Structure of a DC Servo Motor
 
-> **Definition:** A **servo motor** is a motor built so that it can precisely control a device when moving it to a specific position required by the system or running it at a specific speed and torque. One driven by a DC supply is a **DC servo motor**.
+> **Definition:** A **servo motor** is a motor built so that it can precisely control a device when moving it to a specific position required by the system or running it at a specific speed and torque.
+
+> **Definition:** A servo motor driven by a DC supply is called a **DC servo motor**.
 
 ![Figure 20. Structure of a DC servo motor](../../images/Week04_4-3_p08.png)
 
@@ -679,7 +685,7 @@ Drawn as a block diagram, these relations look like Figure 22. Block diagrams ar
 
 ```mermaid
 flowchart LR
-    EA["Armature voltage Ea(s)"] -->|"+"| SUM(("Σ"))
+    EA["Armature voltage Ea(s)"] -->|"#43;"| SUM(("Σ"))
     SUM --> EL["1 / (La s + Ra)"]
     EL -->|"Current Ia(s)"| KT["Kt"]
     KT -->|"Torque T(s)"| ME["1 / (Ja s + B)"]

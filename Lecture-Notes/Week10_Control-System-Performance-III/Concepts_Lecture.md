@@ -2,7 +2,7 @@
 
 [Repository Guide](../../README.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **Last Updated:** 2026-11-04
+> **Last Updated:** 2026-11-17
 
 > **Learning Objectives:**
 > 1. Define the steady-state error and compute the steady-state error of a unity feedback system with the final value theorem
@@ -74,12 +74,12 @@ To subtract two signals at a summing point, the two signals must have the same u
 ```mermaid
 flowchart LR
     R["R(s)"] --> KS1["K_sensor"]
-    KS1 -->|"+"| S(("Σ"))
+    KS1 -->|"#43;"| S(("Σ"))
     S --> K["K"]
     K --> M["A / (s(τs + 1))"]
     M --> Y["Y(s)"]
     M --> KS2["K_sensor"]
-    KS2 -->|"-"| S
+    KS2 -->|"#45;"| S
 ```
 
 *Figure 1. Motor control system with the units of the command and the sensor output matched*
@@ -88,12 +88,12 @@ The output of the summing point in Figure 1 is $`K_{sensor}R(s) - K_{sensor}Y(s)
 
 ```mermaid
 flowchart LR
-    R["R(s)"] -->|"+"| S(("Σ"))
+    R["R(s)"] -->|"#43;"| S(("Σ"))
     S --> KS["K_sensor"]
     KS --> K["K"]
     K --> M["A / (s(τs + 1))"]
     M --> Y["Y(s)"]
-    M -->|"-"| S
+    M -->|"#45;"| S
 ```
 
 *Figure 2. Motor control system transformed into a unity feedback system*
@@ -106,11 +106,11 @@ A general unity feedback system is shown in Figure 3. In the time domain, the di
 
 ```mermaid
 flowchart LR
-    R["R(s)"] -->|"+"| S(("Σ"))
+    R["R(s)"] -->|"#43;"| S(("Σ"))
     S -->|"E(s)"| D["Controller D(s)"]
     D -->|"U(s)"| G["Plant G(s)"]
     G --> Y["Y(s)"]
-    G -->|"-"| S
+    G -->|"#45;"| S
 ```
 
 *Figure 3. Unity feedback system consisting of a controller and a plant*
@@ -225,11 +225,11 @@ Figure 4 is a unity feedback system in which a controller of constant gain $K_1$
 
 ```mermaid
 flowchart LR
-    R["R(s)"] -->|"+"| S(("Σ"))
+    R["R(s)"] -->|"#43;"| S(("Σ"))
     S --> K["K1"]
     K --> G["A / (τs + 1)"]
     G --> Y["Y(s)"]
-    G -->|"-"| S
+    G -->|"#45;"| S
 ```
 
 *Figure 4. Unity feedback system with a proportional controller and a first-order plant*
@@ -284,11 +284,11 @@ Add an integral term $\frac{K_2}{s}$ to the controller of Example 1, changing it
 
 ```mermaid
 flowchart LR
-    R["R(s)"] -->|"+"| S(("Σ"))
+    R["R(s)"] -->|"#43;"| S(("Σ"))
     S --> D["K1 + K2 / s"]
     D --> G["A / (τs + 1)"]
     G --> Y["Y(s)"]
-    G -->|"-"| S
+    G -->|"#45;"| S
 ```
 
 *Figure 6. Unity feedback system with a PI controller and a first-order plant*
@@ -379,12 +379,12 @@ Consider the system of Figure 8, which has a transfer function $H(s)$ in the fee
 
 ```mermaid
 flowchart LR
-    R["R(s)"] -->|"+"| S(("Σ"))
+    R["R(s)"] -->|"#43;"| S(("Σ"))
     S --> D["D(s)"]
     D -->|"U(s)"| G["G(s)"]
     G --> Y["Y(s)"]
     G --> H["H(s)"]
-    H -->|"-"| S
+    H -->|"#45;"| S
 ```
 
 *Figure 8. System with H(s) in the feedback path*
