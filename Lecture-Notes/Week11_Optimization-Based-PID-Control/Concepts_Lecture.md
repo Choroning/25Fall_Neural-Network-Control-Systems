@@ -2,7 +2,7 @@
 
 [Repository Guide](../../README.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **Last Updated:** 2026-11-17
+> **Last Updated:** 2026-11-18
 
 > **Learning Objectives:**
 > 1. Explain the structure of a PID controller and the roles of its proportional, integral, and derivative terms, and give typical applications, advantages, and disadvantages
@@ -16,7 +16,7 @@
 ## Table of Contents
 
 - [1. Overview of PID Control](#1-overview-of-pid-control)
-  - [1.1 What Is PID Control](#11-what-is-pid-control)
+  - [1.1 Definition of PID Control](#11-definition-of-pid-control)
   - [1.2 Applications of PID Control](#12-applications-of-pid-control)
   - [1.3 Advantages and Disadvantages of PID Control](#13-advantages-and-disadvantages-of-pid-control)
   - [1.4 Roles of the Proportional, Integral, and Derivative Terms](#14-roles-of-the-proportional-integral-and-derivative-terms)
@@ -51,7 +51,7 @@
 
 ## 1. Overview of PID Control
 
-### 1.1 What Is PID Control
+### 1.1 Definition of PID Control
 
 **PID control** stands for proportional-integral-derivative control. It is a feedback control method widely used in many engineering and industrial applications: it adjusts the control input based on the difference between the desired **setpoint** and the actual output, so that the output of the system is kept at the desired value.
 
