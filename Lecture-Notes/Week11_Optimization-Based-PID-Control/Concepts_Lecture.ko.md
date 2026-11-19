@@ -2,7 +2,7 @@
 
 [레포지토리 안내](../../README.ko.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **최종 수정일:** 2026-11-18
+> **최종 수정일:** 2026-11-19
 
 > **학습 목표:**
 > 1. PID 제어기의 구조와 비례, 적분, 미분 항의 역할을 설명하고 대표적인 사용 사례와 장단점을 들 수 있다
@@ -38,8 +38,7 @@
   - [3.6 PID 이득 조정의 최적화 수식화](#36-pid-이득-조정의-최적화-수식화)
   - [3.7 MATLAB 구현](#37-matlab-구현)
   - [3.8 최적화 결과와 초기 설계](#38-최적화-결과와-초기-설계)
-  - [3.9 Python 구현](#39-python-구현)
-  - [3.10 결과의 해석과 한계](#310-결과의-해석과-한계)
+  - [3.9 결과의 해석과 한계](#39-결과의-해석과-한계)
 - [개념 적용](#개념-적용)
 - [요약](#요약)
 - [점검 문제](#점검-문제)
@@ -713,64 +712,9 @@ end
 
 > **참고:** 위 반복문은 매번 결과를 같은 변수에 덮어쓰므로, 실제로 가장 좋은 설계를 남기려면 반복마다 `fval`을 지금까지의 최솟값과 비교하여 더 작으면 `opt_var_new`를 따로 저장하는 줄이 필요하다.
 
-1000개의 무작위 초기 설계 가운데 가장 좋은 결과는 초기 설계 $`[161\ 481\ 477]`$에서 얻은 $(K_p, K_i, K_d) = (500.0, 372.2, 500.0)$이며, 상승 시간 0.0082 s, 최대 초과량 0, 정상 상태 오차 0이다. $K_p$와 $K_d$가 상한 500에 닿아 있으므로 이 해는 범위 제한에 걸린 해이며, 3.10절에서 보듯 이 영역에서는 목적 함수가 거의 평평하다.
+1000개의 무작위 초기 설계 가운데 가장 좋은 결과는 초기 설계 $`[161\ 481\ 477]`$에서 얻은 $(K_p, K_i, K_d) = (500.0, 372.2, 500.0)$이며, 상승 시간 0.0082 s, 최대 초과량 0, 정상 상태 오차 0이다. $K_p$와 $K_d$가 상한 500에 닿아 있으므로 이 해는 범위 제한에 걸린 해이며, 3.9절에서 보듯 이 영역에서는 목적 함수가 거의 평평하다.
 
-### 3.9 Python 구현
-
-같은 문제를 Python의 SciPy로 풀 수 있다 [6]. `scipy.signal.step`으로 계단 응답을 구하고, `scipy.optimize.minimize`의 SLSQP(sequential least squares programming, SQP의 한 형태)로 최적화한다.
-
-```python
-import numpy as np
-from scipy import signal
-from scipy.optimize import minimize
-
-t = np.arange(0, 4.0 + 1e-9, 0.01)
-
-def step_metrics(x):
-    Kp, Ki, Kd = x
-    num = [Kd, Kp, Ki]
-    den = np.polyadd(np.polymul([1, 0], [1, 10, 20]), num)
-    _, y = signal.step((num, den), T=t)
-    yf = y[-1]
-    def cross(level):
-        i = np.argmax(y >= level)
-        return t[i-1] + (level - y[i-1]) * (t[i] - t[i-1]) / (y[i] - y[i-1])
-    rise = cross(0.9 * yf) - cross(0.1 * yf)
-    overshoot = max(0.0, 100 * (y.max() - yf) / yf)
-    ss_error = abs(1 - yf)
-    return rise, overshoot, ss_error
-
-res = minimize(lambda x: step_metrics(x)[0], x0=[100, 100, 100], method='SLSQP',
-               bounds=[(1, 500)] * 3,
-               constraints=[{'type': 'ineq', 'fun': lambda x: 1e-3 - step_metrics(x)[1]},
-                            {'type': 'ineq', 'fun': lambda x: 1e-3 - step_metrics(x)[2]}],
-               options={'ftol': 1e-6, 'maxiter': 200})
-print(res.x, step_metrics(res.x))
-```
-
-- `t`는 MATLAB의 `0:0.01:4`와 같은 0~4 s, 0.01 s 간격의 시간 벡터이다. 끝점 4.0이 포함되도록 상한에 작은 값을 더한다.
-- `step_metrics(x)`는 MATLAB의 `obj_function`과 `nonlcon`이 함께 계산하던 세 지표를 돌려준다.
-- `num = [Kd, Kp, Ki]`는 폐루프 전달함수의 분자 $K_d s^2 + K_p s + K_i$의 계수이다.
-- `den`은 분모 $s(s^2 + 10s + 20) + (K_d s^2 + K_p s + K_i)$의 계수이다. `np.polymul`이 다항식 $s$와 $s^2 + 10s + 20$을 곱하고, `np.polyadd`가 분자를 더한다(2.6절의 폐루프 전달함수).
-- `signal.step((num, den), T=t)`는 시각 `t`에서의 단위 계단 응답 `y`를 돌려준다. `yf = y[-1]`은 마지막 표본 $y(4)$로, `stepinfo`처럼 이를 최종값으로 쓴다.
-- 내부 함수 `cross(level)`은 응답이 `level`을 처음 넘는 표본 `i`를 찾고, 그 앞의 표본과 직선으로 보간하여 넘는 시각을 구한다.
-- `rise`는 최종값의 90%와 10%를 넘는 시각의 차이인 상승 시간, `overshoot`는 최종값에 대한 최대 초과량(%), `ss_error`는 $\lvert 1 - y(4)\rvert$이다.
-- `minimize(...)`는 상승 시간을 목적 함수로 하고, `bounds`로 세 이득의 범위를 $[1, 500]$으로 제한한다.
-- `constraints`의 `'ineq'`는 `fun`의 값이 0 이상이어야 한다는 부등식 제한조건이다. 즉 최대 초과량 $\le 10^{-3}$%, $\lvert 1 - y(4)\rvert \le 10^{-3}$을 요구한다.
-- `options`의 `ftol`은 목적 함수 변화의 허용 오차, `maxiter`는 최대 반복 횟수이다. 마지막 줄은 최적 이득과 그때의 세 지표를 출력한다.
-
-MATLAB 코드는 두 지표를 등식 제한조건 $= 0$으로 두었지만, 여기서는 작은 허용 오차의 부등식으로 바꾸었다. 최대 초과량은 넓은 이득 영역에서 정확히 0이므로, 그 영역에서 유한 차분으로 구한 제한조건의 기울기가 0 벡터가 되어 SQP의 선형화된 부분 문제가 특이(singular)해질 수 있기 때문이다. 같은 초기 설계에서 출발한 결과는 표 9와 같으며, MATLAB의 결과(표 8)와 가깝다. 수치 최적화의 결과는 라이브러리의 구현과 설정에 따라 조금씩 달라질 수 있다.
-
-| 초기 설계 | $K_p$ | $K_i$ | $K_d$ | 상승 시간 (s) | 최대 초과량 (%) | $\lvert 1 - y(4)\rvert$ |
-|:-----|:-----|:-----|:-----|:-----|:-----|:-----|
-| $`[100\ 100\ 100]`$ | 110.6 | 88.3 | 101.6 | 0.0349 | 0 | 0.0010 |
-| $`[250\ 250\ 250]`$ | 286.9 | 221.3 | 249.6 | 0.0101 | 0 | 0.0010 |
-| $`[500\ 500\ 500]`$ | 500.0 | 347.0 | 490.4 | 0.0082 | 0 | 0.0009 |
-| $`[100\ 250\ 300]`$ | 168.1 | 198.0 | 341.3 | 0.0085 | 0 | 0.0010 |
-
-*표 9. SciPy SLSQP로 구한 최적화 결과*
-
-### 3.10 결과의 해석과 한계
+### 3.9 결과의 해석과 한계
 
 최적화로 얻은 이득은 정의된 문제에 대해서만 최적이다. 표 8의 설계를 해석할 때는 다음을 고려해야 한다.
 
@@ -800,7 +744,7 @@ MATLAB 코드는 두 지표를 등식 제한조건 $= 0$으로 두었지만, 여
 | PI 제어의 계단 응답이 빠르게 0.96까지 오른 뒤 1에 닿는 데 수 초가 걸린다. | **원점 가까운 느린 극점.** 적분 동작이 만든 느린 극점과 영점의 쌍이 느린 꼬리를 만든다. $K_i$를 키우면 극점이 원점에서 멀어진다. |
 | 같은 최적화 문제를 다른 초기 설계에서 풀었더니 전혀 다른 이득이 나왔다. | **국소 최솟값과 평평한 목적 함수.** 기울기 기반 방법은 가까운 국소 최솟값에서 멈춘다. 다중 시작으로 여러 결과를 비교한다. |
 
-*표 10. 상황별로 연결할 개념*
+*표 9. 상황별로 연결할 개념*
 
 **T/F 점검:**
 
@@ -923,4 +867,3 @@ MATLAB 코드는 두 지표를 등식 제한조건 $= 0$으로 두었지만, 여
 3. J. S. Arora, *Introduction to Optimum Design*, 4th ed. London, U.K.: Academic Press, 2017.
 4. J. Nocedal and S. J. Wright, *Numerical Optimization*, 2nd ed. New York, NY, USA: Springer, 2006.
 5. MathWorks, "fmincon: Find minimum of constrained nonlinear multivariable function," *Optimization Toolbox Documentation*. https://www.mathworks.com/help/optim/ug/fmincon.html
-6. P. Virtanen et al., "SciPy 1.0: Fundamental algorithms for scientific computing in Python," *Nature Methods*, vol. 17, pp. 261-272, 2020.

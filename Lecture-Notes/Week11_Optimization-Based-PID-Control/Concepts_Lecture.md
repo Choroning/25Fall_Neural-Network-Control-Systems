@@ -2,7 +2,7 @@
 
 [Repository Guide](../../README.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **Last Updated:** 2026-11-18
+> **Last Updated:** 2026-11-19
 
 > **Learning Objectives:**
 > 1. Explain the structure of a PID controller and the roles of its proportional, integral, and derivative terms, and give typical applications, advantages, and disadvantages
@@ -38,8 +38,7 @@
   - [3.6 Formulating PID Gain Tuning as Optimization](#36-formulating-pid-gain-tuning-as-optimization)
   - [3.7 MATLAB Implementation](#37-matlab-implementation)
   - [3.8 Optimization Results and the Initial Design](#38-optimization-results-and-the-initial-design)
-  - [3.9 Python Implementation](#39-python-implementation)
-  - [3.10 Interpretation and Limitations of the Results](#310-interpretation-and-limitations-of-the-results)
+  - [3.9 Interpretation and Limitations of the Results](#39-interpretation-and-limitations-of-the-results)
 - [Concept Applications](#concept-applications)
 - [Summary](#summary)
 - [Self-Check Questions](#self-check-questions)
@@ -713,64 +712,9 @@ end
 
 > **Note:** The loop above overwrites the same variables with every result, so to actually keep the best design, a line is needed in each iteration that compares `fval` with the smallest value so far and, if it is smaller, stores `opt_var_new` separately.
 
-The best of the 1000 random initial designs was the result $(K_p, K_i, K_d) = (500.0, 372.2, 500.0)$ obtained from the initial design $`[161\ 481\ 477]`$, with a rise time of 0.0082 s, a maximum overshoot of 0, and a steady-state error of 0. $K_p$ and $K_d$ are at the upper bound 500, so this solution is limited by the bounds, and as Section 3.10 shows, the objective function is nearly flat in this region.
+The best of the 1000 random initial designs was the result $(K_p, K_i, K_d) = (500.0, 372.2, 500.0)$ obtained from the initial design $`[161\ 481\ 477]`$, with a rise time of 0.0082 s, a maximum overshoot of 0, and a steady-state error of 0. $K_p$ and $K_d$ are at the upper bound 500, so this solution is limited by the bounds, and as Section 3.9 shows, the objective function is nearly flat in this region.
 
-### 3.9 Python Implementation
-
-The same problem can be solved with SciPy in Python [6]. The step response is computed with `scipy.signal.step`, and the optimization uses SLSQP (sequential least squares programming, a form of SQP) in `scipy.optimize.minimize`.
-
-```python
-import numpy as np
-from scipy import signal
-from scipy.optimize import minimize
-
-t = np.arange(0, 4.0 + 1e-9, 0.01)
-
-def step_metrics(x):
-    Kp, Ki, Kd = x
-    num = [Kd, Kp, Ki]
-    den = np.polyadd(np.polymul([1, 0], [1, 10, 20]), num)
-    _, y = signal.step((num, den), T=t)
-    yf = y[-1]
-    def cross(level):
-        i = np.argmax(y >= level)
-        return t[i-1] + (level - y[i-1]) * (t[i] - t[i-1]) / (y[i] - y[i-1])
-    rise = cross(0.9 * yf) - cross(0.1 * yf)
-    overshoot = max(0.0, 100 * (y.max() - yf) / yf)
-    ss_error = abs(1 - yf)
-    return rise, overshoot, ss_error
-
-res = minimize(lambda x: step_metrics(x)[0], x0=[100, 100, 100], method='SLSQP',
-               bounds=[(1, 500)] * 3,
-               constraints=[{'type': 'ineq', 'fun': lambda x: 1e-3 - step_metrics(x)[1]},
-                            {'type': 'ineq', 'fun': lambda x: 1e-3 - step_metrics(x)[2]}],
-               options={'ftol': 1e-6, 'maxiter': 200})
-print(res.x, step_metrics(res.x))
-```
-
-- `t` is a time vector from 0 to 4 s in steps of 0.01 s, the same as MATLAB's `0:0.01:4`. A tiny value is added to the upper limit so that the end point 4.0 is included.
-- `step_metrics(x)` returns the three measures that MATLAB's `obj_function` and `nonlcon` computed together.
-- `num = [Kd, Kp, Ki]` holds the coefficients of the numerator of the closed-loop transfer function, $K_d s^2 + K_p s + K_i$.
-- `den` holds the coefficients of the denominator $s(s^2 + 10s + 20) + (K_d s^2 + K_p s + K_i)$. `np.polymul` multiplies the polynomials $s$ and $s^2 + 10s + 20$, and `np.polyadd` adds the numerator (the closed-loop transfer function of Section 2.6).
-- `signal.step((num, den), T=t)` returns the unit step response `y` at the times `t`. `yf = y[-1]` is the last sample $y(4)$, used as the final value as in `stepinfo`.
-- The inner function `cross(level)` finds the first sample `i` at which the response exceeds `level` and interpolates linearly with the previous sample to obtain the crossing time.
-- `rise` is the rise time, the difference between the times at which the response crosses 90% and 10% of the final value; `overshoot` is the maximum overshoot relative to the final value (%); and `ss_error` is $\lvert 1 - y(4)\rvert$.
-- `minimize(...)` uses the rise time as the objective function, and `bounds` limits the three gains to $[1, 500]$.
-- `'ineq'` in `constraints` denotes an inequality constraint requiring the value of `fun` to be at least 0. That is, it requires maximum overshoot $\le 10^{-3}$% and $\lvert 1 - y(4)\rvert \le 10^{-3}$.
-- In `options`, `ftol` is the tolerance on the change of the objective function and `maxiter` the maximum number of iterations. The last line prints the optimal gains and the three measures there.
-
-The MATLAB code sets the two measures as equality constraints $= 0$, but here they are changed into inequalities with a small tolerance. This is because the maximum overshoot is exactly 0 over a wide region of gains, so in that region the gradient of the constraint obtained by finite differences becomes the zero vector and the linearized subproblem of SQP can become singular. The results starting from the same initial designs are shown in Table 9 and are close to the MATLAB results (Table 8). The results of numerical optimization can vary slightly with the implementation and settings of the library.
-
-| Initial design | $K_p$ | $K_i$ | $K_d$ | Rise time (s) | Maximum overshoot (%) | $\lvert 1 - y(4)\rvert$ |
-|:-----|:-----|:-----|:-----|:-----|:-----|:-----|
-| $`[100\ 100\ 100]`$ | 110.6 | 88.3 | 101.6 | 0.0349 | 0 | 0.0010 |
-| $`[250\ 250\ 250]`$ | 286.9 | 221.3 | 249.6 | 0.0101 | 0 | 0.0010 |
-| $`[500\ 500\ 500]`$ | 500.0 | 347.0 | 490.4 | 0.0082 | 0 | 0.0009 |
-| $`[100\ 250\ 300]`$ | 168.1 | 198.0 | 341.3 | 0.0085 | 0 | 0.0010 |
-
-*Table 9. Optimization results obtained with SciPy SLSQP*
-
-### 3.10 Interpretation and Limitations of the Results
+### 3.9 Interpretation and Limitations of the Results
 
 Gains obtained by optimization are optimal only for the problem as defined. The following must be considered when interpreting the designs of Table 8.
 
@@ -800,7 +744,7 @@ Gains obtained by optimization are optimal only for the problem as defined. The 
 | The step response of PI control rises quickly to 0.96 but takes several seconds to reach 1. | **Slow pole near the origin.** The slow pole-zero pair created by integral action produces a slow tail. Increasing $K_i$ moves the pole away from the origin. |
 | Solving the same optimization problem from a different initial design gave completely different gains. | **Local minima and a flat objective function.** Gradient-based methods stop at a nearby local minimum. Compare several results with multi-start. |
 
-*Table 10. Concepts to connect in each situation*
+*Table 9. Concepts to connect in each situation*
 
 **True/False Check:**
 
@@ -923,4 +867,3 @@ Gains obtained by optimization are optimal only for the problem as defined. The 
 3. J. S. Arora, *Introduction to Optimum Design*, 4th ed. London, U.K.: Academic Press, 2017.
 4. J. Nocedal and S. J. Wright, *Numerical Optimization*, 2nd ed. New York, NY, USA: Springer, 2006.
 5. MathWorks, "fmincon: Find minimum of constrained nonlinear multivariable function," *Optimization Toolbox Documentation*. https://www.mathworks.com/help/optim/ug/fmincon.html
-6. P. Virtanen et al., "SciPy 1.0: Fundamental algorithms for scientific computing in Python," *Nature Methods*, vol. 17, pp. 261-272, 2020.
