@@ -2,11 +2,9 @@
 
 [Repository Guide](../../../README.md) | [English](Assignment.md) | [한국어](Assignment.ko.md)
 
-> **Last Updated:** 2026-11-16
+> **Last Updated:** 2026-11-24
 
 This is the fourth assignment of Neural Network Control Systems. It covers learning methods from Week 12, artificial neural networks and their training from Week 13, and neural-network-based control from Week 14.
-
-- **Deadline:** 2025-12-05 (Fri)
 
 ---
 

@@ -2,11 +2,9 @@
 
 [Repository Guide](../../../README.md) | [English](Assignment.md) | [한국어](Assignment.ko.md)
 
-> **Last Updated:** 2026-11-16
+> **Last Updated:** 2026-11-24
 
 This is the first assignment of Neural Network Control Systems. It covers complex numbers and differential equations from Week 2: complex numbers are written and computed in two forms, and differential equations with constant coefficients are solved.
-
-- **Deadline:** 2025-09-26 (Fri)
 
 ---
 

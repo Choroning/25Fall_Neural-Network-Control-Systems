@@ -2,11 +2,9 @@
 
 [Repository Guide](../../../README.md) | [English](Assignment.md) | [한국어](Assignment.ko.md)
 
-> **Last Updated:** 2026-11-16
+> **Last Updated:** 2026-11-24
 
 This is the third assignment of Neural Network Control Systems. It covers the transient response of second-order systems from Week 7, poles and stability from Week 9, and steady-state performance and system type from Week 10. In every figure, the summing point adds the reference input $R(s)$ and subtracts the feedback signal.
-
-- **Deadline:** 2025-11-14 (Fri)
 
 ---
 

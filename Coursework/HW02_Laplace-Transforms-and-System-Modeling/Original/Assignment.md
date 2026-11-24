@@ -2,11 +2,9 @@
 
 [Repository Guide](../../../README.md) | [English](Assignment.md) | [한국어](Assignment.ko.md)
 
-> **Last Updated:** 2026-11-16
+> **Last Updated:** 2026-11-24
 
 This is the second assignment of Neural Network Control Systems. It covers the Laplace transform from Week 3, modeling of mechanical systems from Week 4, and transfer functions and block diagrams from Week 5.
-
-- **Deadline:** 2025-10-14 (Tue)
 
 ---
 

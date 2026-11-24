@@ -2,7 +2,7 @@
 
 [Repository Guide](README.md) | [English](Course-Information.md) | [한국어](Course-Information.ko.md)
 
-> **Last Updated:** 2026-11-16
+> **Last Updated:** 2026-11-24
 
 ## Table of Contents
 
@@ -68,10 +68,10 @@
 - Assessment scores are disclosed.
 - **Assessment Plan:** The midterm and final exams assess academic achievement, the assignments assess the understanding of the course, and attendance and participation scores reflect engagement and learning attitude.
 - **Assignments:** There were four assignments in total, and their handouts and explanations are in [`Coursework`](Coursework/README.md).
-  - HW#1 covers the conversion between forms of complex numbers and complex arithmetic, and the solution of first-order and second-order differential equations, and was due on 2025-09-26 (Fri).
-  - HW#2 covers the Laplace transform and its inverse, solving differential equations with the Laplace transform, the equations of motion and transfer functions of mechanical systems, and the transfer function of a block diagram, and was due on 2025-10-14 (Tue).
-  - HW#3 covers the damping type and gain design of second-order systems, poles and stability, the Routh-Hurwitz criterion, and system type and steady-state error, and was due on 2025-11-14 (Fri).
-  - HW#4 covers k-nearest neighbor classification, linear regression and the coefficient of determination, RMSE, the gradients of a perceptron, input design for a discrete-time system, and neural network predictive control and NARMA-L2 control, and was due on 2025-12-05 (Fri).
+  - HW#1 covers the conversion between forms of complex numbers and complex arithmetic, and the solution of first-order and second-order differential equations.
+  - HW#2 covers the Laplace transform and its inverse, solving differential equations with the Laplace transform, the equations of motion and transfer functions of mechanical systems, and the transfer function of a block diagram.
+  - HW#3 covers the damping type and gain design of second-order systems, poles and stability, the Routh-Hurwitz criterion, and system type and steady-state error.
+  - HW#4 covers k-nearest neighbor classification, linear regression and the coefficient of determination, RMSE, the gradients of a perceptron, input design for a discrete-time system, and neural network predictive control and NARMA-L2 control.
 
 ---
 
@@ -110,7 +110,7 @@
 - The class dates are the dates of the Tuesday and Wednesday class times in the `DAMO335-00` syllabus. The lectures were distributed every week as videos, and the Lecture Decks Covered column gives the names of the lecture videos and slides (`week-order. title`).
 - The slides carry a week title for each week: Week 1 Introduction to Neural Network Control Systems, Week 2 Basics of Control Systems, Week 3 Fundamental Engineering Mathematics, Weeks 4-6 Control System Modeling I-III, Weeks 7, 9, and 10 Control System Performance I-III, Week 11 Optimization-Based PID Control, Week 12 Introduction to Artificial Intelligence, Week 13 Introduction to Artificial Neural Networks, and Week 14 Neural-Network-Based Control Systems.
 - The lecture notes form one unit (`Week##`) per week, covering the three lectures of that week in order. Weeks 8 and 15 have no lectures and therefore no unit.
-- Each assignment is listed in the week where the syllabus places it, and the date in parentheses is the deadline given on the assignment handout.
+- Each assignment is listed in the week where the syllabus places it.
 
 ---
 
