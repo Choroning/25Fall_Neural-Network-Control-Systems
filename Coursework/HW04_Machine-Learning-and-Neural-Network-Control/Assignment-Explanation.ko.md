@@ -2,7 +2,7 @@
 
 [레포지토리 안내](../../README.ko.md) | [English](Assignment-Explanation.md) | [한국어](Assignment-Explanation.ko.md)
 
-> **최종 수정일:** 2026-11-16
+> **최종 수정일:** 2026-11-27
 
 > **학습 목표:**
 > 1. 예측 점에서 각 학습 샘플까지의 거리를 계산하여 k-최근접 이웃 분류로 그룹을 추정할 수 있다
@@ -77,7 +77,7 @@ Coursework/HW04_Machine-Learning-and-Neural-Network-Control/
 
 ### 2.1 k-NN 분류
 
-**k-최근접 이웃(k-nearest neighbors, k-NN)** 분류는 그룹(클래스)이 알려진 학습 샘플을 모두 저장해 두었다가, 새 점이 들어오면 그 점에서 가장 가까운 $k$개의 학습 샘플을 찾아 다수결로 그룹을 정하는 지도 학습 방법이다(12주차). 학습 단계에서 모델의 매개변수를 따로 구하지 않고 예측할 때 거리를 계산하므로 게으른 학습(lazy learning)이라고도 한다. 거리는 보통 **유클리드 거리(Euclidean distance)** 를 쓴다.
+**k-최근접 이웃(k-nearest neighbors, k-NN)** 분류는 그룹(클래스)이 알려진 학습 샘플을 모두 저장해 두었다가, 새 점이 들어오면 그 점에서 가장 가까운 $k$개의 학습 샘플을 찾아 다수결로 그룹을 정하는 지도 학습 방법이다(12주차). 학습 단계에서 모델의 매개변수를 따로 구하지 않고 예측할 때 거리를 계산하므로 게으른 학습(lazy learning)이라고도 한다. 거리는 보통 **Euclidean 거리(Euclidean distance)** 를 쓴다.
 
 ```math
 d\big((x_1, y_1), (x_2, y_2)\big) = \sqrt{(x_1 - x_2)^2 + (y_1 - y_2)^2}

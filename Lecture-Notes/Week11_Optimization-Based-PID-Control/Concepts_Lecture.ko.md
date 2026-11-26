@@ -2,11 +2,11 @@
 
 [레포지토리 안내](../../README.ko.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **최종 수정일:** 2026-11-19
+> **최종 수정일:** 2026-11-27
 
 > **학습 목표:**
 > 1. PID 제어기의 구조와 비례, 적분, 미분 항의 역할을 설명하고 대표적인 사용 사례와 장단점을 들 수 있다
-> 2. 라플라스 변환으로 PID 제어기의 전달함수를 유도할 수 있다
+> 2. Laplace 변환으로 PID 제어기의 전달함수를 유도할 수 있다
 > 3. 질량-스프링-댐퍼 시스템에 P, PD, PI, PID 제어기를 적용했을 때의 폐루프 전달함수를 구하고, 이득에 따른 응답의 변화를 극점과 영점으로 설명할 수 있다
 > 4. 설계 변수, 목적 함수, 제한조건으로 최적화 문제를 수식화하고, 기울기와 경사 하강법으로 설계점을 갱신하는 과정을 계산할 수 있다
 > 5. 상승 시간, 최대 초과량, 정상 상태 오차를 이용해 PID 이득 조정을 제한조건이 있는 최적화 문제로 수식화하고, 그 결과와 한계를 해석할 수 있다
@@ -120,7 +120,7 @@ PID 제어는 구조가 단순하고 플랜트의 정확한 모델 없이도 조
 
 ### 1.5 PID 제어기의 전달함수
 
-PID 제어기의 전달함수를 구하기 위해 3주차의 라플라스 변환을 다시 정리한다. 함수 $f(t)$ ($`t \ge 0`$)의 **라플라스 변환(Laplace transform)** 은 다음과 같이 정의한다.
+PID 제어기의 전달함수를 구하기 위해 3주차의 Laplace 변환을 다시 정리한다. 함수 $f(t)$ ($`t \ge 0`$)의 **Laplace 변환(Laplace transform)** 은 다음과 같이 정의한다.
 
 ```math
 F(s) = \mathcal{L}\lbrace f(t) \rbrace= \int_0^\infty f(t)\,e^{-st}\,dt
@@ -138,9 +138,9 @@ F(s) = \mathcal{L}\lbrace f(t) \rbrace= \int_0^\infty f(t)\,e^{-st}\,dt
 \mathcal{L}\lbrace e^{-at} \rbrace= \int_0^\infty e^{-at}e^{-st}\,dt = \int_0^\infty e^{-(s + a)t}\,dt = \left[-\frac{1}{s + a}e^{-(s + a)t}\right]_0^\infty = \frac{1}{s + a}
 ```
 
-이제 PID 제어기의 세 항을 변환한다. 오차의 라플라스 변환을 $E(s)$라 한다.
+이제 PID 제어기의 세 항을 변환한다. 오차의 Laplace 변환을 $E(s)$라 한다.
 
-**비례(P) 항.** 라플라스 변환은 선형이므로 상수배는 그대로 남는다: $\mathcal{L}\lbrace K_p e(t) \rbrace= K_p E(s)$.
+**비례(P) 항.** Laplace 변환은 선형이므로 상수배는 그대로 남는다: $\mathcal{L}\lbrace K_p e(t) \rbrace= K_p E(s)$.
 
 **미분(D) 항.** 정의에 부분적분 $`\int u\,dv = uv - \int v\,du`$를 적용한다($u = e^{-st}$, $`dv = e'(t)\,dt`$).
 
@@ -174,13 +174,13 @@ PID 제어기의 각 항이 응답에 미치는 영향을 그림 2의 **질량-�
 
 *그림 2. 질량-스프링-댐퍼 시스템*
 
-물체에는 외력 $f$와 함께 스프링의 복원력 $-kx$와 댐퍼의 감쇠력 $-b\dot{x}$가 작용한다. 뉴턴의 운동 제2법칙(4주차)에 따라 운동방정식은 다음과 같다.
+물체에는 외력 $f$와 함께 스프링의 복원력 $-kx$와 댐퍼의 감쇠력 $-b\dot{x}$가 작용한다. Newton의 운동 제2법칙(4주차)에 따라 운동방정식은 다음과 같다.
 
 ```math
 m\ddot{x} = f - b\dot{x} - kx \quad\Longrightarrow\quad m\ddot{x} + b\dot{x} + kx = f
 ```
 
-초기 조건을 0으로 두고 라플라스 변환하면 $(ms^2 + bs + k)X(s) = F(s)$이므로, 외력에서 변위까지의 전달함수는 다음과 같다. 매개변수는 $m = 1$ kg, $b = 10$ N s/m, $k = 20$ N/m이다.
+초기 조건을 0으로 두고 Laplace 변환하면 $(ms^2 + bs + k)X(s) = F(s)$이므로, 외력에서 변위까지의 전달함수는 다음과 같다. 매개변수는 $m = 1$ kg, $b = 10$ N s/m, $k = 20$ N/m이다.
 
 ```math
 P(s) = \frac{X(s)}{F(s)} = \frac{1}{ms^2 + bs + k} = \frac{1}{s^2 + 10s + 20}
@@ -213,7 +213,7 @@ response = step(P,t)
 stepinfo(response,t)
 ```
 
-- `s = tf('s');`는 라플라스 변수 $s$를 전달함수 객체로 만든다. 이후 $s$를 쓴 식은 전달함수가 된다.
+- `s = tf('s');`는 Laplace 변수 $s$를 전달함수 객체로 만든다. 이후 $s$를 쓴 식은 전달함수가 된다.
 - `P = 1/(s^2 + 10*s + 20);`는 플랜트 $P(s)$를 만든다.
 - `t = 0:0.01:2;`는 0초부터 2초까지 0.01초 간격의 시간 벡터이다.
 - `response = step(P,t)`는 시각 `t`마다의 단위 계단 응답 값을 벡터로 돌려준다. 줄 끝에 세미콜론이 없으므로 값이 화면에 출력된다.
@@ -596,7 +596,7 @@ my_options = optimset('display','iter','LargeScale','off','TolX',tol, ...
 - `sAlgo='sqp';`는 알고리즘으로 SQP를 고르고, `tol = 1.0e-6;`은 허용 오차이다.
 - `optimset(...)`은 최적화 옵션을 만든다. `'display','iter'`는 반복마다 진행 상황을 출력하고, `'TolX'`, `'TolFun'`, `'TolCon'`은 각각 설계 변수의 변화, 목적 함수의 변화, 제한조건 위반에 대한 허용 오차이며, 앞의 둘은 3.4절의 $\varepsilon_1$, $\varepsilon_2$에 해당한다. `'LargeScale','off'`는 이전 버전의 옵션으로 대규모 알고리즘을 쓰지 않게 한다.
 - `fmincon(fun, x0, A, b, Aeq, beq, lb, ub, nonlcon, options)`은 선형 부등식 $A\mathbf{x} \le b$, 선형 등식 $A_{eq}\mathbf{x} = b_{eq}$, 범위 $lb \le \mathbf{x} \le ub$, 비선형 제한조건 `nonlcon`을 만족하면서 `fun`을 최소화한다. 선형 제한조건이 없으므로 네 자리에 빈 행렬 `[]`를 넣고, 비선형 제한조건은 아래의 함수 `nonlcon`으로 준다.
-- 출력 `opt_var_new`는 최적 설계, `fval`은 그때의 목적 함수 값, `exitflag`는 종료 이유, `output`은 반복 정보, `lambda`는 라그랑주 승수, `grad`와 `hessian`은 최적점에서의 기울기와 헤세 행렬이다.
+- 출력 `opt_var_new`는 최적 설계, `fval`은 그때의 목적 함수 값, `exitflag`는 종료 이유, `output`은 반복 정보, `lambda`는 Lagrange 승수, `grad`와 `hessian`은 최적점에서의 기울기와 Hessian 행렬이다.
 
 > **참고:** 위 스크립트는 `fmincon`에 넘기는 범위 `lb`와 `ub`를 정의하지 않는다. 실행하려면 호출 전에 3.8절의 다중 시작 코드처럼 `lb=[1 1 1];`과 `ub=[500 500 500];`을 두어야 한다.
 

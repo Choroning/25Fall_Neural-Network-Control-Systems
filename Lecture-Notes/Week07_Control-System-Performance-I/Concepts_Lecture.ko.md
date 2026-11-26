@@ -2,7 +2,7 @@
 
 [레포지토리 안내](../../README.ko.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **최종 수정일:** 2026-11-17
+> **최종 수정일:** 2026-11-27
 
 > **학습 목표:**
 > 1. 피드백 제어시스템의 구성 요소를 설명하고, 피드백 경로에 센서가 있는 시스템을 블록선도 연산으로 단위 피드백 시스템으로 바꿀 수 있다
@@ -199,15 +199,15 @@ T(s) = \frac{K\cdot\frac{1}{s+1}}{1 + K\cdot\frac{1}{s+1}} = \frac{K}{s + 1 + K}
 u_s(t) = \begin{cases} 1, & t \ge 0 \\ 0, & t < 0 \end{cases} \qquad u_r(t) = \begin{cases} t, & t \ge 0 \\ 0, & t < 0 \end{cases} \qquad u_p(t) = \begin{cases} \dfrac{t^2}{2}, & t \ge 0 \\ 0, & t < 0 \end{cases}
 ```
 
-| 시험 입력 | 시간 함수 ($`t \ge 0`$) | 라플라스 변환 | 나타내는 명령 |
+| 시험 입력 | 시간 함수 ($`t \ge 0`$) | Laplace 변환 | 나타내는 명령 |
 |:-----|:-----|:-----|:-----|
 | 단위 계단 입력(unit step input) | $u_s(t) = 1$ | $U_s(s) = 1/s$ | 목표값이 갑자기 바뀌어 그 값을 유지하는 명령 |
 | 단위 경사 입력(unit ramp input) | $u_r(t) = t$ | $U_r(s) = 1/s^2$ | 목표값이 일정한 속도로 바뀌는 명령 |
 | 단위 포물선 입력(unit parabolic input) | $u_p(t) = t^2/2$ | $U_p(s) = 1/s^3$ | 목표값이 일정한 가속도로 바뀌는 명령 |
 
-*표 2. 세 가지 시험 입력 신호와 그 라플라스 변환*
+*표 2. 세 가지 시험 입력 신호와 그 Laplace 변환*
 
-경사 입력은 램프 입력이라고도 한다. 세 신호는 차례로 앞 신호를 적분한 것이다. $`u_r(t) = \int_0^t u_s(\lambda)\,d\lambda`$이고 $`u_p(t) = \int_0^t u_r(\lambda)\,d\lambda`$이며, 3주차의 적분 정리에 따라 시간 영역의 적분은 $s$ 영역에서 $1/s$를 곱하는 것이므로 라플라스 변환이 $1/s$, $1/s^2$, $1/s^3$으로 이어진다. 포물선 입력에 $1/2$을 붙이는 것은 변환을 $1/s^3$으로 깔끔하게 만들기 위해서이다.
+경사 입력은 램프 입력이라고도 한다. 세 신호는 차례로 앞 신호를 적분한 것이다. $`u_r(t) = \int_0^t u_s(\lambda)\,d\lambda`$이고 $`u_p(t) = \int_0^t u_r(\lambda)\,d\lambda`$이며, 3주차의 적분 정리에 따라 시간 영역의 적분은 $s$ 영역에서 $1/s$를 곱하는 것이므로 Laplace 변환이 $1/s$, $1/s^2$, $1/s^3$으로 이어진다. 포물선 입력에 $1/2$을 붙이는 것은 변환을 $1/s^3$으로 깔끔하게 만들기 위해서이다.
 
 ![그림 8. 단위 계단, 단위 경사, 단위 포물선 입력](../../images/Week07_Test-Input-Signals.png)
 
@@ -217,7 +217,7 @@ u_s(t) = \begin{cases} 1, & t \ge 0 \\ 0, & t < 0 \end{cases} \qquad u_r(t) = \b
 
 ### 1.5 미분방정식으로 본 과도 성능과 정상 상태 성능
 
-1.3절의 시스템을 시간 영역에서 풀면 두 성능이 응답의 어느 부분에 해당하는지 분명해진다. 폐루프 전달함수 $Y(s)/R(s) = K/(s + 1 + K)$의 분모를 넘기면 $(s + 1 + K)Y(s) = KR(s)$이다. 초기 조건이 0일 때 $sY(s)$는 $\dot{y}(t)$의 라플라스 변환이므로(3주차), 이 식은 다음 **미분방정식**에 해당한다.
+1.3절의 시스템을 시간 영역에서 풀면 두 성능이 응답의 어느 부분에 해당하는지 분명해진다. 폐루프 전달함수 $Y(s)/R(s) = K/(s + 1 + K)$의 분모를 넘기면 $(s + 1 + K)Y(s) = KR(s)$이다. 초기 조건이 0일 때 $sY(s)$는 $\dot{y}(t)$의 Laplace 변환이므로(3주차), 이 식은 다음 **미분방정식**에 해당한다.
 
 ```math
 \dot{y}(t) + (K + 1)\,y(t) = K\,r(t)
@@ -233,7 +233,7 @@ u_s(t) = \begin{cases} 1, & t \ge 0 \\ 0, & t < 0 \end{cases} \qquad u_r(t) = \b
 y(t) = -\frac{K}{K+1}\,e^{-(K+1)t} + \frac{K}{K+1}, \qquad t \ge 0
 ```
 
-라플라스 변환으로 풀어도 같다. $Y(s) = \dfrac{K}{s(s + K + 1)} = \dfrac{K}{K+1}\left(\dfrac{1}{s} - \dfrac{1}{s + K + 1}\right)$의 역변환이 위 식이다.
+Laplace 변환으로 풀어도 같다. $Y(s) = \dfrac{K}{s(s + K + 1)} = \dfrac{K}{K+1}\left(\dfrac{1}{s} - \dfrac{1}{s + K + 1}\right)$의 역변환이 위 식이다.
 
 해의 첫째 항은 시간이 지나면 0으로 사라지는 **과도 성분**이고, 둘째 항은 끝까지 남는 **정상 상태 성분**이다. 과도 성분이 사라지는 빠르기는 지수 $K + 1$, 즉 폐루프 극점 $s = -(K+1)$이 정하고, 최종값은 $K/(K+1)$이다.
 
@@ -301,7 +301,7 @@ $\tau$를 **시정수(time constant)** 라 한다. 극점은 $\tau s + 1 = 0$의
 \tau\,\dot{y}(t) + y(t) = u_s(t)
 ```
 
-라플라스 변환으로 응답을 구한다. 분모를 $\tau$로 나누어 부분분수로 전개한다(3주차).
+Laplace 변환으로 응답을 구한다. 분모를 $\tau$로 나누어 부분분수로 전개한다(3주차).
 
 ```math
 Y(s) = \frac{1}{s(\tau s + 1)} = \frac{1/\tau}{s\,(s + 1/\tau)} = \frac{A}{s} + \frac{B}{s + 1/\tau}
@@ -361,7 +361,7 @@ $`\pm 2\%`$ 정착 시간은 흔히 $4\tau$로 어림한다 [1]. 1차 시스템�
 
 *그림 11. 전기자 제어 직류 모터의 회로와 회전부*
 
-전기자 회로에 키르히호프 전압 법칙을, 회전부에 회전 운동 방정식을 적용한다. $K_b$는 역기전력 상수, $K_t$는 토크 상수이고, $\omega = d\theta/dt$는 각속도이다.
+전기자 회로에 Kirchhoff의 전압 법칙을, 회전부에 회전 운동 방정식을 적용한다. $K_b$는 역기전력 상수, $K_t$는 토크 상수이고, $\omega = d\theta/dt$는 각속도이다.
 
 ```math
 e_a = R_a i_a + L_a\frac{di_a}{dt} + e_b = R_a i_a + L_a\frac{di_a}{dt} + K_b\frac{d\theta}{dt}
@@ -371,7 +371,7 @@ e_a = R_a i_a + L_a\frac{di_a}{dt} + e_b = R_a i_a + L_a\frac{di_a}{dt} + K_b\fr
 T = K_t i_a = J_a\frac{d^2\theta}{dt^2} + B\frac{d\theta}{dt}
 ```
 
-초기 조건을 0으로 두고 라플라스 변환하면 $E_a = (R_a + L_a s)I_a + K_b\Omega$이고 $K_t I_a = (J_a s + B)\Omega$이다. 둘째 식에서 $I_a = (J_a s + B)\Omega/K_t$를 첫째 식에 넣어 $\Omega/E_a$를 구한다.
+초기 조건을 0으로 두고 Laplace 변환하면 $E_a = (R_a + L_a s)I_a + K_b\Omega$이고 $K_t I_a = (J_a s + B)\Omega$이다. 둘째 식에서 $I_a = (J_a s + B)\Omega/K_t$를 첫째 식에 넣어 $\Omega/E_a$를 구한다.
 
 ```math
 \frac{\Omega(s)}{E_a(s)} = \frac{K_t}{(R_a + L_a s)(J_a s + B) + K_t K_b}
@@ -477,13 +477,13 @@ T(s) = \frac{\dfrac{K}{s(s+1)}}{1 + \dfrac{K}{s(s+1)}} = \frac{K}{s^2 + s + K}
 
 고유 진동수는 마찰이 없을 때 질량과 스프링이 진동하는 각진동수이고, 감쇠비는 마찰 $B$가 그 진동을 얼마나 억제하는지를 나타낸다. 3.1절의 시스템은 $s^2 + s + K$를 $s^2 + 2\zeta\omega_n s + \omega_n^2$과 비교하여 $\omega_n = \sqrt{K}$, $\zeta = 1/(2\sqrt{K})$이다.
 
-**단위 계단 응답.** $U_s(s) = 1/s$이므로 출력의 라플라스 변환은 다음과 같다.
+**단위 계단 응답.** $U_s(s) = 1/s$이므로 출력의 Laplace 변환은 다음과 같다.
 
 ```math
 Y(s) = G_T(s)U_s(s) = \frac{\omega_n^2}{(s^2 + 2\zeta\omega_n s + \omega_n^2)\,s}
 ```
 
-역라플라스 변환으로 $y(t)$를 구하려면 부분분수 전개가 필요하고, 부분분수 전개를 하려면 분모를 인수분해해야 한다. 즉 다음 **특성방정식(characteristic equation)** 의 근을 구해야 하며, 근의 종류에 따라 응답의 형태가 달라진다.
+역 Laplace 변환으로 $y(t)$를 구하려면 부분분수 전개가 필요하고, 부분분수 전개를 하려면 분모를 인수분해해야 한다. 즉 다음 **특성방정식(characteristic equation)** 의 근을 구해야 하며, 근의 종류에 따라 응답의 형태가 달라진다.
 
 ```math
 s^2 + 2\zeta\omega_n s + \omega_n^2 = 0
@@ -610,7 +610,7 @@ y(t) &= K_1e^{\sigma t + j\omega_d t} + K_1^{\ast}e^{\sigma t - j\omega_d t} + K
 \end{aligned}
 ```
 
-마지막 줄은 오일러 공식 $e^{jx} = \cos x + j\sin x$에서 얻는 $e^{jx} + e^{-jx} = 2\cos x$를 쓴 것이다. 허수 부분이 서로 지워져 실수 응답이 된다.
+마지막 줄은 Euler 공식 $e^{jx} = \cos x + j\sin x$에서 얻는 $e^{jx} + e^{-jx} = 2\cos x$를 쓴 것이다. 허수 부분이 서로 지워져 실수 응답이 된다.
 
 **계수 계산.** $\vert s_1\vert^2 = \sigma^2 + \omega_d^2 = \zeta^2\omega_n^2 + (1 - \zeta^2)\omega_n^2 = \omega_n^2$이므로 $\vert s_1\vert = \omega_n$이고 $K_3 = \omega_n^2/(s_1 s_1^{\ast}) = \omega_n^2/\vert s_1\vert^2 = 1$이다. $K_1$의 크기와 편각은 다음과 같다. $\phi$는 아래 식으로 정의하는 각이며, $s_1$은 제2사분면에 있어 편각이 $\angle s_1 = \pi/2 + \phi$이다.
 
@@ -725,7 +725,7 @@ $\theta$는 3.6절의 $\phi$와 같은 각이다($`\sin\phi = \zeta`$). 같은 �
 
    </details>
 
-2. **시험 입력:** 단위 포물선 입력을 $t^2$가 아니라 $t^2/2$로 정의하는 이유를 라플라스 변환으로 설명하라.
+2. **시험 입력:** 단위 포물선 입력을 $t^2$가 아니라 $t^2/2$로 정의하는 이유를 Laplace 변환으로 설명하라.
 
    <details>
    <summary>정답</summary>
