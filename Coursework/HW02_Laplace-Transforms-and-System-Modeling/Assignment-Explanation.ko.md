@@ -48,11 +48,11 @@ Laplace 변환과 역변환, Laplace 변환을 이용한 미분방정식의 풀�
 
 ```text
 Coursework/HW02_Laplace-Transforms-and-System-Modeling/
-├── Assignment-Explanation.ko.md   # 과제 해설 (한국어)
-├── Assignment-Explanation.md      # 과제 해설 (영어)
+├── Assignment-Explanation.ko.md   # assignment explanation (Korean)
+├── Assignment-Explanation.md      # assignment explanation (English)
 └── Original/
-    ├── Assignment.ko.md           # 과제 안내문 (한국어)
-    └── Assignment.md              # 과제 안내문 (영어)
+    ├── Assignment.ko.md           # assignment handout (Korean)
+    └── Assignment.md              # assignment handout (English)
 ```
 
 *그림 1. HW2 과제의 디렉토리 구성*

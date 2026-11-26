@@ -2,7 +2,7 @@
 
 [Repository Guide](../../README.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **Last Updated:** 2026-11-17
+> **Last Updated:** 2026-11-27
 
 > **Learning Objectives:**
 > 1. Define intelligence and artificial intelligence, and explain the inclusion relationship among artificial intelligence, machine learning, and deep learning and the Turing test
@@ -1029,7 +1029,7 @@ A simple example summarizes reinforcement learning. The agent moves on a map mad
 
 ```text
 ┌──────────┬──────────┬──────────┐
-│ 7    →   │ 8    →   │ 9    ★   │
+│ 7    →   │ 8    →   │ 9    *   │
 ├──────────┼──────────┼──────────┤
 │ 4    →   │ 5    ↑   │ 6    ↑   │
 ├──────────┼──────────┼──────────┤

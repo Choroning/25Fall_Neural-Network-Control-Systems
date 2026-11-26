@@ -60,13 +60,13 @@
 
 ```plaintext
 25Fall_Neural-Network-Control-Systems
-├── Lecture-Notes               주차별 강의 노트
-├── Coursework                  과제와 해설
-├── images                      모든 문서의 그림
-├── Course-Information.ko.md    수업 운영 정보
+├── Lecture-Notes               Weekly lecture notes
+├── Coursework                  Assignments and explanations
+├── images                      Figures for all documents
+├── Course-Information.ko.md    Course operations
 ├── Course-Information.md
-├── LICENSE                     문서 라이선스 (CC BY-NC-SA 4.0)
-├── LICENSE-CODE                코드 라이선스 (PolyForm Noncommercial 1.0.0)
+├── LICENSE                     Documentation license (CC BY-NC-SA 4.0)
+├── LICENSE-CODE                Code license (PolyForm Noncommercial 1.0.0)
 ├── README.ko.md
 └── README.md
 ```

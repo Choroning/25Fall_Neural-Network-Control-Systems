@@ -49,11 +49,11 @@
 
 ```text
 Coursework/HW04_Machine-Learning-and-Neural-Network-Control/
-├── Assignment-Explanation.ko.md   # 과제 해설 (한국어)
-├── Assignment-Explanation.md      # 과제 해설 (영어)
+├── Assignment-Explanation.ko.md   # assignment explanation (Korean)
+├── Assignment-Explanation.md      # assignment explanation (English)
 └── Original/
-    ├── Assignment.ko.md           # 과제 안내문 (한국어)
-    └── Assignment.md              # 과제 안내문 (영어)
+    ├── Assignment.ko.md           # assignment handout (Korean)
+    └── Assignment.md              # assignment handout (English)
 ```
 
 *그림 1. HW4 과제의 디렉토리 구성*
